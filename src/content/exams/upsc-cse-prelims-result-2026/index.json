@@ -1,0 +1,31 @@
+﻿{
+  "title": "UPSC Civil Services (CSE) Prelims Result 2026 with Cut-off",
+  "category": "results",
+  "status": "Result Declared",
+  "organization": "Union Public Service Commission (UPSC)",
+  "postName": "Civil Services (IAS / IPS / IFS) Prelims 2026",
+  "totalVacancies": 1205,
+  "coverImage": "https://images.unsplash.com/photo-1497633762265-9d179a990aa6?w=1200&q=80",
+  "startDate": "2026-02-01",
+  "closingDate": "2026-02-25",
+  "examDate": "25th May 2026",
+  "admitCardDate": "May 2026",
+  "resultDate": "Declared Today (26 August 2026)",
+  "applicationFees": [
+    { "category": "General / OBC / EWS", "amount": "₹100/-" },
+    { "category": "SC / ST / PH / Female", "amount": "₹0/-" }
+  ],
+  "ageLimit": {
+    "minAge": "21 Years",
+    "maxAge": "32 Years",
+    "asOnDate": "01/08/2026"
+  },
+  "eligibility": [
+    { "postName": "Indian Administrative Service (IAS)", "totalPosts": "180", "qualification": "Bachelor's Degree from Recognized University" },
+    { "postName": "Indian Police Service (IPS)", "totalPosts": "200", "qualification": "Bachelor's Degree with Physical Standard Criteria" },
+    { "postName": "Central Services Group A & B", "totalPosts": "825", "qualification": "Bachelor's Degree in Any Discipline" }
+  ],
+  "officialUrl": "https://upsc.gov.in",
+  "applyOnlineUrl": "https://upsc.gov.in",
+  "notificationPdfUrl": "https://upsc.gov.in"
+}

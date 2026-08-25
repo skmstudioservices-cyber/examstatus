@@ -1,0 +1,30 @@
+﻿{
+  "title": "Railway RRB NTPC Phase-2 Admit Card 2026",
+  "category": "admit-cards",
+  "status": "Admit Card Released",
+  "organization": "Railway Recruitment Board (RRB)",
+  "postName": "Non-Technical Popular Categories (NTPC)",
+  "totalVacancies": 11558,
+  "coverImage": "https://images.unsplash.com/photo-1544620347-c4fd4a3d5957?w=1200&q=80",
+  "startDate": "2026-05-10",
+  "closingDate": "2026-06-15",
+  "examDate": "15th - 25th September 2026",
+  "admitCardDate": "Available Now (Active Link)",
+  "resultDate": "November 2026",
+  "applicationFees": [
+    { "category": "General / OBC", "amount": "₹500/- (₹400 Refundable)" },
+    { "category": "SC / ST / Female", "amount": "₹250/- (₹250 Refundable)" }
+  ],
+  "ageLimit": {
+    "minAge": "18 Years",
+    "maxAge": "33 Years",
+    "asOnDate": "01/07/2026"
+  },
+  "eligibility": [
+    { "postName": "Station Master / Goods Train Manager", "totalPosts": "6200", "qualification": "Graduate Degree in Any Discipline" },
+    { "postName": "Commercial Apprentice / Senior Clerk", "totalPosts": "5358", "qualification": "Bachelor Degree with Computer Typing Proficiency" }
+  ],
+  "officialUrl": "https://rrbcdg.gov.in",
+  "applyOnlineUrl": "https://rrbcdg.gov.in",
+  "notificationPdfUrl": "https://rrbcdg.gov.in"
+}

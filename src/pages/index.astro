@@ -1,0 +1,211 @@
+---
+import ExamLayout from '../layouts/ExamLayout.astro';
+import examsData from '../data/exams.json';
+
+const latestJobs = examsData.filter(i => i.category === 'latest-jobs');
+const admitCards = examsData.filter(i => i.category === 'admit-cards');
+const results = examsData.filter(i => i.category === 'results');
+
+// Collect all unique qualifications for the filter system
+const allQualifications = [...new Set(examsData.flatMap(exam => exam.qualifications || []))].sort();
+---
+
+<ExamLayout
+  title="Exam Status & Sarkari Job Portal | Instant Results & Filters"
+  description="Live exam status dashboard, instant government job notifications, admit cards, answer keys and fast Sarkari results updates."
+>
+  <div class="bg-gradient-to-r from-slate-900 to-slate-800 text-white p-6 rounded-lg shadow-lg mb-6 text-center border-b-4 border-amber-500">
+    <h1 class="text-2xl md:text-4xl font-black uppercase tracking-tight text-amber-400 drop-shadow-md">
+      All India Sarkari Result Dashboard
+    </h1>
+    <p class="text-sm text-gray-300 mt-2 max-w-xl mx-auto">
+      Instant verified updates for SSC, UPSC, Railway, Banking, Teaching, Defense & State PSC Recruitments.
+    </p>
+
+    <!-- NEW: SMART QUALIFICATION FILTERING SYSTEM -->
+    <div class="mt-6 bg-slate-800/80 p-4 rounded border border-slate-700">
+      <h3 class="text-xs font-bold text-gray-400 uppercase tracking-widest mb-3">⚡ Smart Eligibility Filter</h3>
+      <div class="flex flex-wrap justify-center gap-2" id="qualification-filters">
+        <button data-qual="all" class="filter-btn active bg-amber-500 text-slate-900 px-4 py-1.5 rounded-full text-xs font-bold uppercase transition hover:scale-105 shadow-md ring-2 ring-amber-300 ring-offset-1 ring-offset-slate-900">
+          All Qualifications
+        </button>
+        {allQualifications.map(qual => (
+          <button data-qual={qual} class="filter-btn bg-slate-700 text-white px-4 py-1.5 rounded-full text-xs font-bold uppercase transition hover:bg-slate-600 hover:scale-105 shadow">
+            {qual}
+          </button>
+        ))}
+      </div>
+    </div>
+  </div>
+
+  <div class="bg-amber-100 border-l-4 border-amber-600 p-2.5 mb-6 rounded text-xs font-bold text-slate-800 flex items-center overflow-hidden shadow-sm">
+    <span class="bg-red-700 text-white px-2 py-0.5 rounded text-[10px] mr-2 shrink-0 animate-pulse">LATEST</span>
+    <marquee class="truncate flex-grow" scrollamount="5">
+      SSC CGL 2026 Online Form Active (14,582 Posts) &nbsp; • &nbsp; RRB NTPC Admit Cards Released &nbsp; • &nbsp; UPSC CSE Prelims Result Declared! &nbsp; • &nbsp; IBPS PO Apply Online
+    </marquee>
+  </div>
+
+  <!-- SARKARI 3-COLUMN MEGA GRID -->
+  <div class="grid grid-cols-1 md:grid-cols-3 gap-5">
+    
+    <!-- COLUMN 1: RESULTS & KEYS -->
+    <div class="bg-white border-2 border-red-600 rounded-lg shadow-md overflow-hidden flex flex-col result-col">
+      <div class="bg-red-700 text-white font-black text-center py-3 px-3 uppercase text-sm flex justify-between items-center shadow-inner">
+        <span class="tracking-wide">🏆 Results & Keys</span>
+        <span class="text-xs bg-red-950 px-2.5 py-1 rounded-full shadow-inner count-badge">{results.length}</span>
+      </div>
+      <div class="p-3 flex-grow divide-y divide-gray-100 space-y-2" id="results-list">
+        {results.map(item => (
+          <a 
+            href={`/exam/${item.slug}`} 
+            class="exam-card block pt-2 hover:bg-red-50 p-2 rounded transition group"
+            data-quals={JSON.stringify(item.qualifications || [])}
+          >
+            <div class="text-xs font-bold text-red-900 group-hover:text-red-700 leading-snug">
+              • {item.title}
+            </div>
+            <div class="text-[10px] text-gray-500 mt-1.5 flex justify-between items-center">
+              <span class="font-semibold">{item.organization}</span>
+              <span class="text-red-600 font-bold bg-red-100 px-1.5 rounded">{item.resultDate}</span>
+            </div>
+          </a>
+        ))}
+        <div class="empty-state hidden text-center text-xs text-gray-400 py-6 font-semibold">No results match this qualification.</div>
+      </div>
+      <a href="#results" class="bg-gray-100 hover:bg-gray-200 text-center py-2.5 text-xs font-bold text-red-800 border-t transition-colors">
+        View All Results &rarr;
+      </a>
+    </div>
+
+    <!-- COLUMN 2: ADMIT CARDS -->
+    <div class="bg-white border-2 border-blue-600 rounded-lg shadow-md overflow-hidden flex flex-col admit-col">
+      <div class="bg-blue-800 text-white font-black text-center py-3 px-3 uppercase text-sm flex justify-between items-center shadow-inner">
+        <span class="tracking-wide">🎟️ Admit Cards</span>
+        <span class="text-xs bg-blue-950 px-2.5 py-1 rounded-full shadow-inner count-badge">{admitCards.length}</span>
+      </div>
+      <div class="p-3 flex-grow divide-y divide-gray-100 space-y-2" id="admit-list">
+        {admitCards.map(item => (
+          <a 
+            href={`/exam/${item.slug}`} 
+            class="exam-card block pt-2 hover:bg-blue-50 p-2 rounded transition group"
+            data-quals={JSON.stringify(item.qualifications || [])}
+          >
+            <div class="text-xs font-bold text-blue-900 group-hover:text-blue-700 leading-snug">
+              • {item.title}
+            </div>
+            <div class="text-[10px] text-gray-500 mt-1.5 flex justify-between items-center">
+              <span class="font-semibold">{item.organization}</span>
+              <span class="text-blue-600 font-bold bg-blue-100 px-1.5 rounded">{item.admitCardDate}</span>
+            </div>
+          </a>
+        ))}
+        <div class="empty-state hidden text-center text-xs text-gray-400 py-6 font-semibold">No admit cards match this qualification.</div>
+      </div>
+      <a href="#admit-cards" class="bg-gray-100 hover:bg-gray-200 text-center py-2.5 text-xs font-bold text-blue-900 border-t transition-colors">
+        View All Admit Cards &rarr;
+      </a>
+    </div>
+
+    <!-- COLUMN 3: LATEST JOBS -->
+    <div class="bg-white border-2 border-green-700 rounded-lg shadow-md overflow-hidden flex flex-col jobs-col">
+      <div class="bg-green-800 text-white font-black text-center py-3 px-3 uppercase text-sm flex justify-between items-center shadow-inner">
+        <span class="tracking-wide">💼 Latest Jobs</span>
+        <span class="text-xs bg-green-950 px-2.5 py-1 rounded-full shadow-inner count-badge">{latestJobs.length}</span>
+      </div>
+      <div class="p-3 flex-grow divide-y divide-gray-100 space-y-2" id="jobs-list">
+        {latestJobs.map(item => (
+          <a 
+            href={`/exam/${item.slug}`} 
+            class="exam-card block pt-2 hover:bg-green-50 p-2 rounded transition group"
+            data-quals={JSON.stringify(item.qualifications || [])}
+          >
+            <div class="text-xs font-bold text-gray-900 group-hover:text-green-800 leading-snug">
+              • {item.title} <span class="text-green-700">({item.totalVacancies} Posts)</span>
+            </div>
+            <div class="text-[10px] text-gray-500 mt-1.5 flex justify-between items-center">
+              <span>Last Date: <strong class="text-red-600">{item.closingDate}</strong></span>
+              <span class="bg-green-600 text-white shadow font-bold px-2 py-0.5 rounded">Apply</span>
+            </div>
+          </a>
+        ))}
+        <div class="empty-state hidden text-center text-xs text-gray-400 py-6 font-semibold">No jobs match this qualification.</div>
+      </div>
+      <a href="#latest-jobs" class="bg-gray-100 hover:bg-gray-200 text-center py-2.5 text-xs font-bold text-green-900 border-t transition-colors">
+        View All Latest Jobs &rarr;
+      </a>
+    </div>
+
+  </div>
+
+  <!-- CLIENT-SIDE FILTERING SCRIPT -->
+  <script is:inline>
+    document.addEventListener('DOMContentLoaded', () => {
+      const filterBtns = document.querySelectorAll('.filter-btn');
+      const allCards = document.querySelectorAll('.exam-card');
+      const columns = [
+        { id: 'results-list', badge: '.result-col .count-badge' },
+        { id: 'admit-list', badge: '.admit-col .count-badge' },
+        { id: 'jobs-list', badge: '.jobs-col .count-badge' }
+      ];
+
+      filterBtns.forEach(btn => {
+        btn.addEventListener('click', () => {
+          // Update active states
+          filterBtns.forEach(b => {
+            b.classList.remove('active', 'bg-amber-500', 'text-slate-900', 'ring-2', 'ring-amber-300', 'ring-offset-1', 'ring-offset-slate-900');
+            b.classList.add('bg-slate-700', 'text-white');
+          });
+          btn.classList.remove('bg-slate-700', 'text-white');
+          btn.classList.add('active', 'bg-amber-500', 'text-slate-900', 'ring-2', 'ring-amber-300', 'ring-offset-1', 'ring-offset-slate-900');
+
+          const selectedQual = btn.getAttribute('data-qual');
+
+          // Process all cards
+          allCards.forEach(card => {
+            const qualsStr = card.getAttribute('data-quals');
+            let matched = false;
+            if (selectedQual === 'all') {
+              matched = true;
+            } else {
+              try {
+                const quals = JSON.parse(qualsStr);
+                if (quals.includes(selectedQual)) {
+                  matched = true;
+                }
+              } catch (e) {}
+            }
+
+            if (matched) {
+              card.style.display = 'block';
+              card.classList.add('matched');
+            } else {
+              card.style.display = 'none';
+              card.classList.remove('matched');
+            }
+          });
+
+          // Update counts and empty states per column
+          columns.forEach(col => {
+            const listEl = document.getElementById(col.id);
+            if (!listEl) return;
+            const badgeEl = document.querySelector(col.badge);
+            const emptyState = listEl.querySelector('.empty-state');
+            
+            const visibleCards = Array.from(listEl.querySelectorAll('.exam-card')).filter(c => c.style.display !== 'none');
+            const count = visibleCards.length;
+            
+            if (badgeEl) badgeEl.textContent = count;
+            
+            if (count === 0) {
+              emptyState.classList.remove('hidden');
+              emptyState.classList.add('block');
+            } else {
+              emptyState.classList.add('hidden');
+              emptyState.classList.remove('block');
+            }
+          });
+        });
+      });
+    });
+  </script>
+</ExamLayout>

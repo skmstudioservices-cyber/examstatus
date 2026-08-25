@@ -1,0 +1,29 @@
+﻿{
+  "title": "IBPS PO / MT XVI Recruitment Online Form 2026",
+  "category": "latest-jobs",
+  "status": "Active (Apply Online)",
+  "organization": "Institute of Banking Personnel Selection (IBPS)",
+  "postName": "Probationary Officer / Management Trainee (PO/MT)",
+  "totalVacancies": 4455,
+  "coverImage": "https://images.unsplash.com/photo-1559526324-4b87b5e36e44?w=1200&q=80",
+  "startDate": "2026-08-01",
+  "closingDate": "2026-08-28",
+  "examDate": "19th & 20th October 2026",
+  "admitCardDate": "October 2026",
+  "resultDate": "November 2026",
+  "applicationFees": [
+    { "category": "General / OBC / EWS", "amount": "₹850/-" },
+    { "category": "SC / ST / PwD", "amount": "₹175/-" }
+  ],
+  "ageLimit": {
+    "minAge": "20 Years",
+    "maxAge": "30 Years",
+    "asOnDate": "01/08/2026"
+  },
+  "eligibility": [
+    { "postName": "Probationary Officer (PO) in 11 Participating Banks", "totalPosts": "4455", "qualification": "Bachelor's Degree (Graduation) in Any Discipline from a Recognized University" }
+  ],
+  "officialUrl": "https://ibps.in",
+  "applyOnlineUrl": "https://ibps.in",
+  "notificationPdfUrl": "https://ibps.in"
+}

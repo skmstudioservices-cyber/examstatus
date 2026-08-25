@@ -1,0 +1,32 @@
+﻿{
+  "title": "SSC CGL 2026 Online Application Form",
+  "category": "latest-jobs",
+  "status": "Active (Apply Online)",
+  "organization": "Staff Selection Commission (SSC)",
+  "postName": "Combined Graduate Level (CGL) Examination 2026",
+  "totalVacancies": 14582,
+  "coverImage": "https://images.unsplash.com/photo-1434030216411-0b793f4b4173?w=1200&q=80",
+  "startDate": "2026-08-20",
+  "closingDate": "2026-09-25",
+  "examDate": "December 2026 (Tier-1)",
+  "admitCardDate": "4 Days Before Exam",
+  "resultDate": "January 2027",
+  "applicationFees": [
+    { "category": "General / OBC / EWS", "amount": "₹100/-" },
+    { "category": "SC / ST / PwD / Female", "amount": "₹0/- (Exempted)" }
+  ],
+  "ageLimit": {
+    "minAge": "18 Years",
+    "maxAge": "32 Years (Post Wise)",
+    "asOnDate": "01/08/2026"
+  },
+  "eligibility": [
+    { "postName": "Assistant Audit Officer (AAO)", "totalPosts": "450", "qualification": "Bachelor's Degree with CA / CS / MBA Finance / M.Com" },
+    { "postName": "Junior Statistical Officer (JSO)", "totalPosts": "620", "qualification": "Bachelor's Degree with 60% in Mathematics in 12th Standard" },
+    { "postName": "Inspector (Central Excise / IT / Examiner)", "totalPosts": "7500", "qualification": "Bachelor's Degree in Any Stream from Recognized University" },
+    { "postName": "Assistant Section Officer (ASO / CSS / MEA)", "totalPosts": "6012", "qualification": "Bachelor's Degree in Any Stream from Recognized University" }
+  ],
+  "officialUrl": "https://ssc.gov.in",
+  "applyOnlineUrl": "https://ssc.gov.in",
+  "notificationPdfUrl": "https://ssc.gov.in"
+}

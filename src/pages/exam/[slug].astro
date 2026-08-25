@@ -1,0 +1,108 @@
+---
+import ExamLayout from '../../layouts/ExamLayout.astro';
+import DataSheet from '../../components/DataSheet.astro';
+import examsData from '../../data/exams.json';
+
+export const prerender = false;
+
+const { slug } = Astro.params;
+const exam = examsData.find(e => e.slug === slug);
+
+if (!exam) {
+  return Astro.redirect('/');
+}
+
+// Generate JobPosting JSON-LD Schema
+const jobPostingSchema = {
+  "@context": "https://schema.org",
+  "@type": "JobPosting",
+  "title": exam.title,
+  "description": `${exam.title} Recruitment 2026. Check full eligibility criteria, exam dates, fee structure, age limit and apply online. Qualifications required: ${exam.qualifications?.join(', ') || 'Various'}`,
+  "datePosted": exam.startDate,
+  "validThrough": `${exam.closingDate}T23:59:59Z`,
+  "employmentType": "FULL_TIME",
+  "hiringOrganization": {
+    "@type": "Organization",
+    "name": exam.organization,
+    "sameAs": exam.officialUrl
+  },
+  "jobLocation": {
+    "@type": "Place",
+    "address": { "@type": "PostalAddress", "addressCountry": "IN" }
+  },
+  "totalJobOpenings": exam.totalVacancies || 1,
+  "directApply": true,
+  "educationRequirements": {
+    "@type": "EducationalOccupationalCredential",
+    "credentialCategory": exam.qualifications?.join(', ') || "High School"
+  }
+};
+---
+
+<ExamLayout
+  title={exam.title}
+  description={`${exam.title} Recruitment 2026. Check full eligibility criteria, exam dates, fee structure, age limit and apply online direct link.`}
+  category={exam.category}
+  schemaData={jobPostingSchema}
+>
+  <div class="bg-white p-4 md:p-6 rounded-lg shadow-sm border border-gray-200">
+    <nav class="text-xs text-gray-500 mb-4 flex items-center space-x-1.5 font-medium">
+      <a href="/" class="hover:text-red-700 transition">Home</a>
+      <span>/</span>
+      <span class="capitalize text-red-700 font-semibold">{exam.category.replace('-', ' ')}</span>
+      <span>/</span>
+      <span class="text-gray-800 font-bold truncate">{exam.title}</span>
+    </nav>
+
+    <h1 class="text-2xl md:text-3xl font-black text-gray-900 border-b-2 border-gray-200 pb-3">
+      {exam.title}
+    </h1>
+
+    <div class="flex flex-wrap items-center gap-3 text-xs md:text-sm font-semibold text-gray-600 mt-3">
+      <span class="bg-blue-50 text-blue-800 px-2 py-1 rounded border border-blue-200">
+        Posted: <strong class="text-gray-900">{exam.startDate}</strong>
+      </span>
+      <span class="bg-red-50 text-red-800 px-2 py-1 rounded border border-red-200">
+        Authority: <strong class="text-red-700">{exam.organization}</strong>
+      </span>
+      {exam.totalVacancies > 0 && (
+        <span class="bg-green-50 text-green-800 px-2 py-1 rounded border border-green-200">
+          Vacancies: <strong class="text-green-700">{exam.totalVacancies} Posts</strong>
+        </span>
+      )}
+    </div>
+
+    <!-- Taxonomy Tags -->
+    <div class="mt-4 flex flex-wrap gap-2">
+      {exam.qualifications?.map(q => (
+        <span class="text-[10px] uppercase font-bold tracking-wider bg-gray-800 text-amber-400 px-2 py-1 rounded-sm shadow-sm">
+          🎓 {q}
+        </span>
+      ))}
+      {exam.jobCategories?.map(c => (
+        <span class="text-[10px] uppercase font-bold tracking-wider bg-indigo-100 text-indigo-800 border border-indigo-300 px-2 py-1 rounded-sm shadow-sm">
+          🏷️ {c}
+        </span>
+      ))}
+    </div>
+
+    <div class="mt-2">
+      <DataSheet
+        organization={exam.organization}
+        postName={exam.postName}
+        totalVacancies={exam.totalVacancies}
+        startDate={exam.startDate}
+        closingDate={exam.closingDate}
+        examDate={exam.examDate}
+        admitCardDate={exam.admitCardDate}
+        fees={exam.fees}
+        minAge={exam.minAge}
+        maxAge={exam.maxAge}
+        eligibility={exam.eligibility}
+        applyOnlineUrl={exam.applyOnlineUrl}
+        notificationPdfUrl={exam.notificationPdfUrl}
+        officialUrl={exam.officialUrl}
+      />
+    </div>
+  </div>
+</ExamLayout>

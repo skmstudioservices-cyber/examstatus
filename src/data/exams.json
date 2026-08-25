@@ -1,0 +1,197 @@
+[
+  {
+    "slug": "ssc-cgl-2026",
+    "title": "SSC CGL 2026 Online Application Form",
+    "category": "latest-jobs",
+    "jobCategories": ["Civil Services", "Central Govt"],
+    "qualifications": ["Graduate"],
+    "organization": "Staff Selection Commission (SSC)",
+    "postName": "Combined Graduate Level (CGL) 2026",
+    "totalVacancies": 14582,
+    "startDate": "2026-08-20",
+    "closingDate": "2026-09-25",
+    "examDate": "December 2026",
+    "admitCardDate": "4 Days Before Exam",
+    "resultDate": "January 2027",
+    "fees": [
+      { "category": "General / OBC / EWS", "amount": "Rs. 100/-" },
+      { "category": "SC / ST / Female", "amount": "Rs. 0/- (Exempted)" }
+    ],
+    "minAge": "18 Years",
+    "maxAge": "32 Years",
+    "eligibility": [
+      { "postName": "Assistant Audit Officer (AAO)", "totalPosts": "450", "qualification": "Bachelor Degree with CA/CS/MBA" },
+      { "postName": "Inspector (Central Excise/IT)", "totalPosts": "7500", "qualification": "Bachelor Degree in Any Stream" },
+      { "postName": "Assistant Section Officer", "totalPosts": "6632", "qualification": "Bachelor Degree in Any Stream" }
+    ],
+    "officialUrl": "https://ssc.gov.in",
+    "applyOnlineUrl": "https://ssc.gov.in",
+    "notificationPdfUrl": "https://ssc.gov.in"
+  },
+  {
+    "slug": "rrb-ntpc-2026",
+    "title": "Railway RRB NTPC Phase-2 Admit Card 2026",
+    "category": "admit-cards",
+    "jobCategories": ["Railway"],
+    "qualifications": ["12th Pass", "Graduate"],
+    "organization": "Railway Recruitment Board (RRB)",
+    "postName": "Non-Technical Popular Categories (NTPC)",
+    "totalVacancies": 11558,
+    "startDate": "2026-05-10",
+    "closingDate": "2026-06-15",
+    "examDate": "15th - 25th September 2026",
+    "admitCardDate": "Available Now",
+    "resultDate": "November 2026",
+    "fees": [
+      { "category": "General / OBC", "amount": "Rs. 500/-" },
+      { "category": "SC / ST / Female", "amount": "Rs. 250/-" }
+    ],
+    "minAge": "18 Years",
+    "maxAge": "33 Years",
+    "eligibility": [
+      { "postName": "Station Master / Train Manager", "totalPosts": "6200", "qualification": "Graduate Degree in Any Discipline" },
+      { "postName": "Senior Clerk cum Typist", "totalPosts": "5358", "qualification": "12th Pass with Typing Skill" }
+    ],
+    "officialUrl": "https://indianrailways.gov.in",
+    "applyOnlineUrl": "https://indianrailways.gov.in",
+    "notificationPdfUrl": "https://indianrailways.gov.in"
+  },
+  {
+    "slug": "upsc-prelims-2026",
+    "title": "UPSC Civil Services Prelims Result 2026",
+    "category": "results",
+    "jobCategories": ["Civil Services", "Central Govt"],
+    "qualifications": ["Graduate"],
+    "organization": "Union Public Service Commission (UPSC)",
+    "postName": "Civil Services (IAS / IPS / IFS) Prelims 2026",
+    "totalVacancies": 1205,
+    "startDate": "2026-02-01",
+    "closingDate": "2026-02-25",
+    "examDate": "25th May 2026",
+    "admitCardDate": "May 2026",
+    "resultDate": "Declared (26 August 2026)",
+    "fees": [
+      { "category": "General / OBC", "amount": "Rs. 100/-" },
+      { "category": "SC / ST / PH / Female", "amount": "Rs. 0/-" }
+    ],
+    "minAge": "21 Years",
+    "maxAge": "32 Years",
+    "eligibility": [
+      { "postName": "Indian Administrative Service (IAS)", "totalPosts": "180", "qualification": "Bachelor Degree from Recognized University" },
+      { "postName": "Indian Police Service (IPS)", "totalPosts": "200", "qualification": "Bachelor Degree with Physical Standards" },
+      { "postName": "Central Group A & B Services", "totalPosts": "825", "qualification": "Bachelor Degree in Any Discipline" }
+    ],
+    "officialUrl": "https://upsc.gov.in",
+    "applyOnlineUrl": "https://upsc.gov.in",
+    "notificationPdfUrl": "https://upsc.gov.in"
+  },
+  {
+    "slug": "nda-2026",
+    "title": "UPSC NDA (II) 2026 Application Form",
+    "category": "latest-jobs",
+    "jobCategories": ["Defense"],
+    "qualifications": ["12th Pass"],
+    "organization": "Union Public Service Commission (UPSC)",
+    "postName": "National Defence Academy & Naval Academy Exam (II) 2026",
+    "totalVacancies": 404,
+    "startDate": "2026-08-25",
+    "closingDate": "2026-09-15",
+    "examDate": "November 2026",
+    "admitCardDate": "October 2026",
+    "resultDate": "January 2027",
+    "fees": [
+      { "category": "General / OBC", "amount": "Rs. 100/-" },
+      { "category": "SC / ST / Female", "amount": "Rs. 0/-" }
+    ],
+    "minAge": "15.5 Years",
+    "maxAge": "18.5 Years",
+    "eligibility": [
+      { "postName": "Army Wing", "totalPosts": "208", "qualification": "12th Pass in Any Stream" },
+      { "postName": "Navy / Air Force", "totalPosts": "196", "qualification": "12th Pass with Physics and Mathematics" }
+    ],
+    "officialUrl": "https://upsc.gov.in",
+    "applyOnlineUrl": "https://upsc.gov.in",
+    "notificationPdfUrl": "https://upsc.gov.in"
+  },
+  {
+    "slug": "ssc-gd-2026",
+    "title": "SSC GD Constable 2026 Notification",
+    "category": "latest-jobs",
+    "jobCategories": ["Police", "Defense"],
+    "qualifications": ["10th Pass"],
+    "organization": "Staff Selection Commission (SSC)",
+    "postName": "Constables (GD) in Central Armed Police Forces (CAPFs)",
+    "totalVacancies": 26146,
+    "startDate": "2026-08-24",
+    "closingDate": "2026-09-28",
+    "examDate": "Feb-March 2027",
+    "admitCardDate": "January 2027",
+    "resultDate": "May 2027",
+    "fees": [
+      { "category": "General / OBC", "amount": "Rs. 100/-" },
+      { "category": "SC / ST / Female", "amount": "Rs. 0/-" }
+    ],
+    "minAge": "18 Years",
+    "maxAge": "23 Years",
+    "eligibility": [
+      { "postName": "Constable (General Duty)", "totalPosts": "26146", "qualification": "10th Class Examination passed from a recognized Board/University" }
+    ],
+    "officialUrl": "https://ssc.gov.in",
+    "applyOnlineUrl": "https://ssc.gov.in",
+    "notificationPdfUrl": "https://ssc.gov.in"
+  },
+  {
+    "slug": "ibps-po-2026",
+    "title": "IBPS PO Recruitment 2026 Apply Online",
+    "category": "latest-jobs",
+    "jobCategories": ["Banking"],
+    "qualifications": ["Graduate"],
+    "organization": "Institute of Banking Personnel Selection",
+    "postName": "Probationary Officer (PO) MT",
+    "totalVacancies": 4500,
+    "startDate": "2026-08-20",
+    "closingDate": "2026-09-10",
+    "examDate": "October 2026",
+    "admitCardDate": "September 2026",
+    "resultDate": "December 2026",
+    "fees": [
+      { "category": "General / OBC", "amount": "Rs. 850/-" },
+      { "category": "SC / ST", "amount": "Rs. 175/-" }
+    ],
+    "minAge": "20 Years",
+    "maxAge": "30 Years",
+    "eligibility": [
+      { "postName": "Probationary Officer", "totalPosts": "4500", "qualification": "Bachelor's Degree in any discipline from a recognized University" }
+    ],
+    "officialUrl": "https://ibps.in",
+    "applyOnlineUrl": "https://ibps.in",
+    "notificationPdfUrl": "https://ibps.in"
+  },
+  {
+    "slug": "gate-2026",
+    "title": "GATE 2026 Online Application Started",
+    "category": "latest-jobs",
+    "jobCategories": ["Engineering"],
+    "qualifications": ["B.Tech", "Graduate"],
+    "organization": "IIT",
+    "postName": "Graduate Aptitude Test in Engineering",
+    "totalVacancies": 0,
+    "startDate": "2026-08-22",
+    "closingDate": "2026-09-26",
+    "examDate": "February 2027",
+    "admitCardDate": "January 2027",
+    "resultDate": "March 2027",
+    "fees": [
+      { "category": "General", "amount": "Rs. 1800/-" },
+      { "category": "SC / ST / Female", "amount": "Rs. 900/-" }
+    ],
+    "minAge": "No Limit",
+    "maxAge": "No Limit",
+    "eligibility": [
+      { "postName": "GATE Exam 2026", "totalPosts": "N/A", "qualification": "Currently studying in 3rd or higher years of any undergraduate degree program OR has already completed any government approved degree program in Engineering / Technology / Architecture / Science / Commerce / Arts." }
+    ],
+    "officialUrl": "https://gate.iitk.ac.in",
+    "applyOnlineUrl": "https://gate.iitk.ac.in",
+    "notificationPdfUrl": "https://gate.iitk.ac.in"
+  }
+]

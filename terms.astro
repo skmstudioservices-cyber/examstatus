@@ -1,0 +1,46 @@
+---
+import ExamLayout from '../layouts/ExamLayout.astro';
+---
+
+<ExamLayout
+  title="Terms of Service"
+  description="Terms governing the use of ExamStatus, an independent government exam tracking dashboard."
+>
+  <div class="bg-white rounded-lg shadow-md p-6 max-w-3xl mx-auto">
+    <h1 class="text-2xl font-black text-slate-900 mb-4">Terms of Service</h1>
+    <p class="text-xs text-gray-500 mb-6">Last updated: {new Date().toLocaleDateString('en-IN', { year: 'numeric', month: 'long', day: 'numeric' })}</p>
+
+    <h2 class="text-lg font-bold text-slate-900 mt-4 mb-2">1. Informational purpose only</h2>
+    <p class="text-sm text-gray-700 mb-4 leading-relaxed">
+      ExamStatus is an independent, unofficial dashboard that aggregates publicly available information about
+      government exams, admit cards, and results. It is not affiliated with, endorsed by, or an official
+      channel of UPSC, SSC, any Railway Recruitment Board, IBPS, any State Public Service Commission, or any
+      other recruiting authority. This site does not constitute a legal document.
+    </p>
+
+    <h2 class="text-lg font-bold text-slate-900 mt-6 mb-2">2. Accuracy of information</h2>
+    <p class="text-sm text-gray-700 mb-4 leading-relaxed">
+      We make reasonable efforts to keep dates, vacancy counts, and eligibility details accurate and current,
+      but errors and delays can happen. Always verify final details — especially closing dates and eligibility
+      — on the official recruiting authority's website or notification before making any decision or payment.
+    </p>
+
+    <h2 class="text-lg font-bold text-slate-900 mt-6 mb-2">3. External links</h2>
+    <p class="text-sm text-gray-700 mb-4 leading-relaxed">
+      "Apply Online," "Official Website," and "Notification PDF" links lead to external, official sources. We
+      are not responsible for the content, availability, or practices of those external sites.
+    </p>
+
+    <h2 class="text-lg font-bold text-slate-900 mt-6 mb-2">4. No liability</h2>
+    <p class="text-sm text-gray-700 mb-4 leading-relaxed">
+      We are not liable for any loss, missed deadline, or damage arising from reliance on information found on
+      this site. Use of this site is at your own discretion.
+    </p>
+
+    <h2 class="text-lg font-bold text-slate-900 mt-6 mb-2">5. Changes to these terms</h2>
+    <p class="text-sm text-gray-700 leading-relaxed">
+      These terms may be updated periodically as the site evolves. Continued use of the site after changes
+      means you accept the updated terms.
+    </p>
+  </div>
+</ExamLayout>

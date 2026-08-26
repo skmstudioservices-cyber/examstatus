@@ -1,0 +1,84 @@
+<button
+  id="fb-open-btn"
+  aria-label="Send feedback or request a feature"
+  class="fixed bottom-5 right-5 z-40 bg-amber-500 hover:bg-amber-600 text-slate-950 font-black text-xs px-4 py-3 rounded-full shadow-lg flex items-center gap-2 transition-transform hover:scale-105"
+>
+  💬 Feedback
+</button>
+
+<div id="fb-modal" class="fixed inset-0 z-50 hidden items-center justify-center bg-black/50 px-4">
+  <div class="bg-white rounded-lg shadow-xl w-full max-w-sm p-5">
+    <div class="flex justify-between items-center mb-3">
+      <h3 class="font-bold text-slate-900 text-sm">Request a feature or share feedback</h3>
+      <button id="fb-close-btn" aria-label="Close" class="text-gray-400 hover:text-gray-700 text-lg leading-none">&times;</button>
+    </div>
+    <form id="fb-form" class="space-y-3">
+      <div class="flex gap-3 text-xs font-semibold">
+        <label class="flex items-center gap-1"><input type="radio" name="fb-type" value="feedback" checked /> Feedback</label>
+        <label class="flex items-center gap-1"><input type="radio" name="fb-type" value="feature" /> Feature request</label>
+      </div>
+      <textarea id="fb-message" required minlength="3" maxlength="2000" rows="4" placeholder="What's on your mind?" class="w-full border border-gray-300 rounded p-2 text-sm focus:outline-none focus:ring-2 focus:ring-amber-500"></textarea>
+      <input id="fb-contact" type="text" maxlength="200" placeholder="Email or phone (optional, so we can follow up)" class="w-full border border-gray-300 rounded p-2 text-sm focus:outline-none focus:ring-2 focus:ring-amber-500" />
+      <button type="submit" class="w-full bg-amber-500 hover:bg-amber-600 text-slate-950 font-bold text-sm py-2 rounded transition-colors">Send</button>
+      <p id="fb-status" class="text-xs text-center min-h-[1rem]"></p>
+    </form>
+  </div>
+</div>
+
+<script is:inline>
+  (function () {
+    const openBtn = document.getElementById('fb-open-btn');
+    const closeBtn = document.getElementById('fb-close-btn');
+    const modal = document.getElementById('fb-modal');
+    const form = document.getElementById('fb-form');
+    const status = document.getElementById('fb-status');
+
+    openBtn.addEventListener('click', () => {
+      modal.classList.remove('hidden');
+      modal.classList.add('flex');
+    });
+    closeBtn.addEventListener('click', () => {
+      modal.classList.add('hidden');
+      modal.classList.remove('flex');
+    });
+    modal.addEventListener('click', (e) => {
+      if (e.target === modal) {
+        modal.classList.add('hidden');
+        modal.classList.remove('flex');
+      }
+    });
+
+    form.addEventListener('submit', async (e) => {
+      e.preventDefault();
+      const message = document.getElementById('fb-message').value;
+      const contact = document.getElementById('fb-contact').value;
+      const type = form.querySelector('input[name="fb-type"]:checked').value;
+      status.textContent = 'Sending...';
+      status.className = 'text-xs text-center min-h-[1rem] text-gray-500';
+      try {
+        const res = await fetch('/api/feedback.json', {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify({ message, contact, type, pathname: window.location.pathname })
+        });
+        const data = await res.json();
+        if (res.ok) {
+          status.textContent = data.message || 'Thanks for your feedback!';
+          status.className = 'text-xs text-center min-h-[1rem] text-green-600 font-semibold';
+          form.reset();
+          setTimeout(() => {
+            modal.classList.add('hidden');
+            modal.classList.remove('flex');
+            status.textContent = '';
+          }, 1800);
+        } else {
+          status.textContent = data.error || 'Something went wrong, try again.';
+          status.className = 'text-xs text-center min-h-[1rem] text-red-600 font-semibold';
+        }
+      } catch (err) {
+        status.textContent = 'Network error, please try again.';
+        status.className = 'text-xs text-center min-h-[1rem] text-red-600 font-semibold';
+      }
+    });
+  })();
+</script>

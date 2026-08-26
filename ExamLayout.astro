@@ -1,0 +1,109 @@
+---
+import FeedbackWidget from '../components/FeedbackWidget.astro';
+
+export interface Props {
+  title: string;
+  description: string;
+  category?: string;
+  schemaData?: object;
+}
+
+const {
+  title,
+  description,
+  category = 'Dashboard',
+  schemaData
+} = Astro.props;
+
+const canonicalURL = Astro.url.href;
+---
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>{title} | ExamStatus Portal</title>
+  <meta name="description" content={description} />
+  <link rel="canonical" href={canonicalURL} />
+
+  <!-- Google Discover SEO Directives -->
+  <meta name="robots" content="index, follow, max-image-preview:large, max-snippet:-1, max-video-preview:-1" />
+
+  <!-- Open Graph -->
+  <meta property="og:type" content="website" />
+  <meta property="og:title" content={title} />
+  <meta property="og:description" content={description} />
+  <meta property="og:image" content="https://images.unsplash.com/photo-1434030216411-0b793f4b4173?w=1200&q=80" />
+
+  <!-- Twitter Card -->
+  <meta name="twitter:card" content="summary_large_image" />
+  <meta name="twitter:title" content={title} />
+  <meta name="twitter:description" content={description} />
+  
+  {schemaData && (
+    <script type="application/ld+json" set:html={JSON.stringify(schemaData)} />
+  )}
+</head>
+<body class="bg-gray-100 text-gray-900 min-h-screen flex flex-col font-sans">
+  
+  <!-- URGENT BLINKING BANNER -->
+  <div class="bg-red-700 text-white text-xs md:text-sm font-bold py-2 px-4 text-center tracking-wide animate-pulse border-b border-red-900 shadow-inner">
+    🔴 LIVE & URGENT: SSC CGL 2026 Online Form Active (14,582 Posts) • RRB NTPC Admit Cards Out!
+  </div>
+
+  <header class="bg-slate-900 text-white shadow-lg border-b-4 border-amber-500 sticky top-0 z-50">
+    <div class="max-w-7xl mx-auto px-4 py-3 flex justify-between items-center">
+      <a href="/" class="flex items-center space-x-2">
+        <span class="bg-amber-500 text-slate-950 font-black text-xl px-2 py-0.5 rounded shadow">EXAM</span>
+        <span class="text-xl font-black tracking-tight text-white">STATUS</span>
+      </a>
+      <nav class="hidden md:flex space-x-6 text-xs font-bold uppercase tracking-wider">
+        <a href="/" class="hover:text-amber-400 transition-colors">Dashboard</a>
+        <a href="/#latest-jobs" class="hover:text-amber-400 transition-colors">Latest Jobs</a>
+        <a href="/#admit-cards" class="hover:text-amber-400 transition-colors">Admit Cards</a>
+        <a href="/#results" class="hover:text-amber-400 transition-colors">Results</a>
+      </nav>
+      <button onclick="alert('Push notification alert service enabled!')" class="bg-amber-500 hover:bg-amber-600 text-slate-950 text-xs font-black px-3 py-1.5 rounded-full flex items-center gap-1 shadow transition-transform hover:scale-105">
+        🔔 Fast Alerts
+      </button>
+    </div>
+  </header>
+
+  <main class="max-w-7xl mx-auto px-3 sm:px-4 py-6 w-full flex-grow">
+    <slot />
+  </main>
+
+  <footer class="bg-slate-950 text-gray-400 text-xs py-8 border-t border-slate-800 mt-auto text-center">
+    <div class="max-w-7xl mx-auto px-4 flex flex-col items-center">
+      <p class="font-bold text-gray-300 text-base mb-2">ExamStatus.in - Official Fast Job Alerts & Dashboard</p>
+      <p class="max-w-2xl text-gray-500 mb-4">Disclaimer: The information published here is for immediate information to the examinees and does not constitute to be a legal document. While all efforts have been made to make the information available on this website as authentic as possible, we are not responsible for any inadvertent error.</p>
+      <div class="flex space-x-4 mb-4">
+        <a href="/about" class="hover:text-white">About</a>
+        <a href="/privacy-policy" class="hover:text-white">Privacy Policy</a>
+        <a href="/terms" class="hover:text-white">Terms of Service</a>
+        <a href="/contact" class="hover:text-white">Contact Us</a>
+      </div>
+      <p class="text-gray-600">&copy; {new Date().getFullYear()} ExamStatus. Hosted on Cloudflare Edge Serverless.</p>
+    </div>
+  </footer>
+
+  <FeedbackWidget />
+
+  <!-- Edge Analytics Log Ping -->
+  <script is:inline>
+    if (typeof window !== 'undefined') {
+      window.addEventListener('load', () => {
+        try {
+          const payload = JSON.stringify({ pathname: window.location.pathname, referrer: document.referrer || 'Direct' });
+          if (navigator.sendBeacon) {
+            navigator.sendBeacon('/api/log-view.json', payload);
+          } else {
+            fetch('/api/log-view.json', { method: 'POST', body: payload, keepalive: true });
+          }
+        } catch(e) {}
+      });
+    }
+  </script>
+</body>
+</html>

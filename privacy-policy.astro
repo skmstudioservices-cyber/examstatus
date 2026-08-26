@@ -1,0 +1,52 @@
+---
+import ExamLayout from '../layouts/ExamLayout.astro';
+---
+
+<ExamLayout
+  title="Privacy Policy"
+  description="How ExamStatus collects and uses data, including analytics, push notifications, and third-party advertising."
+>
+  <div class="bg-white rounded-lg shadow-md p-6 max-w-3xl mx-auto">
+    <h1 class="text-2xl font-black text-slate-900 mb-4">Privacy Policy</h1>
+    <p class="text-xs text-gray-500 mb-6">Last updated: {new Date().toLocaleDateString('en-IN', { year: 'numeric', month: 'long', day: 'numeric' })}</p>
+
+    <h2 class="text-lg font-bold text-slate-900 mt-4 mb-2">1. Information we collect</h2>
+    <p class="text-sm text-gray-700 mb-2 leading-relaxed">
+      We collect a limited set of technical information to keep the site useful and to understand which pages
+      are helpful:
+    </p>
+    <ul class="text-sm text-gray-700 list-disc pl-5 mb-4 space-y-1">
+      <li>Page path visited, device type, referrer, and country (derived from your network location, not GPS)</li>
+      <li>If you opt in to push notifications: a browser-generated subscription endpoint used only to deliver alerts you asked for</li>
+      <li>If you use the feedback form: the message you write and, optionally, a contact detail you choose to provide</li>
+    </ul>
+    <p class="text-sm text-gray-700 mb-4 leading-relaxed">
+      We do not require account creation, and we do not knowingly collect names, addresses, or government ID
+      information through this site.
+    </p>
+
+    <h2 class="text-lg font-bold text-slate-900 mt-6 mb-2">2. Push notifications</h2>
+    <p class="text-sm text-gray-700 mb-4 leading-relaxed">
+      Push notifications are entirely opt-in. You can revoke permission at any time through your browser's
+      site settings, which stops further alerts immediately.
+    </p>
+
+    <h2 class="text-lg font-bold text-slate-900 mt-6 mb-2">3. Advertising</h2>
+    <p class="text-sm text-gray-700 mb-4 leading-relaxed">
+      This site may display ads served through a third-party advertising partner to help cover hosting costs.
+      These partners may use cookies or similar technology to serve relevant ads. We do not control third-party
+      ad content directly and are not responsible for the content of external ad destinations.
+    </p>
+
+    <h2 class="text-lg font-bold text-slate-900 mt-6 mb-2">4. Data retention</h2>
+    <p class="text-sm text-gray-700 mb-4 leading-relaxed">
+      Analytics and feedback data is stored to help improve the site and is not sold or shared with third
+      parties for marketing purposes.
+    </p>
+
+    <h2 class="text-lg font-bold text-slate-900 mt-6 mb-2">5. Contact</h2>
+    <p class="text-sm text-gray-700 leading-relaxed">
+      Questions about this policy can be sent through the "Feedback" button on any page.
+    </p>
+  </div>
+</ExamLayout>

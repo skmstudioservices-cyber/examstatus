@@ -1,4 +1,16 @@
-﻿name = "exam-status-portal"
+name = "examstatus"
 compatibility_date = "2024-04-01"
 compatibility_flags = ["nodejs_compat"]
-pages_build_output_dir = "dist"
+main = "./dist/_worker.js/index.js"
+
+[assets]
+directory = "./dist"
+binding = "ASSETS"
+
+[[d1_databases]]
+binding = "DB"
+database_name = "examstatus-db"
+database_id = "5929f80d-1368-417a-9023-3154807b44f1"
+
+[observability]
+enabled = true

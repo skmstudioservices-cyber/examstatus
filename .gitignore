@@ -3,3 +3,5 @@ dist/
 .astro/
 .env
 .wrangler/
+*.zip
+_batch2_inspect/

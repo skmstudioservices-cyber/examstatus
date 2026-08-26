@@ -1,4 +1,6 @@
 ---
+import FeedbackWidget from '../components/FeedbackWidget.astro';
+
 export interface Props {
   title: string;
   description: string;
@@ -77,13 +79,16 @@ const canonicalURL = Astro.url.href;
       <p class="font-bold text-gray-300 text-base mb-2">ExamStatus.in - Official Fast Job Alerts & Dashboard</p>
       <p class="max-w-2xl text-gray-500 mb-4">Disclaimer: The information published here is for immediate information to the examinees and does not constitute to be a legal document. While all efforts have been made to make the information available on this website as authentic as possible, we are not responsible for any inadvertent error.</p>
       <div class="flex space-x-4 mb-4">
-        <a href="#" class="hover:text-white">Privacy Policy</a>
-        <a href="#" class="hover:text-white">Terms of Service</a>
-        <a href="#" class="hover:text-white">Contact Us</a>
+        <a href="/about" class="hover:text-white">About</a>
+        <a href="/privacy-policy" class="hover:text-white">Privacy Policy</a>
+        <a href="/terms" class="hover:text-white">Terms of Service</a>
+        <a href="/contact" class="hover:text-white">Contact Us</a>
       </div>
       <p class="text-gray-600">&copy; {new Date().getFullYear()} ExamStatus. Hosted on Cloudflare Edge Serverless.</p>
     </div>
   </footer>
+
+  <FeedbackWidget />
 
   <!-- Edge Analytics Log Ping -->
   <script is:inline>

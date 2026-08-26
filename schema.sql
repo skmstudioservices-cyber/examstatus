@@ -18,3 +18,12 @@ CREATE TABLE IF NOT EXISTS analytics_logs (
     country TEXT,
     created_at DATETIME DEFAULT CURRENT_TIMESTAMP
 );
+
+CREATE TABLE IF NOT EXISTS feedback (
+    id INTEGER PRIMARY KEY AUTOINCREMENT,
+    message TEXT NOT NULL,
+    type TEXT NOT NULL DEFAULT 'feedback',
+    contact TEXT,
+    pathname TEXT,
+    created_at DATETIME DEFAULT CURRENT_TIMESTAMP
+);

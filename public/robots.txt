@@ -1,0 +1,4 @@
+User-agent: *
+Allow: /
+
+Sitemap: https://examstatus.skmstudio-services.workers.dev/sitemap-index.xml

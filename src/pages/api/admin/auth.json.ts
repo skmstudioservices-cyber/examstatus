@@ -10,6 +10,18 @@ function json(data: unknown, status = 200, headers: HeadersInit = {}) {
   });
 }
 
+function adminSecret(locals: App.Locals, url: URL): string | null {
+  const secret = locals.runtime?.env?.ADMIN_SESSION_SECRET;
+  if (secret) return secret;
+  if (url.hostname === 'localhost' || url.hostname === '127.0.0.1') return 'dev-only-change-me';
+  return null;
+}
+
+function sessionCookie(token: string, maxAge: number, url: URL) {
+  const secure = url.protocol === 'https:' ? ' Secure;' : '';
+  return `examstatus_session=${token}; Path=/; HttpOnly;${secure} SameSite=Lax; Max-Age=${maxAge}`;
+}
+
 export const GET: import('astro').APIRoute = async ({ locals, request }) => {
   const db = getDb(locals);
   if (!db) return json({ error: 'DB unavailable' }, 503);
@@ -20,14 +32,15 @@ export const GET: import('astro').APIRoute = async ({ locals, request }) => {
   return json({ authenticated: true, user, users });
 };
 
-export const POST: import('astro').APIRoute = async ({ locals, request }) => {
+export const POST: import('astro').APIRoute = async ({ locals, request, url }) => {
   const db = getDb(locals);
   if (!db) return json({ error: 'DB unavailable' }, 503);
   const body = await request.json();
   const action = body.action as string;
-  const pepper = locals.runtime?.env?.ADMIN_SESSION_SECRET || 'dev-only-change-me';
+  const pepper = adminSecret(locals, url);
 
   if (action === 'bootstrap') {
+    if (!pepper) return json({ error: 'ADMIN_SESSION_SECRET is required before password bootstrap' }, 503);
     const count = await db.prepare(`SELECT COUNT(*) as c FROM admin_users`).first();
     if (Number(count?.c || 0) > 0) return json({ error: 'Already bootstrapped' }, 400);
     const email = String(body.email || '').toLowerCase().trim();
@@ -40,12 +53,13 @@ export const POST: import('astro').APIRoute = async ({ locals, request }) => {
       { success: true, user: { email, role: 'owner' } },
       200,
       {
-        'Set-Cookie': `examstatus_session=${session.token}; Path=/; HttpOnly; Secure; SameSite=Lax; Max-Age=${14 * 86400}`
+        'Set-Cookie': sessionCookie(session.token, 14 * 86400, url)
       }
     );
   }
 
   if (action === 'login') {
+    if (!pepper) return json({ error: 'ADMIN_SESSION_SECRET is required before password login' }, 503);
     const email = String(body.email || '').toLowerCase().trim();
     const password = String(body.password || '');
     const user = await verifyPasswordLogin(db, email, password, pepper);
@@ -55,7 +69,7 @@ export const POST: import('astro').APIRoute = async ({ locals, request }) => {
       { success: true, user },
       200,
       {
-        'Set-Cookie': `examstatus_session=${session.token}; Path=/; HttpOnly; Secure; SameSite=Lax; Max-Age=${14 * 86400}`
+        'Set-Cookie': sessionCookie(session.token, 14 * 86400, url)
       }
     );
   }
@@ -64,7 +78,7 @@ export const POST: import('astro').APIRoute = async ({ locals, request }) => {
     const cookies = parseCookies(request.headers.get('cookie'));
     if (cookies['examstatus_session']) await destroySession(db, cookies['examstatus_session']);
     return json({ success: true }, 200, {
-      'Set-Cookie': 'examstatus_session=; Path=/; HttpOnly; Secure; SameSite=Lax; Max-Age=0'
+      'Set-Cookie': sessionCookie('', 0, url)
     });
   }
 
@@ -75,7 +89,10 @@ export const POST: import('astro').APIRoute = async ({ locals, request }) => {
     const email = String(body.email || '').toLowerCase().trim();
     const role = body.role === 'owner' || body.role === 'researcher' ? body.role : 'editor';
     let hash: string | null = null;
-    if (body.password) hash = await hashPassword(String(body.password), pepper);
+    if (body.password) {
+      if (!pepper) return json({ error: 'ADMIN_SESSION_SECRET is required before password setup' }, 503);
+      hash = await hashPassword(String(body.password), pepper);
+    }
     await upsertAdminUser(db, email, role, hash);
     return json({ success: true });
   }

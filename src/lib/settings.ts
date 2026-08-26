@@ -1,7 +1,12 @@
 import { DEFAULT_THEME, type ThemeSettings } from './types';
 
 export async function getThemeSettings(db: D1Database): Promise<ThemeSettings> {
-  const row = await db.prepare(`SELECT value FROM site_settings WHERE key = 'theme'`).first();
+  let row: { value?: unknown } | null;
+  try {
+    row = await db.prepare(`SELECT value FROM site_settings WHERE key = 'theme'`).first();
+  } catch {
+    return { ...DEFAULT_THEME };
+  }
   if (!row?.value) return { ...DEFAULT_THEME };
   try {
     return { ...DEFAULT_THEME, ...(JSON.parse(String(row.value)) as Partial<ThemeSettings>) };

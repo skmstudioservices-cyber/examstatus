@@ -1,7 +1,15 @@
-﻿node_modules/
+﻿# Local secrets (never commit)
+.env
+.env.*
+!.env.example
+.dev.vars
+.dev.vars.*
+!.dev.vars.example
+
+node_modules/
 dist/
 .astro/
-.env
 .wrangler/
 *.zip
 _batch2_inspect/
+.DS_Store

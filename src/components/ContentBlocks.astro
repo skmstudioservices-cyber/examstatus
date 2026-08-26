@@ -1,0 +1,61 @@
+---
+import type { ContentBlock } from '../lib/types';
+
+interface Props {
+  blocks: ContentBlock[];
+}
+
+const { blocks = [] } = Astro.props;
+---
+
+{blocks.length > 0 && (
+  <div class="space-y-4 my-6">
+    {blocks.map((block) => {
+      if (block.type === 'heading') {
+        return block.level === 3 ? (
+          <h3 class="text-lg font-black text-slate-900">{block.text}</h3>
+        ) : (
+          <h2 class="text-xl font-black text-slate-900 border-b pb-2">{block.text}</h2>
+        );
+      }
+      if (block.type === 'paragraph') {
+        return <p class="text-sm text-gray-700 leading-relaxed">{block.text}</p>;
+      }
+      if (block.type === 'list') {
+        const Tag = block.ordered ? 'ol' : 'ul';
+        return (
+          <Tag class={`text-sm text-gray-700 space-y-1 pl-5 ${block.ordered ? 'list-decimal' : 'list-disc'}`}>
+            {block.items.map((item) => (
+              <li>{item}</li>
+            ))}
+          </Tag>
+        );
+      }
+      if (block.type === 'cta') {
+        return (
+          <a
+            href={block.href}
+            target="_blank"
+            rel="noopener noreferrer"
+            class="inline-flex min-h-[44px] items-center justify-center bg-amber-500 hover:bg-amber-600 text-slate-950 font-bold text-sm px-4 py-2 rounded shadow"
+          >
+            {block.label}
+          </a>
+        );
+      }
+      if (block.type === 'faq') {
+        return (
+          <div class="space-y-3">
+            {block.items.map((f) => (
+              <div class="border border-gray-200 rounded p-3 bg-white">
+                <p class="font-bold text-sm text-slate-900">{f.question}</p>
+                <p class="text-sm text-gray-700 mt-1">{f.answer}</p>
+              </div>
+            ))}
+          </div>
+        );
+      }
+      return null;
+    })}
+  </div>
+)}

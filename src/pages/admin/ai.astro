@@ -1,0 +1,82 @@
+---
+import AdminLayout from '../../layouts/AdminLayout.astro';
+import { getDb } from '../../lib/posts';
+import { parseCookies, resolveAdmin, canManageAi } from '../../lib/auth';
+import { getThemeSettings } from '../../lib/settings';
+
+export const prerender = false;
+
+const db = getDb(Astro.locals);
+if (!db) return Astro.redirect('/admin/login');
+const cookies = parseCookies(Astro.request.headers.get('cookie'));
+const user = await resolveAdmin(db, Astro.request, cookies['examstatus_session']);
+if (!user || !canManageAi(user.role)) return Astro.redirect('/admin');
+
+const theme = await getThemeSettings(db);
+const { results: drafts } = await db.prepare(`SELECT * FROM ai_drafts ORDER BY created_at DESC LIMIT 50`).all();
+---
+
+<AdminLayout>
+  <div class="flex flex-wrap justify-between gap-3 mb-4">
+    <div>
+      <h1 class="text-2xl font-black">AI Inbox</h1>
+      <p class="text-xs text-gray-600">Mode: <strong>{theme.aiMode}</strong> · Model: llama-3.1-8b-instruct-fast</p>
+    </div>
+    <div class="flex gap-2">
+      <button id="run-research" type="button" class="bg-amber-500 font-bold text-sm px-3 py-2 rounded">Run research now</button>
+    </div>
+  </div>
+  <form id="manual-url" class="bg-white border rounded p-3 mb-4 flex flex-wrap gap-2">
+    <input name="url" required placeholder="https://ssc.gov.in/..." class="flex-1 min-w-[220px] border rounded px-2 py-2 text-sm" />
+    <button class="border font-bold text-sm px-3 py-2 rounded">Queue URL</button>
+  </form>
+  <p id="ai-msg" class="text-xs mb-3"></p>
+  <div class="space-y-3">
+    {(drafts || []).map((d: any) => (
+      <div class="bg-white border rounded p-4" data-id={d.id}>
+        <div class="flex flex-wrap justify-between gap-2 text-xs">
+          <a href={d.raw_source_url} target="_blank" class="font-bold text-blue-700 break-all">{d.raw_source_url}</a>
+          <span class="uppercase font-black">{d.status}</span>
+        </div>
+        <pre class="text-[11px] bg-slate-50 p-2 mt-2 overflow-auto max-h-40">{d.extracted_json}</pre>
+        <div class="flex flex-wrap gap-2 mt-2">
+          <button type="button" data-act="approve" class="bg-green-700 text-white text-xs font-bold px-3 py-1.5 rounded">Approve → publish</button>
+          <button type="button" data-act="reject" class="bg-red-700 text-white text-xs font-bold px-3 py-1.5 rounded">Reject</button>
+        </div>
+      </div>
+    ))}
+    {(!drafts || drafts.length === 0) && <p class="text-sm text-gray-500">No drafts yet.</p>}
+  </div>
+  <script is:inline>
+    const msg = document.getElementById('ai-msg');
+    document.getElementById('run-research')?.addEventListener('click', async () => {
+      msg.textContent = 'Running...';
+      const res = await fetch('/api/admin/research.json', { method: 'POST', headers: { 'Content-Type': 'application/json' }, body: JSON.stringify({ action: 'cron' }) });
+      const data = await res.json();
+      msg.textContent = res.ok ? JSON.stringify(data) : (data.error || 'Failed');
+      if (res.ok) location.reload();
+    });
+    document.getElementById('manual-url')?.addEventListener('submit', async (e) => {
+      e.preventDefault();
+      const url = e.target.url.value;
+      msg.textContent = 'Queuing...';
+      const res = await fetch('/api/admin/research.json', { method: 'POST', headers: { 'Content-Type': 'application/json' }, body: JSON.stringify({ action: 'fetch', url }) });
+      const data = await res.json();
+      msg.textContent = res.ok ? 'Draft created' : (data.error || 'Failed');
+      if (res.ok) location.reload();
+    });
+    document.querySelectorAll('[data-act]').forEach((btn) => {
+      btn.addEventListener('click', async () => {
+        const id = btn.closest('[data-id]').dataset.id;
+        const res = await fetch('/api/admin/research.json', {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify({ action: btn.dataset.act, id: Number(id) })
+        });
+        const data = await res.json();
+        msg.textContent = res.ok ? 'OK' : (data.error || 'Failed');
+        if (res.ok) location.reload();
+      });
+    });
+  </script>
+</AdminLayout>

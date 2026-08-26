@@ -1,0 +1,40 @@
+---
+import ExamLayout from '../../layouts/ExamLayout.astro';
+import { getDb } from '../../lib/posts';
+import { loadPublished } from '../../lib/load';
+import { getThemeSettings, cacheHeaders } from '../../lib/settings';
+import { CATEGORY_LABELS, DEFAULT_THEME } from '../../lib/types';
+import { getLang, pickLang } from '../../lib/i18n';
+
+export const prerender = false;
+
+const { slug } = Astro.params;
+const label = CATEGORY_LABELS[slug || ''] || slug;
+if (!CATEGORY_LABELS[slug || '']) return Astro.redirect('/');
+
+const db = getDb(Astro.locals);
+const theme = db ? await getThemeSettings(db) : DEFAULT_THEME;
+const lang = getLang(Astro.url, Astro.request.headers.get('cookie'));
+const posts = await loadPublished(db, { category: slug });
+Astro.response.headers.set('Cache-Control', cacheHeaders(theme.cacheTtlSeconds)['Cache-Control'] as string);
+---
+
+<ExamLayout
+  title={`${label} | ExamStatus`}
+  description={`Browse ${label} on ExamStatus with official apply and PDF links.`}
+  theme={theme}
+  lang={lang}
+>
+  <div class="bg-white rounded-lg shadow p-5 sm:p-6">
+    <h1 class="text-2xl font-black mb-2">{label}</h1>
+    <p class="text-sm text-gray-600 mb-6">Updated listings in this category. Cross-check fees and closing dates on the authority website.</p>
+    <ul class="divide-y">
+      {posts.map((p) => (
+        <li class="py-3">
+          <a href={`/exam/${p.slug}?lang=${lang}`} class="font-bold text-sm hover:text-amber-700">{pickLang(p.title, p.title_hi, lang)}</a>
+          <p class="text-xs text-gray-500 mt-1">{p.organization} · {p.closing_date}</p>
+        </li>
+      ))}
+    </ul>
+  </div>
+</ExamLayout>

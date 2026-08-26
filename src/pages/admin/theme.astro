@@ -1,0 +1,90 @@
+---
+import AdminLayout from '../../layouts/AdminLayout.astro';
+import { getDb } from '../../lib/posts';
+import { parseCookies, resolveAdmin, canManageTheme } from '../../lib/auth';
+import { getThemeSettings } from '../../lib/settings';
+import { DEFAULT_THEME } from '../../lib/types';
+
+export const prerender = false;
+
+const db = getDb(Astro.locals);
+if (!db) return Astro.redirect('/admin/login');
+const cookies = parseCookies(Astro.request.headers.get('cookie'));
+const user = await resolveAdmin(db, Astro.request, cookies['examstatus_session']);
+if (!user) return Astro.redirect('/admin/login');
+if (!canManageTheme(user.role)) return Astro.redirect('/admin');
+
+const theme = await getThemeSettings(db);
+---
+
+<AdminLayout>
+  <h1 class="text-2xl font-black mb-4">Theme Studio</h1>
+  <div class="grid grid-cols-1 lg:grid-cols-2 gap-4">
+    <form id="theme-form" class="bg-white border rounded p-4 space-y-3">
+      <label class="text-xs font-bold block">Primary color<input name="colorPrimary" type="color" value={theme.colorPrimary} class="mt-1 w-full h-10" /></label>
+      <label class="text-xs font-bold block">Accent color<input name="colorAccent" type="color" value={theme.colorAccent} class="mt-1 w-full h-10" /></label>
+      <label class="text-xs font-bold block">Banner color<input name="colorBanner" type="color" value={theme.colorBanner} class="mt-1 w-full h-10" /></label>
+      <label class="text-xs font-bold block">Font family<input name="fontFamily" value={theme.fontFamily} class="mt-1 w-full border rounded px-2 py-1.5 text-sm" /></label>
+      <label class="text-xs font-bold block">Logo text<input name="logoText" value={theme.logoText} class="mt-1 w-full border rounded px-2 py-1.5 text-sm" /></label>
+      <label class="text-xs font-bold block">Banner text EN<textarea name="bannerText" rows="2" class="mt-1 w-full border rounded px-2 py-1.5 text-sm">{theme.bannerText}</textarea></label>
+      <label class="text-xs font-bold block">Banner text HI<textarea name="bannerTextHi" rows="2" class="mt-1 w-full border rounded px-2 py-1.5 text-sm">{theme.bannerTextHi}</textarea></label>
+      <label class="text-xs font-bold block">Column: Latest Jobs<input name="columnLatestJobs" value={theme.columnLatestJobs} class="mt-1 w-full border rounded px-2 py-1.5 text-sm" /></label>
+      <label class="text-xs font-bold block">Column: Admit Cards<input name="columnAdmitCards" value={theme.columnAdmitCards} class="mt-1 w-full border rounded px-2 py-1.5 text-sm" /></label>
+      <label class="text-xs font-bold block">Column: Results<input name="columnResults" value={theme.columnResults} class="mt-1 w-full border rounded px-2 py-1.5 text-sm" /></label>
+      <label class="text-xs font-bold block">Footer disclaimer EN<textarea name="footerDisclaimer" rows="3" class="mt-1 w-full border rounded px-2 py-1.5 text-sm">{theme.footerDisclaimer}</textarea></label>
+      <label class="text-xs font-bold block">Footer disclaimer HI<textarea name="footerDisclaimerHi" rows="2" class="mt-1 w-full border rounded px-2 py-1.5 text-sm">{theme.footerDisclaimerHi}</textarea></label>
+      <label class="text-xs font-bold block">Telegram URL<input name="telegramUrl" value={theme.telegramUrl} class="mt-1 w-full border rounded px-2 py-1.5 text-sm" /></label>
+      <label class="text-xs font-bold block">AI mode
+        <select name="aiMode" class="mt-1 w-full border rounded px-2 py-1.5 text-sm">
+          <option value="approve" selected={theme.aiMode === 'approve'}>Approve drafts</option>
+          <option value="auto" selected={theme.aiMode === 'auto'}>Auto-publish</option>
+        </select>
+      </label>
+      <label class="text-xs font-bold block">Cache TTL seconds<input name="cacheTtlSeconds" type="number" value={theme.cacheTtlSeconds} class="mt-1 w-full border rounded px-2 py-1.5 text-sm" /></label>
+      <label class="text-xs font-bold block">Allowlist domains (comma)<textarea name="allowlistDomains" rows="3" class="mt-1 w-full border rounded px-2 py-1.5 text-sm">{theme.allowlistDomains.join(', ')}</textarea></label>
+      <label class="text-xs font-bold block">Nav JSON<textarea name="navItems" rows="5" class="mt-1 w-full border rounded px-2 py-1.5 text-sm font-mono">{JSON.stringify(theme.navItems, null, 2)}</textarea></label>
+      <button class="bg-amber-500 font-bold text-sm px-4 py-2 rounded">Save theme</button>
+      <p id="theme-msg" class="text-xs"></p>
+    </form>
+    <div class="space-y-3">
+      <p class="text-xs font-bold uppercase text-gray-500">Live preview (desktop)</p>
+      <iframe id="preview-desk" src="/" class="w-full h-80 border rounded bg-white"></iframe>
+      <p class="text-xs font-bold uppercase text-gray-500">Mobile width</p>
+      <iframe id="preview-mob" src="/" class="w-[375px] max-w-full h-96 border rounded bg-white mx-auto block"></iframe>
+    </div>
+  </div>
+  <script is:inline>
+    document.getElementById('theme-form').addEventListener('submit', async (e) => {
+      e.preventDefault();
+      const f = e.target;
+      const payload = {
+        colorPrimary: f.colorPrimary.value,
+        colorAccent: f.colorAccent.value,
+        colorBanner: f.colorBanner.value,
+        fontFamily: f.fontFamily.value,
+        logoText: f.logoText.value,
+        bannerText: f.bannerText.value,
+        bannerTextHi: f.bannerTextHi.value,
+        columnLatestJobs: f.columnLatestJobs.value,
+        columnAdmitCards: f.columnAdmitCards.value,
+        columnResults: f.columnResults.value,
+        footerDisclaimer: f.footerDisclaimer.value,
+        footerDisclaimerHi: f.footerDisclaimerHi.value,
+        telegramUrl: f.telegramUrl.value,
+        aiMode: f.aiMode.value,
+        cacheTtlSeconds: Number(f.cacheTtlSeconds.value || 300),
+        allowlistDomains: f.allowlistDomains.value.split(',').map((s) => s.trim()).filter(Boolean),
+        navItems: JSON.parse(f.navItems.value || '[]'),
+        defaultLang: 'en',
+        whatsappUrl: ''
+      };
+      const res = await fetch('/api/admin/theme.json', { method: 'POST', headers: { 'Content-Type': 'application/json' }, body: JSON.stringify(payload) });
+      const data = await res.json();
+      document.getElementById('theme-msg').textContent = res.ok ? 'Saved. Refresh previews.' : (data.error || 'Failed');
+      if (res.ok) {
+        document.getElementById('preview-desk').src = '/?' + Date.now();
+        document.getElementById('preview-mob').src = '/?' + Date.now();
+      }
+    });
+  </script>
+</AdminLayout>

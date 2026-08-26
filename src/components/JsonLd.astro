@@ -1,0 +1,90 @@
+---
+import type { Post } from '../lib/types';
+
+interface Props {
+  post: Post;
+  includeJobPosting?: boolean;
+}
+
+const { post, includeJobPosting = post.category === 'latest-jobs' } = Astro.props;
+const base = Astro.url.origin;
+
+const breadcrumbs = {
+  '@context': 'https://schema.org',
+  '@type': 'BreadcrumbList',
+  itemListElement: [
+    { '@type': 'ListItem', position: 1, name: 'Home', item: `${base}/` },
+    {
+      '@type': 'ListItem',
+      position: 2,
+      name: post.category,
+      item: `${base}/category/${post.category}`
+    },
+    {
+      '@type': 'ListItem',
+      position: 3,
+      name: post.title,
+      item: `${base}/exam/${post.slug}`
+    }
+  ]
+};
+
+const faqSchema =
+  post.faq?.length > 0
+    ? {
+        '@context': 'https://schema.org',
+        '@type': 'FAQPage',
+        mainEntity: post.faq.map((f) => ({
+          '@type': 'Question',
+          name: f.question,
+          acceptedAnswer: { '@type': 'Answer', text: f.answer }
+        }))
+      }
+    : null;
+
+const jobPosting =
+  includeJobPosting && post.start_date && post.closing_date
+    ? {
+        '@context': 'https://schema.org',
+        '@type': 'JobPosting',
+        title: post.title,
+        description: post.summary || post.title,
+        datePosted: post.start_date,
+        validThrough: `${post.closing_date}T23:59:59+05:30`,
+        employmentType: 'FULL_TIME',
+        hiringOrganization: {
+          '@type': 'Organization',
+          name: post.organization,
+          sameAs: post.official_url || undefined
+        },
+        jobLocation: {
+          '@type': 'Place',
+          address: { '@type': 'PostalAddress', addressCountry: 'IN' }
+        },
+        totalJobOpenings: post.total_vacancies || 1,
+        directApply: true,
+        educationRequirements: {
+          '@type': 'EducationalOccupationalCredential',
+          credentialCategory: post.qualifications?.join(', ') || 'Various'
+        }
+      }
+    : null;
+
+const article =
+  !includeJobPosting
+    ? {
+        '@context': 'https://schema.org',
+        '@type': 'Article',
+        headline: post.title,
+        description: post.summary || post.title,
+        datePublished: post.published_at || post.start_date,
+        dateModified: post.updated_at || post.last_verified_at,
+        author: { '@type': 'Organization', name: 'ExamStatus' }
+      }
+    : null;
+---
+
+<script type="application/ld+json" set:html={JSON.stringify(breadcrumbs)} />
+{faqSchema && <script type="application/ld+json" set:html={JSON.stringify(faqSchema)} />}
+{jobPosting && <script type="application/ld+json" set:html={JSON.stringify(jobPosting)} />}
+{article && <script type="application/ld+json" set:html={JSON.stringify(article)} />}

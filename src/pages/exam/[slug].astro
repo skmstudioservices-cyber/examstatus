@@ -1,108 +1,158 @@
 ---
 import ExamLayout from '../../layouts/ExamLayout.astro';
 import DataSheet from '../../components/DataSheet.astro';
-import examsData from '../../data/exams.json';
+import ContentBlocks from '../../components/ContentBlocks.astro';
+import JsonLd from '../../components/JsonLd.astro';
+import { getDb } from '../../lib/posts';
+import { loadPost, loadRelated } from '../../lib/load';
+import { getThemeSettings, cacheHeaders } from '../../lib/settings';
+import { DEFAULT_THEME } from '../../lib/types';
+import { getLang, pickLang } from '../../lib/i18n';
 
 export const prerender = false;
 
 const { slug } = Astro.params;
-const exam = examsData.find(e => e.slug === slug);
+const db = getDb(Astro.locals);
+const theme = db ? await getThemeSettings(db) : DEFAULT_THEME;
+const lang = getLang(Astro.url, Astro.request.headers.get('cookie'));
+const exam = slug ? await loadPost(db, slug) : null;
 
-if (!exam) {
+if (!exam || (exam.status !== 'published' && exam.created_by !== 'seed')) {
   return Astro.redirect('/');
 }
 
-// Generate JobPosting JSON-LD Schema
-const jobPostingSchema = {
-  "@context": "https://schema.org",
-  "@type": "JobPosting",
-  "title": exam.title,
-  "description": `${exam.title} Recruitment 2026. Check full eligibility criteria, exam dates, fee structure, age limit and apply online. Qualifications required: ${exam.qualifications?.join(', ') || 'Various'}`,
-  "datePosted": exam.startDate,
-  "validThrough": `${exam.closingDate}T23:59:59Z`,
-  "employmentType": "FULL_TIME",
-  "hiringOrganization": {
-    "@type": "Organization",
-    "name": exam.organization,
-    "sameAs": exam.officialUrl
-  },
-  "jobLocation": {
-    "@type": "Place",
-    "address": { "@type": "PostalAddress", "addressCountry": "IN" }
-  },
-  "totalJobOpenings": exam.totalVacancies || 1,
-  "directApply": true,
-  "educationRequirements": {
-    "@type": "EducationalOccupationalCredential",
-    "credentialCategory": exam.qualifications?.join(', ') || "High School"
-  }
-};
+const related = await loadRelated(db, exam, 4);
+const title = pickLang(exam.title, exam.title_hi, lang);
+const summary = pickLang(exam.summary, exam.summary_hi, lang);
+const howTo = pickLang(exam.how_to_apply, exam.how_to_apply_hi, lang);
+const selection = pickLang(exam.selection_process, exam.selection_process_hi, lang);
+const documents = pickLang(exam.documents, exam.documents_hi, lang);
+
+Astro.response.headers.set('Cache-Control', cacheHeaders(theme.cacheTtlSeconds, true)['Cache-Control'] as string);
+
+function lines(text: string) {
+  return text.split('\n').map((l) => l.trim()).filter(Boolean);
+}
 ---
 
 <ExamLayout
-  title={exam.title}
-  description={`${exam.title} Recruitment 2026. Check full eligibility criteria, exam dates, fee structure, age limit and apply online direct link.`}
-  category={exam.category}
-  schemaData={jobPostingSchema}
+  title={title}
+  description={summary || `${title} — dates, fees, eligibility and official links.`}
+  theme={theme}
+  lang={lang}
 >
-  <div class="bg-white p-4 md:p-6 rounded-lg shadow-sm border border-gray-200">
-    <nav class="text-xs text-gray-500 mb-4 flex items-center space-x-1.5 font-medium">
-      <a href="/" class="hover:text-red-700 transition">Home</a>
+  <JsonLd post={exam} />
+
+  <article class="bg-white p-4 md:p-6 rounded-lg shadow-sm border border-gray-200">
+    <nav class="text-xs text-gray-500 mb-4 flex flex-wrap items-center gap-1.5 font-medium">
+      <a href={`/?lang=${lang}`} class="hover:text-red-700">Home</a>
       <span>/</span>
-      <span class="capitalize text-red-700 font-semibold">{exam.category.replace('-', ' ')}</span>
+      <a href={`/category/${exam.category}?lang=${lang}`} class="capitalize hover:text-red-700">{exam.category.replace('-', ' ')}</a>
+      {exam.level === 'state' && exam.states[0] && (
+        <>
+          <span>/</span>
+          <a href={`/state/${exam.states[0]}?lang=${lang}`} class="hover:text-red-700">{exam.states[0]}</a>
+        </>
+      )}
       <span>/</span>
-      <span class="text-gray-800 font-bold truncate">{exam.title}</span>
+      <span class="text-gray-800 font-bold truncate">{title}</span>
     </nav>
 
-    <h1 class="text-2xl md:text-3xl font-black text-gray-900 border-b-2 border-gray-200 pb-3">
-      {exam.title}
-    </h1>
+    <h1 class="text-2xl md:text-3xl font-black text-gray-900 border-b-2 border-gray-200 pb-3">{title}</h1>
 
-    <div class="flex flex-wrap items-center gap-3 text-xs md:text-sm font-semibold text-gray-600 mt-3">
-      <span class="bg-blue-50 text-blue-800 px-2 py-1 rounded border border-blue-200">
-        Posted: <strong class="text-gray-900">{exam.startDate}</strong>
-      </span>
-      <span class="bg-red-50 text-red-800 px-2 py-1 rounded border border-red-200">
-        Authority: <strong class="text-red-700">{exam.organization}</strong>
-      </span>
-      {exam.totalVacancies > 0 && (
-        <span class="bg-green-50 text-green-800 px-2 py-1 rounded border border-green-200">
-          Vacancies: <strong class="text-green-700">{exam.totalVacancies} Posts</strong>
-        </span>
+    <div class="flex flex-wrap items-center gap-2 text-xs md:text-sm font-semibold text-gray-600 mt-3">
+      <span class="bg-blue-50 text-blue-800 px-2 py-1 rounded border border-blue-200">Posted: <strong>{exam.start_date}</strong></span>
+      <span class="bg-red-50 text-red-800 px-2 py-1 rounded border border-red-200">Authority: <strong>{exam.organization}</strong></span>
+      {exam.total_vacancies > 0 && (
+        <span class="bg-green-50 text-green-800 px-2 py-1 rounded border border-green-200">Vacancies: <strong>{exam.total_vacancies}</strong></span>
+      )}
+      <span class="bg-slate-100 text-slate-800 px-2 py-1 rounded border capitalize">{exam.level}</span>
+      {exam.last_verified_at && (
+        <span class="bg-amber-50 text-amber-900 px-2 py-1 rounded border">Verified: {exam.last_verified_at}</span>
       )}
     </div>
 
-    <!-- Taxonomy Tags -->
     <div class="mt-4 flex flex-wrap gap-2">
-      {exam.qualifications?.map(q => (
-        <span class="text-[10px] uppercase font-bold tracking-wider bg-gray-800 text-amber-400 px-2 py-1 rounded-sm shadow-sm">
-          🎓 {q}
-        </span>
+      {exam.qualifications?.map((q) => (
+        <a href={`/qualification/${encodeURIComponent(q.toLowerCase().replace(/\s+/g, '-'))}?lang=${lang}`} class="text-[10px] uppercase font-bold tracking-wider bg-gray-800 text-amber-400 px-2 py-1 rounded-sm min-h-[32px] inline-flex items-center">
+          {q}
+        </a>
       ))}
-      {exam.jobCategories?.map(c => (
-        <span class="text-[10px] uppercase font-bold tracking-wider bg-indigo-100 text-indigo-800 border border-indigo-300 px-2 py-1 rounded-sm shadow-sm">
-          🏷️ {c}
-        </span>
+      {exam.job_categories?.map((c) => (
+        <span class="text-[10px] uppercase font-bold tracking-wider bg-indigo-100 text-indigo-800 border border-indigo-300 px-2 py-1 rounded-sm min-h-[32px] inline-flex items-center">{c}</span>
       ))}
     </div>
 
-    <div class="mt-2">
-      <DataSheet
-        organization={exam.organization}
-        postName={exam.postName}
-        totalVacancies={exam.totalVacancies}
-        startDate={exam.startDate}
-        closingDate={exam.closingDate}
-        examDate={exam.examDate}
-        admitCardDate={exam.admitCardDate}
-        fees={exam.fees}
-        minAge={exam.minAge}
-        maxAge={exam.maxAge}
-        eligibility={exam.eligibility}
-        applyOnlineUrl={exam.applyOnlineUrl}
-        notificationPdfUrl={exam.notificationPdfUrl}
-        officialUrl={exam.officialUrl}
-      />
-    </div>
-  </div>
+    {summary && (
+      <section class="mt-6">
+        <h2 class="text-lg font-black text-slate-900 mb-2">Overview</h2>
+        <p class="text-sm text-gray-700 leading-relaxed">{summary}</p>
+      </section>
+    )}
+
+    <DataSheet post={exam} telegramUrl={theme.telegramUrl} />
+
+    {howTo && (
+      <section class="mt-6">
+        <h2 class="text-lg font-black text-slate-900 mb-2 border-b pb-1">How to Apply</h2>
+        <ol class="list-decimal pl-5 space-y-2 text-sm text-gray-700">
+          {lines(howTo).map((step) => <li>{step}</li>)}
+        </ol>
+      </section>
+    )}
+
+    {selection && (
+      <section class="mt-6">
+        <h2 class="text-lg font-black text-slate-900 mb-2 border-b pb-1">Selection Process</h2>
+        <ul class="list-disc pl-5 space-y-2 text-sm text-gray-700">
+          {lines(selection).map((step) => <li>{step}</li>)}
+        </ul>
+      </section>
+    )}
+
+    {documents && (
+      <section class="mt-6">
+        <h2 class="text-lg font-black text-slate-900 mb-2 border-b pb-1">Documents Required</h2>
+        <ul class="list-disc pl-5 space-y-2 text-sm text-gray-700">
+          {lines(documents).map((doc) => <li>{doc}</li>)}
+        </ul>
+      </section>
+    )}
+
+    <ContentBlocks blocks={exam.body_blocks || []} />
+
+    {exam.faq?.length > 0 && (
+      <section class="mt-6">
+        <h2 class="text-lg font-black text-slate-900 mb-3 border-b pb-1">FAQ</h2>
+        <div class="space-y-3">
+          {exam.faq.map((f) => (
+            <div class="border border-gray-200 rounded-lg p-3 bg-gray-50">
+              <h3 class="font-bold text-sm text-slate-900">{f.question}</h3>
+              <p class="text-sm text-gray-700 mt-1 leading-relaxed">{f.answer}</p>
+            </div>
+          ))}
+        </div>
+      </section>
+    )}
+
+    <section class="mt-8 pt-4 border-t">
+      <p class="text-xs text-gray-500 mb-4">
+        Independent informational tracker — not affiliated with {exam.organization}. Verify on the official website before applying.
+      </p>
+      {related.length > 0 && (
+        <>
+          <h2 class="text-lg font-black text-slate-900 mb-3">Related posts</h2>
+          <ul class="grid grid-cols-1 sm:grid-cols-2 gap-2">
+            {related.map((r) => (
+              <li>
+                <a href={`/exam/${r.slug}?lang=${lang}`} class="block border rounded p-3 hover:bg-amber-50 text-sm font-semibold text-slate-800 min-h-[44px]">
+                  {pickLang(r.title, r.title_hi, lang)}
+                </a>
+              </li>
+            ))}
+          </ul>
+        </>
+      )}
+    </section>
+  </article>
 </ExamLayout>

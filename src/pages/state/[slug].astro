@@ -1,0 +1,44 @@
+---
+import ExamLayout from '../../layouts/ExamLayout.astro';
+import { getDb } from '../../lib/posts';
+import { loadPublished } from '../../lib/load';
+import { getThemeSettings, cacheHeaders } from '../../lib/settings';
+import { DEFAULT_THEME, INDIAN_STATES } from '../../lib/types';
+import { getLang, pickLang } from '../../lib/i18n';
+
+export const prerender = false;
+
+const { slug } = Astro.params;
+const state = INDIAN_STATES.find((s) => s.slug === slug);
+if (!state) return Astro.redirect('/state');
+
+const db = getDb(Astro.locals);
+const theme = db ? await getThemeSettings(db) : DEFAULT_THEME;
+const lang = getLang(Astro.url, Astro.request.headers.get('cookie'));
+const posts = await loadPublished(db, { state: state.slug });
+const name = lang === 'hi' ? state.nameHi : state.name;
+Astro.response.headers.set('Cache-Control', cacheHeaders(theme.cacheTtlSeconds)['Cache-Control'] as string);
+---
+
+<ExamLayout
+  title={`${name} Government Jobs, Admit Cards & Results`}
+  description={`Track ${name} government jobs, PSC, police and exam updates with official links on ExamStatus.`}
+  theme={theme}
+  lang={lang}
+>
+  <div class="bg-white rounded-lg shadow p-5 sm:p-6">
+    <h1 class="text-2xl font-black mb-2">{name} Sarkari Updates</h1>
+    <p class="text-sm text-gray-600 mb-6 leading-relaxed">
+      Jobs, admit cards and results tagged for {name}, plus major national exams aspirants from this state usually follow. Verify every date on the official notification.
+    </p>
+    <ul class="divide-y">
+      {posts.map((p) => (
+        <li class="py-3">
+          <a href={`/exam/${p.slug}?lang=${lang}`} class="font-bold text-sm hover:text-amber-700">{pickLang(p.title, p.title_hi, lang)}</a>
+          <p class="text-xs text-gray-500 mt-1 capitalize">{p.category} · {p.organization}</p>
+        </li>
+      ))}
+      {posts.length === 0 && <li class="py-6 text-sm text-gray-500">No posts tagged yet. National listings appear as content is added.</li>}
+    </ul>
+  </div>
+</ExamLayout>

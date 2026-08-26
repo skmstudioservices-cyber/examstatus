@@ -1,0 +1,254 @@
+---
+import AdminLayout from '../../layouts/AdminLayout.astro';
+import { getDb } from '../../lib/posts';
+import { parseCookies, resolveAdmin } from '../../lib/auth';
+import { INDIAN_STATES } from '../../lib/types';
+
+export const prerender = false;
+
+const db = getDb(Astro.locals);
+if (!db) return Astro.redirect('/admin/login');
+const cookies = parseCookies(Astro.request.headers.get('cookie'));
+const user = await resolveAdmin(db, Astro.request, cookies['examstatus_session']);
+if (!user) return Astro.redirect('/admin/login');
+
+const editSlug = Astro.url.searchParams.get('slug') || '';
+const statesJson = JSON.stringify(INDIAN_STATES.map((s) => s.slug));
+---
+
+<AdminLayout>
+  <div class="flex flex-wrap justify-between gap-3 mb-4">
+    <h1 class="text-2xl font-black">Posts</h1>
+    <button id="new-post" type="button" class="bg-amber-500 font-bold text-sm px-3 py-2 rounded">New post</button>
+  </div>
+  <div class="grid grid-cols-1 lg:grid-cols-3 gap-4">
+    <div class="bg-white border rounded p-3 lg:col-span-1 max-h-[70vh] overflow-auto" id="post-list"></div>
+    <form id="post-form" class="bg-white border rounded p-4 lg:col-span-2 space-y-3 max-h-[80vh] overflow-auto">
+      <div class="grid grid-cols-1 sm:grid-cols-2 gap-3">
+        <label class="text-xs font-bold">Slug<input name="slug" required class="mt-1 w-full border rounded px-2 py-1.5 text-sm" /></label>
+        <label class="text-xs font-bold">Category
+          <select name="category" class="mt-1 w-full border rounded px-2 py-1.5 text-sm">
+            <option value="latest-jobs">Latest Jobs</option>
+            <option value="admit-cards">Admit Cards</option>
+            <option value="results">Results</option>
+            <option value="answer-keys">Answer Keys</option>
+            <option value="syllabus">Syllabus</option>
+            <option value="admissions">Admissions</option>
+            <option value="scholarships">Scholarships</option>
+          </select>
+        </label>
+        <label class="text-xs font-bold">Title<input name="title" required class="mt-1 w-full border rounded px-2 py-1.5 text-sm" /></label>
+        <label class="text-xs font-bold">Title (HI)<input name="title_hi" class="mt-1 w-full border rounded px-2 py-1.5 text-sm" /></label>
+        <label class="text-xs font-bold">Organization<input name="organization" class="mt-1 w-full border rounded px-2 py-1.5 text-sm" /></label>
+        <label class="text-xs font-bold">Post name<input name="post_name" class="mt-1 w-full border rounded px-2 py-1.5 text-sm" /></label>
+        <label class="text-xs font-bold">Vacancies<input name="total_vacancies" type="number" class="mt-1 w-full border rounded px-2 py-1.5 text-sm" /></label>
+        <label class="text-xs font-bold">Level
+          <select name="level" class="mt-1 w-full border rounded px-2 py-1.5 text-sm">
+            <option value="national">National</option>
+            <option value="state">State</option>
+          </select>
+        </label>
+        <label class="text-xs font-bold">Start date<input name="start_date" class="mt-1 w-full border rounded px-2 py-1.5 text-sm" /></label>
+        <label class="text-xs font-bold">Closing date<input name="closing_date" class="mt-1 w-full border rounded px-2 py-1.5 text-sm" /></label>
+        <label class="text-xs font-bold">Exam date<input name="exam_date" class="mt-1 w-full border rounded px-2 py-1.5 text-sm" /></label>
+        <label class="text-xs font-bold">Admit card date<input name="admit_card_date" class="mt-1 w-full border rounded px-2 py-1.5 text-sm" /></label>
+        <label class="text-xs font-bold">Result date<input name="result_date" class="mt-1 w-full border rounded px-2 py-1.5 text-sm" /></label>
+        <label class="text-xs font-bold">Min / Max age
+          <div class="flex gap-2 mt-1">
+            <input name="min_age" placeholder="Min" class="w-full border rounded px-2 py-1.5 text-sm" />
+            <input name="max_age" placeholder="Max" class="w-full border rounded px-2 py-1.5 text-sm" />
+          </div>
+        </label>
+        <label class="text-xs font-bold">Official URL<input name="official_url" class="mt-1 w-full border rounded px-2 py-1.5 text-sm" /></label>
+        <label class="text-xs font-bold">Apply URL<input name="apply_online_url" class="mt-1 w-full border rounded px-2 py-1.5 text-sm" /></label>
+        <label class="text-xs font-bold">PDF URL<input name="notification_pdf_url" class="mt-1 w-full border rounded px-2 py-1.5 text-sm" /></label>
+        <label class="text-xs font-bold">Qualifications (comma)<input name="qualifications" class="mt-1 w-full border rounded px-2 py-1.5 text-sm" placeholder="Graduate, 12th Pass" /></label>
+        <label class="text-xs font-bold">Job categories (comma)<input name="job_categories" class="mt-1 w-full border rounded px-2 py-1.5 text-sm" /></label>
+        <label class="text-xs font-bold sm:col-span-2">States (comma slugs)
+          <input name="states" class="mt-1 w-full border rounded px-2 py-1.5 text-sm" placeholder="uttar-pradesh,bihar" />
+          <span class="text-[10px] text-gray-400 font-normal">Known: <span id="state-hints"></span></span>
+        </label>
+      </div>
+      <label class="text-xs font-bold block">Summary<textarea name="summary" rows="3" class="mt-1 w-full border rounded px-2 py-1.5 text-sm"></textarea></label>
+      <label class="text-xs font-bold block">Summary HI<textarea name="summary_hi" rows="2" class="mt-1 w-full border rounded px-2 py-1.5 text-sm"></textarea></label>
+      <label class="text-xs font-bold block">How to apply (one step per line)<textarea name="how_to_apply" rows="4" class="mt-1 w-full border rounded px-2 py-1.5 text-sm"></textarea></label>
+      <label class="text-xs font-bold block">Selection process (one per line)<textarea name="selection_process" rows="3" class="mt-1 w-full border rounded px-2 py-1.5 text-sm"></textarea></label>
+      <label class="text-xs font-bold block">Documents (one per line)<textarea name="documents" rows="3" class="mt-1 w-full border rounded px-2 py-1.5 text-sm"></textarea></label>
+      <label class="text-xs font-bold block">Fees JSON<textarea name="fees_json" rows="2" class="mt-1 w-full border rounded px-2 py-1.5 text-sm font-mono" placeholder='[{"category":"General","amount":"Rs. 100/-"}]'></textarea></label>
+      <label class="text-xs font-bold block">Eligibility JSON<textarea name="eligibility_json" rows="2" class="mt-1 w-full border rounded px-2 py-1.5 text-sm font-mono"></textarea></label>
+      <label class="text-xs font-bold block">FAQ JSON (≥3)<textarea name="faq_json" rows="4" class="mt-1 w-full border rounded px-2 py-1.5 text-sm font-mono" placeholder='[{"question":"...","answer":"..."}]'></textarea></label>
+      <label class="text-xs font-bold block">Extra blocks JSON<textarea name="body_blocks_json" rows="3" class="mt-1 w-full border rounded px-2 py-1.5 text-sm font-mono" placeholder='[{"type":"heading","text":"..."},{"type":"paragraph","text":"..."}]'></textarea></label>
+      <div class="flex flex-wrap gap-2">
+        <button type="submit" name="intent" value="draft" class="border font-bold text-sm px-3 py-2 rounded">Save draft</button>
+        <button type="submit" name="intent" value="publish" class="bg-green-700 text-white font-bold text-sm px-3 py-2 rounded">Publish</button>
+        <button type="button" id="gen-hi" class="border font-bold text-sm px-3 py-2 rounded">Generate Hindi</button>
+        <button type="button" id="add-heading" class="border text-xs px-2 py-2 rounded">+ Heading block</button>
+        <button type="button" id="add-para" class="border text-xs px-2 py-2 rounded">+ Paragraph block</button>
+      </div>
+      <p id="form-msg" class="text-xs text-gray-600"></p>
+    </form>
+  </div>
+
+  <script define:vars={{ editSlug, statesJson }}>
+    const stateHints = document.getElementById('state-hints');
+    stateHints.textContent = JSON.parse(statesJson).slice(0, 8).join(', ') + '…';
+    const form = document.getElementById('post-form');
+    const listEl = document.getElementById('post-list');
+    const msg = document.getElementById('form-msg');
+
+    function parseJsonField(name, fallback) {
+      const raw = form[name].value.trim();
+      if (!raw) return fallback;
+      return JSON.parse(raw);
+    }
+
+    function fillForm(p) {
+      if (!p) return;
+      const map = {
+        slug: p.slug, title: p.title, title_hi: p.title_hi, category: p.category, organization: p.organization,
+        post_name: p.post_name, total_vacancies: p.total_vacancies, level: p.level, start_date: p.start_date,
+        closing_date: p.closing_date, exam_date: p.exam_date, admit_card_date: p.admit_card_date, result_date: p.result_date,
+        min_age: p.min_age, max_age: p.max_age, official_url: p.official_url, apply_online_url: p.apply_online_url,
+        notification_pdf_url: p.notification_pdf_url, summary: p.summary, summary_hi: p.summary_hi,
+        how_to_apply: p.how_to_apply, selection_process: p.selection_process, documents: p.documents
+      };
+      Object.entries(map).forEach(([k, v]) => { if (form[k]) form[k].value = v ?? ''; });
+      form.qualifications.value = (p.qualifications || []).join(', ');
+      form.job_categories.value = (p.job_categories || []).join(', ');
+      form.states.value = (p.states || []).join(',');
+      form.fees_json.value = JSON.stringify(p.fees || [], null, 0);
+      form.eligibility_json.value = JSON.stringify(p.eligibility || [], null, 0);
+      form.faq_json.value = JSON.stringify(p.faq || [], null, 2);
+      form.body_blocks_json.value = JSON.stringify(p.body_blocks || [], null, 2);
+    }
+
+    async function loadList() {
+      const res = await fetch('/api/admin/posts.json');
+      const data = await res.json();
+      listEl.innerHTML = (data.posts || []).map((p) =>
+        `<button type="button" data-slug="${p.slug}" class="block w-full text-left border-b py-2 px-1 hover:bg-amber-50 text-xs">
+          <span class="font-bold">${p.title}</span><br/><span class="text-gray-500">${p.status} · ${p.category}</span>
+        </button>`
+      ).join('') || '<p class="text-xs text-gray-500">No posts yet. Seed from dashboard.</p>';
+      listEl.querySelectorAll('[data-slug]').forEach((btn) => {
+        btn.addEventListener('click', async () => {
+          const r = await fetch('/api/admin/posts.json?slug=' + encodeURIComponent(btn.dataset.slug));
+          const d = await r.json();
+          if (d.post) {
+            const row = d.post;
+            fillForm({
+              ...row,
+              fees: JSON.parse(row.fees_json || '[]'),
+              eligibility: JSON.parse(row.eligibility_json || '[]'),
+              qualifications: JSON.parse(row.qualifications_json || '[]'),
+              job_categories: JSON.parse(row.job_categories_json || '[]'),
+              states: JSON.parse(row.states_json || '[]'),
+              faq: JSON.parse(row.faq_json || '[]'),
+              body_blocks: JSON.parse(row.body_blocks_json || '[]')
+            });
+          }
+        });
+      });
+    }
+
+    function buildPayload(publish) {
+      return {
+        slug: form.slug.value.trim(),
+        title: form.title.value.trim(),
+        title_hi: form.title_hi.value.trim(),
+        category: form.category.value,
+        organization: form.organization.value.trim(),
+        post_name: form.post_name.value.trim(),
+        total_vacancies: Number(form.total_vacancies.value || 0),
+        level: form.level.value,
+        start_date: form.start_date.value.trim(),
+        closing_date: form.closing_date.value.trim(),
+        exam_date: form.exam_date.value.trim(),
+        admit_card_date: form.admit_card_date.value.trim(),
+        result_date: form.result_date.value.trim(),
+        min_age: form.min_age.value.trim(),
+        max_age: form.max_age.value.trim(),
+        official_url: form.official_url.value.trim(),
+        apply_online_url: form.apply_online_url.value.trim(),
+        notification_pdf_url: form.notification_pdf_url.value.trim(),
+        summary: form.summary.value.trim(),
+        summary_hi: form.summary_hi.value.trim(),
+        how_to_apply: form.how_to_apply.value.trim(),
+        selection_process: form.selection_process.value.trim(),
+        documents: form.documents.value.trim(),
+        qualifications: form.qualifications.value.split(',').map((s) => s.trim()).filter(Boolean),
+        job_categories: form.job_categories.value.split(',').map((s) => s.trim()).filter(Boolean),
+        states: form.states.value.split(',').map((s) => s.trim()).filter(Boolean),
+        fees: parseJsonField('fees_json', []),
+        eligibility: parseJsonField('eligibility_json', []),
+        faq: parseJsonField('faq_json', []),
+        body_blocks: parseJsonField('body_blocks_json', []),
+        status: publish ? 'published' : 'draft',
+        publish: !!publish,
+        last_verified_at: new Date().toISOString().slice(0, 10)
+      };
+    }
+
+    form.addEventListener('submit', async (e) => {
+      e.preventDefault();
+      const publish = e.submitter && e.submitter.value === 'publish';
+      msg.textContent = 'Saving...';
+      try {
+        const payload = buildPayload(publish);
+        const res = await fetch('/api/admin/posts.json', {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify(payload)
+        });
+        const data = await res.json();
+        msg.textContent = res.ok ? 'Saved ' + payload.slug : (data.error || 'Error');
+        if (res.ok) loadList();
+      } catch (err) {
+        msg.textContent = err.message || 'Invalid JSON fields';
+      }
+    });
+
+    document.getElementById('new-post').addEventListener('click', () => {
+      form.reset();
+      form.fees_json.value = '[]';
+      form.eligibility_json.value = '[]';
+      form.faq_json.value = '[]';
+      form.body_blocks_json.value = '[]';
+    });
+
+    function pushBlock(block) {
+      const blocks = parseJsonField('body_blocks_json', []);
+      blocks.push(block);
+      form.body_blocks_json.value = JSON.stringify(blocks, null, 2);
+    }
+    document.getElementById('add-heading').addEventListener('click', () => pushBlock({ type: 'heading', text: 'New heading', level: 2 }));
+    document.getElementById('add-para').addEventListener('click', () => pushBlock({ type: 'paragraph', text: 'New paragraph — paraphrase official facts in your own words.' }));
+
+    document.getElementById('gen-hi').addEventListener('click', async () => {
+      msg.textContent = 'Translating...';
+      const res = await fetch('/api/admin/translate.json', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({
+          title: form.title.value,
+          summary: form.summary.value,
+          how_to_apply: form.how_to_apply.value,
+          selection_process: form.selection_process.value,
+          documents: form.documents.value
+        })
+      });
+      const data = await res.json();
+      if (!res.ok) { msg.textContent = data.error || 'Translate failed'; return; }
+      if (data.title_hi) form.title_hi.value = data.title_hi;
+      if (data.summary_hi) form.summary_hi.value = data.summary_hi;
+      msg.textContent = 'Hindi draft filled — review before publish.';
+    });
+
+    loadList().then(() => {
+      if (editSlug) {
+        const btn = listEl.querySelector(`[data-slug="${editSlug}"]`);
+        if (btn) btn.click();
+      }
+    });
+  </script>
+</AdminLayout>

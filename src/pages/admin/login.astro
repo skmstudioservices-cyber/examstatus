@@ -1,0 +1,55 @@
+---
+import { getDb } from '../../lib/posts';
+import { parseCookies, resolveAdmin } from '../../lib/auth';
+
+export const prerender = false;
+
+const db = getDb(Astro.locals);
+const cookies = parseCookies(Astro.request.headers.get('cookie'));
+if (db) {
+  const user = await resolveAdmin(db, Astro.request, cookies['examstatus_session']);
+  if (user) return Astro.redirect('/admin');
+}
+---
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Admin Login | ExamStatus</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+</head>
+<body class="bg-slate-900 min-h-screen flex items-center justify-center p-4">
+  <div class="bg-white rounded-lg shadow-xl w-full max-w-md p-6">
+    <h1 class="text-xl font-black mb-1">ExamStatus Admin</h1>
+    <p class="text-xs text-gray-500 mb-4">Secure login. Prefer Cloudflare Access in production; password login works for bootstrap and local.</p>
+    <form id="login-form" class="space-y-3">
+      <input id="email" type="email" required placeholder="Email" class="w-full border rounded px-3 py-2 text-sm" />
+      <input id="password" type="password" required minlength="10" placeholder="Password (10+ chars)" class="w-full border rounded px-3 py-2 text-sm" />
+      <button class="w-full bg-amber-500 hover:bg-amber-600 font-bold py-2 rounded text-sm">Sign in</button>
+      <button type="button" id="bootstrap-btn" class="w-full border font-bold py-2 rounded text-sm">Create first owner (once)</button>
+      <p id="msg" class="text-xs text-center min-h-[1rem]"></p>
+    </form>
+    <p class="text-[11px] text-gray-400 mt-4">Style guide: never paste competitor copy. Paraphrase summaries. Official links only.</p>
+  </div>
+  <script is:inline>
+    const msg = document.getElementById('msg');
+    async function send(action) {
+      msg.textContent = 'Working...';
+      const email = document.getElementById('email').value;
+      const password = document.getElementById('password').value;
+      const res = await fetch('/api/admin/auth.json', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ action, email, password })
+      });
+      const data = await res.json();
+      if (res.ok) location.href = '/admin';
+      else msg.textContent = data.error || 'Failed';
+    }
+    document.getElementById('login-form').addEventListener('submit', (e) => { e.preventDefault(); send('login'); });
+    document.getElementById('bootstrap-btn').addEventListener('click', () => send('bootstrap'));
+  </script>
+</body>
+</html>

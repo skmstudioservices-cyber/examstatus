@@ -1,0 +1,58 @@
+---
+import AdminLayout from '../../layouts/AdminLayout.astro';
+import { getDb } from '../../lib/posts';
+import { parseCookies, resolveAdmin, canManageUsers, listAdminUsers } from '../../lib/auth';
+
+export const prerender = false;
+
+const db = getDb(Astro.locals);
+if (!db) return Astro.redirect('/admin/login');
+const cookies = parseCookies(Astro.request.headers.get('cookie'));
+const user = await resolveAdmin(db, Astro.request, cookies['examstatus_session']);
+if (!user || !canManageUsers(user.role)) return Astro.redirect('/admin');
+const users = await listAdminUsers(db);
+---
+
+<AdminLayout>
+  <h1 class="text-2xl font-black mb-2">Team & roles</h1>
+  <p class="text-xs text-gray-600 mb-4">Map emails to owner / editor / researcher. For Cloudflare Access, invite the same emails in Zero Trust and protect <code>/admin*</code>.</p>
+  <ul class="bg-white border rounded divide-y mb-6">
+    {users.map((u: any) => (
+      <li class="px-3 py-2 text-sm flex justify-between"><span>{u.email}</span><span class="font-bold uppercase text-xs">{u.role}</span></li>
+    ))}
+  </ul>
+  <form id="add-user" class="bg-white border rounded p-4 space-y-3 max-w-md">
+    <input name="email" type="email" required placeholder="colleague@email.com" class="w-full border rounded px-2 py-2 text-sm" />
+    <select name="role" class="w-full border rounded px-2 py-2 text-sm">
+      <option value="editor">Editor</option>
+      <option value="researcher">Researcher</option>
+      <option value="owner">Owner</option>
+    </select>
+    <input name="password" type="password" minlength="10" placeholder="Optional password (10+) for non-Access login" class="w-full border rounded px-2 py-2 text-sm" />
+    <button class="bg-amber-500 font-bold text-sm px-4 py-2 rounded">Add / update</button>
+    <p id="team-msg" class="text-xs"></p>
+  </form>
+  <div class="mt-6 text-xs bg-slate-50 border rounded p-4 space-y-2">
+    <p class="font-bold">Cloudflare Access invite flow</p>
+    <ol class="list-decimal pl-5 space-y-1">
+      <li>Cloudflare Dashboard → Zero Trust → Access → Applications → Self-hosted</li>
+      <li>Protect path <code>examstatus.../admin*</code> and <code>/api/admin*</code></li>
+      <li>Policy: allow emails / Access groups matching Team emails here</li>
+      <li>First Access login auto-promotes to owner if no users exist</li>
+    </ol>
+  </div>
+  <script is:inline>
+    document.getElementById('add-user').addEventListener('submit', async (e) => {
+      e.preventDefault();
+      const f = e.target;
+      const res = await fetch('/api/admin/auth.json', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ action: 'add_user', email: f.email.value, role: f.role.value, password: f.password.value || undefined })
+      });
+      const data = await res.json();
+      document.getElementById('team-msg').textContent = res.ok ? 'Saved' : (data.error || 'Failed');
+      if (res.ok) location.reload();
+    });
+  </script>
+</AdminLayout>

@@ -1,0 +1,48 @@
+---
+import AdminLayout from '../../layouts/AdminLayout.astro';
+import { getDb } from '../../lib/posts';
+import { parseCookies, resolveAdmin } from '../../lib/auth';
+
+export const prerender = false;
+
+const db = getDb(Astro.locals);
+if (!db) return Astro.redirect('/admin/login');
+const cookies = parseCookies(Astro.request.headers.get('cookie'));
+const user = await resolveAdmin(db, Astro.request, cookies['examstatus_session']);
+if (!user) return Astro.redirect('/admin/login');
+
+const postsCount = await db.prepare(`SELECT COUNT(*) as c FROM posts`).first();
+const draftCount = await db.prepare(`SELECT COUNT(*) as c FROM posts WHERE status = 'draft'`).first();
+const aiPending = await db.prepare(`SELECT COUNT(*) as c FROM ai_drafts WHERE status = 'pending'`).first();
+const feedbackCount = await db.prepare(`SELECT COUNT(*) as c FROM feedback`).first();
+---
+
+<AdminLayout>
+  <h1 class="text-2xl font-black mb-1">Dashboard</h1>
+  <p class="text-sm text-gray-600 mb-6">Signed in as <strong>{user.email}</strong> ({user.role})</p>
+  <div class="grid grid-cols-2 md:grid-cols-4 gap-3 mb-8">
+    <div class="bg-white rounded border p-4"><p class="text-xs text-gray-500">Posts</p><p class="text-2xl font-black">{Number(postsCount?.c || 0)}</p></div>
+    <div class="bg-white rounded border p-4"><p class="text-xs text-gray-500">Drafts</p><p class="text-2xl font-black">{Number(draftCount?.c || 0)}</p></div>
+    <div class="bg-white rounded border p-4"><p class="text-xs text-gray-500">AI pending</p><p class="text-2xl font-black">{Number(aiPending?.c || 0)}</p></div>
+    <div class="bg-white rounded border p-4"><p class="text-xs text-gray-500">Feedback</p><p class="text-2xl font-black">{Number(feedbackCount?.c || 0)}</p></div>
+  </div>
+  <div class="flex flex-wrap gap-3">
+    <a href="/admin/posts" class="bg-amber-500 font-bold text-sm px-4 py-2 rounded">Manage posts</a>
+    <button id="seed-btn" type="button" class="border font-bold text-sm px-4 py-2 rounded bg-white">Seed from exams.json</button>
+    <a href="/admin/ai" class="border font-bold text-sm px-4 py-2 rounded bg-white">AI Inbox</a>
+  </div>
+  <p id="seed-msg" class="text-xs mt-3 text-gray-600"></p>
+  <div class="mt-8 bg-amber-50 border border-amber-200 rounded p-4 text-xs text-amber-950 space-y-1">
+    <p class="font-bold">Publish checklist</p>
+    <p>Unique summary (40+ chars) · ≥3 FAQ · ≥3 how-to steps · allowlisted official URL · paraphrase (no competitor copy)</p>
+  </div>
+  <script is:inline>
+    document.getElementById('seed-btn')?.addEventListener('click', async () => {
+      const msg = document.getElementById('seed-msg');
+      msg.textContent = 'Seeding...';
+      const res = await fetch('/api/admin/seed.json', { method: 'POST' });
+      const data = await res.json();
+      msg.textContent = res.ok ? `Seeded ${data.count} posts` : (data.error || 'Failed');
+    });
+  </script>
+</AdminLayout>

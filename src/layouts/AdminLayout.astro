@@ -1,0 +1,35 @@
+---
+export const prerender = false;
+---
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>ExamStatus Admin</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+</head>
+<body class="bg-slate-100 text-slate-900 min-h-screen">
+  <header class="bg-slate-900 text-white px-4 py-3 flex flex-wrap gap-3 items-center justify-between">
+    <a href="/admin" class="font-black tracking-tight">ExamStatus Admin</a>
+    <nav class="flex flex-wrap gap-3 text-xs font-bold uppercase">
+      <a href="/admin" class="hover:text-amber-400">Dashboard</a>
+      <a href="/admin/posts" class="hover:text-amber-400">Posts</a>
+      <a href="/admin/theme" class="hover:text-amber-400">Theme</a>
+      <a href="/admin/ai" class="hover:text-amber-400">AI Inbox</a>
+      <a href="/admin/team" class="hover:text-amber-400">Team</a>
+      <a href="/" class="hover:text-amber-400">View site</a>
+      <button id="logout-btn" type="button" class="hover:text-red-300">Logout</button>
+    </nav>
+  </header>
+  <main class="max-w-6xl mx-auto p-4">
+    <slot />
+  </main>
+  <script is:inline>
+    document.getElementById('logout-btn')?.addEventListener('click', async () => {
+      await fetch('/api/admin/auth.json', { method: 'POST', headers: { 'Content-Type': 'application/json' }, body: JSON.stringify({ action: 'logout' }) });
+      location.href = '/admin/login';
+    });
+  </script>
+</body>
+</html>

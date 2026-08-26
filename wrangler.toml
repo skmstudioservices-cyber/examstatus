@@ -12,5 +12,12 @@ binding = "DB"
 database_name = "examstatus-db"
 database_id = "5929f80d-1368-417a-9023-3154807b44f1"
 
+[ai]
+binding = "AI"
+
 [observability]
 enabled = true
+
+# Optional: set AI_CRON_SECRET via `wrangler secret put AI_CRON_SECRET`
+# then enable a Cron Trigger in the Cloudflare dashboard calling /api/cron/research
+# with header x-cron-secret.

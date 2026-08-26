@@ -1,109 +1,137 @@
 ---
 import FeedbackWidget from '../components/FeedbackWidget.astro';
+import { DEFAULT_THEME, type ThemeSettings } from '../lib/types';
+import { langLink } from '../lib/i18n';
 
 export interface Props {
   title: string;
   description: string;
   category?: string;
-  schemaData?: object;
+  schemaData?: object | object[];
+  theme?: ThemeSettings;
+  lang?: 'en' | 'hi';
 }
 
 const {
   title,
   description,
-  category = 'Dashboard',
-  schemaData
+  schemaData,
+  theme = DEFAULT_THEME,
+  lang = 'en'
 } = Astro.props;
 
 const canonicalURL = Astro.url.href;
+const banner = lang === 'hi' && theme.bannerTextHi ? theme.bannerTextHi : theme.bannerText;
+const disclaimer =
+  lang === 'hi' && theme.footerDisclaimerHi ? theme.footerDisclaimerHi : theme.footerDisclaimer;
+const nav = theme.navItems?.length ? theme.navItems : DEFAULT_THEME.navItems;
+const schemas = Array.isArray(schemaData) ? schemaData : schemaData ? [schemaData] : [];
 ---
 
 <!DOCTYPE html>
-<html lang="en">
+<html lang={lang === 'hi' ? 'hi' : 'en'}>
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>{title} | ExamStatus Portal</title>
   <meta name="description" content={description} />
-  <link rel="canonical" href={canonicalURL} />
-
-  <!-- Google Discover SEO Directives -->
+  <link rel="canonical" href={canonicalURL.split('?')[0]} />
   <meta name="robots" content="index, follow, max-image-preview:large, max-snippet:-1, max-video-preview:-1" />
-
-  <!-- Open Graph -->
   <meta property="og:type" content="website" />
   <meta property="og:title" content={title} />
   <meta property="og:description" content={description} />
-  <meta property="og:image" content="https://images.unsplash.com/photo-1434030216411-0b793f4b4173?w=1200&q=80" />
-
-  <!-- Twitter Card -->
   <meta name="twitter:card" content="summary_large_image" />
   <meta name="twitter:title" content={title} />
   <meta name="twitter:description" content={description} />
-  
-  {schemaData && (
-    <script type="application/ld+json" set:html={JSON.stringify(schemaData)} />
-  )}
+  {schemas.map((s) => (
+    <script type="application/ld+json" set:html={JSON.stringify(s)} />
+  ))}
+  <style define:vars={{
+    colorPrimary: theme.colorPrimary,
+    colorAccent: theme.colorAccent,
+    colorBanner: theme.colorBanner,
+    fontFamily: theme.fontFamily
+  }}>
+    :root {
+      --color-primary: var(--colorPrimary);
+      --color-accent: var(--colorAccent);
+      --color-banner: var(--colorBanner);
+      --font-site: var(--fontFamily);
+    }
+    body { font-family: var(--font-site); }
+  </style>
 </head>
-<body class="bg-gray-100 text-gray-900 min-h-screen flex flex-col font-sans">
-  
-  <!-- URGENT BLINKING BANNER -->
-  <div class="bg-red-700 text-white text-xs md:text-sm font-bold py-2 px-4 text-center tracking-wide animate-pulse border-b border-red-900 shadow-inner">
-    🔴 LIVE & URGENT: SSC CGL 2026 Online Form Active (14,582 Posts) • RRB NTPC Admit Cards Out!
+<body class="bg-gray-100 text-gray-900 min-h-screen flex flex-col">
+  <div class="text-white text-xs md:text-sm font-bold py-2 px-4 text-center tracking-wide animate-pulse border-b shadow-inner" style={`background:${theme.colorBanner}`}>
+    {banner}
   </div>
 
-  <header class="bg-slate-900 text-white shadow-lg border-b-4 border-amber-500 sticky top-0 z-50">
-    <div class="max-w-7xl mx-auto px-4 py-3 flex justify-between items-center">
-      <a href="/" class="flex items-center space-x-2">
-        <span class="bg-amber-500 text-slate-950 font-black text-xl px-2 py-0.5 rounded shadow">EXAM</span>
-        <span class="text-xl font-black tracking-tight text-white">STATUS</span>
+  <header class="text-white shadow-lg sticky top-0 z-50 border-b-4" style={`background:${theme.colorPrimary};border-color:${theme.colorAccent}`}>
+    <div class="max-w-7xl mx-auto px-3 sm:px-4 py-3 flex flex-wrap gap-3 justify-between items-center">
+      <a href={`/?lang=${lang}`} class="flex items-center space-x-2 shrink-0">
+        <span class="font-black text-xl px-2 py-0.5 rounded shadow text-slate-950" style={`background:${theme.colorAccent}`}>EXAM</span>
+        <span class="text-xl font-black tracking-tight">{theme.logoText || 'STATUS'}</span>
       </a>
-      <nav class="hidden md:flex space-x-6 text-xs font-bold uppercase tracking-wider">
-        <a href="/" class="hover:text-amber-400 transition-colors">Dashboard</a>
-        <a href="/#latest-jobs" class="hover:text-amber-400 transition-colors">Latest Jobs</a>
-        <a href="/#admit-cards" class="hover:text-amber-400 transition-colors">Admit Cards</a>
-        <a href="/#results" class="hover:text-amber-400 transition-colors">Results</a>
+      <nav class="hidden lg:flex flex-wrap gap-4 text-xs font-bold uppercase tracking-wider">
+        {nav.map((item) => (
+          <a href={`${item.href}${item.href.includes('?') ? '&' : '?'}lang=${lang}`} class="hover:opacity-80 transition-colors">
+            {item.label}
+          </a>
+        ))}
       </nav>
-      <button onclick="alert('Push notification alert service enabled!')" class="bg-amber-500 hover:bg-amber-600 text-slate-950 text-xs font-black px-3 py-1.5 rounded-full flex items-center gap-1 shadow transition-transform hover:scale-105">
-        🔔 Fast Alerts
-      </button>
+      <div class="flex items-center gap-2">
+        <a
+          href={langLink(Astro.url.pathname, lang === 'en' ? 'hi' : 'en', Astro.url.search)}
+          class="text-xs font-bold px-2 py-1.5 rounded border border-white/30 hover:bg-white/10 min-h-[36px] flex items-center"
+        >
+          {lang === 'en' ? 'हिंदी' : 'EN'}
+        </a>
+        <button type="button" id="fast-alerts-btn" class="text-slate-950 text-xs font-black px-3 py-1.5 rounded-full flex items-center gap-1 shadow min-h-[36px]" style={`background:${theme.colorAccent}`}>
+          Fast Alerts
+        </button>
+      </div>
     </div>
+    <nav class="lg:hidden flex gap-3 overflow-x-auto px-3 pb-3 text-[11px] font-bold uppercase tracking-wider">
+      {nav.map((item) => (
+        <a href={`${item.href}${item.href.includes('?') ? '&' : '?'}lang=${lang}`} class="whitespace-nowrap opacity-90">
+          {item.label}
+        </a>
+      ))}
+    </nav>
   </header>
 
-  <main class="max-w-7xl mx-auto px-3 sm:px-4 py-6 w-full flex-grow">
+  <main class="max-w-7xl mx-auto px-3 sm:px-4 py-6 w-full flex-grow pb-20 md:pb-6">
     <slot />
   </main>
 
   <footer class="bg-slate-950 text-gray-400 text-xs py-8 border-t border-slate-800 mt-auto text-center">
     <div class="max-w-7xl mx-auto px-4 flex flex-col items-center">
-      <p class="font-bold text-gray-300 text-base mb-2">ExamStatus.in - Official Fast Job Alerts & Dashboard</p>
-      <p class="max-w-2xl text-gray-500 mb-4">Disclaimer: The information published here is for immediate information to the examinees and does not constitute to be a legal document. While all efforts have been made to make the information available on this website as authentic as possible, we are not responsible for any inadvertent error.</p>
-      <div class="flex space-x-4 mb-4">
-        <a href="/about" class="hover:text-white">About</a>
-        <a href="/privacy-policy" class="hover:text-white">Privacy Policy</a>
-        <a href="/terms" class="hover:text-white">Terms of Service</a>
-        <a href="/contact" class="hover:text-white">Contact Us</a>
+      <p class="font-bold text-gray-300 text-base mb-2">ExamStatus.in</p>
+      <p class="max-w-2xl text-gray-500 mb-4">{disclaimer}</p>
+      <div class="flex flex-wrap justify-center gap-4 mb-4">
+        <a href={`/about?lang=${lang}`} class="hover:text-white">About</a>
+        <a href={`/privacy-policy?lang=${lang}`} class="hover:text-white">Privacy</a>
+        <a href={`/terms?lang=${lang}`} class="hover:text-white">Terms</a>
+        <a href={`/contact?lang=${lang}`} class="hover:text-white">Contact</a>
+        <a href="/admin" class="hover:text-white">Admin</a>
       </div>
-      <p class="text-gray-600">&copy; {new Date().getFullYear()} ExamStatus. Hosted on Cloudflare Edge Serverless.</p>
+      <p class="text-gray-600">&copy; {new Date().getFullYear()} ExamStatus. Cloudflare Edge.</p>
     </div>
   </footer>
 
   <FeedbackWidget />
 
-  <!-- Edge Analytics Log Ping -->
   <script is:inline>
-    if (typeof window !== 'undefined') {
-      window.addEventListener('load', () => {
-        try {
-          const payload = JSON.stringify({ pathname: window.location.pathname, referrer: document.referrer || 'Direct' });
-          if (navigator.sendBeacon) {
-            navigator.sendBeacon('/api/log-view.json', payload);
-          } else {
-            fetch('/api/log-view.json', { method: 'POST', body: payload, keepalive: true });
-          }
-        } catch(e) {}
-      });
-    }
+    document.getElementById('fast-alerts-btn')?.addEventListener('click', () => {
+      alert('Enable browser notifications on supported devices. Category/state push topics coming soon.');
+    });
+    window.addEventListener('load', () => {
+      try {
+        const payload = JSON.stringify({ pathname: window.location.pathname, referrer: document.referrer || 'Direct' });
+        if (navigator.sendBeacon) navigator.sendBeacon('/api/log-view.json', payload);
+        else fetch('/api/log-view.json', { method: 'POST', body: payload, keepalive: true });
+      } catch (e) {}
+    });
   </script>
 </body>
 </html>

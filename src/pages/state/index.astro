@@ -1,0 +1,42 @@
+---
+import ExamLayout from '../../layouts/ExamLayout.astro';
+import { getDb } from '../../lib/posts';
+import { loadPublished } from '../../lib/load';
+import { getThemeSettings, cacheHeaders } from '../../lib/settings';
+import { DEFAULT_THEME, INDIAN_STATES } from '../../lib/types';
+import { getLang } from '../../lib/i18n';
+
+export const prerender = false;
+
+const db = getDb(Astro.locals);
+const theme = db ? await getThemeSettings(db) : DEFAULT_THEME;
+const lang = getLang(Astro.url, Astro.request.headers.get('cookie'));
+const all = await loadPublished(db);
+const counts = Object.fromEntries(
+  INDIAN_STATES.map((s) => [
+    s.slug,
+    all.filter((p) => p.states.includes(s.slug) || (p.level === 'national' && p.states.length === 0)).length
+  ])
+);
+Astro.response.headers.set('Cache-Control', cacheHeaders(theme.cacheTtlSeconds)['Cache-Control'] as string);
+---
+
+<ExamLayout
+  title={lang === 'hi' ? 'राज्यवार सरकारी नौकरियाँ' : 'State-wise Sarkari Jobs'}
+  description="Browse government exam updates by Indian state and union territory."
+  theme={theme}
+  lang={lang}
+>
+  <div class="bg-white rounded-lg shadow p-5 sm:p-6">
+    <h1 class="text-2xl font-black mb-2">{lang === 'hi' ? 'राज्य सूची' : 'States & UTs'}</h1>
+    <p class="text-sm text-gray-600 mb-6">Open a state hub for PSC, police, teaching and local board updates plus national posts relevant to aspirants there.</p>
+    <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-3">
+      {INDIAN_STATES.map((s) => (
+        <a href={`/state/${s.slug}?lang=${lang}`} class="border rounded-lg p-4 hover:bg-amber-50 min-h-[64px] flex flex-col justify-center">
+          <span class="font-bold text-sm text-slate-900">{lang === 'hi' ? s.nameHi : s.name}</span>
+          <span class="text-xs text-gray-500 mt-1">{counts[s.slug] || 0} listed</span>
+        </a>
+      ))}
+    </div>
+  </div>
+</ExamLayout>

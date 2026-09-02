@@ -108,6 +108,7 @@ export const DEFAULT_THEME: ThemeSettings = {
   columnAdmitCards: 'Admit Cards',
   columnResults: 'Results & Keys',
   navItems: [
+    { label: 'Boards', href: '/board' },
     { label: 'Home', href: '/' },
     { label: 'National', href: '/national' },
     { label: 'States', href: '/state' },
@@ -156,6 +157,52 @@ export const INDIAN_STATES: { slug: string; name: string; nameHi: string }[] = [
   { slug: 'uttar-pradesh', name: 'Uttar Pradesh', nameHi: 'उत्तर प्रदेश' },
   { slug: 'uttarakhand', name: 'Uttarakhand', nameHi: 'उत्तराखंड' },
   { slug: 'west-bengal', name: 'West Bengal', nameHi: 'पश्चिम बंगाल' }
+];
+
+export interface BoardHub {
+  slug: string;
+  name: string;
+  nameHi: string;
+  description: string;
+  keywords: string[];
+}
+
+export const BOARD_HUBS: BoardHub[] = [
+  {
+    slug: 'ssc',
+    name: 'Staff Selection Commission (SSC)',
+    nameHi: 'कर्मचारी चयन आयोग (SSC)',
+    description: 'SSC CGL, CHSL, MTS, GD, Stenographer and other central graduate/10+2 recruitments.',
+    keywords: ['ssc', 'staff selection commission']
+  },
+  {
+    slug: 'upsc',
+    name: 'Union Public Service Commission (UPSC)',
+    nameHi: 'संघ लोक सेवा आयोग (UPSC)',
+    description: 'Civil Services, CAPF, NDA, CDS, EPFO and other UPSC examinations.',
+    keywords: ['upsc', 'union public service commission']
+  },
+  {
+    slug: 'rrb',
+    name: 'Railway Recruitment Board (RRB)',
+    nameHi: 'रेलवे भर्ती बोर्ड (RRB)',
+    description: 'RRB NTPC, Group D, ALP, JE and other Indian Railways recruitments.',
+    keywords: ['rrb', 'railway recruitment', 'indian railways', 'railway']
+  },
+  {
+    slug: 'ibps',
+    name: 'Institute of Banking Personnel Selection (IBPS)',
+    nameHi: 'बैंकिंग कार्मिक चयन संस्थान (IBPS)',
+    description: 'IBPS PO, Clerk, SO, RRB bank recruitments and related banking exams.',
+    keywords: ['ibps', 'banking personnel', 'bank']
+  },
+  {
+    slug: 'nta',
+    name: 'National Testing Agency (NTA)',
+    nameHi: 'राष्ट्रीय परीक्षा एजेंसी (NTA)',
+    description: 'JEE, NEET, UGC NET, CUET and other NTA-conducted entrance tests.',
+    keywords: ['nta', 'national testing agency']
+  }
 ];
 
 export const CATEGORY_LABELS: Record<string, string> = {

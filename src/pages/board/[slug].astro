@@ -1,0 +1,53 @@
+---
+import ExamLayout from '../../layouts/ExamLayout.astro';
+import { getDb } from '../../lib/posts';
+import { loadBoardPosts } from '../../lib/load';
+import { getThemeSettings, cacheHeaders } from '../../lib/settings';
+import { BOARD_HUBS, DEFAULT_THEME } from '../../lib/types';
+import { getLang, pickLang } from '../../lib/i18n';
+
+export const prerender = false;
+
+const { slug } = Astro.params;
+const board = BOARD_HUBS.find((b) => b.slug === slug);
+if (!board) return Astro.redirect('/board');
+
+const db = getDb(Astro.locals);
+const theme = db ? await getThemeSettings(db) : DEFAULT_THEME;
+const lang = getLang(Astro.url, Astro.request.headers.get('cookie'));
+const posts = await loadBoardPosts(db, board.slug);
+Astro.response.headers.set('Cache-Control', cacheHeaders(theme.cacheTtlSeconds)['Cache-Control'] as string);
+
+const title = lang === 'hi' ? board.nameHi : board.name;
+---
+
+<ExamLayout
+  title={`${title} | ExamStatus`}
+  description={board.description}
+  theme={theme}
+  lang={lang}
+>
+  <div class="bg-white rounded-lg shadow p-5 sm:p-6">
+    <nav class="text-xs text-gray-500 mb-3">
+      <a href={`/board?lang=${lang}`} class="hover:text-amber-700">Boards</a>
+      <span> / </span>
+      <span class="font-bold text-slate-800">{title}</span>
+    </nav>
+    <h1 class="text-2xl font-black text-slate-900 mb-2">{title}</h1>
+    <p class="text-sm text-gray-600 mb-6 leading-relaxed">{board.description}</p>
+    {posts.length === 0 ? (
+      <p class="text-sm text-gray-500">No published posts for this board yet. Check back after the next research run.</p>
+    ) : (
+      <ul class="divide-y">
+        {posts.map((p) => (
+          <li class="py-3">
+            <a href={`/exam/${p.slug}?lang=${lang}`} class="font-bold text-sm text-slate-900 hover:text-amber-700">
+              {pickLang(p.title, p.title_hi, lang)}
+            </a>
+            <p class="text-xs text-gray-500 mt-1 capitalize">{p.category.replace('-', ' ')} · Last date {p.closing_date || '—'}</p>
+          </li>
+        ))}
+      </ul>
+    )}
+  </div>
+</ExamLayout>

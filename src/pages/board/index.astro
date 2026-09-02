@@ -1,0 +1,41 @@
+---
+import ExamLayout from '../../layouts/ExamLayout.astro';
+import { getDb } from '../../lib/posts';
+import { getThemeSettings, cacheHeaders } from '../../lib/settings';
+import { BOARD_HUBS, DEFAULT_THEME } from '../../lib/types';
+import { getLang } from '../../lib/i18n';
+
+export const prerender = false;
+
+const db = getDb(Astro.locals);
+const theme = db ? await getThemeSettings(db) : DEFAULT_THEME;
+const lang = getLang(Astro.url, Astro.request.headers.get('cookie'));
+Astro.response.headers.set('Cache-Control', cacheHeaders(theme.cacheTtlSeconds)['Cache-Control'] as string);
+---
+
+<ExamLayout
+  title={lang === 'hi' ? 'भर्ती बोर्ड हब' : 'Recruiting Board Hubs'}
+  description="Browse SSC, UPSC, RRB, IBPS and NTA exam updates grouped by recruiting authority."
+  theme={theme}
+  lang={lang}
+>
+  <div class="bg-white rounded-lg shadow p-5 sm:p-6">
+    <h1 class="text-2xl font-black text-slate-900 mb-2">{lang === 'hi' ? 'भर्ती बोर्ड' : 'Recruiting Boards'}</h1>
+    <p class="text-sm text-gray-600 mb-6 leading-relaxed">
+      Official central recruiting authorities. Each hub lists jobs, admit cards and results we track from allowlisted .gov.in sources.
+    </p>
+    <ul class="grid grid-cols-1 sm:grid-cols-2 gap-3">
+      {BOARD_HUBS.map((board) => (
+        <li>
+          <a
+            href={`/board/${board.slug}?lang=${lang}`}
+            class="block border-2 border-slate-200 rounded-lg p-4 hover:border-amber-500 hover:bg-amber-50 transition min-h-[44px]"
+          >
+            <h2 class="font-black text-slate-900 text-sm">{lang === 'hi' ? board.nameHi : board.name}</h2>
+            <p class="text-xs text-gray-600 mt-2 leading-relaxed">{board.description}</p>
+          </a>
+        </li>
+      ))}
+    </ul>
+  </div>
+</ExamLayout>

@@ -1,0 +1,69 @@
+---
+interface Props {
+  text: string;
+  id?: string;
+}
+
+const uid = Astro.props.id ?? `help-${Math.random().toString(36).slice(2, 9)}`;
+const { text } = Astro.props;
+---
+
+<span class="help-tip relative inline-flex align-middle ml-1" data-help-tip>
+  <button
+    type="button"
+    class="help-tip-btn inline-flex h-4 w-4 items-center justify-center rounded-full border border-slate-300 bg-slate-100 text-[10px] font-bold leading-none text-slate-500 transition-colors hover:border-amber-400 hover:bg-amber-50 hover:text-amber-700 focus:outline-none focus:ring-2 focus:ring-amber-400 focus:ring-offset-1"
+    aria-label="Help"
+    aria-expanded="false"
+    aria-describedby={uid}
+  >i</button>
+  <span
+    id={uid}
+    role="tooltip"
+    class="help-tip-panel pointer-events-none absolute left-1/2 top-full z-50 mt-1.5 hidden w-56 -translate-x-1/2 rounded border border-slate-200 bg-white px-2.5 py-2 text-[11px] font-normal normal-case leading-snug text-slate-600 shadow-lg"
+  >{text}</span>
+</span>
+
+<script is:inline>
+  document.querySelectorAll('[data-help-tip]').forEach((wrap) => {
+    const btn = wrap.querySelector('.help-tip-btn');
+    const panel = wrap.querySelector('.help-tip-panel');
+    if (!btn || !panel) return;
+
+    let pinned = false;
+
+    function show() {
+      panel.classList.remove('hidden');
+      btn.setAttribute('aria-expanded', 'true');
+    }
+    function hide() {
+      if (pinned) return;
+      panel.classList.add('hidden');
+      btn.setAttribute('aria-expanded', 'false');
+    }
+    function toggle() {
+      pinned = !pinned;
+      if (pinned) show();
+      else hide();
+    }
+
+    btn.addEventListener('mouseenter', show);
+    btn.addEventListener('mouseleave', hide);
+    btn.addEventListener('focus', show);
+    btn.addEventListener('blur', () => { pinned = false; hide(); });
+    btn.addEventListener('click', (e) => { e.preventDefault(); toggle(); });
+
+    document.addEventListener('click', (e) => {
+      if (!wrap.contains(e.target)) {
+        pinned = false;
+        hide();
+      }
+    });
+    document.addEventListener('keydown', (e) => {
+      if (e.key === 'Escape') {
+        pinned = false;
+        hide();
+        btn.blur();
+      }
+    });
+  });
+</script>

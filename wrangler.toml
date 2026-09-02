@@ -18,6 +18,11 @@ binding = "AI"
 [observability]
 enabled = true
 
-# Optional: set AI_CRON_SECRET via `wrangler secret put AI_CRON_SECRET`
-# then enable a Cron Trigger in the Cloudflare dashboard calling /api/cron/research
-# with header x-cron-secret.
+[triggers]
+crons = ["0 * * * *"]
+
+# Secrets (set via dashboard or `wrangler secret put`):
+#   ADMIN_SESSION_SECRET — admin session signing
+#   AI_CRON_SECRET — authorizes /api/cron/research and /api/cron/audit
+# Optional var:
+#   PUBLIC_SITE_URL — base URL for scheduled self-fetch (default workers.dev)

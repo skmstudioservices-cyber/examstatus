@@ -1,3 +1,8 @@
 # Wrangler local bindings secrets (never commit real values).
-# ADMIN_SESSION_SECRET=generate-a-long-random-string
-# AI_CRON_SECRET=generate-a-long-random-string
+# Copy to .dev.vars for `wrangler dev`.
+
+ADMIN_SESSION_SECRET=generate-a-long-random-string
+AI_CRON_SECRET=generate-a-long-random-string
+
+# Optional — used by scheduled handler to self-fetch cron endpoint
+# PUBLIC_SITE_URL=http://localhost:8787

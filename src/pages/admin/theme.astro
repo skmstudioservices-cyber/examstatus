@@ -16,10 +16,13 @@ if (!canManageTheme(user.role)) return Astro.redirect('/admin');
 const theme = await getThemeSettings(db);
 ---
 
-<AdminLayout user={user} title="Theme" breadcrumbs={[{ label: 'Theme' }]}>
-  <h1 class="mb-4 text-2xl font-black">Theme Studio</h1>
-  <div class="grid grid-cols-1 gap-4 lg:grid-cols-2">
-    <form id="theme-form" class="space-y-3 rounded-lg border border-slate-200 bg-white p-4 shadow-sm">
+<AdminLayout user={user} title="Appearance" breadcrumbs={[{ label: 'Appearance' }]}>
+  <div class="mb-4">
+    <h1 class="text-xl font-bold text-[#1d2327]">Appearance & Customizer</h1>
+    <p class="text-xs text-slate-500">Configure public site branding, official allowlist domains, colors, and live layout.</p>
+  </div>
+  <div class="grid grid-cols-1 gap-6 lg:grid-cols-2">
+    <form id="theme-form" class="space-y-3 rounded border border-[#c3c4c7] bg-white p-4 shadow-sm">
       <h2 class="flex items-center text-sm font-bold uppercase tracking-wide text-slate-500">
         Colors
         <HelpTip text="Primary and accent drive buttons and links. Banner color fills the top announcement bar on the public site." />
@@ -57,7 +60,7 @@ const theme = await getThemeSettings(db);
         <textarea name="allowlistDomains" rows="3" class="mt-1 w-full rounded border px-2 py-1.5 text-sm">{theme.allowlistDomains.join(', ')}</textarea>
       </label>
       <label class="block text-xs font-bold">Nav JSON<textarea name="navItems" rows="5" class="mt-1 w-full rounded border px-2 py-1.5 font-mono text-sm">{JSON.stringify(theme.navItems, null, 2)}</textarea></label>
-      <button class="rounded bg-amber-500 px-4 py-2 text-sm font-bold hover:bg-amber-600">Save theme</button>
+      <button class="rounded bg-[#2271b1] px-4 py-2 text-xs font-bold text-white hover:bg-[#135e96] transition shadow-sm">Save Changes</button>
       <p id="theme-msg" class="text-xs"></p>
     </form>
     <div class="space-y-3">

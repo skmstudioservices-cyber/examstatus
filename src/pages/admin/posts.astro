@@ -18,106 +18,975 @@ const statesJson = JSON.stringify(INDIAN_STATES.map((s) => s.slug));
 ---
 
 <AdminLayout user={user} title="Posts" breadcrumbs={[{ label: 'Posts' }]}>
-  <div class="mb-4 flex flex-wrap items-center justify-between gap-3">
-    <h1 class="text-2xl font-black">Posts</h1>
-    <button id="new-post" type="button" class="rounded bg-amber-500 px-3 py-2 text-sm font-bold hover:bg-amber-600">New post</button>
+  <!-- Top Action Header -->
+  <div class="mb-4 flex flex-wrap items-center justify-between gap-3 border-b border-[#c3c4c7]/60 pb-3">
+    <div class="flex items-center gap-3">
+      <h1 class="text-xl font-bold text-[#1d2327]">Posts</h1>
+      <button
+        id="btn-add-new"
+        type="button"
+        class="inline-flex items-center gap-1 rounded border border-[#2271b1] bg-[#f6f7f7] px-2.5 py-1 text-xs font-semibold text-[#2271b1] hover:bg-[#2271b1] hover:text-white transition cursor-pointer"
+      >
+        <svg class="w-3.5 h-3.5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M12 4v16m8-8H4"/></svg>
+        <span>Add New Post</span>
+      </button>
+      <button
+        id="btn-view-all"
+        type="button"
+        class="hidden inline-flex items-center gap-1 text-xs text-[#2271b1] hover:underline font-semibold"
+      >
+        ‹ Back to All Posts
+      </button>
+    </div>
+    <div id="table-filters" class="flex flex-wrap items-center gap-3 text-xs">
+      <div class="flex items-center gap-1.5 text-slate-600">
+        <button type="button" class="filter-tab font-semibold text-[#2271b1] underline" data-status="all">All (<span id="count-all">0</span>)</button>
+        <span>|</span>
+        <button type="button" class="filter-tab text-[#2271b1] hover:underline" data-status="published">Published (<span id="count-published">0</span>)</button>
+        <span>|</span>
+        <button type="button" class="filter-tab text-[#2271b1] hover:underline" data-status="draft">Drafts (<span id="count-drafts">0</span>)</button>
+      </div>
+      <div class="flex items-center gap-2">
+        <input
+          id="post-search"
+          type="search"
+          placeholder="Search posts..."
+          class="rounded border border-[#c3c4c7] bg-white px-2.5 py-1 text-xs focus:border-[#2271b1] focus:outline-none"
+        />
+        <select
+          id="post-cat-filter"
+          class="rounded border border-[#c3c4c7] bg-white px-2 py-1 text-xs focus:border-[#2271b1] focus:outline-none"
+        >
+          <option value="">All Categories</option>
+          <option value="latest-jobs">Latest Jobs</option>
+          <option value="admit-cards">Admit Cards</option>
+          <option value="results">Results</option>
+          <option value="answer-keys">Answer Keys</option>
+          <option value="syllabus">Syllabus</option>
+          <option value="admissions">Admissions</option>
+          <option value="scholarships">Scholarships</option>
+        </select>
+      </div>
+    </div>
   </div>
-  <div class="grid grid-cols-1 gap-4 lg:grid-cols-3">
-    <div class="max-h-[70vh] overflow-auto rounded-lg border border-slate-200 bg-white p-3 shadow-sm lg:col-span-1" id="post-list"></div>
-    <form id="post-form" class="max-h-[80vh] space-y-3 overflow-auto rounded-lg border border-slate-200 bg-white p-4 shadow-sm lg:col-span-2">
-      <div class="grid grid-cols-1 gap-3 sm:grid-cols-2">
-        <label class="text-xs font-bold">
-          <span class="flex items-center">Slug<HelpTip text="URL-friendly ID (e.g. ssc-cgl-2026). Lowercase, hyphens only. Cannot change after publish without breaking links." /></span>
-          <input name="slug" required class="mt-1 w-full rounded border px-2 py-1.5 text-sm" />
-        </label>
-        <label class="text-xs font-bold">
-          <span class="flex items-center">Category<HelpTip text="Controls which homepage column and URL path the post appears under." /></span>
-          <select name="category" class="mt-1 w-full rounded border px-2 py-1.5 text-sm">
-            <option value="latest-jobs">Latest Jobs</option>
-            <option value="admit-cards">Admit Cards</option>
-            <option value="results">Results</option>
-            <option value="answer-keys">Answer Keys</option>
-            <option value="syllabus">Syllabus</option>
-            <option value="admissions">Admissions</option>
-            <option value="scholarships">Scholarships</option>
-          </select>
-        </label>
-        <label class="text-xs font-bold">Title<input name="title" required class="mt-1 w-full rounded border px-2 py-1.5 text-sm" /></label>
-        <label class="text-xs font-bold">Title (HI)<input name="title_hi" class="mt-1 w-full rounded border px-2 py-1.5 text-sm" /></label>
-        <label class="text-xs font-bold">Organization<input name="organization" class="mt-1 w-full rounded border px-2 py-1.5 text-sm" /></label>
-        <label class="text-xs font-bold">Post name<input name="post_name" class="mt-1 w-full rounded border px-2 py-1.5 text-sm" /></label>
-        <label class="text-xs font-bold">Vacancies<input name="total_vacancies" type="number" class="mt-1 w-full rounded border px-2 py-1.5 text-sm" /></label>
-        <label class="text-xs font-bold">Level
-          <select name="level" class="mt-1 w-full rounded border px-2 py-1.5 text-sm">
-            <option value="national">National</option>
-            <option value="state">State</option>
-          </select>
-        </label>
-        <label class="text-xs font-bold">Start date<input name="start_date" class="mt-1 w-full rounded border px-2 py-1.5 text-sm" /></label>
-        <label class="text-xs font-bold">Closing date<input name="closing_date" class="mt-1 w-full rounded border px-2 py-1.5 text-sm" /></label>
-        <label class="text-xs font-bold">Exam date<input name="exam_date" class="mt-1 w-full rounded border px-2 py-1.5 text-sm" /></label>
-        <label class="text-xs font-bold">Admit card date<input name="admit_card_date" class="mt-1 w-full rounded border px-2 py-1.5 text-sm" /></label>
-        <label class="text-xs font-bold">Result date<input name="result_date" class="mt-1 w-full rounded border px-2 py-1.5 text-sm" /></label>
-        <label class="text-xs font-bold">Min / Max age
-          <div class="mt-1 flex gap-2">
-            <input name="min_age" placeholder="Min" class="w-full rounded border px-2 py-1.5 text-sm" />
-            <input name="max_age" placeholder="Max" class="w-full rounded border px-2 py-1.5 text-sm" />
+
+  <!-- Notification Banner -->
+  <div id="notice-box" class="hidden mb-4 rounded border-l-4 p-3 text-xs flex items-center justify-between shadow-sm">
+    <span id="notice-text"></span>
+    <button type="button" id="notice-close" class="text-slate-400 hover:text-slate-700 font-bold ml-2">✕</button>
+  </div>
+
+  <!-- VIEW 1: WORDPRESS POSTS TABLE -->
+  <div id="view-table" class="space-y-3">
+    <div class="overflow-x-auto rounded border border-[#c3c4c7] bg-white shadow-sm">
+      <table class="w-full text-left text-xs text-slate-700 divide-y divide-[#c3c4c7]">
+        <thead class="bg-[#f6f7f7] text-[12px] font-semibold text-[#1d2327]">
+          <tr>
+            <th class="px-4 py-2.5 w-2/5">Title</th>
+            <th class="px-3 py-2.5">Organization</th>
+            <th class="px-3 py-2.5">Category</th>
+            <th class="px-3 py-2.5">Vacancies</th>
+            <th class="px-3 py-2.5">Level</th>
+            <th class="px-3 py-2.5">Status</th>
+            <th class="px-4 py-2.5">Last Updated</th>
+          </tr>
+        </thead>
+        <tbody id="posts-table-body" class="divide-y divide-slate-100">
+          <tr>
+            <td colspan="7" class="px-4 py-6 text-center text-slate-500 italic">Loading posts...</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+
+  <!-- VIEW 2: WORDPRESS POST EDITOR (TWO COLUMNS) -->
+  <div id="view-editor" class="hidden">
+    <form id="post-form" class="grid grid-cols-1 gap-6 lg:grid-cols-3 items-start">
+      <!-- MAIN CONTENT COLUMN (2/3) -->
+      <div class="space-y-5 lg:col-span-2">
+        <!-- Title Input (WordPress Gutenberg style) -->
+        <div class="rounded border border-[#c3c4c7] bg-white p-4 shadow-sm space-y-3">
+          <div>
+            <label class="block text-[11px] font-bold uppercase tracking-wider text-slate-500 mb-1">Post Title (English)</label>
+            <input
+              name="title"
+              id="field-title"
+              required
+              placeholder="Add title (e.g. SSC CGL 2026 Notification & Apply Online)"
+              class="w-full text-lg font-bold text-[#1d2327] border-b border-slate-200 pb-2 focus:border-[#2271b1] focus:outline-none placeholder-slate-400"
+            />
           </div>
-        </label>
-        <label class="text-xs font-bold">
-          <span class="flex items-center">Official URL<HelpTip text="Must be on an allowlisted government domain (set in Theme). Required for publish." /></span>
-          <input name="official_url" class="mt-1 w-full rounded border px-2 py-1.5 text-sm" />
-        </label>
-        <label class="text-xs font-bold">Apply URL<input name="apply_online_url" class="mt-1 w-full rounded border px-2 py-1.5 text-sm" /></label>
-        <label class="text-xs font-bold">PDF URL<input name="notification_pdf_url" class="mt-1 w-full rounded border px-2 py-1.5 text-sm" /></label>
-        <label class="text-xs font-bold">Qualifications (comma)<input name="qualifications" class="mt-1 w-full rounded border px-2 py-1.5 text-sm" placeholder="Graduate, 12th Pass" /></label>
-        <label class="text-xs font-bold">Job categories (comma)<input name="job_categories" class="mt-1 w-full rounded border px-2 py-1.5 text-sm" /></label>
-        <label class="text-xs font-bold sm:col-span-2">States (comma slugs)
-          <input name="states" class="mt-1 w-full rounded border px-2 py-1.5 text-sm" placeholder="uttar-pradesh,bihar" />
-          <span class="text-[10px] font-normal text-gray-400">Known: <span id="state-hints"></span></span>
-        </label>
+
+          <div class="grid grid-cols-1 gap-3 sm:grid-cols-2 pt-1">
+            <div>
+              <div class="flex items-center justify-between mb-1">
+                <label class="text-xs font-bold text-slate-700">Title in Hindi (वैकल्पिक)</label>
+                <button type="button" id="gen-hi" class="text-[11px] text-[#2271b1] hover:underline font-semibold">
+                  ⚡ Translate to Hindi
+                </button>
+              </div>
+              <input
+                name="title_hi"
+                id="field-title-hi"
+                placeholder="उदा. एसएससी सीजीएल भर्ती 2026 अधिसूचना"
+                class="w-full rounded border border-slate-300 px-2.5 py-1.5 text-xs focus:border-[#2271b1] focus:outline-none"
+              />
+            </div>
+            <div>
+              <label class="text-xs font-bold text-slate-700 block mb-1">
+                <span class="flex items-center">Slug / Permalinks<HelpTip text="Unique URL identifier. Changing after publish alters the post URL." /></span>
+              </label>
+              <input
+                name="slug"
+                id="field-slug"
+                required
+                placeholder="ssc-cgl-2026"
+                class="w-full rounded border border-slate-300 px-2.5 py-1.5 text-xs font-mono focus:border-[#2271b1] focus:outline-none"
+              />
+            </div>
+          </div>
+        </div>
+
+        <!-- Summary / Overview -->
+        <div class="rounded border border-[#c3c4c7] bg-white p-4 shadow-sm space-y-2">
+          <div class="flex items-center justify-between">
+            <h3 class="text-xs font-bold uppercase tracking-wider text-slate-700">Exam Summary & Overview</h3>
+            <span id="summary-char-counter" class="text-[11px] font-mono px-2 py-0.5 rounded bg-slate-100 text-slate-600">
+              0 / 40 min chars
+            </span>
+          </div>
+          <p class="text-[11px] text-slate-500">Provide an original, detailed summary of this exam notice. Minimum 40 characters required for publish.</p>
+          <textarea
+            name="summary"
+            id="field-summary"
+            rows="4"
+            required
+            placeholder="Describe the recruitment, conducting authority, vacancies, eligibility summary, and key highlights in clear, concise language..."
+            class="w-full rounded border border-slate-300 px-3 py-2 text-xs leading-relaxed focus:border-[#2271b1] focus:outline-none"
+          ></textarea>
+          <div>
+            <label class="block text-xs font-semibold text-slate-700 mb-1">Summary in Hindi (वैकल्पिक)</label>
+            <textarea
+              name="summary_hi"
+              id="field-summary-hi"
+              rows="2"
+              placeholder="भर्ती का संक्षिप्त विवरण हिंदी में..."
+              class="w-full rounded border border-slate-300 px-3 py-1.5 text-xs leading-relaxed focus:border-[#2271b1] focus:outline-none"
+            ></textarea>
+          </div>
+        </div>
+
+        <!-- VISUAL BUILDER 1: FAQ REPEATER (NO RAW JSON) -->
+        <div class="rounded border border-[#c3c4c7] bg-white p-4 shadow-sm space-y-3">
+          <div class="flex items-center justify-between border-b border-slate-100 pb-2">
+            <div>
+              <h3 class="text-xs font-bold uppercase tracking-wider text-slate-800 flex items-center gap-1.5">
+                <span>Frequently Asked Questions</span>
+                <HelpTip text="Minimum 3 FAQs required to publish. Helps candidates and boosts Google rankings." />
+              </h3>
+              <p class="text-[11px] text-slate-500">Answer common questions about exam dates, age criteria, syllabus, or admit cards.</p>
+            </div>
+            <span id="faq-counter-badge" class="px-2 py-0.5 rounded text-[11px] font-bold bg-amber-100 text-amber-800">
+              0 / 3 Added
+            </span>
+          </div>
+
+          <div id="faq-repeater-container" class="space-y-3 pt-1">
+            <!-- Dynamic FAQ cards will be injected here -->
+          </div>
+
+          <button
+            type="button"
+            id="btn-add-faq"
+            class="inline-flex items-center gap-1 rounded border border-[#2271b1] bg-[#f6f7f7] px-3 py-1.5 text-xs font-semibold text-[#2271b1] hover:bg-[#2271b1] hover:text-white transition cursor-pointer"
+          >
+            <svg class="w-3.5 h-3.5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M12 4v16m8-8H4"/></svg>
+            <span>Add FAQ Question</span>
+          </button>
+        </div>
+
+        <!-- VISUAL BUILDER 2: APPLICATION FEES (NO RAW JSON) -->
+        <div class="rounded border border-[#c3c4c7] bg-white p-4 shadow-sm space-y-3">
+          <div class="border-b border-slate-100 pb-2">
+            <h3 class="text-xs font-bold uppercase tracking-wider text-slate-800">Application Fee Details</h3>
+            <p class="text-[11px] text-slate-500">Specify fee by category (e.g. General/OBC, SC/ST, Women, PwD).</p>
+          </div>
+
+          <div id="fees-repeater-container" class="space-y-2">
+            <!-- Dynamic Fee rows will be injected here -->
+          </div>
+
+          <button
+            type="button"
+            id="btn-add-fee"
+            class="inline-flex items-center gap-1 rounded border border-[#2271b1] bg-[#f6f7f7] px-3 py-1.5 text-xs font-semibold text-[#2271b1] hover:bg-[#2271b1] hover:text-white transition cursor-pointer"
+          >
+            <svg class="w-3.5 h-3.5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M12 4v16m8-8H4"/></svg>
+            <span>Add Fee Category</span>
+          </button>
+        </div>
+
+        <!-- VISUAL BUILDER 3: POST VACANCIES & ELIGIBILITY (NO RAW JSON) -->
+        <div class="rounded border border-[#c3c4c7] bg-white p-4 shadow-sm space-y-3">
+          <div class="border-b border-slate-100 pb-2">
+            <h3 class="text-xs font-bold uppercase tracking-wider text-slate-800">Post-wise Vacancies & Eligibility</h3>
+            <p class="text-[11px] text-slate-500">Break down vacancies by post name/cadre and specify required qualifications.</p>
+          </div>
+
+          <div id="eligibility-repeater-container" class="space-y-2.5">
+            <!-- Dynamic Eligibility rows will be injected here -->
+          </div>
+
+          <button
+            type="button"
+            id="btn-add-eligibility"
+            class="inline-flex items-center gap-1 rounded border border-[#2271b1] bg-[#f6f7f7] px-3 py-1.5 text-xs font-semibold text-[#2271b1] hover:bg-[#2271b1] hover:text-white transition cursor-pointer"
+          >
+            <svg class="w-3.5 h-3.5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M12 4v16m8-8H4"/></svg>
+            <span>Add Vacancy / Post Row</span>
+          </button>
+        </div>
+
+        <!-- Important Dates Grid -->
+        <div class="rounded border border-[#c3c4c7] bg-white p-4 shadow-sm space-y-3">
+          <div class="border-b border-slate-100 pb-2">
+            <h3 class="text-xs font-bold uppercase tracking-wider text-slate-800">Important Dates</h3>
+            <p class="text-[11px] text-slate-500">Key timeline dates for applicants.</p>
+          </div>
+
+          <div class="grid grid-cols-1 gap-3 sm:grid-cols-2 lg:grid-cols-3 text-xs">
+            <div>
+              <label class="block font-semibold text-slate-700 mb-1">Application Start Date</label>
+              <input name="start_date" id="field-start-date" placeholder="e.g. 15 Sep 2026" class="w-full rounded border border-slate-300 px-2.5 py-1.5 focus:border-[#2271b1] focus:outline-none" />
+            </div>
+            <div>
+              <label class="block font-semibold text-slate-700 mb-1">Closing / Last Date</label>
+              <input name="closing_date" id="field-closing-date" placeholder="e.g. 15 Oct 2026" class="w-full rounded border border-slate-300 px-2.5 py-1.5 focus:border-[#2271b1] focus:outline-none" />
+            </div>
+            <div>
+              <label class="block font-semibold text-slate-700 mb-1">Exam Date</label>
+              <input name="exam_date" id="field-exam-date" placeholder="e.g. Nov 2026" class="w-full rounded border border-slate-300 px-2.5 py-1.5 focus:border-[#2271b1] focus:outline-none" />
+            </div>
+            <div>
+              <label class="block font-semibold text-slate-700 mb-1">Admit Card Date</label>
+              <input name="admit_card_date" id="field-admit-date" placeholder="e.g. Available Soon" class="w-full rounded border border-slate-300 px-2.5 py-1.5 focus:border-[#2271b1] focus:outline-none" />
+            </div>
+            <div>
+              <label class="block font-semibold text-slate-700 mb-1">Result Date</label>
+              <input name="result_date" id="field-result-date" placeholder="e.g. Jan 2027" class="w-full rounded border border-slate-300 px-2.5 py-1.5 focus:border-[#2271b1] focus:outline-none" />
+            </div>
+          </div>
+        </div>
+
+        <!-- Official URLs & Links -->
+        <div class="rounded border border-[#c3c4c7] bg-white p-4 shadow-sm space-y-3">
+          <div class="border-b border-slate-100 pb-2">
+            <h3 class="text-xs font-bold uppercase tracking-wider text-slate-800 flex items-center justify-between">
+              <span>Official Links & Notification</span>
+              <HelpTip text="Official URL must be on an allowlisted government portal (e.g. ssc.gov.in, upsc.gov.in)." />
+            </h3>
+          </div>
+
+          <div class="space-y-3 text-xs">
+            <div>
+              <div class="flex items-center justify-between mb-1">
+                <label class="font-semibold text-slate-700">Official Website URL (Required for publish)</label>
+                <span id="url-check-badge" class="text-[10px] font-mono text-slate-500">Must be official domain</span>
+              </div>
+              <input
+                name="official_url"
+                id="field-official-url"
+                required
+                placeholder="https://ssc.gov.in"
+                class="w-full rounded border border-slate-300 px-2.5 py-1.5 focus:border-[#2271b1] focus:outline-none"
+              />
+            </div>
+            <div class="grid grid-cols-1 gap-3 sm:grid-cols-2">
+              <div>
+                <label class="block font-semibold text-slate-700 mb-1">Apply Online URL</label>
+                <input name="apply_online_url" id="field-apply-url" placeholder="https://ssc.gov.in/apply" class="w-full rounded border border-slate-300 px-2.5 py-1.5 focus:border-[#2271b1] focus:outline-none" />
+              </div>
+              <div>
+                <label class="block font-semibold text-slate-700 mb-1">Notification PDF URL</label>
+                <input name="notification_pdf_url" id="field-pdf-url" placeholder="https://ssc.gov.in/notice.pdf" class="w-full rounded border border-slate-300 px-2.5 py-1.5 focus:border-[#2271b1] focus:outline-none" />
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- How to Apply, Selection Process & Documents -->
+        <div class="rounded border border-[#c3c4c7] bg-white p-4 shadow-sm space-y-3">
+          <div class="border-b border-slate-100 pb-2">
+            <h3 class="text-xs font-bold uppercase tracking-wider text-slate-800">Application Steps & Instructions</h3>
+          </div>
+
+          <div class="space-y-3 text-xs">
+            <div>
+              <label class="block font-semibold text-slate-700 mb-1">
+                <span class="flex items-center">How to Apply (One step per line · ≥3 steps required)<HelpTip text="List 3 or more clear steps explaining how candidates can submit their online form." /></span>
+              </label>
+              <textarea
+                name="how_to_apply"
+                id="field-how-to-apply"
+                rows="4"
+                placeholder="Visit official portal at ssc.gov.in&#10;Register using mobile number and email ID&#10;Fill personal details and upload signature and photo&#10;Pay the application fee and take printout of confirmation"
+                class="w-full rounded border border-slate-300 px-2.5 py-1.5 focus:border-[#2271b1] focus:outline-none font-mono text-[12px]"
+              ></textarea>
+            </div>
+            <div class="grid grid-cols-1 gap-3 sm:grid-cols-2">
+              <div>
+                <label class="block font-semibold text-slate-700 mb-1">Selection Process (One per line)</label>
+                <textarea
+                  name="selection_process"
+                  id="field-selection-process"
+                  rows="3"
+                  placeholder="Tier-I Computer Based Examination&#10;Tier-II Computer Based Examination&#10;Document Verification"
+                  class="w-full rounded border border-slate-300 px-2.5 py-1.5 focus:border-[#2271b1] focus:outline-none font-mono text-[12px]"
+                ></textarea>
+              </div>
+              <div>
+                <label class="block font-semibold text-slate-700 mb-1">Required Documents (One per line)</label>
+                <textarea
+                  name="documents"
+                  id="field-documents"
+                  rows="3"
+                  placeholder="Aadhaar Card / Photo ID&#10;10th & 12th Marksheets&#10;Degree Certificate&#10;Passport Size Photograph"
+                  class="w-full rounded border border-slate-300 px-2.5 py-1.5 focus:border-[#2271b1] focus:outline-none font-mono text-[12px]"
+                ></textarea>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Hidden inputs for serializing dynamic data to backend -->
+        <input type="hidden" name="fees_json" id="field-fees-json" value="[]" />
+        <input type="hidden" name="eligibility_json" id="field-eligibility-json" value="[]" />
+        <input type="hidden" name="faq_json" id="field-faq-json" value="[]" />
+        <input type="hidden" name="body_blocks_json" id="field-body-blocks-json" value="[]" />
       </div>
-      <label class="block text-xs font-bold">Summary<textarea name="summary" rows="3" class="mt-1 w-full rounded border px-2 py-1.5 text-sm"></textarea></label>
-      <label class="block text-xs font-bold">Summary HI<textarea name="summary_hi" rows="2" class="mt-1 w-full rounded border px-2 py-1.5 text-sm"></textarea></label>
-      <label class="block text-xs font-bold">How to apply (one step per line)<textarea name="how_to_apply" rows="4" class="mt-1 w-full rounded border px-2 py-1.5 text-sm"></textarea></label>
-      <label class="block text-xs font-bold">Selection process (one per line)<textarea name="selection_process" rows="3" class="mt-1 w-full rounded border px-2 py-1.5 text-sm"></textarea></label>
-      <label class="block text-xs font-bold">Documents (one per line)<textarea name="documents" rows="3" class="mt-1 w-full rounded border px-2 py-1.5 text-sm"></textarea></label>
-      <label class="block text-xs font-bold">Fees JSON<textarea name="fees_json" rows="2" class="mt-1 w-full rounded border px-2 py-1.5 font-mono text-sm" placeholder='[{"category":"General","amount":"Rs. 100/-"}]'></textarea></label>
-      <label class="block text-xs font-bold">Eligibility JSON<textarea name="eligibility_json" rows="2" class="mt-1 w-full rounded border px-2 py-1.5 font-mono text-sm"></textarea></label>
-      <label class="block text-xs font-bold">
-        <span class="flex items-center">FAQ JSON (≥3)<HelpTip text="At least 3 question/answer pairs required to publish. Use original wording, not copied from competitors." /></span>
-        <textarea name="faq_json" rows="4" class="mt-1 w-full rounded border px-2 py-1.5 font-mono text-sm" placeholder='[{"question":"...","answer":"..."}]'></textarea>
-      </label>
-      <label class="block text-xs font-bold">Extra blocks JSON<textarea name="body_blocks_json" rows="3" class="mt-1 w-full rounded border px-2 py-1.5 font-mono text-sm" placeholder='[{"type":"heading","text":"..."},{"type":"paragraph","text":"..."}]'></textarea></label>
-      <div class="flex flex-wrap items-center gap-2">
-        <button type="submit" name="intent" value="draft" class="rounded border px-3 py-2 text-sm font-bold hover:bg-slate-50">Save draft</button>
-        <button type="submit" name="intent" value="publish" class="rounded bg-green-700 px-3 py-2 text-sm font-bold text-white hover:bg-green-800">
-          Publish
-        </button>
-        <HelpTip text="Publish validates summary length, FAQ count, how-to steps, and official URL allowlist. Fix errors shown in the message area." />
-        <button type="button" id="gen-hi" class="rounded border px-3 py-2 text-sm font-bold hover:bg-slate-50">Generate Hindi</button>
-        <button type="button" id="add-heading" class="rounded border px-2 py-2 text-xs hover:bg-slate-50">+ Heading block</button>
-        <button type="button" id="add-para" class="rounded border px-2 py-2 text-xs hover:bg-slate-50">+ Paragraph block</button>
+
+      <!-- SIDEBAR META BOXES (1/3) -->
+      <div class="space-y-5 lg:col-span-1">
+        <!-- Publish Meta Box (WordPress Iconic Box) -->
+        <div class="rounded border border-[#c3c4c7] bg-white shadow-sm overflow-hidden">
+          <div class="border-b border-[#c3c4c7] bg-[#f6f7f7] px-4 py-2.5 flex items-center justify-between">
+            <h3 class="text-xs font-bold text-[#1d2327]">Publish</h3>
+            <span id="meta-status-pill" class="px-2 py-0.5 rounded text-[10px] font-bold uppercase bg-amber-100 text-amber-800">
+              Draft
+            </span>
+          </div>
+          <div class="p-4 space-y-3 text-xs">
+            <div class="flex items-center justify-between text-slate-600 border-b border-slate-100 pb-2">
+              <span>Status:</span>
+              <strong id="meta-status-text" class="text-slate-800 capitalize">Draft</strong>
+            </div>
+
+            <!-- Real-time Checklist Validator -->
+            <div class="rounded bg-slate-50 border border-slate-200 p-2.5 space-y-1.5 text-[11px]">
+              <div class="font-bold text-slate-700 flex items-center justify-between">
+                <span>Publish Checklist</span>
+                <HelpTip text="All 4 items must pass before the post can be published live." />
+              </div>
+              <div class="flex items-center gap-1.5" id="chk-summary">
+                <span class="chk-icon text-rose-500 font-bold">✕</span>
+                <span class="chk-text text-slate-600">Summary ≥40 chars</span>
+              </div>
+              <div class="flex items-center gap-1.5" id="chk-faq">
+                <span class="chk-icon text-rose-500 font-bold">✕</span>
+                <span class="chk-text text-slate-600">≥3 FAQs added</span>
+              </div>
+              <div class="flex items-center gap-1.5" id="chk-howto">
+                <span class="chk-icon text-rose-500 font-bold">✕</span>
+                <span class="chk-text text-slate-600">≥3 How-to steps</span>
+              </div>
+              <div class="flex items-center gap-1.5" id="chk-url">
+                <span class="chk-icon text-rose-500 font-bold">✕</span>
+                <span class="chk-text text-slate-600">Official URL provided</span>
+              </div>
+            </div>
+
+            <div class="pt-2 flex items-center justify-between border-t border-slate-100">
+              <button
+                type="submit"
+                name="intent"
+                value="draft"
+                class="rounded bg-[#f6f7f7] border border-[#2271b1] text-[#2271b1] px-3 py-1.5 text-xs font-semibold hover:bg-[#2271b1] hover:text-white transition cursor-pointer"
+              >
+                Save Draft
+              </button>
+              <button
+                type="submit"
+                name="intent"
+                value="publish"
+                class="rounded bg-[#2271b1] text-white px-3.5 py-1.5 text-xs font-bold hover:bg-[#135e96] transition cursor-pointer shadow-sm"
+              >
+                Publish
+              </button>
+            </div>
+
+            <div class="pt-2 text-center border-t border-slate-100">
+              <button
+                type="button"
+                id="btn-delete-post"
+                class="text-rose-600 hover:text-rose-800 text-[11px] font-semibold hover:underline"
+              >
+                Move to Trash
+              </button>
+            </div>
+          </div>
+        </div>
+
+        <!-- Post Attributes: Category & Organization -->
+        <div class="rounded border border-[#c3c4c7] bg-white shadow-sm overflow-hidden">
+          <div class="border-b border-[#c3c4c7] bg-[#f6f7f7] px-4 py-2.5">
+            <h3 class="text-xs font-bold text-[#1d2327]">Category & Organization</h3>
+          </div>
+          <div class="p-4 space-y-3 text-xs">
+            <div>
+              <label class="block font-semibold text-slate-700 mb-1">Category</label>
+              <select name="category" id="field-category" class="w-full rounded border border-slate-300 px-2 py-1.5 text-xs focus:border-[#2271b1] focus:outline-none">
+                <option value="latest-jobs">Latest Jobs</option>
+                <option value="admit-cards">Admit Cards</option>
+                <option value="results">Results</option>
+                <option value="answer-keys">Answer Keys</option>
+                <option value="syllabus">Syllabus</option>
+                <option value="admissions">Admissions</option>
+                <option value="scholarships">Scholarships</option>
+              </select>
+            </div>
+            <div>
+              <label class="block font-semibold text-slate-700 mb-1">Conducting Organization</label>
+              <input name="organization" id="field-organization" placeholder="e.g. Staff Selection Commission (SSC)" class="w-full rounded border border-slate-300 px-2 py-1.5 text-xs focus:border-[#2271b1] focus:outline-none" />
+            </div>
+            <div>
+              <label class="block font-semibold text-slate-700 mb-1">Post / Exam Name</label>
+              <input name="post_name" id="field-post-name" placeholder="e.g. Combined Graduate Level Exam" class="w-full rounded border border-slate-300 px-2 py-1.5 text-xs focus:border-[#2271b1] focus:outline-none" />
+            </div>
+            <div class="grid grid-cols-2 gap-2">
+              <div>
+                <label class="block font-semibold text-slate-700 mb-1">Level</label>
+                <select name="level" id="field-level" class="w-full rounded border border-slate-300 px-2 py-1.5 text-xs focus:border-[#2271b1] focus:outline-none">
+                  <option value="national">National</option>
+                  <option value="state">State</option>
+                </select>
+              </div>
+              <div>
+                <label class="block font-semibold text-slate-700 mb-1">Total Vacancies</label>
+                <input name="total_vacancies" id="field-total-vacancies" type="number" placeholder="17727" class="w-full rounded border border-slate-300 px-2 py-1.5 text-xs focus:border-[#2271b1] focus:outline-none" />
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Age Criteria Box -->
+        <div class="rounded border border-[#c3c4c7] bg-white shadow-sm overflow-hidden">
+          <div class="border-b border-[#c3c4c7] bg-[#f6f7f7] px-4 py-2.5">
+            <h3 class="text-xs font-bold text-[#1d2327]">Age Criteria</h3>
+          </div>
+          <div class="p-4 grid grid-cols-2 gap-3 text-xs">
+            <div>
+              <label class="block font-semibold text-slate-700 mb-1">Min Age</label>
+              <input name="min_age" id="field-min-age" placeholder="18" class="w-full rounded border border-slate-300 px-2 py-1.5 text-xs focus:border-[#2271b1] focus:outline-none" />
+            </div>
+            <div>
+              <label class="block font-semibold text-slate-700 mb-1">Max Age</label>
+              <input name="max_age" id="field-max-age" placeholder="32" class="w-full rounded border border-slate-300 px-2 py-1.5 text-xs focus:border-[#2271b1] focus:outline-none" />
+            </div>
+          </div>
+        </div>
+
+        <!-- Indian States Selector -->
+        <div class="rounded border border-[#c3c4c7] bg-white shadow-sm overflow-hidden">
+          <div class="border-b border-[#c3c4c7] bg-[#f6f7f7] px-4 py-2.5">
+            <h3 class="text-xs font-bold text-[#1d2327]">Target States / Regions</h3>
+          </div>
+          <div class="p-4 space-y-2 text-xs">
+            <input
+              name="states"
+              id="field-states"
+              placeholder="all-india, uttar-pradesh, bihar"
+              class="w-full rounded border border-slate-300 px-2 py-1.5 text-xs focus:border-[#2271b1] focus:outline-none font-mono"
+            />
+            <p class="text-[10px] text-slate-500">Click a state to toggle it:</p>
+            <div id="state-tags" class="flex flex-wrap gap-1 max-h-32 overflow-y-auto pt-1">
+              <!-- Clickable state pills will be injected here -->
+            </div>
+          </div>
+        </div>
+
+        <!-- Qualifications & Job Categories -->
+        <div class="rounded border border-[#c3c4c7] bg-white shadow-sm overflow-hidden">
+          <div class="border-b border-[#c3c4c7] bg-[#f6f7f7] px-4 py-2.5">
+            <h3 class="text-xs font-bold text-[#1d2327]">Qualifications & Tags</h3>
+          </div>
+          <div class="p-4 space-y-3 text-xs">
+            <div>
+              <label class="block font-semibold text-slate-700 mb-1">Qualifications (comma separated)</label>
+              <input name="qualifications" id="field-qualifications" placeholder="10th Pass, 12th Pass, Graduate" class="w-full rounded border border-slate-300 px-2 py-1.5 text-xs focus:border-[#2271b1] focus:outline-none" />
+              <div id="quick-qual-tags" class="flex flex-wrap gap-1 mt-1.5">
+                <button type="button" class="qual-tag text-[10px] px-1.5 py-0.5 rounded bg-slate-100 hover:bg-slate-200 text-slate-700" data-tag="10th Pass">+ 10th</button>
+                <button type="button" class="qual-tag text-[10px] px-1.5 py-0.5 rounded bg-slate-100 hover:bg-slate-200 text-slate-700" data-tag="12th Pass">+ 12th</button>
+                <button type="button" class="qual-tag text-[10px] px-1.5 py-0.5 rounded bg-slate-100 hover:bg-slate-200 text-slate-700" data-tag="Graduate">+ Graduate</button>
+                <button type="button" class="qual-tag text-[10px] px-1.5 py-0.5 rounded bg-slate-100 hover:bg-slate-200 text-slate-700" data-tag="Post Graduate">+ Post Grad</button>
+                <button type="button" class="qual-tag text-[10px] px-1.5 py-0.5 rounded bg-slate-100 hover:bg-slate-200 text-slate-700" data-tag="B.Tech">+ B.Tech</button>
+                <button type="button" class="qual-tag text-[10px] px-1.5 py-0.5 rounded bg-slate-100 hover:bg-slate-200 text-slate-700" data-tag="ITI / Diploma">+ ITI/Diploma</button>
+              </div>
+            </div>
+            <div>
+              <label class="block font-semibold text-slate-700 mb-1">Job Categories (comma separated)</label>
+              <input name="job_categories" id="field-job-categories" placeholder="Defense, Banking, Railway, Teaching" class="w-full rounded border border-slate-300 px-2 py-1.5 text-xs focus:border-[#2271b1] focus:outline-none" />
+            </div>
+          </div>
+        </div>
       </div>
-      <p id="form-msg" class="text-xs text-gray-600"></p>
     </form>
   </div>
 
   <script define:vars={{ editSlug, statesJson }}>
-    const stateHints = document.getElementById('state-hints');
-    stateHints.textContent = JSON.parse(statesJson).slice(0, 8).join(', ') + '…';
-    const form = document.getElementById('post-form');
-    const listEl = document.getElementById('post-list');
-    const msg = document.getElementById('form-msg');
+    const statesList = JSON.parse(statesJson || '[]');
+    let allPosts = [];
+    let currentFilterStatus = 'all';
+    let currentEditPost = null;
 
-    function parseJsonField(name, fallback) {
-      const raw = form[name].value.trim();
-      if (!raw) return fallback;
-      return JSON.parse(raw);
+    // Dynamic state stores for repeaters
+    let faqs = [];
+    let fees = [];
+    let eligibilityRows = [];
+
+    // DOM Elements
+    const viewTable = document.getElementById('view-table');
+    const viewEditor = document.getElementById('view-editor');
+    const tableFilters = document.getElementById('table-filters');
+    const btnAddNew = document.getElementById('btn-add-new');
+    const btnViewAll = document.getElementById('btn-view-all');
+    const tableBody = document.getElementById('posts-table-body');
+    const postSearch = document.getElementById('post-search');
+    const postCatFilter = document.getElementById('post-cat-filter');
+    const form = document.getElementById('post-form');
+    const noticeBox = document.getElementById('notice-box');
+    const noticeText = document.getElementById('notice-text');
+    const noticeClose = document.getElementById('notice-close');
+
+    // Repeater containers
+    const faqContainer = document.getElementById('faq-repeater-container');
+    const feesContainer = document.getElementById('fees-repeater-container');
+    const eligContainer = document.getElementById('eligibility-repeater-container');
+
+    // Badges & Counters
+    const faqCounterBadge = document.getElementById('faq-counter-badge');
+    const summaryCharCounter = document.getElementById('summary-char-counter');
+    const metaStatusPill = document.getElementById('meta-status-pill');
+    const metaStatusText = document.getElementById('meta-status-text');
+
+    // Checklist Elements
+    const chkSummary = document.getElementById('chk-summary');
+    const chkFaq = document.getElementById('chk-faq');
+    const chkHowto = document.getElementById('chk-howto');
+    const chkUrl = document.getElementById('chk-url');
+
+    function showNotice(message, type = 'info') {
+      noticeBox.className = `mb-4 rounded border-l-4 p-3 text-xs flex items-center justify-between shadow-sm ${
+        type === 'success' ? 'border-emerald-500 bg-emerald-50 text-emerald-900' :
+        type === 'error' ? 'border-rose-500 bg-rose-50 text-rose-900' :
+        'border-blue-500 bg-blue-50 text-blue-900'
+      }`;
+      noticeText.textContent = message;
+      noticeBox.classList.remove('hidden');
     }
 
+    noticeClose?.addEventListener('click', () => noticeBox.classList.add('hidden'));
+
+    // View Switching
+    function switchToTable() {
+      viewTable.classList.remove('hidden');
+      tableFilters.classList.remove('hidden');
+      btnAddNew.classList.remove('hidden');
+      btnViewAll.classList.add('hidden');
+      viewEditor.classList.add('hidden');
+      window.history.replaceState({}, '', '/admin/posts');
+    }
+
+    function switchToEditor(slug = null) {
+      viewTable.classList.add('hidden');
+      tableFilters.classList.add('hidden');
+      btnAddNew.classList.add('hidden');
+      btnViewAll.classList.remove('hidden');
+      viewEditor.classList.remove('hidden');
+      window.scrollTo({ top: 0, behavior: 'smooth' });
+
+      if (slug) {
+        window.history.replaceState({}, '', `/admin/posts?slug=${encodeURIComponent(slug)}`);
+      } else {
+        window.history.replaceState({}, '', '/admin/posts?action=new');
+      }
+    }
+
+    btnAddNew?.addEventListener('click', () => {
+      resetEditor();
+      switchToEditor();
+    });
+
+    btnViewAll?.addEventListener('click', () => {
+      switchToTable();
+      loadPosts();
+    });
+
+    // RENDER: Indian States Pills
+    function renderStateTags() {
+      const container = document.getElementById('state-tags');
+      const input = document.getElementById('field-states');
+      if (!container || !input) return;
+
+      const currentStates = input.value.split(',').map(s => s.trim().toLowerCase()).filter(Boolean);
+      const common = ['all-india', 'uttar-pradesh', 'bihar', 'delhi', 'rajasthan', 'madhya-pradesh', 'haryana', 'maharashtra', 'west-bengal', 'punjab'];
+      const combined = Array.from(new Set([...common, ...statesList.slice(0, 15)]));
+
+      container.innerHTML = combined.map(slug => {
+        const active = currentStates.includes(slug);
+        return `<button type="button" data-state="${slug}" class="state-pill px-2 py-0.5 rounded text-[10px] font-semibold border transition ${
+          active
+            ? 'bg-[#2271b1] text-white border-[#2271b1]'
+            : 'bg-white text-slate-700 border-slate-300 hover:bg-slate-50'
+        }">${slug}</button>`;
+      }).join('');
+
+      container.querySelectorAll('.state-pill').forEach(btn => {
+        btn.addEventListener('click', () => {
+          const state = btn.dataset.state;
+          let states = input.value.split(',').map(s => s.trim().toLowerCase()).filter(Boolean);
+          if (states.includes(state)) {
+            states = states.filter(s => s !== state);
+          } else {
+            states.push(state);
+          }
+          input.value = states.join(', ');
+          renderStateTags();
+        });
+      });
+    }
+
+    document.getElementById('field-states')?.addEventListener('input', renderStateTags);
+
+    // Quick Qualification tags
+    document.querySelectorAll('.qual-tag').forEach(btn => {
+      btn.addEventListener('click', () => {
+        const input = document.getElementById('field-qualifications');
+        const tag = btn.dataset.tag;
+        let current = input.value.split(',').map(s => s.trim()).filter(Boolean);
+        if (!current.includes(tag)) {
+          current.push(tag);
+          input.value = current.join(', ');
+        }
+      });
+    });
+
+    // DYNAMIC REPEATER 1: FAQs
+    function renderFaqs() {
+      faqContainer.innerHTML = '';
+      if (faqs.length === 0) {
+        faqContainer.innerHTML = '<p class="text-xs text-slate-400 italic py-1">No FAQs added yet. Click "+ Add FAQ Question" to add your first question.</p>';
+      } else {
+        faqs.forEach((item, index) => {
+          const div = document.createElement('div');
+          div.className = 'rounded border border-slate-200 bg-slate-50/50 p-3 space-y-2 relative';
+          div.innerHTML = `
+            <div class="flex items-center justify-between">
+              <span class="text-[11px] font-bold text-slate-600 uppercase tracking-wider">FAQ #${index + 1}</span>
+              <button type="button" data-index="${index}" class="remove-faq text-rose-500 hover:text-rose-700 text-xs font-semibold">✕ Remove</button>
+            </div>
+            <div>
+              <input
+                type="text"
+                placeholder="Question (e.g. What is the minimum educational qualification?)"
+                value="${escapeHtml(item.question || '')}"
+                data-field="question"
+                data-index="${index}"
+                class="faq-input w-full rounded border border-slate-300 bg-white px-2.5 py-1.5 text-xs font-medium focus:border-[#2271b1] focus:outline-none"
+              />
+            </div>
+            <div>
+              <textarea
+                placeholder="Clear and concise answer explaining official notification rules..."
+                data-field="answer"
+                data-index="${index}"
+                rows="2"
+                class="faq-input w-full rounded border border-slate-300 bg-white px-2.5 py-1.5 text-xs leading-relaxed focus:border-[#2271b1] focus:outline-none"
+              >${escapeHtml(item.answer || '')}</textarea>
+            </div>
+          `;
+          faqContainer.appendChild(div);
+        });
+      }
+
+      // Update counter badge
+      const count = faqs.filter(f => f.question && f.answer).length;
+      faqCounterBadge.textContent = `${count} / 3 Added`;
+      if (count >= 3) {
+        faqCounterBadge.className = 'px-2 py-0.5 rounded text-[11px] font-bold bg-emerald-100 text-emerald-800';
+      } else {
+        faqCounterBadge.className = 'px-2 py-0.5 rounded text-[11px] font-bold bg-amber-100 text-amber-800';
+      }
+
+      // Sync hidden field
+      document.getElementById('field-faq-json').value = JSON.stringify(faqs);
+      updateChecklist();
+    }
+
+    faqContainer?.addEventListener('input', (e) => {
+      const target = e.target;
+      if (target.classList.contains('faq-input')) {
+        const index = parseInt(target.dataset.index, 10);
+        const field = target.dataset.field;
+        faqs[index][field] = target.value;
+        document.getElementById('field-faq-json').value = JSON.stringify(faqs);
+        updateChecklist();
+      }
+    });
+
+    faqContainer?.addEventListener('click', (e) => {
+      if (e.target.classList.contains('remove-faq')) {
+        const index = parseInt(e.target.dataset.index, 10);
+        faqs.splice(index, 1);
+        renderFaqs();
+      }
+    });
+
+    document.getElementById('btn-add-faq')?.addEventListener('click', () => {
+      faqs.push({ question: '', answer: '' });
+      renderFaqs();
+      const inputs = faqContainer.querySelectorAll('input');
+      if (inputs.length) inputs[inputs.length - 1].focus();
+    });
+
+    // DYNAMIC REPEATER 2: Application Fees
+    function renderFees() {
+      feesContainer.innerHTML = '';
+      if (fees.length === 0) {
+        feesContainer.innerHTML = '<p class="text-xs text-slate-400 italic py-1">No fee rules added yet. Click "+ Add Fee Category".</p>';
+      } else {
+        fees.forEach((item, index) => {
+          const div = document.createElement('div');
+          div.className = 'flex items-center gap-2 text-xs';
+          div.innerHTML = `
+            <input
+              type="text"
+              placeholder="Category (e.g. General / OBC)"
+              value="${escapeHtml(item.category || '')}"
+              data-field="category"
+              data-index="${index}"
+              class="fee-input flex-1 rounded border border-slate-300 px-2.5 py-1.5 focus:border-[#2271b1] focus:outline-none"
+            />
+            <input
+              type="text"
+              placeholder="Amount (e.g. ₹100 or Free)"
+              value="${escapeHtml(item.amount || '')}"
+              data-field="amount"
+              data-index="${index}"
+              class="fee-input w-36 rounded border border-slate-300 px-2.5 py-1.5 focus:border-[#2271b1] focus:outline-none"
+            />
+            <button type="button" data-index="${index}" class="remove-fee text-rose-500 hover:text-rose-700 font-bold px-1 py-1">✕</button>
+          `;
+          feesContainer.appendChild(div);
+        });
+      }
+      document.getElementById('field-fees-json').value = JSON.stringify(fees);
+    }
+
+    feesContainer?.addEventListener('input', (e) => {
+      if (e.target.classList.contains('fee-input')) {
+        const index = parseInt(e.target.dataset.index, 10);
+        const field = e.target.dataset.field;
+        fees[index][field] = e.target.value;
+        document.getElementById('field-fees-json').value = JSON.stringify(fees);
+      }
+    });
+
+    feesContainer?.addEventListener('click', (e) => {
+      if (e.target.classList.contains('remove-fee')) {
+        const index = parseInt(e.target.dataset.index, 10);
+        fees.splice(index, 1);
+        renderFees();
+      }
+    });
+
+    document.getElementById('btn-add-fee')?.addEventListener('click', () => {
+      fees.push({ category: '', amount: '' });
+      renderFees();
+    });
+
+    // DYNAMIC REPEATER 3: Vacancies & Eligibility
+    function renderEligibility() {
+      eligContainer.innerHTML = '';
+      if (eligibilityRows.length === 0) {
+        eligContainer.innerHTML = '<p class="text-xs text-slate-400 italic py-1">No post breakdown added yet. Click "+ Add Vacancy / Post Row".</p>';
+      } else {
+        eligibilityRows.forEach((item, index) => {
+          const div = document.createElement('div');
+          div.className = 'rounded border border-slate-200 bg-slate-50/50 p-2.5 space-y-2 text-xs';
+          div.innerHTML = `
+            <div class="flex items-center justify-between gap-2">
+              <input
+                type="text"
+                placeholder="Post / Cadre Name (e.g. Assistant Section Officer)"
+                value="${escapeHtml(item.postName || '')}"
+                data-field="postName"
+                data-index="${index}"
+                class="elig-input flex-1 rounded border border-slate-300 bg-white px-2.5 py-1.5 focus:border-[#2271b1] focus:outline-none"
+              />
+              <input
+                type="text"
+                placeholder="Vacancies (e.g. 968)"
+                value="${escapeHtml(item.totalPosts || '')}"
+                data-field="totalPosts"
+                data-index="${index}"
+                class="elig-input w-28 rounded border border-slate-300 bg-white px-2.5 py-1.5 focus:border-[#2271b1] focus:outline-none"
+              />
+              <button type="button" data-index="${index}" class="remove-elig text-rose-500 hover:text-rose-700 font-bold px-1">✕</button>
+            </div>
+            <input
+              type="text"
+              placeholder="Eligibility Criteria (e.g. Bachelor's Degree in any discipline from a recognized University)"
+              value="${escapeHtml(item.qualification || '')}"
+              data-field="qualification"
+              data-index="${index}"
+              class="elig-input w-full rounded border border-slate-300 bg-white px-2.5 py-1.5 focus:border-[#2271b1] focus:outline-none"
+            />
+          `;
+          eligContainer.appendChild(div);
+        });
+      }
+      document.getElementById('field-eligibility-json').value = JSON.stringify(eligibilityRows);
+    }
+
+    eligContainer?.addEventListener('input', (e) => {
+      if (e.target.classList.contains('elig-input')) {
+        const index = parseInt(e.target.dataset.index, 10);
+        const field = e.target.dataset.field;
+        eligibilityRows[index][field] = e.target.value;
+        document.getElementById('field-eligibility-json').value = JSON.stringify(eligibilityRows);
+      }
+    });
+
+    eligContainer?.addEventListener('click', (e) => {
+      if (e.target.classList.contains('remove-elig')) {
+        const index = parseInt(e.target.dataset.index, 10);
+        eligibilityRows.splice(index, 1);
+        renderEligibility();
+      }
+    });
+
+    document.getElementById('btn-add-eligibility')?.addEventListener('click', () => {
+      eligibilityRows.push({ postName: '', totalPosts: '', qualification: '' });
+      renderEligibility();
+    });
+
+    // Real-time Checklist & Validator
+    function updateChecklist() {
+      const summary = document.getElementById('field-summary')?.value.trim() || '';
+      const howto = document.getElementById('field-how-to-apply')?.value.trim() || '';
+      const officialUrl = document.getElementById('field-official-url')?.value.trim() || '';
+      const faqValidCount = faqs.filter(f => f.question && f.answer).length;
+
+      // 1. Summary
+      summaryCharCounter.textContent = `${summary.length} / 40 min chars`;
+      const isSummaryOk = summary.length >= 40;
+      updateCheckItem(chkSummary, isSummaryOk, 'Summary ≥40 chars');
+      summaryCharCounter.className = `text-[11px] font-mono px-2 py-0.5 rounded ${
+        isSummaryOk ? 'bg-emerald-100 text-emerald-800' : 'bg-slate-100 text-slate-600'
+      }`;
+
+      // 2. FAQs
+      const isFaqOk = faqValidCount >= 3;
+      updateCheckItem(chkFaq, isFaqOk, `≥3 FAQs (${faqValidCount}/3)`);
+
+      // 3. How to apply steps
+      const howtoSteps = howto.split('\n').map(s => s.trim()).filter(Boolean);
+      const isHowtoOk = howtoSteps.length >= 3;
+      updateCheckItem(chkHowto, isHowtoOk, `≥3 How-to steps (${howtoSteps.length}/3)`);
+
+      // 4. Official URL
+      const isUrlOk = officialUrl.startsWith('http://') || officialUrl.startsWith('https://');
+      updateCheckItem(chkUrl, isUrlOk, 'Official URL provided');
+
+      const urlBadge = document.getElementById('url-check-badge');
+      if (urlBadge) {
+        if (officialUrl.includes('.gov.in') || officialUrl.includes('.nic.in')) {
+          urlBadge.textContent = '✓ Official Gov Portal Verified';
+          urlBadge.className = 'text-[10px] font-mono text-emerald-600 font-bold';
+        } else if (isUrlOk) {
+          urlBadge.textContent = 'External Domain';
+          urlBadge.className = 'text-[10px] font-mono text-slate-600';
+        } else {
+          urlBadge.textContent = 'Must be valid URL';
+          urlBadge.className = 'text-[10px] font-mono text-rose-500';
+        }
+      }
+    }
+
+    function updateCheckItem(el, passed, label) {
+      if (!el) return;
+      const icon = el.querySelector('.chk-icon');
+      const text = el.querySelector('.chk-text');
+      if (passed) {
+        icon.textContent = '✓';
+        icon.className = 'chk-icon text-emerald-600 font-bold';
+        text.className = 'chk-text text-emerald-800 font-medium';
+      } else {
+        icon.textContent = '✕';
+        icon.className = 'chk-icon text-rose-500 font-bold';
+        text.className = 'chk-text text-slate-600';
+      }
+      text.textContent = label;
+    }
+
+    document.getElementById('field-summary')?.addEventListener('input', updateChecklist);
+    document.getElementById('field-how-to-apply')?.addEventListener('input', updateChecklist);
+    document.getElementById('field-official-url')?.addEventListener('input', updateChecklist);
+
+    // Auto-generate slug from Title
+    document.getElementById('field-title')?.addEventListener('blur', () => {
+      const slugInput = document.getElementById('field-slug');
+      if (!slugInput.value.trim() && form.title.value.trim()) {
+        slugInput.value = form.title.value
+          .toLowerCase()
+          .replace(/[^a-z0-9]+/g, '-')
+          .replace(/(^-|-$)/g, '');
+      }
+    });
+
+    // Translate English to Hindi
+    document.getElementById('gen-hi')?.addEventListener('click', async () => {
+      const btn = document.getElementById('gen-hi');
+      btn.textContent = 'Translating...';
+      try {
+        const res = await fetch('/api/admin/translate.json', {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify({
+            title: form.title.value,
+            summary: form.summary.value,
+            how_to_apply: form.how_to_apply.value,
+            selection_process: form.selection_process.value,
+            documents: form.documents.value
+          })
+        });
+        const data = await res.json();
+        if (data.title_hi) form.title_hi.value = data.title_hi;
+        if (data.summary_hi) form.summary_hi.value = data.summary_hi;
+        showNotice('Hindi title and summary generated successfully! Review before saving.', 'success');
+      } catch (err) {
+        showNotice('Translation service unavailable', 'error');
+      } finally {
+        btn.textContent = '⚡ Translate to Hindi';
+      }
+    });
+
+    // Populate Editor Form from Post Object
     function fillForm(p) {
-      if (!p) return;
+      currentEditPost = p;
+      form.reset();
+
       const map = {
         slug: p.slug, title: p.title, title_hi: p.title_hi, category: p.category, organization: p.organization,
         post_name: p.post_name, total_vacancies: p.total_vacancies, level: p.level, start_date: p.start_date,
@@ -126,45 +995,53 @@ const statesJson = JSON.stringify(INDIAN_STATES.map((s) => s.slug));
         notification_pdf_url: p.notification_pdf_url, summary: p.summary, summary_hi: p.summary_hi,
         how_to_apply: p.how_to_apply, selection_process: p.selection_process, documents: p.documents
       };
-      Object.entries(map).forEach(([k, v]) => { if (form[k]) form[k].value = v ?? ''; });
+
+      Object.entries(map).forEach(([k, v]) => {
+        if (form[k]) form[k].value = v ?? '';
+      });
+
       form.qualifications.value = (p.qualifications || []).join(', ');
       form.job_categories.value = (p.job_categories || []).join(', ');
-      form.states.value = (p.states || []).join(',');
-      form.fees_json.value = JSON.stringify(p.fees || [], null, 0);
-      form.eligibility_json.value = JSON.stringify(p.eligibility || [], null, 0);
-      form.faq_json.value = JSON.stringify(p.faq || [], null, 2);
-      form.body_blocks_json.value = JSON.stringify(p.body_blocks || [], null, 2);
+      form.states.value = (p.states || []).join(', ');
+
+      // Repeaters
+      faqs = Array.isArray(p.faq) ? [...p.faq] : [];
+      fees = Array.isArray(p.fees) ? [...p.fees] : [];
+      eligibilityRows = Array.isArray(p.eligibility) ? [...p.eligibility] : [];
+
+      renderFaqs();
+      renderFees();
+      renderEligibility();
+      renderStateTags();
+
+      // Meta pill
+      const isPub = p.status === 'published';
+      metaStatusPill.textContent = p.status || 'draft';
+      metaStatusPill.className = `px-2 py-0.5 rounded text-[10px] font-bold uppercase ${
+        isPub ? 'bg-emerald-100 text-emerald-800' : 'bg-amber-100 text-amber-800'
+      }`;
+      metaStatusText.textContent = p.status || 'draft';
+
+      updateChecklist();
     }
 
-    async function loadList() {
-      const res = await fetch('/api/admin/posts.json');
-      const data = await res.json();
-      listEl.innerHTML = (data.posts || []).map((p) =>
-        `<button type="button" data-slug="${p.slug}" class="block w-full border-b px-1 py-2 text-left text-xs hover:bg-amber-50">
-          <span class="font-bold">${p.title}</span><br/><span class="text-gray-500">${p.status} · ${p.category}</span>
-        </button>`
-      ).join('') || '<p class="text-xs text-gray-500">No posts yet. Seed from dashboard.</p>';
-      listEl.querySelectorAll('[data-slug]').forEach((btn) => {
-        btn.addEventListener('click', async () => {
-          const r = await fetch('/api/admin/posts.json?slug=' + encodeURIComponent(btn.dataset.slug));
-          const d = await r.json();
-          if (d.post) {
-            const row = d.post;
-            fillForm({
-              ...row,
-              fees: JSON.parse(row.fees_json || '[]'),
-              eligibility: JSON.parse(row.eligibility_json || '[]'),
-              qualifications: JSON.parse(row.qualifications_json || '[]'),
-              job_categories: JSON.parse(row.job_categories_json || '[]'),
-              states: JSON.parse(row.states_json || '[]'),
-              faq: JSON.parse(row.faq_json || '[]'),
-              body_blocks: JSON.parse(row.body_blocks_json || '[]')
-            });
-          }
-        });
-      });
+    function resetEditor() {
+      currentEditPost = null;
+      form.reset();
+      faqs = [];
+      fees = [];
+      eligibilityRows = [];
+      renderFaqs();
+      renderFees();
+      renderEligibility();
+      renderStateTags();
+      metaStatusPill.textContent = 'Draft';
+      metaStatusPill.className = 'px-2 py-0.5 rounded text-[10px] font-bold uppercase bg-amber-100 text-amber-800';
+      metaStatusText.textContent = 'Draft';
+      updateChecklist();
     }
 
+    // Build Payload for API
     function buildPayload(publish) {
       return {
         slug: form.slug.value.trim(),
@@ -192,21 +1069,23 @@ const statesJson = JSON.stringify(INDIAN_STATES.map((s) => s.slug));
         documents: form.documents.value.trim(),
         qualifications: form.qualifications.value.split(',').map((s) => s.trim()).filter(Boolean),
         job_categories: form.job_categories.value.split(',').map((s) => s.trim()).filter(Boolean),
-        states: form.states.value.split(',').map((s) => s.trim()).filter(Boolean),
-        fees: parseJsonField('fees_json', []),
-        eligibility: parseJsonField('eligibility_json', []),
-        faq: parseJsonField('faq_json', []),
-        body_blocks: parseJsonField('body_blocks_json', []),
+        states: form.states.value.split(',').map((s) => s.trim().toLowerCase()).filter(Boolean),
+        fees: fees.filter(f => f.category && f.amount),
+        eligibility: eligibilityRows.filter(e => e.postName),
+        faq: faqs.filter(f => f.question && f.answer),
+        body_blocks: [],
         status: publish ? 'published' : 'draft',
         publish: !!publish,
         last_verified_at: new Date().toISOString().slice(0, 10)
       };
     }
 
+    // Submit Handler
     form.addEventListener('submit', async (e) => {
       e.preventDefault();
       const publish = e.submitter && e.submitter.value === 'publish';
-      msg.textContent = 'Saving...';
+      showNotice(publish ? 'Publishing post...' : 'Saving draft...', 'info');
+
       try {
         const payload = buildPayload(publish);
         const res = await fetch('/api/admin/posts.json', {
@@ -215,53 +1094,222 @@ const statesJson = JSON.stringify(INDIAN_STATES.map((s) => s.slug));
           body: JSON.stringify(payload)
         });
         const data = await res.json();
-        msg.textContent = res.ok ? 'Saved ' + payload.slug : (data.error || 'Error');
-        if (res.ok) loadList();
+
+        if (res.ok) {
+          showNotice(publish ? `✓ Post published successfully! "${payload.title}" is live.` : `✓ Draft saved for "${payload.title}".`, 'success');
+          metaStatusPill.textContent = payload.status;
+          metaStatusPill.className = `px-2 py-0.5 rounded text-[10px] font-bold uppercase ${
+            payload.status === 'published' ? 'bg-emerald-100 text-emerald-800' : 'bg-amber-100 text-amber-800'
+          }`;
+          metaStatusText.textContent = payload.status;
+        } else {
+          showNotice(`Validation Failed: ${data.error || 'Check publish checklist requirements.'}`, 'error');
+        }
       } catch (err) {
-        msg.textContent = err.message || 'Invalid JSON fields';
+        showNotice(err.message || 'Error communicating with server', 'error');
       }
     });
 
-    document.getElementById('new-post').addEventListener('click', () => {
-      form.reset();
-      form.fees_json.value = '[]';
-      form.eligibility_json.value = '[]';
-      form.faq_json.value = '[]';
-      form.body_blocks_json.value = '[]';
+    // Delete / Trash Action
+    document.getElementById('btn-delete-post')?.addEventListener('click', async () => {
+      const slug = form.slug.value.trim();
+      if (!slug) {
+        showNotice('No post is currently loaded to trash.', 'error');
+        return;
+      }
+      if (!confirm(`Are you sure you want to permanently delete "${form.title.value || slug}"?`)) {
+        return;
+      }
+
+      try {
+        const res = await fetch(`/api/admin/posts.json?slug=${encodeURIComponent(slug)}`, { method: 'DELETE' });
+        const data = await res.json();
+        if (res.ok) {
+          showNotice(`Post "${slug}" deleted successfully.`, 'success');
+          switchToTable();
+          loadPosts();
+        } else {
+          showNotice(data.error || 'Failed to delete post', 'error');
+        }
+      } catch (err) {
+        showNotice('Network error deleting post', 'error');
+      }
     });
 
-    function pushBlock(block) {
-      const blocks = parseJsonField('body_blocks_json', []);
-      blocks.push(block);
-      form.body_blocks_json.value = JSON.stringify(blocks, null, 2);
+    // TABLE: Load and Render Posts
+    async function loadPosts() {
+      try {
+        const res = await fetch('/api/admin/posts.json');
+        const data = await res.json();
+        allPosts = data.posts || [];
+
+        // Update counts
+        const countAll = allPosts.length;
+        const countPublished = allPosts.filter(p => p.status === 'published').length;
+        const countDrafts = allPosts.filter(p => p.status === 'draft').length;
+
+        document.getElementById('count-all').textContent = countAll;
+        document.getElementById('count-published').textContent = countPublished;
+        document.getElementById('count-drafts').textContent = countDrafts;
+
+        renderTable();
+      } catch (err) {
+        tableBody.innerHTML = '<tr><td colspan="7" class="px-4 py-6 text-center text-rose-500">Failed to load posts from database.</td></tr>';
+      }
     }
-    document.getElementById('add-heading').addEventListener('click', () => pushBlock({ type: 'heading', text: 'New heading', level: 2 }));
-    document.getElementById('add-para').addEventListener('click', () => pushBlock({ type: 'paragraph', text: 'New paragraph — paraphrase official facts in your own words.' }));
 
-    document.getElementById('gen-hi').addEventListener('click', async () => {
-      msg.textContent = 'Translating...';
-      const res = await fetch('/api/admin/translate.json', {
-        method: 'POST',
-        headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({
-          title: form.title.value,
-          summary: form.summary.value,
-          how_to_apply: form.how_to_apply.value,
-          selection_process: form.selection_process.value,
-          documents: form.documents.value
-        })
+    function renderTable() {
+      const q = (postSearch?.value || '').toLowerCase().trim();
+      const cat = postCatFilter?.value || '';
+
+      const filtered = allPosts.filter(p => {
+        if (currentFilterStatus !== 'all' && p.status !== currentFilterStatus) return false;
+        if (cat && p.category !== cat) return false;
+        if (q) {
+          const matchTitle = (p.title || '').toLowerCase().includes(q);
+          const matchOrg = (p.organization || '').toLowerCase().includes(q);
+          const matchSlug = (p.slug || '').toLowerCase().includes(q);
+          return matchTitle || matchOrg || matchSlug;
+        }
+        return true;
       });
-      const data = await res.json();
-      if (!res.ok) { msg.textContent = data.error || 'Translate failed'; return; }
-      if (data.title_hi) form.title_hi.value = data.title_hi;
-      if (data.summary_hi) form.summary_hi.value = data.summary_hi;
-      msg.textContent = 'Hindi draft filled — review before publish.';
+
+      if (filtered.length === 0) {
+        tableBody.innerHTML = `
+          <tr>
+            <td colspan="7" class="px-4 py-8 text-center text-slate-500">
+              <p class="font-semibold text-sm">No posts found</p>
+              <p class="text-xs text-slate-400 mt-1">Try changing your search query or filter, or click "Add New Post" above.</p>
+            </td>
+          </tr>
+        `;
+        return;
+      }
+
+      tableBody.innerHTML = filtered.map(p => {
+        const isPub = p.status === 'published';
+        return `
+          <tr class="hover:bg-amber-50/40 group transition-colors">
+            <td class="px-4 py-3">
+              <a href="javascript:void(0)" data-action="edit" data-slug="${p.slug}" class="font-bold text-[#2271b1] hover:underline text-[13px] block">
+                ${escapeHtml(p.title || p.slug)}
+              </a>
+              <div class="flex items-center gap-2 mt-1 text-[11px] text-slate-500">
+                <button type="button" data-action="edit" data-slug="${p.slug}" class="text-[#2271b1] hover:underline font-semibold">Edit</button>
+                <span>|</span>
+                <a href="/${p.category}/${p.slug}" target="_blank" rel="noopener" class="text-emerald-700 hover:underline">View ↗</a>
+                <span>|</span>
+                <button type="button" data-action="trash" data-slug="${p.slug}" class="text-rose-600 hover:underline font-semibold">Trash</button>
+              </div>
+            </td>
+            <td class="px-3 py-3 text-slate-600 font-medium">${escapeHtml(p.organization || '—')}</td>
+            <td class="px-3 py-3">
+              <span class="inline-block px-2 py-0.5 rounded text-[11px] font-semibold bg-slate-100 text-slate-700 capitalize">
+                ${escapeHtml((p.category || '').replace('-', ' '))}
+              </span>
+            </td>
+            <td class="px-3 py-3 font-mono font-semibold text-slate-700">${p.total_vacancies ? Number(p.total_vacancies).toLocaleString('en-IN') : '—'}</td>
+            <td class="px-3 py-3 capitalize text-slate-600">${p.level || 'National'}</td>
+            <td class="px-3 py-3">
+              <span class="px-2 py-0.5 rounded text-[10px] font-bold uppercase ${
+                isPub ? 'bg-emerald-100 text-emerald-800' : 'bg-amber-100 text-amber-800'
+              }">
+                ${p.status || 'draft'}
+              </span>
+            </td>
+            <td class="px-4 py-3 text-slate-500 text-[11px]">
+              ${p.updated_at ? new Date(p.updated_at).toLocaleDateString('en-IN', { day: '2-digit', month: 'short', year: 'numeric' }) : '—'}
+            </td>
+          </tr>
+        `;
+      }).join('');
+
+      // Attach row action listeners
+      tableBody.querySelectorAll('[data-action="edit"]').forEach(btn => {
+        btn.addEventListener('click', () => loadAndEditPost(btn.dataset.slug));
+      });
+
+      tableBody.querySelectorAll('[data-action="trash"]').forEach(btn => {
+        btn.addEventListener('click', async () => {
+          const slug = btn.dataset.slug;
+          if (confirm(`Delete post "${slug}" permanently?`)) {
+            const res = await fetch(`/api/admin/posts.json?slug=${encodeURIComponent(slug)}`, { method: 'DELETE' });
+            if (res.ok) {
+              showNotice(`Post "${slug}" deleted.`, 'success');
+              loadPosts();
+            } else {
+              showNotice('Failed to delete post.', 'error');
+            }
+          }
+        });
+      });
+    }
+
+    async function loadAndEditPost(slug) {
+      showNotice(`Loading post "${slug}"...`, 'info');
+      try {
+        const res = await fetch(`/api/admin/posts.json?slug=${encodeURIComponent(slug)}`);
+        const data = await res.json();
+        if (data.post) {
+          const row = data.post;
+          fillForm({
+            ...row,
+            fees: JSON.parse(row.fees_json || '[]'),
+            eligibility: JSON.parse(row.eligibility_json || '[]'),
+            qualifications: JSON.parse(row.qualifications_json || '[]'),
+            job_categories: JSON.parse(row.job_categories_json || '[]'),
+            states: JSON.parse(row.states_json || '[]'),
+            faq: JSON.parse(row.faq_json || '[]'),
+            body_blocks: JSON.parse(row.body_blocks_json || '[]')
+          });
+          switchToEditor(slug);
+          noticeBox.classList.add('hidden');
+        } else {
+          showNotice(`Post not found: ${slug}`, 'error');
+        }
+      } catch (err) {
+        showNotice('Failed to fetch post details', 'error');
+      }
+    }
+
+    // Filter Tabs
+    document.querySelectorAll('.filter-tab').forEach(tab => {
+      tab.addEventListener('click', () => {
+        document.querySelectorAll('.filter-tab').forEach(t => {
+          t.classList.remove('font-semibold', 'underline');
+        });
+        tab.classList.add('font-semibold', 'underline');
+        currentFilterStatus = tab.dataset.status;
+        renderTable();
+      });
     });
 
-    loadList().then(() => {
-      if (editSlug) {
-        const btn = listEl.querySelector(`[data-slug="${editSlug}"]`);
-        if (btn) btn.click();
+    postSearch?.addEventListener('input', renderTable);
+    postCatFilter?.addEventListener('change', renderTable);
+
+    function escapeHtml(str) {
+      if (!str) return '';
+      return String(str)
+        .replace(/&/g, '&amp;')
+        .replace(/</g, '&lt;')
+        .replace(/>/g, '&gt;')
+        .replace(/"/g, '&quot;')
+        .replace(/'/g, '&#039;');
+    }
+
+    // Initialization
+    loadPosts().then(() => {
+      const urlParams = new URLSearchParams(window.location.search);
+      const slugParam = urlParams.get('slug') || editSlug;
+      const actionParam = urlParams.get('action');
+
+      if (slugParam) {
+        loadAndEditPost(slugParam);
+      } else if (actionParam === 'new') {
+        resetEditor();
+        switchToEditor();
+      } else {
+        switchToTable();
       }
     });
   </script>

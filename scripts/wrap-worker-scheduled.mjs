@@ -1,5 +1,6 @@
 import fs from 'node:fs';
 import path from 'node:path';
+import { execSync } from 'node:child_process';
 
 const workerPath = path.join(process.cwd(), 'dist', '_worker.js', 'index.js');
 if (!fs.existsSync(workerPath)) {
@@ -23,19 +24,26 @@ async function __examstatus_scheduled(controller, env, ctx) {
     method: 'POST',
     headers: { 'x-cron-secret': secret }
   });
-  ctx.waitUntil((__orig.default?.fetch ?? __orig.default)(req, env, ctx));
+  ctx.waitUntil(__astrojsSsrVirtualEntry.fetch(req, env, ctx));
 }
 `;
 
-if (code.includes('export {') && code.includes('as default')) {
-  code = scheduledSnippet + code.replace(
-    /export\s*\{([^}]+)\}\s*;?\s*$/,
-    `const __orig = { $1 };
-export default {
-  fetch: __orig.default?.fetch ?? __orig.default,
+const astroNamedExport =
+  /export\s*\{\s*__astrojsSsrVirtualEntry\s+as\s+default(?:\s*,\s*(\w+))?\s*\}\s*;?\s*$/m;
+
+const astroMatch = code.match(astroNamedExport);
+if (astroMatch) {
+  const extra = astroMatch[1];
+  const extraExport = extra ? `\nexport { ${extra} };` : '';
+  code =
+    scheduledSnippet +
+    code.replace(
+      astroNamedExport,
+      `export default {
+  fetch: __astrojsSsrVirtualEntry.fetch.bind(__astrojsSsrVirtualEntry),
   scheduled: __examstatus_scheduled
-};`
-  );
+};${extraExport}`
+    );
 } else if (code.includes('export default')) {
   code =
     scheduledSnippet +
@@ -50,4 +58,11 @@ export default {
 }
 
 fs.writeFileSync(workerPath, code);
-console.log('[wrap-worker-scheduled] patched scheduled handler');
+
+try {
+  execSync(`node --check "${workerPath}"`, { stdio: 'pipe' });
+  console.log('[wrap-worker-scheduled] patched scheduled handler (syntax ok)');
+} catch (e) {
+  console.error('[wrap-worker-scheduled] patched file failed syntax check');
+  process.exit(1);
+}

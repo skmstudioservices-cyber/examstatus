@@ -1,6 +1,5 @@
 import { getDb } from '../../../lib/posts';
-import { getThemeSettings } from '../../../lib/settings';
-import { runResearchFetch } from '../../../lib/research';
+import { runResearchWorker } from '../../../lib/research-worker';
 
 export const prerender = false;
 
@@ -12,11 +11,10 @@ export const POST: import('astro').APIRoute = async ({ locals, request }) => {
   }
   const db = getDb(locals);
   if (!db) return new Response(JSON.stringify({ error: 'DB unavailable' }), { status: 503 });
-  const theme = await getThemeSettings(db);
   const ai = locals.runtime?.env?.AI;
-  const urls = theme.allowlistDomains.slice(0, 5).map((d) => `https://${d}/`);
-  const created = await runResearchFetch(db, ai, theme, urls, 'cron');
-  return new Response(JSON.stringify({ success: true, created }), {
+  const force = request.headers.get('x-force-research') === '1';
+  const result = await runResearchWorker(db, ai, { force, createdBy: 'cron' });
+  return new Response(JSON.stringify({ success: true, ...result }), {
     headers: { 'Content-Type': 'application/json' }
   });
 };

@@ -98,6 +98,24 @@ export async function getPostBySlug(db: D1Database, slug: string): Promise<Post 
   return row ? rowToPost(row as Row) : null;
 }
 
+export async function getPostBySourceUrl(db: D1Database, sourceUrl: string): Promise<Post | null> {
+  const row = await db.prepare(`SELECT * FROM posts WHERE source_url = ? LIMIT 1`).bind(sourceUrl).first();
+  return row ? rowToPost(row as Row) : null;
+}
+
+export async function listPublishedByBoard(db: D1Database, keywords: string[]): Promise<Post[]> {
+  const { results } = await db
+    .prepare(`SELECT * FROM posts WHERE status = 'published' ORDER BY COALESCE(published_at, updated_at) DESC LIMIT 200`)
+    .all();
+  const lower = keywords.map((k) => k.toLowerCase());
+  return (results || [])
+    .map((r) => rowToPost(r as Row))
+    .filter((p) => {
+      const hay = `${p.organization} ${p.title} ${p.post_name}`.toLowerCase();
+      return lower.some((kw) => hay.includes(kw));
+    });
+}
+
 export async function listAllPosts(db: D1Database): Promise<Post[]> {
   const { results } = await db.prepare(`SELECT * FROM posts ORDER BY updated_at DESC`).all();
   return (results || []).map((r) => rowToPost(r as Row));

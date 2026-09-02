@@ -2,6 +2,7 @@ import { canManageAi, canPublish, parseCookies, resolveAdmin } from '../../../li
 import { getDb, upsertPost, validatePublish } from '../../../lib/posts';
 import { getThemeSettings } from '../../../lib/settings';
 import { mergeExtractedPost, runResearchFetch } from '../../../lib/research';
+import { getResearchCrawlState, runResearchWorker } from '../../../lib/research-worker';
 import type { Post } from '../../../lib/types';
 
 export const prerender = false;
@@ -27,12 +28,21 @@ export const POST: import('astro').APIRoute = async ({ locals, request }) => {
   const ai = locals.runtime?.env?.AI;
 
   if (action === 'fetch' || action === 'cron') {
-    const urls: string[] =
-      action === 'fetch'
-        ? [String(body.url || '')]
-        : theme.allowlistDomains.slice(0, 5).map((d) => `https://${d}/`);
+    if (action === 'cron') {
+      const result = await runResearchWorker(db, ai, {
+        force: Boolean(body.force),
+        createdBy: user?.email || 'admin-cron'
+      });
+      return json({ success: true, ...result });
+    }
+    const urls: string[] = [String(body.url || '')];
     const created = await runResearchFetch(db, ai, theme, urls, user?.email || 'cron');
     return json({ success: true, created });
+  }
+
+  if (action === 'status') {
+    const state = await getResearchCrawlState(db);
+    return json({ success: true, ...state });
   }
 
   if (action === 'approve' || action === 'reject') {

@@ -119,3 +119,10 @@ CREATE TABLE IF NOT EXISTS admin_sessions (
     expires_at TEXT NOT NULL,
     created_at DATETIME DEFAULT CURRENT_TIMESTAMP
 );
+
+CREATE TABLE IF NOT EXISTS source_crawl_log (
+    url TEXT PRIMARY KEY,
+    discovered_at TEXT NOT NULL,
+    last_fetched_at TEXT NOT NULL,
+    outcome TEXT
+);

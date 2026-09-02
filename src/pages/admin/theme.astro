@@ -1,10 +1,9 @@
 ---
 import AdminLayout from '../../layouts/AdminLayout.astro';
+import HelpTip from '../../components/admin/HelpTip.astro';
 import { getDb } from '../../lib/posts';
 import { parseCookies, resolveAdmin, canManageTheme } from '../../lib/auth';
 import { getThemeSettings } from '../../lib/settings';
-import { DEFAULT_THEME } from '../../lib/types';
-
 export const prerender = false;
 
 const db = getDb(Astro.locals);
@@ -17,40 +16,55 @@ if (!canManageTheme(user.role)) return Astro.redirect('/admin');
 const theme = await getThemeSettings(db);
 ---
 
-<AdminLayout>
-  <h1 class="text-2xl font-black mb-4">Theme Studio</h1>
-  <div class="grid grid-cols-1 lg:grid-cols-2 gap-4">
-    <form id="theme-form" class="bg-white border rounded p-4 space-y-3">
-      <label class="text-xs font-bold block">Primary color<input name="colorPrimary" type="color" value={theme.colorPrimary} class="mt-1 w-full h-10" /></label>
-      <label class="text-xs font-bold block">Accent color<input name="colorAccent" type="color" value={theme.colorAccent} class="mt-1 w-full h-10" /></label>
-      <label class="text-xs font-bold block">Banner color<input name="colorBanner" type="color" value={theme.colorBanner} class="mt-1 w-full h-10" /></label>
-      <label class="text-xs font-bold block">Font family<input name="fontFamily" value={theme.fontFamily} class="mt-1 w-full border rounded px-2 py-1.5 text-sm" /></label>
-      <label class="text-xs font-bold block">Logo text<input name="logoText" value={theme.logoText} class="mt-1 w-full border rounded px-2 py-1.5 text-sm" /></label>
-      <label class="text-xs font-bold block">Banner text EN<textarea name="bannerText" rows="2" class="mt-1 w-full border rounded px-2 py-1.5 text-sm">{theme.bannerText}</textarea></label>
-      <label class="text-xs font-bold block">Banner text HI<textarea name="bannerTextHi" rows="2" class="mt-1 w-full border rounded px-2 py-1.5 text-sm">{theme.bannerTextHi}</textarea></label>
-      <label class="text-xs font-bold block">Column: Latest Jobs<input name="columnLatestJobs" value={theme.columnLatestJobs} class="mt-1 w-full border rounded px-2 py-1.5 text-sm" /></label>
-      <label class="text-xs font-bold block">Column: Admit Cards<input name="columnAdmitCards" value={theme.columnAdmitCards} class="mt-1 w-full border rounded px-2 py-1.5 text-sm" /></label>
-      <label class="text-xs font-bold block">Column: Results<input name="columnResults" value={theme.columnResults} class="mt-1 w-full border rounded px-2 py-1.5 text-sm" /></label>
-      <label class="text-xs font-bold block">Footer disclaimer EN<textarea name="footerDisclaimer" rows="3" class="mt-1 w-full border rounded px-2 py-1.5 text-sm">{theme.footerDisclaimer}</textarea></label>
-      <label class="text-xs font-bold block">Footer disclaimer HI<textarea name="footerDisclaimerHi" rows="2" class="mt-1 w-full border rounded px-2 py-1.5 text-sm">{theme.footerDisclaimerHi}</textarea></label>
-      <label class="text-xs font-bold block">Telegram URL<input name="telegramUrl" value={theme.telegramUrl} class="mt-1 w-full border rounded px-2 py-1.5 text-sm" /></label>
-      <label class="text-xs font-bold block">AI mode
-        <select name="aiMode" class="mt-1 w-full border rounded px-2 py-1.5 text-sm">
+<AdminLayout user={user} title="Theme" breadcrumbs={[{ label: 'Theme' }]}>
+  <h1 class="mb-4 text-2xl font-black">Theme Studio</h1>
+  <div class="grid grid-cols-1 gap-4 lg:grid-cols-2">
+    <form id="theme-form" class="space-y-3 rounded-lg border border-slate-200 bg-white p-4 shadow-sm">
+      <h2 class="flex items-center text-sm font-bold uppercase tracking-wide text-slate-500">
+        Colors
+        <HelpTip text="Primary and accent drive buttons and links. Banner color fills the top announcement bar on the public site." />
+      </h2>
+      <label class="block text-xs font-bold">Primary color<input name="colorPrimary" type="color" value={theme.colorPrimary} class="mt-1 h-10 w-full" /></label>
+      <label class="block text-xs font-bold">Accent color<input name="colorAccent" type="color" value={theme.colorAccent} class="mt-1 h-10 w-full" /></label>
+      <label class="block text-xs font-bold">Banner color<input name="colorBanner" type="color" value={theme.colorBanner} class="mt-1 h-10 w-full" /></label>
+      <label class="block text-xs font-bold">Font family<input name="fontFamily" value={theme.fontFamily} class="mt-1 w-full rounded border px-2 py-1.5 text-sm" /></label>
+      <label class="block text-xs font-bold">Logo text<input name="logoText" value={theme.logoText} class="mt-1 w-full rounded border px-2 py-1.5 text-sm" /></label>
+
+      <h2 class="flex items-center pt-2 text-sm font-bold uppercase tracking-wide text-slate-500">
+        Banner
+        <HelpTip text="Scrolling text shown at the top of every public page. Keep it short; add Hindi for bilingual visitors." />
+      </h2>
+      <label class="block text-xs font-bold">Banner text EN<textarea name="bannerText" rows="2" class="mt-1 w-full rounded border px-2 py-1.5 text-sm">{theme.bannerText}</textarea></label>
+      <label class="block text-xs font-bold">Banner text HI<textarea name="bannerTextHi" rows="2" class="mt-1 w-full rounded border px-2 py-1.5 text-sm">{theme.bannerTextHi}</textarea></label>
+
+      <label class="block text-xs font-bold">Column: Latest Jobs<input name="columnLatestJobs" value={theme.columnLatestJobs} class="mt-1 w-full rounded border px-2 py-1.5 text-sm" /></label>
+      <label class="block text-xs font-bold">Column: Admit Cards<input name="columnAdmitCards" value={theme.columnAdmitCards} class="mt-1 w-full rounded border px-2 py-1.5 text-sm" /></label>
+      <label class="block text-xs font-bold">Column: Results<input name="columnResults" value={theme.columnResults} class="mt-1 w-full rounded border px-2 py-1.5 text-sm" /></label>
+      <label class="block text-xs font-bold">Footer disclaimer EN<textarea name="footerDisclaimer" rows="3" class="mt-1 w-full rounded border px-2 py-1.5 text-sm">{theme.footerDisclaimer}</textarea></label>
+      <label class="block text-xs font-bold">Footer disclaimer HI<textarea name="footerDisclaimerHi" rows="2" class="mt-1 w-full rounded border px-2 py-1.5 text-sm">{theme.footerDisclaimerHi}</textarea></label>
+      <label class="block text-xs font-bold">Telegram URL<input name="telegramUrl" value={theme.telegramUrl} class="mt-1 w-full rounded border px-2 py-1.5 text-sm" /></label>
+
+      <label class="block text-xs font-bold">
+        <span class="flex items-center">AI mode<HelpTip text="Approve: drafts wait in AI Inbox for human review. Auto: high-confidence drafts publish immediately if validation passes." /></span>
+        <select name="aiMode" class="mt-1 w-full rounded border px-2 py-1.5 text-sm">
           <option value="approve" selected={theme.aiMode === 'approve'}>Approve drafts</option>
           <option value="auto" selected={theme.aiMode === 'auto'}>Auto-publish</option>
         </select>
       </label>
-      <label class="text-xs font-bold block">Cache TTL seconds<input name="cacheTtlSeconds" type="number" value={theme.cacheTtlSeconds} class="mt-1 w-full border rounded px-2 py-1.5 text-sm" /></label>
-      <label class="text-xs font-bold block">Allowlist domains (comma)<textarea name="allowlistDomains" rows="3" class="mt-1 w-full border rounded px-2 py-1.5 text-sm">{theme.allowlistDomains.join(', ')}</textarea></label>
-      <label class="text-xs font-bold block">Nav JSON<textarea name="navItems" rows="5" class="mt-1 w-full border rounded px-2 py-1.5 text-sm font-mono">{JSON.stringify(theme.navItems, null, 2)}</textarea></label>
-      <button class="bg-amber-500 font-bold text-sm px-4 py-2 rounded">Save theme</button>
+      <label class="block text-xs font-bold">Cache TTL seconds<input name="cacheTtlSeconds" type="number" value={theme.cacheTtlSeconds} class="mt-1 w-full rounded border px-2 py-1.5 text-sm" /></label>
+      <label class="block text-xs font-bold">
+        <span class="flex items-center">Allowlist domains (comma)<HelpTip text="Only URLs from these domains can be used as official links or queued for AI research. Add bare domains like ssc.gov.in." /></span>
+        <textarea name="allowlistDomains" rows="3" class="mt-1 w-full rounded border px-2 py-1.5 text-sm">{theme.allowlistDomains.join(', ')}</textarea>
+      </label>
+      <label class="block text-xs font-bold">Nav JSON<textarea name="navItems" rows="5" class="mt-1 w-full rounded border px-2 py-1.5 font-mono text-sm">{JSON.stringify(theme.navItems, null, 2)}</textarea></label>
+      <button class="rounded bg-amber-500 px-4 py-2 text-sm font-bold hover:bg-amber-600">Save theme</button>
       <p id="theme-msg" class="text-xs"></p>
     </form>
     <div class="space-y-3">
       <p class="text-xs font-bold uppercase text-gray-500">Live preview (desktop)</p>
-      <iframe id="preview-desk" src="/" class="w-full h-80 border rounded bg-white"></iframe>
+      <iframe id="preview-desk" src="/" class="h-80 w-full rounded-lg border bg-white shadow-sm"></iframe>
       <p class="text-xs font-bold uppercase text-gray-500">Mobile width</p>
-      <iframe id="preview-mob" src="/" class="w-[375px] max-w-full h-96 border rounded bg-white mx-auto block"></iframe>
+      <iframe id="preview-mob" src="/" class="mx-auto block h-96 w-[375px] max-w-full rounded-lg border bg-white shadow-sm"></iframe>
     </div>
   </div>
   <script is:inline>

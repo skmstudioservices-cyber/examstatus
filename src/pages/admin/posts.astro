@@ -1,5 +1,6 @@
 ---
 import AdminLayout from '../../layouts/AdminLayout.astro';
+import HelpTip from '../../components/admin/HelpTip.astro';
 import { getDb } from '../../lib/posts';
 import { parseCookies, resolveAdmin } from '../../lib/auth';
 import { INDIAN_STATES } from '../../lib/types';
@@ -16,18 +17,22 @@ const editSlug = Astro.url.searchParams.get('slug') || '';
 const statesJson = JSON.stringify(INDIAN_STATES.map((s) => s.slug));
 ---
 
-<AdminLayout>
-  <div class="flex flex-wrap justify-between gap-3 mb-4">
+<AdminLayout user={user} title="Posts" breadcrumbs={[{ label: 'Posts' }]}>
+  <div class="mb-4 flex flex-wrap items-center justify-between gap-3">
     <h1 class="text-2xl font-black">Posts</h1>
-    <button id="new-post" type="button" class="bg-amber-500 font-bold text-sm px-3 py-2 rounded">New post</button>
+    <button id="new-post" type="button" class="rounded bg-amber-500 px-3 py-2 text-sm font-bold hover:bg-amber-600">New post</button>
   </div>
-  <div class="grid grid-cols-1 lg:grid-cols-3 gap-4">
-    <div class="bg-white border rounded p-3 lg:col-span-1 max-h-[70vh] overflow-auto" id="post-list"></div>
-    <form id="post-form" class="bg-white border rounded p-4 lg:col-span-2 space-y-3 max-h-[80vh] overflow-auto">
-      <div class="grid grid-cols-1 sm:grid-cols-2 gap-3">
-        <label class="text-xs font-bold">Slug<input name="slug" required class="mt-1 w-full border rounded px-2 py-1.5 text-sm" /></label>
-        <label class="text-xs font-bold">Category
-          <select name="category" class="mt-1 w-full border rounded px-2 py-1.5 text-sm">
+  <div class="grid grid-cols-1 gap-4 lg:grid-cols-3">
+    <div class="max-h-[70vh] overflow-auto rounded-lg border border-slate-200 bg-white p-3 shadow-sm lg:col-span-1" id="post-list"></div>
+    <form id="post-form" class="max-h-[80vh] space-y-3 overflow-auto rounded-lg border border-slate-200 bg-white p-4 shadow-sm lg:col-span-2">
+      <div class="grid grid-cols-1 gap-3 sm:grid-cols-2">
+        <label class="text-xs font-bold">
+          <span class="flex items-center">Slug<HelpTip text="URL-friendly ID (e.g. ssc-cgl-2026). Lowercase, hyphens only. Cannot change after publish without breaking links." /></span>
+          <input name="slug" required class="mt-1 w-full rounded border px-2 py-1.5 text-sm" />
+        </label>
+        <label class="text-xs font-bold">
+          <span class="flex items-center">Category<HelpTip text="Controls which homepage column and URL path the post appears under." /></span>
+          <select name="category" class="mt-1 w-full rounded border px-2 py-1.5 text-sm">
             <option value="latest-jobs">Latest Jobs</option>
             <option value="admit-cards">Admit Cards</option>
             <option value="results">Results</option>
@@ -37,53 +42,62 @@ const statesJson = JSON.stringify(INDIAN_STATES.map((s) => s.slug));
             <option value="scholarships">Scholarships</option>
           </select>
         </label>
-        <label class="text-xs font-bold">Title<input name="title" required class="mt-1 w-full border rounded px-2 py-1.5 text-sm" /></label>
-        <label class="text-xs font-bold">Title (HI)<input name="title_hi" class="mt-1 w-full border rounded px-2 py-1.5 text-sm" /></label>
-        <label class="text-xs font-bold">Organization<input name="organization" class="mt-1 w-full border rounded px-2 py-1.5 text-sm" /></label>
-        <label class="text-xs font-bold">Post name<input name="post_name" class="mt-1 w-full border rounded px-2 py-1.5 text-sm" /></label>
-        <label class="text-xs font-bold">Vacancies<input name="total_vacancies" type="number" class="mt-1 w-full border rounded px-2 py-1.5 text-sm" /></label>
+        <label class="text-xs font-bold">Title<input name="title" required class="mt-1 w-full rounded border px-2 py-1.5 text-sm" /></label>
+        <label class="text-xs font-bold">Title (HI)<input name="title_hi" class="mt-1 w-full rounded border px-2 py-1.5 text-sm" /></label>
+        <label class="text-xs font-bold">Organization<input name="organization" class="mt-1 w-full rounded border px-2 py-1.5 text-sm" /></label>
+        <label class="text-xs font-bold">Post name<input name="post_name" class="mt-1 w-full rounded border px-2 py-1.5 text-sm" /></label>
+        <label class="text-xs font-bold">Vacancies<input name="total_vacancies" type="number" class="mt-1 w-full rounded border px-2 py-1.5 text-sm" /></label>
         <label class="text-xs font-bold">Level
-          <select name="level" class="mt-1 w-full border rounded px-2 py-1.5 text-sm">
+          <select name="level" class="mt-1 w-full rounded border px-2 py-1.5 text-sm">
             <option value="national">National</option>
             <option value="state">State</option>
           </select>
         </label>
-        <label class="text-xs font-bold">Start date<input name="start_date" class="mt-1 w-full border rounded px-2 py-1.5 text-sm" /></label>
-        <label class="text-xs font-bold">Closing date<input name="closing_date" class="mt-1 w-full border rounded px-2 py-1.5 text-sm" /></label>
-        <label class="text-xs font-bold">Exam date<input name="exam_date" class="mt-1 w-full border rounded px-2 py-1.5 text-sm" /></label>
-        <label class="text-xs font-bold">Admit card date<input name="admit_card_date" class="mt-1 w-full border rounded px-2 py-1.5 text-sm" /></label>
-        <label class="text-xs font-bold">Result date<input name="result_date" class="mt-1 w-full border rounded px-2 py-1.5 text-sm" /></label>
+        <label class="text-xs font-bold">Start date<input name="start_date" class="mt-1 w-full rounded border px-2 py-1.5 text-sm" /></label>
+        <label class="text-xs font-bold">Closing date<input name="closing_date" class="mt-1 w-full rounded border px-2 py-1.5 text-sm" /></label>
+        <label class="text-xs font-bold">Exam date<input name="exam_date" class="mt-1 w-full rounded border px-2 py-1.5 text-sm" /></label>
+        <label class="text-xs font-bold">Admit card date<input name="admit_card_date" class="mt-1 w-full rounded border px-2 py-1.5 text-sm" /></label>
+        <label class="text-xs font-bold">Result date<input name="result_date" class="mt-1 w-full rounded border px-2 py-1.5 text-sm" /></label>
         <label class="text-xs font-bold">Min / Max age
-          <div class="flex gap-2 mt-1">
-            <input name="min_age" placeholder="Min" class="w-full border rounded px-2 py-1.5 text-sm" />
-            <input name="max_age" placeholder="Max" class="w-full border rounded px-2 py-1.5 text-sm" />
+          <div class="mt-1 flex gap-2">
+            <input name="min_age" placeholder="Min" class="w-full rounded border px-2 py-1.5 text-sm" />
+            <input name="max_age" placeholder="Max" class="w-full rounded border px-2 py-1.5 text-sm" />
           </div>
         </label>
-        <label class="text-xs font-bold">Official URL<input name="official_url" class="mt-1 w-full border rounded px-2 py-1.5 text-sm" /></label>
-        <label class="text-xs font-bold">Apply URL<input name="apply_online_url" class="mt-1 w-full border rounded px-2 py-1.5 text-sm" /></label>
-        <label class="text-xs font-bold">PDF URL<input name="notification_pdf_url" class="mt-1 w-full border rounded px-2 py-1.5 text-sm" /></label>
-        <label class="text-xs font-bold">Qualifications (comma)<input name="qualifications" class="mt-1 w-full border rounded px-2 py-1.5 text-sm" placeholder="Graduate, 12th Pass" /></label>
-        <label class="text-xs font-bold">Job categories (comma)<input name="job_categories" class="mt-1 w-full border rounded px-2 py-1.5 text-sm" /></label>
+        <label class="text-xs font-bold">
+          <span class="flex items-center">Official URL<HelpTip text="Must be on an allowlisted government domain (set in Theme). Required for publish." /></span>
+          <input name="official_url" class="mt-1 w-full rounded border px-2 py-1.5 text-sm" />
+        </label>
+        <label class="text-xs font-bold">Apply URL<input name="apply_online_url" class="mt-1 w-full rounded border px-2 py-1.5 text-sm" /></label>
+        <label class="text-xs font-bold">PDF URL<input name="notification_pdf_url" class="mt-1 w-full rounded border px-2 py-1.5 text-sm" /></label>
+        <label class="text-xs font-bold">Qualifications (comma)<input name="qualifications" class="mt-1 w-full rounded border px-2 py-1.5 text-sm" placeholder="Graduate, 12th Pass" /></label>
+        <label class="text-xs font-bold">Job categories (comma)<input name="job_categories" class="mt-1 w-full rounded border px-2 py-1.5 text-sm" /></label>
         <label class="text-xs font-bold sm:col-span-2">States (comma slugs)
-          <input name="states" class="mt-1 w-full border rounded px-2 py-1.5 text-sm" placeholder="uttar-pradesh,bihar" />
-          <span class="text-[10px] text-gray-400 font-normal">Known: <span id="state-hints"></span></span>
+          <input name="states" class="mt-1 w-full rounded border px-2 py-1.5 text-sm" placeholder="uttar-pradesh,bihar" />
+          <span class="text-[10px] font-normal text-gray-400">Known: <span id="state-hints"></span></span>
         </label>
       </div>
-      <label class="text-xs font-bold block">Summary<textarea name="summary" rows="3" class="mt-1 w-full border rounded px-2 py-1.5 text-sm"></textarea></label>
-      <label class="text-xs font-bold block">Summary HI<textarea name="summary_hi" rows="2" class="mt-1 w-full border rounded px-2 py-1.5 text-sm"></textarea></label>
-      <label class="text-xs font-bold block">How to apply (one step per line)<textarea name="how_to_apply" rows="4" class="mt-1 w-full border rounded px-2 py-1.5 text-sm"></textarea></label>
-      <label class="text-xs font-bold block">Selection process (one per line)<textarea name="selection_process" rows="3" class="mt-1 w-full border rounded px-2 py-1.5 text-sm"></textarea></label>
-      <label class="text-xs font-bold block">Documents (one per line)<textarea name="documents" rows="3" class="mt-1 w-full border rounded px-2 py-1.5 text-sm"></textarea></label>
-      <label class="text-xs font-bold block">Fees JSON<textarea name="fees_json" rows="2" class="mt-1 w-full border rounded px-2 py-1.5 text-sm font-mono" placeholder='[{"category":"General","amount":"Rs. 100/-"}]'></textarea></label>
-      <label class="text-xs font-bold block">Eligibility JSON<textarea name="eligibility_json" rows="2" class="mt-1 w-full border rounded px-2 py-1.5 text-sm font-mono"></textarea></label>
-      <label class="text-xs font-bold block">FAQ JSON (≥3)<textarea name="faq_json" rows="4" class="mt-1 w-full border rounded px-2 py-1.5 text-sm font-mono" placeholder='[{"question":"...","answer":"..."}]'></textarea></label>
-      <label class="text-xs font-bold block">Extra blocks JSON<textarea name="body_blocks_json" rows="3" class="mt-1 w-full border rounded px-2 py-1.5 text-sm font-mono" placeholder='[{"type":"heading","text":"..."},{"type":"paragraph","text":"..."}]'></textarea></label>
-      <div class="flex flex-wrap gap-2">
-        <button type="submit" name="intent" value="draft" class="border font-bold text-sm px-3 py-2 rounded">Save draft</button>
-        <button type="submit" name="intent" value="publish" class="bg-green-700 text-white font-bold text-sm px-3 py-2 rounded">Publish</button>
-        <button type="button" id="gen-hi" class="border font-bold text-sm px-3 py-2 rounded">Generate Hindi</button>
-        <button type="button" id="add-heading" class="border text-xs px-2 py-2 rounded">+ Heading block</button>
-        <button type="button" id="add-para" class="border text-xs px-2 py-2 rounded">+ Paragraph block</button>
+      <label class="block text-xs font-bold">Summary<textarea name="summary" rows="3" class="mt-1 w-full rounded border px-2 py-1.5 text-sm"></textarea></label>
+      <label class="block text-xs font-bold">Summary HI<textarea name="summary_hi" rows="2" class="mt-1 w-full rounded border px-2 py-1.5 text-sm"></textarea></label>
+      <label class="block text-xs font-bold">How to apply (one step per line)<textarea name="how_to_apply" rows="4" class="mt-1 w-full rounded border px-2 py-1.5 text-sm"></textarea></label>
+      <label class="block text-xs font-bold">Selection process (one per line)<textarea name="selection_process" rows="3" class="mt-1 w-full rounded border px-2 py-1.5 text-sm"></textarea></label>
+      <label class="block text-xs font-bold">Documents (one per line)<textarea name="documents" rows="3" class="mt-1 w-full rounded border px-2 py-1.5 text-sm"></textarea></label>
+      <label class="block text-xs font-bold">Fees JSON<textarea name="fees_json" rows="2" class="mt-1 w-full rounded border px-2 py-1.5 font-mono text-sm" placeholder='[{"category":"General","amount":"Rs. 100/-"}]'></textarea></label>
+      <label class="block text-xs font-bold">Eligibility JSON<textarea name="eligibility_json" rows="2" class="mt-1 w-full rounded border px-2 py-1.5 font-mono text-sm"></textarea></label>
+      <label class="block text-xs font-bold">
+        <span class="flex items-center">FAQ JSON (≥3)<HelpTip text="At least 3 question/answer pairs required to publish. Use original wording, not copied from competitors." /></span>
+        <textarea name="faq_json" rows="4" class="mt-1 w-full rounded border px-2 py-1.5 font-mono text-sm" placeholder='[{"question":"...","answer":"..."}]'></textarea>
+      </label>
+      <label class="block text-xs font-bold">Extra blocks JSON<textarea name="body_blocks_json" rows="3" class="mt-1 w-full rounded border px-2 py-1.5 font-mono text-sm" placeholder='[{"type":"heading","text":"..."},{"type":"paragraph","text":"..."}]'></textarea></label>
+      <div class="flex flex-wrap items-center gap-2">
+        <button type="submit" name="intent" value="draft" class="rounded border px-3 py-2 text-sm font-bold hover:bg-slate-50">Save draft</button>
+        <button type="submit" name="intent" value="publish" class="rounded bg-green-700 px-3 py-2 text-sm font-bold text-white hover:bg-green-800">
+          Publish
+        </button>
+        <HelpTip text="Publish validates summary length, FAQ count, how-to steps, and official URL allowlist. Fix errors shown in the message area." />
+        <button type="button" id="gen-hi" class="rounded border px-3 py-2 text-sm font-bold hover:bg-slate-50">Generate Hindi</button>
+        <button type="button" id="add-heading" class="rounded border px-2 py-2 text-xs hover:bg-slate-50">+ Heading block</button>
+        <button type="button" id="add-para" class="rounded border px-2 py-2 text-xs hover:bg-slate-50">+ Paragraph block</button>
       </div>
       <p id="form-msg" class="text-xs text-gray-600"></p>
     </form>
@@ -126,7 +140,7 @@ const statesJson = JSON.stringify(INDIAN_STATES.map((s) => s.slug));
       const res = await fetch('/api/admin/posts.json');
       const data = await res.json();
       listEl.innerHTML = (data.posts || []).map((p) =>
-        `<button type="button" data-slug="${p.slug}" class="block w-full text-left border-b py-2 px-1 hover:bg-amber-50 text-xs">
+        `<button type="button" data-slug="${p.slug}" class="block w-full border-b px-1 py-2 text-left text-xs hover:bg-amber-50">
           <span class="font-bold">${p.title}</span><br/><span class="text-gray-500">${p.status} · ${p.category}</span>
         </button>`
       ).join('') || '<p class="text-xs text-gray-500">No posts yet. Seed from dashboard.</p>';

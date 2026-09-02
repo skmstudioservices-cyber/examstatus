@@ -3,6 +3,7 @@ import AdminLayout from '../../layouts/AdminLayout.astro';
 import { getDb } from '../../lib/posts';
 import { parseCookies, resolveAdmin, canManageAi } from '../../lib/auth';
 import { getThemeSettings } from '../../lib/settings';
+import { getResearchCrawlState } from '../../lib/research-worker';
 
 export const prerender = false;
 
@@ -13,6 +14,7 @@ const user = await resolveAdmin(db, Astro.request, cookies['examstatus_session']
 if (!user || !canManageAi(user.role)) return Astro.redirect('/admin');
 
 const theme = await getThemeSettings(db);
+const crawlState = await getResearchCrawlState(db);
 const { results: drafts } = await db.prepare(`SELECT * FROM ai_drafts ORDER BY created_at DESC LIMIT 50`).all();
 ---
 
@@ -22,10 +24,19 @@ const { results: drafts } = await db.prepare(`SELECT * FROM ai_drafts ORDER BY c
       <h1 class="text-2xl font-black">AI Inbox</h1>
       <p class="text-xs text-gray-600">Mode: <strong>{theme.aiMode}</strong> · Model: llama-3.1-8b-instruct-fast</p>
     </div>
-    <div class="flex gap-2">
-      <button id="run-research" type="button" class="bg-amber-500 font-bold text-sm px-3 py-2 rounded">Run research now</button>
+    <div class="flex flex-wrap gap-2">
+      <button id="run-research" type="button" class="bg-amber-500 font-bold text-sm px-3 py-2 rounded">Run discovery (respect schedule)</button>
+      <button id="force-research" type="button" class="border-2 border-amber-600 font-bold text-sm px-3 py-2 rounded">Force run now</button>
     </div>
   </div>
+
+  <div class="bg-slate-50 border rounded p-3 mb-4 text-xs space-y-1">
+    <p><strong>Last run:</strong> {crawlState.lastRunAt || 'Never'}</p>
+    <p><strong>Next scheduled run:</strong> {crawlState.nextRunAt || 'Immediate on next cron tick'}</p>
+    <p><strong>Last stats:</strong> {crawlState.lastStats || '—'}</p>
+    <p class="text-gray-500">Cron checks hourly; actual discovery runs every 3–9 hours (random).</p>
+  </div>
+
   <form id="manual-url" class="bg-white border rounded p-3 mb-4 flex flex-wrap gap-2">
     <input name="url" required placeholder="https://ssc.gov.in/..." class="flex-1 min-w-[220px] border rounded px-2 py-2 text-sm" />
     <button class="border font-bold text-sm px-3 py-2 rounded">Queue URL</button>
@@ -49,13 +60,19 @@ const { results: drafts } = await db.prepare(`SELECT * FROM ai_drafts ORDER BY c
   </div>
   <script is:inline>
     const msg = document.getElementById('ai-msg');
-    document.getElementById('run-research')?.addEventListener('click', async () => {
-      msg.textContent = 'Running...';
-      const res = await fetch('/api/admin/research.json', { method: 'POST', headers: { 'Content-Type': 'application/json' }, body: JSON.stringify({ action: 'cron' }) });
+    async function runDiscovery(force) {
+      msg.textContent = force ? 'Force running...' : 'Running...';
+      const res = await fetch('/api/admin/research.json', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ action: 'cron', force })
+      });
       const data = await res.json();
       msg.textContent = res.ok ? JSON.stringify(data) : (data.error || 'Failed');
       if (res.ok) location.reload();
-    });
+    }
+    document.getElementById('run-research')?.addEventListener('click', () => runDiscovery(false));
+    document.getElementById('force-research')?.addEventListener('click', () => runDiscovery(true));
     document.getElementById('manual-url')?.addEventListener('submit', async (e) => {
       e.preventDefault();
       const url = e.target.url.value;

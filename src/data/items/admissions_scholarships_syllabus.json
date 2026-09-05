@@ -1,0 +1,578 @@
+[
+  {
+    "slug": "nta-jee-main-2026",
+    "title": "NTA JEE Main 2026 Session 1 & 2 Online Application Form",
+    "category": "admissions",
+    "jobCategories": ["Engineering"],
+    "qualifications": ["12th Pass"],
+    "organization": "National Testing Agency (NTA)",
+    "postName": "Joint Entrance Examination (Main) 2026 for B.E. / B.Tech / B.Arch",
+    "totalVacancies": 0,
+    "startDate": "2026-08-20",
+    "closingDate": "2026-09-30",
+    "examDate": "January 2027 (Session 1) & April 2027 (Session 2)",
+    "admitCardDate": "3 Days Before Exam",
+    "resultDate": "February 2027",
+    "fees": [
+      { "category": "General / OBC Male (Paper 1)", "amount": "Rs. 1000/-" },
+      { "category": "SC / ST / PwD / Female", "amount": "Rs. 500/-" }
+    ],
+    "minAge": "No Age Limit",
+    "maxAge": "No Limit",
+    "level": "national",
+    "states": [],
+    "eligibility": [
+      { "postName": "JEE Main B.Tech/B.Arch", "totalPosts": "National Entrance", "qualification": "Passed 10+2 Examination with Physics, Mathematics along with Chemistry/Biotech/Biology in 2024, 2025 or appearing in 2026" }
+    ],
+    "officialUrl": "https://jeemain.nta.ac.in",
+    "applyOnlineUrl": "https://jeemain.nta.ac.in",
+    "notificationPdfUrl": "https://jeemain.nta.ac.in"
+  },
+  {
+    "slug": "nta-neet-ug-2026",
+    "title": "NTA NEET UG 2026 National Eligibility Cum Entrance Test Form",
+    "category": "admissions",
+    "jobCategories": ["Medical"],
+    "qualifications": ["12th Pass"],
+    "organization": "National Testing Agency (NTA)",
+    "postName": "NEET (UG) 2026 for MBBS, BDS, BAMS, BHMS, BUMS, B.Sc Nursing",
+    "totalVacancies": 0,
+    "startDate": "2026-08-15",
+    "closingDate": "2026-09-25",
+    "examDate": "First Sunday of May 2027",
+    "admitCardDate": "April 2027",
+    "resultDate": "June 2027",
+    "fees": [
+      { "category": "General", "amount": "Rs. 1700/-" },
+      { "category": "General-EWS / OBC-NCL", "amount": "Rs. 1600/-" },
+      { "category": "SC / ST / PwBD / Third Gender", "amount": "Rs. 1000/-" }
+    ],
+    "minAge": "17 Years",
+    "maxAge": "No Upper Age Limit",
+    "level": "national",
+    "states": [],
+    "eligibility": [
+      { "postName": "NEET UG", "totalPosts": "National Medical Entrance", "qualification": "10+2 with Physics, Chemistry, Biology/Biotechnology and English from recognized Board" }
+    ],
+    "officialUrl": "https://neet.nta.nic.in",
+    "applyOnlineUrl": "https://neet.nta.nic.in",
+    "notificationPdfUrl": "https://neet.nta.nic.in"
+  },
+  {
+    "slug": "nta-cuet-ug-2026",
+    "title": "NTA CUET UG 2026 Common University Entrance Test Online Form",
+    "category": "admissions",
+    "jobCategories": ["Civil Services"],
+    "qualifications": ["12th Pass"],
+    "organization": "National Testing Agency (NTA)",
+    "postName": "Common University Entrance Test for All Central Universities (DU, BHU, JNU, AU)",
+    "totalVacancies": 0,
+    "startDate": "2026-08-25",
+    "closingDate": "2026-09-30",
+    "examDate": "May 2027",
+    "admitCardDate": "May 2027",
+    "resultDate": "June 2027",
+    "fees": [
+      { "category": "General (Up to 3 Subjects)", "amount": "Rs. 1000/-" },
+      { "category": "OBC-NCL / EWS", "amount": "Rs. 900/-" },
+      { "category": "SC / ST / PwBD", "amount": "Rs. 800/-" }
+    ],
+    "minAge": "No Age Limit",
+    "maxAge": "No Limit",
+    "level": "national",
+    "states": [],
+    "eligibility": [
+      { "postName": "Undergraduate Admissions", "totalPosts": "Central Universities", "qualification": "Passed Class 12 / equivalent examination or appearing in 2026" }
+    ],
+    "officialUrl": "https://exams.nta.ac.in/CUET-UG",
+    "applyOnlineUrl": "https://cuetug.ntaonline.in",
+    "notificationPdfUrl": "https://exams.nta.ac.in/CUET-UG"
+  },
+  {
+    "slug": "nta-cuet-pg-2026",
+    "title": "NTA CUET PG 2026 Post Graduate Entrance Exam Application Form",
+    "category": "admissions",
+    "jobCategories": ["Central Govt"],
+    "qualifications": ["Graduate"],
+    "organization": "National Testing Agency (NTA)",
+    "postName": "Common University Entrance Test PG for Master Degree Courses (MA, M.Sc, M.Com, MCA, MBA)",
+    "totalVacancies": 0,
+    "startDate": "2026-08-28",
+    "closingDate": "2026-10-05",
+    "examDate": "March 2027",
+    "admitCardDate": "March 2027",
+    "resultDate": "April 2027",
+    "fees": [
+      { "category": "General (Up to 2 Papers)", "amount": "Rs. 1200/-" },
+      { "category": "OBC-NCL / Gen-EWS", "amount": "Rs. 1000/-" },
+      { "category": "SC / ST / Third Gender", "amount": "Rs. 900/-" }
+    ],
+    "minAge": "No Limit",
+    "maxAge": "No Limit",
+    "level": "national",
+    "states": [],
+    "eligibility": [
+      { "postName": "Postgraduate Admissions", "totalPosts": "Central & State Universities", "qualification": "Bachelor Degree / equivalent examination passed or appearing in final year" }
+    ],
+    "officialUrl": "https://pgcuet.samarth.ac.in",
+    "applyOnlineUrl": "https://pgcuet.samarth.ac.in",
+    "notificationPdfUrl": "https://pgcuet.samarth.ac.in"
+  },
+  {
+    "slug": "up-bed-jee-entrance-2026",
+    "title": "UP B.Ed Combined Entrance Examination 2026 Online Form (Bundelkhand University)",
+    "category": "admissions",
+    "jobCategories": ["Teaching", "State Govt"],
+    "qualifications": ["Graduate", "Post Graduate"],
+    "organization": "Bundelkhand University Jhansi & UP Higher Education",
+    "postName": "UP Joint Entrance Examination B.Ed 2-Year Course Admission 2026",
+    "totalVacancies": 200000,
+    "startDate": "2026-08-10",
+    "closingDate": "2026-09-15",
+    "examDate": "June 2027",
+    "admitCardDate": "May 2027",
+    "resultDate": "July 2027",
+    "fees": [
+      { "category": "General / OBC / Other State", "amount": "Rs. 1400/-" },
+      { "category": "SC / ST of UP", "amount": "Rs. 700/-" }
+    ],
+    "minAge": "14 Years",
+    "maxAge": "No Limit",
+    "level": "state",
+    "states": ["uttar-pradesh"],
+    "eligibility": [
+      { "postName": "B.Ed 2-Year Course", "totalPosts": "State Level Seats", "qualification": "Graduation / Post Graduation with minimum 50% marks (55% for B.Tech/Engineering)" }
+    ],
+    "officialUrl": "https://bujhansi.ac.in",
+    "applyOnlineUrl": "https://bujhansi.ac.in",
+    "notificationPdfUrl": "https://bujhansi.ac.in"
+  },
+  {
+    "slug": "bihar-bed-cet-2026",
+    "title": "Bihar B.Ed Combined Entrance Test CET-B.Ed 2026 Online Form (LNMU)",
+    "category": "admissions",
+    "jobCategories": ["Teaching", "State Govt"],
+    "qualifications": ["Graduate", "Post Graduate"],
+    "organization": "Lalit Narayan Mithila University (LNMU Darbhanga)",
+    "postName": "Bihar CET B.Ed Regular & Shiksha Shastri 2-Year Admission",
+    "totalVacancies": 37500,
+    "startDate": "2026-08-14",
+    "closingDate": "2026-09-20",
+    "examDate": "June 2027",
+    "admitCardDate": "June 2027",
+    "resultDate": "July 2027",
+    "fees": [
+      { "category": "General / Unreserved", "amount": "Rs. 1000/-" },
+      { "category": "BC / EBC / EWS / Women", "amount": "Rs. 750/-" },
+      { "category": "SC / ST", "amount": "Rs. 500/-" }
+    ],
+    "minAge": "No Limit",
+    "maxAge": "No Limit",
+    "level": "state",
+    "states": ["bihar"],
+    "eligibility": [
+      { "postName": "B.Ed Admission", "totalPosts": "37500 Seats", "qualification": "Bachelor Degree with at least 50% marks OR Master in Science/Social Science/Humanities with 50% marks" }
+    ],
+    "officialUrl": "https://biharcetbed-lnmu.in",
+    "applyOnlineUrl": "https://biharcetbed-lnmu.in",
+    "notificationPdfUrl": "https://biharcetbed-lnmu.in"
+  },
+  {
+    "slug": "up-jeecup-polytechnic-2026",
+    "title": "UP Polytechnic JEECUP 2026 Admission Online Application Form",
+    "category": "admissions",
+    "jobCategories": ["Engineering", "State Govt"],
+    "qualifications": ["10th Pass", "12th Pass", "ITI"],
+    "organization": "Joint Entrance Examination Council Uttar Pradesh (JEECUP)",
+    "postName": "UP Joint Entrance Examination (Polytechnic) Group A to K",
+    "totalVacancies": 228000,
+    "startDate": "2026-08-01",
+    "closingDate": "2026-09-10",
+    "examDate": "June 2027",
+    "admitCardDate": "May 2027",
+    "resultDate": "July 2027",
+    "fees": [
+      { "category": "General / OBC", "amount": "Rs. 300/-" },
+      { "category": "SC / ST", "amount": "Rs. 200/-" }
+    ],
+    "minAge": "14 Years",
+    "maxAge": "No Limit",
+    "level": "state",
+    "states": ["uttar-pradesh"],
+    "eligibility": [
+      { "postName": "Diploma in Engineering (Group A)", "totalPosts": "State Polytechnic Seats", "qualification": "Passed Class 10 with minimum 35% marks with Science & Math subjects" }
+    ],
+    "officialUrl": "https://jeecup.admissions.nic.in",
+    "applyOnlineUrl": "https://jeecup.admissions.nic.in",
+    "notificationPdfUrl": "https://jeecup.admissions.nic.in"
+  },
+  {
+    "slug": "bihar-dcece-polytechnic-2026",
+    "title": "Bihar Polytechnic DCECE (PE / PMM / PM) 2026 Online Application Form",
+    "category": "admissions",
+    "jobCategories": ["Engineering", "Medical", "State Govt"],
+    "qualifications": ["10th Pass", "12th Pass"],
+    "organization": "Bihar Combined Entrance Competitive Examination Board (BCECEB)",
+    "postName": "Diploma Certificate Entrance Competitive Examination (DCECE)",
+    "totalVacancies": 35000,
+    "startDate": "2026-08-15",
+    "closingDate": "2026-09-22",
+    "examDate": "June 2027",
+    "admitCardDate": "June 2027",
+    "resultDate": "July 2027",
+    "fees": [
+      { "category": "General / BC / EBC (Single Syllabus)", "amount": "Rs. 750/-" },
+      { "category": "SC / ST / DQ", "amount": "Rs. 480/-" }
+    ],
+    "minAge": "No age limit for PE, 15-32 Yrs for PM/PMM",
+    "maxAge": "32 Years",
+    "level": "state",
+    "states": ["bihar"],
+    "eligibility": [
+      { "postName": "Polytechnic Engineering (PE)", "totalPosts": "State Seats", "qualification": "Class 10th Matriculation passed with minimum 35% marks from recognized board" },
+      { "postName": "Para Medical (PM/PMM)", "totalPosts": "Health Cadre Seats", "qualification": "10+2 Intermediate with PCB for PM / Class 10 for PMM" }
+    ],
+    "officialUrl": "https://bceceboard.bihar.gov.in",
+    "applyOnlineUrl": "https://bceceboard.bihar.gov.in",
+    "notificationPdfUrl": "https://bceceboard.bihar.gov.in"
+  },
+  {
+    "slug": "jnvst-navodaya-class-6-2026",
+    "title": "Navodaya Vidyalaya JNVST Class 6th Admission Form 2026 (Apply Online)",
+    "category": "admissions",
+    "jobCategories": ["Central Govt"],
+    "qualifications": ["5th Pass"],
+    "organization": "Navodaya Vidyalaya Samiti (NVS)",
+    "postName": "Jawahar Navodaya Vidyalaya Selection Test (JNVST) 2026 for Class VI",
+    "totalVacancies": 50000,
+    "startDate": "2026-08-01",
+    "closingDate": "2026-09-23",
+    "examDate": "18 January 2027 & 12 April 2027",
+    "admitCardDate": "December 2026",
+    "resultDate": "March 2027",
+    "fees": [
+      { "category": "All Candidates (No Application Fee)", "amount": "Rs. 0/- (Free)" }
+    ],
+    "minAge": "Born between 01-05-2013 and 31-07-2015",
+    "maxAge": "12 Years",
+    "level": "national",
+    "states": [],
+    "eligibility": [
+      { "postName": "Class 6 Admission", "totalPosts": "650+ JNV Schools", "qualification": "Candidate must be currently studying in Class 5 in Govt/Govt-aided school in the same district" }
+    ],
+    "officialUrl": "https://navodaya.gov.in",
+    "applyOnlineUrl": "https://cbseitms.rcil.gov.in/nvs",
+    "notificationPdfUrl": "https://navodaya.gov.in"
+  },
+  {
+    "slug": "sainik-school-aissee-2026",
+    "title": "All India Sainik School Admission AISSEE 2026 for Class 6th & 9th",
+    "category": "admissions",
+    "jobCategories": ["Defense", "Central Govt"],
+    "qualifications": ["5th Pass", "8th Pass"],
+    "organization": "National Testing Agency (NTA) & Sainik Schools Society",
+    "postName": "AISSEE 2026 Entrance Exam for 33 Sainik Schools and New Approved Sainik Schools",
+    "totalVacancies": 6000,
+    "startDate": "2026-08-20",
+    "closingDate": "2026-09-30",
+    "examDate": "January 2027",
+    "admitCardDate": "January 2027",
+    "resultDate": "March 2027",
+    "fees": [
+      { "category": "General / Defence / OBC", "amount": "Rs. 650/-" },
+      { "category": "SC / ST", "amount": "Rs. 500/-" }
+    ],
+    "minAge": "10-12 Years (Class 6), 13-15 Years (Class 9)",
+    "maxAge": "15 Years",
+    "level": "national",
+    "states": [],
+    "eligibility": [
+      { "postName": "Class 6 Entry", "totalPosts": "National Seats", "qualification": "Studying in Class 5, age between 10 and 12 years as on 31 March" },
+      { "postName": "Class 9 Entry", "totalPosts": "National Seats", "qualification": "Studying in Class 8 from recognized school, age between 13 and 15 years" }
+    ],
+    "officialUrl": "https://exams.nta.ac.in/AISSEE",
+    "applyOnlineUrl": "https://exams.nta.ac.in/AISSEE",
+    "notificationPdfUrl": "https://exams.nta.ac.in/AISSEE"
+  },
+  {
+    "slug": "up-scholarship-2026",
+    "title": "UP Scholarship 2026 Pre & Post Matric Online Application / Renewal Form",
+    "category": "scholarships",
+    "jobCategories": ["State Govt"],
+    "qualifications": ["10th Pass", "12th Pass", "Graduate", "Post Graduate"],
+    "organization": "Social Welfare Department, Government of Uttar Pradesh",
+    "postName": "UP Pre-Matric (9-10th) & Post-Matric (11-12th / Dashmottar / Degree / Diploma) Scholarship",
+    "totalVacancies": 0,
+    "startDate": "2026-08-01",
+    "closingDate": "2026-10-31",
+    "examDate": "Verification Based",
+    "admitCardDate": "N/A",
+    "resultDate": "PFMS Disbursement Starting Dec 2026",
+    "fees": [
+      { "category": "All Students (General / OBC / SC / ST / Minority)", "amount": "Rs. 0/- (Free)" }
+    ],
+    "minAge": "Enrolled Student",
+    "maxAge": "No Limit",
+    "level": "state",
+    "states": ["uttar-pradesh"],
+    "eligibility": [
+      { "postName": "Pre & Post Matric Scholarship", "totalPosts": "State Scheme", "qualification": "Enrolled in Class 9, 10, 11, 12 or UG/PG/Diploma in recognized UP institution with income below Rs. 2.5 Lakh (SC/ST) / Rs. 2 Lakh (Gen/OBC)" }
+    ],
+    "officialUrl": "https://scholarship.up.gov.in",
+    "applyOnlineUrl": "https://scholarship.up.gov.in",
+    "notificationPdfUrl": "https://scholarship.up.gov.in"
+  },
+  {
+    "slug": "national-scholarship-portal-nsp-2026",
+    "title": "National Scholarship Portal NSP 2026 (Central & UGC Schemes Apply Online)",
+    "category": "scholarships",
+    "jobCategories": ["Central Govt"],
+    "qualifications": ["10th Pass", "12th Pass", "Graduate", "Post Graduate"],
+    "organization": "Ministry of Electronics and Information Technology (MeitY) & Govt of India",
+    "postName": "Pre-Matric, Post-Matric, Top Class Education & Merit-cum-Means Scholarships",
+    "totalVacancies": 0,
+    "startDate": "2026-08-15",
+    "closingDate": "2026-10-31",
+    "examDate": "Direct Benefit Transfer (DBT)",
+    "admitCardDate": "N/A",
+    "resultDate": "Disbursement via PFMS",
+    "fees": [
+      { "category": "All Categories", "amount": "Rs. 0/- (No Fee)" }
+    ],
+    "minAge": "Student in Recognized School/College",
+    "maxAge": "No Limit",
+    "level": "national",
+    "states": [],
+    "eligibility": [
+      { "postName": "NSP Central Sector Scheme", "totalPosts": "National Quota", "qualification": "Minimum 50% marks in previous final exam with family annual income within prescribed ceiling" }
+    ],
+    "officialUrl": "https://scholarships.gov.in",
+    "applyOnlineUrl": "https://scholarships.gov.in",
+    "notificationPdfUrl": "https://scholarships.gov.in"
+  },
+  {
+    "slug": "pm-yashasvi-scholarship-2026",
+    "title": "PM Yashasvi Scholarship Scheme 2026 for OBC, EBC & DNT Students",
+    "category": "scholarships",
+    "jobCategories": ["Central Govt"],
+    "qualifications": ["8th Pass", "10th Pass"],
+    "organization": "Ministry of Social Justice & Empowerment & NTA",
+    "postName": "PM Young Achievers Scholarship Award Scheme for Vibrant India (YASASVI)",
+    "totalVacancies": 15000,
+    "startDate": "2026-08-10",
+    "closingDate": "2026-09-20",
+    "examDate": "Merit List on Class 8/10 Score",
+    "admitCardDate": "N/A",
+    "resultDate": "November 2026",
+    "fees": [
+      { "category": "All Eligible Candidates", "amount": "Rs. 0/-" }
+    ],
+    "minAge": "Class 9 & 11 Students",
+    "maxAge": "No Limit",
+    "level": "national",
+    "states": [],
+    "eligibility": [
+      { "postName": "Class 9 Scholarship (Rs. 75,000/yr)", "totalPosts": "7500", "qualification": "Studying in Class 9 in identified top school, family income <= 2.5 Lakh" },
+      { "postName": "Class 11 Scholarship (Rs. 1,25,000/yr)", "totalPosts": "7500", "qualification": "Studying in Class 11 in identified top school, family income <= 2.5 Lakh" }
+    ],
+    "officialUrl": "https://yet.nta.ac.in",
+    "applyOnlineUrl": "https://yet.nta.ac.in",
+    "notificationPdfUrl": "https://yet.nta.ac.in"
+  },
+  {
+    "slug": "bihar-post-matric-scholarship-pms-2026",
+    "title": "Bihar Post Matric Scholarship (PMS) Portal 2026 Apply Online (BC / EBC / SC / ST)",
+    "category": "scholarships",
+    "jobCategories": ["State Govt"],
+    "qualifications": ["10th Pass", "12th Pass", "Graduate", "Diploma"],
+    "organization": "Education Department, Government of Bihar",
+    "postName": "Bihar Post Matric Scholarship (PMS Online 2026)",
+    "totalVacancies": 0,
+    "startDate": "2026-08-15",
+    "closingDate": "2026-09-30",
+    "examDate": "Institution & District Verification",
+    "admitCardDate": "N/A",
+    "resultDate": "Aadhaar Linked DBT Payment",
+    "fees": [
+      { "category": "All Candidates", "amount": "Rs. 0/-" }
+    ],
+    "minAge": "Regular Student in Bihar",
+    "maxAge": "No Limit",
+    "level": "state",
+    "states": ["bihar"],
+    "eligibility": [
+      { "postName": "Post Matric Scheme", "totalPosts": "State Wide", "qualification": "Permanent resident of Bihar belonging to SC, ST, BC or EBC category studying in post-matric courses" }
+    ],
+    "officialUrl": "https://pmsonline.bih.nic.in",
+    "applyOnlineUrl": "https://pmsonline.bih.nic.in",
+    "notificationPdfUrl": "https://pmsonline.bih.nic.in"
+  },
+  {
+    "slug": "rajasthan-uttar-matric-scholarship-2026",
+    "title": "Rajasthan Uttar Matric Scholarship Scheme 2026 (SJE Portal Apply Online)",
+    "category": "scholarships",
+    "jobCategories": ["State Govt"],
+    "qualifications": ["10th Pass", "12th Pass", "Graduate"],
+    "organization": "Social Justice and Empowerment Department (SJED Rajasthan)",
+    "postName": "Post-Matric & Chief Minister Higher Education Scholarship Scheme",
+    "totalVacancies": 0,
+    "startDate": "2026-08-01",
+    "closingDate": "2026-09-30",
+    "examDate": "Online Scrutiny & Sanction",
+    "admitCardDate": "N/A",
+    "resultDate": "Monthly DBT Disbursement",
+    "fees": [
+      { "category": "All Eligible Candidates", "amount": "Rs. 0/-" }
+    ],
+    "minAge": "Student in Rajasthan",
+    "maxAge": "No Limit",
+    "level": "state",
+    "states": ["rajasthan"],
+    "eligibility": [
+      { "postName": "Uttar Matric Scholarship", "totalPosts": "State Scheme", "qualification": "Domicile of Rajasthan, SC/ST/SBC/OBC/EBC/DNT studying in Class 11, 12, Degree, Diploma" }
+    ],
+    "officialUrl": "https://sjmsnew.rajasthan.gov.in",
+    "applyOnlineUrl": "https://sso.rajasthan.gov.in",
+    "notificationPdfUrl": "https://sjmsnew.rajasthan.gov.in"
+  },
+  {
+    "slug": "ssc-cgl-exam-syllabus-2026",
+    "title": "SSC CGL 2026 Tier 1 & Tier 2 Detailed Exam Pattern and Syllabus PDF",
+    "category": "syllabus",
+    "jobCategories": ["Central Govt", "Civil Services"],
+    "qualifications": ["Graduate"],
+    "organization": "Staff Selection Commission (SSC)",
+    "postName": "Combined Graduate Level Examination Revised Syllabus & Scheme of Exam",
+    "totalVacancies": 14582,
+    "startDate": "2026-08-20",
+    "closingDate": "2026-09-25",
+    "examDate": "September 2026 & December 2026",
+    "admitCardDate": "August 2026",
+    "resultDate": "Syllabus Released (Download Official PDF)",
+    "fees": [
+      { "category": "No Fee for Syllabus", "amount": "Rs. 0/- (Free PDF)" }
+    ],
+    "minAge": "18 Years",
+    "maxAge": "32 Years",
+    "level": "national",
+    "states": [],
+    "eligibility": [
+      { "postName": "CGL Syllabus & Pattern", "totalPosts": "Tier 1: 100 Qs / 200 Marks, Tier 2: Paper 1 (Math, Reasoning, English, GA, Computer)", "qualification": "Bachelor Degree from recognized university" }
+    ],
+    "officialUrl": "https://ssc.gov.in",
+    "applyOnlineUrl": "https://ssc.gov.in",
+    "notificationPdfUrl": "https://ssc.gov.in"
+  },
+  {
+    "slug": "upsc-civil-services-syllabus-2026",
+    "title": "UPSC Civil Services (IAS / IFS / IPS) Prelims & Mains Syllabus & Pattern PDF",
+    "category": "syllabus",
+    "jobCategories": ["Civil Services", "Central Govt"],
+    "qualifications": ["Graduate"],
+    "organization": "Union Public Service Commission (UPSC)",
+    "postName": "Civil Services Prelims GS + CSAT and Mains 9 Papers Complete Syllabus",
+    "totalVacancies": 1205,
+    "startDate": "2026-02-01",
+    "closingDate": "2026-02-25",
+    "examDate": "May & September 2026",
+    "admitCardDate": "Released",
+    "resultDate": "Official Scheme Published",
+    "fees": [
+      { "category": "No Fee", "amount": "Rs. 0/- (Free Download)" }
+    ],
+    "minAge": "21 Years",
+    "maxAge": "32 Years",
+    "level": "national",
+    "states": [],
+    "eligibility": [
+      { "postName": "UPSC CSE Syllabus", "totalPosts": "Prelims (GS-1 & CSAT), Mains (Essay, GS 1-4, Optional 1-2)", "qualification": "Bachelor Degree in Any Discipline from Recognized University" }
+    ],
+    "officialUrl": "https://upsc.gov.in",
+    "applyOnlineUrl": "https://upsc.gov.in",
+    "notificationPdfUrl": "https://upsc.gov.in"
+  },
+  {
+    "slug": "rrb-ntpc-exam-pattern-syllabus-2026",
+    "title": "Railway RRB NTPC (Graduate & Under Graduate) Exam Pattern & Syllabus PDF",
+    "category": "syllabus",
+    "jobCategories": ["Railway"],
+    "qualifications": ["12th Pass", "Graduate"],
+    "organization": "Railway Recruitment Board (RRB)",
+    "postName": "NTPC CBT-1 (100 Marks) & CBT-2 (120 Marks) Detailed Topic-wise Syllabus",
+    "totalVacancies": 11558,
+    "startDate": "2026-08-01",
+    "closingDate": "2026-09-15",
+    "examDate": "November 2026",
+    "admitCardDate": "October 2026",
+    "resultDate": "Syllabus Active",
+    "fees": [
+      { "category": "Free PDF", "amount": "Rs. 0/-" }
+    ],
+    "minAge": "18 Years",
+    "maxAge": "33 Years",
+    "level": "national",
+    "states": [],
+    "eligibility": [
+      { "postName": "General Awareness (40 Qs), Mathematics (30 Qs), General Intelligence & Reasoning (30 Qs)", "totalPosts": "100 Questions / 90 Minutes", "qualification": "12th Pass / Graduate Degree" }
+    ],
+    "officialUrl": "https://indianrailways.gov.in",
+    "applyOnlineUrl": "https://rrbcdg.gov.in",
+    "notificationPdfUrl": "https://indianrailways.gov.in"
+  },
+  {
+    "slug": "up-police-constable-syllabus-pattern-2026",
+    "title": "UP Police Constable Exam Syllabus & Physical Efficiency Test (PET) Norms PDF",
+    "category": "syllabus",
+    "jobCategories": ["Police", "State Govt"],
+    "qualifications": ["12th Pass"],
+    "organization": "Uttar Pradesh Police Recruitment & Promotion Board (UPPRPB)",
+    "postName": "Constable Civil Police 150 Questions (300 Marks) Subject-wise Syllabus",
+    "totalVacancies": 60244,
+    "startDate": "2026-08-15",
+    "closingDate": "2026-09-30",
+    "examDate": "August 2026",
+    "admitCardDate": "Released",
+    "resultDate": "Official Syllabus PDF",
+    "fees": [
+      { "category": "Free Download", "amount": "Rs. 0/-" }
+    ],
+    "minAge": "18 Years",
+    "maxAge": "25 Years",
+    "level": "state",
+    "states": ["uttar-pradesh"],
+    "eligibility": [
+      { "postName": "General Knowledge (38), General Hindi (37), Numerical Ability (38), Mental Aptitude / Reasoning (37)", "totalPosts": "150 Questions / 300 Marks / Negative 0.50", "qualification": "10+2 Intermediate Passed" }
+    ],
+    "officialUrl": "https://uppbpb.gov.in",
+    "applyOnlineUrl": "https://uppbpb.gov.in",
+    "notificationPdfUrl": "https://uppbpb.gov.in"
+  },
+  {
+    "slug": "ctet-syllabus-exam-pattern-2026",
+    "title": "CTET Paper 1 & Paper 2 Complete Structure & Detailed Syllabus 2026 PDF",
+    "category": "syllabus",
+    "jobCategories": ["Teaching", "Central Govt"],
+    "qualifications": ["Graduate", "B.Ed / D.El.Ed"],
+    "organization": "Central Board of Secondary Education (CBSE)",
+    "postName": "Child Development & Pedagogy, Language I & II, Maths, EVS, Science/Social Studies",
+    "totalVacancies": 0,
+    "startDate": "2026-08-20",
+    "closingDate": "2026-09-25",
+    "examDate": "14 December 2026",
+    "admitCardDate": "December 2026",
+    "resultDate": "Information Bulletin Active",
+    "fees": [
+      { "category": "No Fee", "amount": "Rs. 0/-" }
+    ],
+    "minAge": "18 Years",
+    "maxAge": "No Limit",
+    "level": "national",
+    "states": [],
+    "eligibility": [
+      { "postName": "CTET Paper 1 (150 Qs) & Paper 2 (150 Qs) No Negative Marking", "totalPosts": "150 Marks / 2.5 Hours", "qualification": "D.El.Ed / B.Ed / B.El.Ed" }
+    ],
+    "officialUrl": "https://ctet.nic.in",
+    "applyOnlineUrl": "https://ctet.nic.in",
+    "notificationPdfUrl": "https://ctet.nic.in"
+  }
+]

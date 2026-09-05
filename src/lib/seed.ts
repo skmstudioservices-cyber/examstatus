@@ -54,8 +54,8 @@ export function enrichSeedPost(raw: Record<string, unknown>): Post {
     }
   ];
 
-  const level = 'national';
-  const states: string[] = [];
+  const level = (raw.level as 'national' | 'state') || (Array.isArray(raw.states) && raw.states.length > 0 ? 'state' : 'national');
+  const states = (raw.states as string[]) || [];
 
   return {
     slug: String(raw.slug),

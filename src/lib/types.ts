@@ -120,14 +120,21 @@ export const DEFAULT_THEME: ThemeSettings = {
   whatsappUrl: '',
   aiMode: 'approve',
   allowlistDomains: [
+    'gov.in',
+    'nic.in',
+    'ac.in',
+    'edu.in',
     'ssc.gov.in',
     'upsc.gov.in',
     'rrbcdg.gov.in',
     'indianrailways.gov.in',
     'ibps.in',
+    'sbi.co.in',
     'nta.ac.in',
     'ncs.gov.in',
-    'gate.iitk.ac.in'
+    'gate.iitk.ac.in',
+    'cdac.in',
+    'aiims.edu'
   ],
   cacheTtlSeconds: 300,
   defaultLang: 'en'

@@ -1,0 +1,408 @@
+[
+  {
+    "slug": "ossc-cgl-recruitment-2026",
+    "title": "OSSC Combined Graduate Level (CGL) Recruitment 2026 (595 Posts)",
+    "category": "latest-jobs",
+    "jobCategories": ["Civil Services", "State Govt"],
+    "qualifications": ["Graduate"],
+    "organization": "Odisha Staff Selection Commission (OSSC)",
+    "postName": "Auditor, Inspector of Endowments, Junior Fisheries Technical Assistant",
+    "totalVacancies": 595,
+    "startDate": "2026-08-20",
+    "closingDate": "2026-09-25",
+    "examDate": "November 2026",
+    "admitCardDate": "October 2026",
+    "resultDate": "January 2027",
+    "fees": [
+      { "category": "All Candidates (No Exam Fee as per Odisha Govt)", "amount": "Rs. 0/- (Free)" }
+    ],
+    "minAge": "21 Years",
+    "maxAge": "38 Years",
+    "level": "state",
+    "states": ["odisha"],
+    "eligibility": [
+      { "postName": "Auditor & Group B/C Posts", "totalPosts": "595", "qualification": "Bachelor Degree in any discipline with Odia language proficiency in ME school level" }
+    ],
+    "officialUrl": "https://ossc.gov.in",
+    "applyOnlineUrl": "https://ossc.gov.in",
+    "notificationPdfUrl": "https://ossc.gov.in"
+  },
+  {
+    "slug": "cgpsc-state-service-2026",
+    "title": "Chhattisgarh CGPSC State Service Exam (PCS) 2026 Online Form (242 Posts)",
+    "category": "latest-jobs",
+    "jobCategories": ["Civil Services", "State Govt"],
+    "qualifications": ["Graduate"],
+    "organization": "Chhattisgarh Public Service Commission (CGPSC)",
+    "postName": "Deputy Collector, DSP, Commercial Tax Officer, Naib Tehsildar",
+    "totalVacancies": 242,
+    "startDate": "2026-08-25",
+    "closingDate": "2026-09-30",
+    "examDate": "February 2027",
+    "admitCardDate": "January 2027",
+    "resultDate": "April 2027",
+    "fees": [
+      { "category": "Chhattisgarh Domicile", "amount": "Rs. 0/- (Free)" },
+      { "category": "Other State Candidates", "amount": "Rs. 400/-" }
+    ],
+    "minAge": "21 Years",
+    "maxAge": "40 Years",
+    "level": "state",
+    "states": ["chhattisgarh"],
+    "eligibility": [
+      { "postName": "State Administrative Services", "totalPosts": "242", "qualification": "Graduation Degree in Any Stream from Recognized University" }
+    ],
+    "officialUrl": "https://psc.cg.gov.in",
+    "applyOnlineUrl": "https://psc.cg.gov.in",
+    "notificationPdfUrl": "https://psc.cg.gov.in"
+  },
+  {
+    "slug": "ukpsc-upper-pcs-2026",
+    "title": "Uttarakhand UKPSC Combined Upper Subordinate (PCS) Exam 2026 (189 Posts)",
+    "category": "latest-jobs",
+    "jobCategories": ["Civil Services", "State Govt"],
+    "qualifications": ["Graduate"],
+    "organization": "Uttarakhand Public Service Commission (UKPSC)",
+    "postName": "Deputy Collector, Deputy SP, Finance Officer, Assistant Director",
+    "totalVacancies": 189,
+    "startDate": "2026-08-15",
+    "closingDate": "2026-09-20",
+    "examDate": "November 2026",
+    "admitCardDate": "October 2026",
+    "resultDate": "January 2027",
+    "fees": [
+      { "category": "General / OBC", "amount": "Rs. 172/-" },
+      { "category": "SC / ST / PwD of Uttarakhand", "amount": "Rs. 82/-" }
+    ],
+    "minAge": "21 Years",
+    "maxAge": "42 Years",
+    "level": "state",
+    "states": ["uttarakhand"],
+    "eligibility": [
+      { "postName": "Upper Subordinate Services", "totalPosts": "189", "qualification": "Bachelor Degree from University established by law in India" }
+    ],
+    "officialUrl": "https://psc.uk.gov.in",
+    "applyOnlineUrl": "https://ukpscnet.in",
+    "notificationPdfUrl": "https://psc.uk.gov.in"
+  },
+  {
+    "slug": "gpsc-class-1-2-2026",
+    "title": "Gujarat GPSC Gujarat Administrative Service Class 1 & 2 Recruitment 2026 (160 Posts)",
+    "category": "latest-jobs",
+    "jobCategories": ["Civil Services", "State Govt"],
+    "qualifications": ["Graduate"],
+    "organization": "Gujarat Public Service Commission (GPSC)",
+    "postName": "Gujarat Administrative Service (Junior Scale), Deputy Collector, DSP",
+    "totalVacancies": 160,
+    "startDate": "2026-08-10",
+    "closingDate": "2026-09-15",
+    "examDate": "December 2026",
+    "admitCardDate": "November 2026",
+    "resultDate": "February 2027",
+    "fees": [
+      { "category": "General", "amount": "Rs. 100/-" },
+      { "category": "Reserved Categories of Gujarat", "amount": "Rs. 0/-" }
+    ],
+    "minAge": "20 Years",
+    "maxAge": "36 Years",
+    "level": "state",
+    "states": ["gujarat"],
+    "eligibility": [
+      { "postName": "Class 1 & 2 Cadres", "totalPosts": "160", "qualification": "Bachelor Degree in Any Stream from Recognized University" }
+    ],
+    "officialUrl": "https://gpsc.gujarat.gov.in",
+    "applyOnlineUrl": "https://gpsc-ojas.gujarat.gov.in",
+    "notificationPdfUrl": "https://gpsc.gujarat.gov.in"
+  },
+  {
+    "slug": "appsc-group-2-services-2026",
+    "title": "APPSC Group 2 Services Recruitment 2026 for 897 Executive & Non-Executive Posts",
+    "category": "latest-jobs",
+    "jobCategories": ["Civil Services", "State Govt"],
+    "qualifications": ["Graduate"],
+    "organization": "Andhra Pradesh Public Service Commission (APPSC)",
+    "postName": "Municipal Commissioner, Sub Registrar, Assistant Commercial Tax Officer",
+    "totalVacancies": 897,
+    "startDate": "2026-08-18",
+    "closingDate": "2026-09-22",
+    "examDate": "December 2026",
+    "admitCardDate": "November 2026",
+    "resultDate": "February 2027",
+    "fees": [
+      { "category": "General / Other State", "amount": "Rs. 370/-" },
+      { "category": "SC / ST / BC / ESM of AP", "amount": "Rs. 250/-" }
+    ],
+    "minAge": "18 Years",
+    "maxAge": "42 Years",
+    "level": "state",
+    "states": ["andhra-pradesh"],
+    "eligibility": [
+      { "postName": "Group 2 Services", "totalPosts": "897", "qualification": "Bachelor Degree in Any Discipline from Recognized University" }
+    ],
+    "officialUrl": "https://psc.ap.gov.in",
+    "applyOnlineUrl": "https://psc.ap.gov.in",
+    "notificationPdfUrl": "https://psc.ap.gov.in"
+  },
+  {
+    "slug": "tspsc-group-1-services-2026",
+    "title": "Telangana TSPSC Group 1 Services Recruitment 2026 (563 Posts)",
+    "category": "latest-jobs",
+    "jobCategories": ["Civil Services", "State Govt"],
+    "qualifications": ["Graduate"],
+    "organization": "Telangana Public Service Commission (TGPSC)",
+    "postName": "Deputy Collector, DSP, Commercial Tax Officer, District Registrar",
+    "totalVacancies": 563,
+    "startDate": "2026-08-14",
+    "closingDate": "2026-09-18",
+    "examDate": "21 October 2026 (Mains)",
+    "admitCardDate": "October 2026",
+    "resultDate": "January 2027",
+    "fees": [
+      { "category": "All Candidates (Application)", "amount": "Rs. 200/- (Exam Fee Rs. 120/- for Unemployed)" },
+      { "category": "SC / ST / BC / EWS of Telangana", "amount": "Rs. 0/- (Exam fee exempt)" }
+    ],
+    "minAge": "18 Years",
+    "maxAge": "46 Years",
+    "level": "state",
+    "states": ["telangana"],
+    "eligibility": [
+      { "postName": "Group 1 Cadre", "totalPosts": "563", "qualification": "Bachelor Degree from Recognized University of India" }
+    ],
+    "officialUrl": "https://tspsc.gov.in",
+    "applyOnlineUrl": "https://tspsc.gov.in",
+    "notificationPdfUrl": "https://tspsc.gov.in"
+  },
+  {
+    "slug": "tnpsc-group-4-services-2026",
+    "title": "TNPSC Group 4 Combined Civil Services Exam-IV 2026 (8932 Posts)",
+    "category": "latest-jobs",
+    "jobCategories": ["State Govt"],
+    "qualifications": ["10th Pass"],
+    "organization": "Tamil Nadu Public Service Commission (TNPSC)",
+    "postName": "Junior Assistant, Bill Collector, Typist, Steno-Typist, Village Administrative Officer (VAO)",
+    "totalVacancies": 8932,
+    "startDate": "2026-08-01",
+    "closingDate": "2026-09-05",
+    "examDate": "October 2026",
+    "admitCardDate": "September 2026",
+    "resultDate": "December 2026",
+    "fees": [
+      { "category": "One Time Registration (OTR)", "amount": "Rs. 150/-" },
+      { "category": "Examination Fee", "amount": "Rs. 100/-" }
+    ],
+    "minAge": "18 Years / 21 Years (VAO)",
+    "maxAge": "32 Years (General) / 37 Years (BC/MBC/SC/ST)",
+    "level": "state",
+    "states": ["tamil-nadu"],
+    "eligibility": [
+      { "postName": "VAO & Junior Assistant", "totalPosts": "8932", "qualification": "SSLC / Class 10th Passed with eligibility for admission to Higher Secondary Course" }
+    ],
+    "officialUrl": "https://tnpsc.gov.in",
+    "applyOnlineUrl": "https://tnpscexams.in",
+    "notificationPdfUrl": "https://tnpsc.gov.in"
+  },
+  {
+    "slug": "kerala-psc-police-constable-2026",
+    "title": "Kerala PSC Civil Police Officer (Police Constable) Recruitment 2026",
+    "category": "latest-jobs",
+    "jobCategories": ["Police", "State Govt"],
+    "qualifications": ["12th Pass"],
+    "organization": "Kerala Public Service Commission (Kerala PSC)",
+    "postName": "Civil Police Officer (Police Constable) in Armed Police Battalion",
+    "totalVacancies": 1250,
+    "startDate": "2026-08-10",
+    "closingDate": "2026-09-15",
+    "examDate": "November 2026",
+    "admitCardDate": "October 2026",
+    "resultDate": "January 2027",
+    "fees": [
+      { "category": "All Candidates (No Examination Fee in Kerala PSC)", "amount": "Rs. 0/- (Free)" }
+    ],
+    "minAge": "18 Years",
+    "maxAge": "26 Years",
+    "level": "state",
+    "states": ["kerala"],
+    "eligibility": [
+      { "postName": "Civil Police Officer", "totalPosts": "1250", "qualification": "Pass in Plus Two Examination (10+2) or its equivalent from recognized board" }
+    ],
+    "officialUrl": "https://keralapsc.gov.in",
+    "applyOnlineUrl": "https://thulasi.keralapsc.gov.in",
+    "notificationPdfUrl": "https://keralapsc.gov.in"
+  },
+  {
+    "slug": "ksp-karnataka-psi-2026",
+    "title": "Karnataka KSP Police Sub Inspector (PSI) Recruitment 2026 (402 Posts)",
+    "category": "latest-jobs",
+    "jobCategories": ["Police", "State Govt"],
+    "qualifications": ["Graduate"],
+    "organization": "Karnataka State Police (KSP)",
+    "postName": "Police Sub Inspector (Civil) Male & Female",
+    "totalVacancies": 402,
+    "startDate": "2026-08-16",
+    "closingDate": "2026-09-20",
+    "examDate": "October 2026",
+    "admitCardDate": "September 2026",
+    "resultDate": "December 2026",
+    "fees": [
+      { "category": "General / 2A / 2B / 3A / 3B", "amount": "Rs. 500/-" },
+      { "category": "SC / ST / CAT-01", "amount": "Rs. 250/-" }
+    ],
+    "minAge": "21 Years",
+    "maxAge": "30 Years",
+    "level": "state",
+    "states": ["karnataka"],
+    "eligibility": [
+      { "postName": "Police Sub Inspector (Civil)", "totalPosts": "402", "qualification": "Degree from recognized university in any stream with Kannada knowledge" }
+    ],
+    "officialUrl": "https://ksp.karnataka.gov.in",
+    "applyOnlineUrl": "https://ksp-recruitment.in",
+    "notificationPdfUrl": "https://ksp.karnataka.gov.in"
+  },
+  {
+    "slug": "bhel-engineer-trainee-2026",
+    "title": "BHEL Engineer Trainee (ET) Recruitment 2026 (150 Posts via GATE)",
+    "category": "latest-jobs",
+    "jobCategories": ["Engineering"],
+    "qualifications": ["B.Tech"],
+    "organization": "Bharat Heavy Electricals Limited (BHEL)",
+    "postName": "Engineer Trainee in Civil, Mechanical, Electrical, Chemical",
+    "totalVacancies": 150,
+    "startDate": "2026-08-15",
+    "closingDate": "2026-09-18",
+    "examDate": "Shortlisting via GATE Score",
+    "admitCardDate": "October 2026",
+    "resultDate": "November 2026",
+    "fees": [
+      { "category": "UR / EWS / OBC", "amount": "Rs. 500/-" },
+      { "category": "SC / ST / PwD", "amount": "Rs. 0/-" }
+    ],
+    "minAge": "21 Years",
+    "maxAge": "27 Years",
+    "level": "national",
+    "states": [],
+    "eligibility": [
+      { "postName": "Engineer Trainee", "totalPosts": "150", "qualification": "Full time regular Bachelor Degree in Engineering/Technology with minimum 65% marks" }
+    ],
+    "officialUrl": "https://bhel.com",
+    "applyOnlineUrl": "https://careers.bhel.in",
+    "notificationPdfUrl": "https://bhel.com"
+  },
+  {
+    "slug": "ntpc-engineering-executive-eet-2026",
+    "title": "NTPC Engineering Executive Trainee (EET) Recruitment 2026 (280 Posts)",
+    "category": "latest-jobs",
+    "jobCategories": ["Engineering"],
+    "qualifications": ["B.Tech"],
+    "organization": "NTPC Limited",
+    "postName": "Engineering Executive Trainee in Electrical, Mechanical, Electronics, Instrumentation, Mining",
+    "totalVacancies": 280,
+    "startDate": "2026-08-20",
+    "closingDate": "2026-09-28",
+    "examDate": "GATE Score + Interview",
+    "admitCardDate": "October 2026",
+    "resultDate": "December 2026",
+    "fees": [
+      { "category": "General / EWS / OBC", "amount": "Rs. 300/-" },
+      { "category": "SC / ST / PwBD / Female", "amount": "Rs. 0/-" }
+    ],
+    "minAge": "21 Years",
+    "maxAge": "27 Years",
+    "level": "national",
+    "states": [],
+    "eligibility": [
+      { "postName": "Executive Trainee", "totalPosts": "280", "qualification": "Full time Engineering Degree with not less than 65% marks" }
+    ],
+    "officialUrl": "https://ntpc.co.in",
+    "applyOnlineUrl": "https://careers.ntpc.co.in",
+    "notificationPdfUrl": "https://ntpc.co.in"
+  },
+  {
+    "slug": "pgcil-diploma-trainee-2026",
+    "title": "PowerGrid PGCIL Diploma Trainee Recruitment 2026 (425 Posts)",
+    "category": "latest-jobs",
+    "jobCategories": ["Engineering"],
+    "qualifications": ["Diploma"],
+    "organization": "Power Grid Corporation of India Limited (PGCIL)",
+    "postName": "Diploma Trainee in Electrical, Civil, Electronics, Computer Science",
+    "totalVacancies": 425,
+    "startDate": "2026-08-12",
+    "closingDate": "2026-09-15",
+    "examDate": "October 2026",
+    "admitCardDate": "October 2026",
+    "resultDate": "December 2026",
+    "fees": [
+      { "category": "General / OBC / EWS", "amount": "Rs. 300/-" },
+      { "category": "SC / ST / PwD / ESM", "amount": "Rs. 0/-" }
+    ],
+    "minAge": "18 Years",
+    "maxAge": "27 Years",
+    "level": "national",
+    "states": [],
+    "eligibility": [
+      { "postName": "Diploma Trainee", "totalPosts": "425", "qualification": "Regular 3-Year Diploma in relevant Engineering branch with minimum 70% marks" }
+    ],
+    "officialUrl": "https://powergrid.in",
+    "applyOnlineUrl": "https://careers.powergrid.in",
+    "notificationPdfUrl": "https://powergrid.in"
+  },
+  {
+    "slug": "coal-india-management-trainee-2026",
+    "title": "Coal India Limited (CIL) Management Trainee Recruitment 2026 (640 Posts)",
+    "category": "latest-jobs",
+    "jobCategories": ["Engineering", "Central Govt"],
+    "qualifications": ["B.Tech", "Graduate"],
+    "organization": "Coal India Limited (CIL)",
+    "postName": "Management Trainee (Mining, Civil, Electrical, Mechanical, Geology)",
+    "totalVacancies": 640,
+    "startDate": "2026-08-25",
+    "closingDate": "2026-09-30",
+    "examDate": "Shortlisting through GATE Scores",
+    "admitCardDate": "October 2026",
+    "resultDate": "November 2026",
+    "fees": [
+      { "category": "General / OBC / EWS", "amount": "Rs. 1180/-" },
+      { "category": "SC / ST / PwD / CIL Employees", "amount": "Rs. 0/-" }
+    ],
+    "minAge": "21 Years",
+    "maxAge": "30 Years",
+    "level": "national",
+    "states": [],
+    "eligibility": [
+      { "postName": "Management Trainee", "totalPosts": "640", "qualification": "BE/B.Tech/B.Sc (Engg) in relevant branch of Engineering with minimum 60% marks" }
+    ],
+    "officialUrl": "https://coalindia.in",
+    "applyOnlineUrl": "https://coalindia.in/career-cil",
+    "notificationPdfUrl": "https://coalindia.in"
+  },
+  {
+    "slug": "dmrc-cra-maintainer-2026",
+    "title": "Delhi Metro DMRC Customer Relations Assistant & Maintainer 2026 (1492 Posts)",
+    "category": "latest-jobs",
+    "jobCategories": ["Railway", "State Govt"],
+    "qualifications": ["10th Pass", "ITI", "Diploma", "Graduate"],
+    "organization": "Delhi Metro Rail Corporation (DMRC)",
+    "postName": "Customer Relations Assistant (CRA), Junior Engineer (JE), Maintainer (Electrician/Fitter)",
+    "totalVacancies": 1492,
+    "startDate": "2026-08-22",
+    "closingDate": "2026-09-28",
+    "examDate": "November 2026",
+    "admitCardDate": "October 2026",
+    "resultDate": "January 2027",
+    "fees": [
+      { "category": "General / EWS / OBC", "amount": "Rs. 500/-" },
+      { "category": "SC / ST / PwD / Women", "amount": "Rs. 250/-" }
+    ],
+    "minAge": "18 Years",
+    "maxAge": "30 Years",
+    "level": "state",
+    "states": ["delhi"],
+    "eligibility": [
+      { "postName": "CRA (Customer Relations)", "totalPosts": "386", "qualification": "Bachelor Degree with 3-Year course in any discipline with computer literacy" },
+      { "postName": "Junior Engineer", "totalPosts": "592", "qualification": "3-Year Diploma in Civil / Electrical / Electronics Engineering" },
+      { "postName": "Maintainer (Trades)", "totalPosts": "514", "qualification": "Class 10th Pass with ITI (NCVT/SCVT) in Electrician / Fitter / Electronic Mechanic" }
+    ],
+    "officialUrl": "https://delhimetrorail.com",
+    "applyOnlineUrl": "https://delhimetrorail.com/career",
+    "notificationPdfUrl": "https://delhimetrorail.com"
+  }
+]

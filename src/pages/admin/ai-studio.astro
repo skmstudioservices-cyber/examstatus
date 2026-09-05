@@ -1,0 +1,370 @@
+﻿---
+import AdminLayout from '../../layouts/AdminLayout.astro';
+import { getDb } from '../../lib/posts';
+import { parseCookies, resolveAdmin, canManageAi } from '../../lib/auth';
+import { CLOUDFLARE_FREE_MODELS } from '../api/admin/ai-studio.json';
+
+export const prerender = false;
+
+const db = getDb(Astro.locals);
+if (!db) return Astro.redirect('/admin/login');
+const cookies = parseCookies(Astro.request.headers.get('cookie'));
+const user = await resolveAdmin(db, Astro.request, cookies['examstatus_session']);
+if (!user || !canManageAi(user.role)) return Astro.redirect('/admin');
+---
+
+<AdminLayout user={user} title="Cloudflare AI Studio" breadcrumbs={[{ label: 'AI Studio' }]}>
+  <div class="mb-5 flex flex-wrap items-center justify-between gap-3 border-b border-slate-200 pb-4">
+    <div>
+      <div class="flex items-center gap-2">
+        <h1 class="text-xl font-bold text-[#1d2327]">Cloudflare AI Developer Studio</h1>
+        <span class="rounded bg-indigo-100 text-indigo-800 text-[11px] font-bold px-2 py-0.5 uppercase tracking-wide">Workers AI Free</span>
+      </div>
+      <p class="text-xs text-slate-500 mt-1">
+        Prompt, test, write code, refactor schemas, or generate queries with Cloudflare-hosted free LLMs. Includes Cursor-style Auto routing and GLM models.
+      </p>
+    </div>
+    <div class="flex items-center gap-2">
+      <a
+        href="/admin/ai"
+        class="inline-flex items-center gap-1.5 rounded border border-slate-300 bg-white px-3 py-1.5 text-xs font-semibold text-slate-700 hover:bg-slate-50 shadow-sm transition"
+      >
+        <svg class="h-3.5 w-3.5 text-amber-500" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 10V3L4 14h7v7l9-11h-7z" />
+        </svg>
+        <span>AI Crawl & Inbox</span>
+      </a>
+    </div>
+  </div>
+
+  <div class="grid grid-cols-1 lg:grid-cols-12 gap-5">
+    <!-- Left Configuration & Input Panel -->
+    <div class="lg:col-span-5 space-y-4">
+      <div class="bg-white border border-slate-200 rounded-md p-4 shadow-sm space-y-4">
+        <div>
+          <label class="block text-xs font-bold text-slate-700 uppercase tracking-wider mb-1.5">
+            Model Selection
+          </label>
+          <select
+            id="model-selector"
+            class="w-full text-xs rounded border border-slate-300 px-3 py-2 bg-slate-50 font-medium focus:border-indigo-500 focus:bg-white focus:outline-none transition"
+          >
+            {CLOUDFLARE_FREE_MODELS.map((m) => (
+              <option value={m.id}>
+                {m.name} [{m.badge}]
+              </option>
+            ))}
+            <option value="custom">-- Custom Cloudflare Model ID --</option>
+          </select>
+          <p id="model-desc" class="text-[11px] text-slate-500 mt-1.5 leading-relaxed">
+            Automatically analyzes your prompt intent and routes to the best model (Code -> Qwen 2.5 Coder 32B, Logic/Math -> DeepSeek R1, Complex/Agentic -> GLM-5.3-Flash, Fast Chat -> Llama 3.1 8B).
+          </p>
+        </div>
+
+        <div id="custom-model-container" class="hidden">
+          <label class="block text-xs font-bold text-slate-700 uppercase tracking-wider mb-1">
+            Custom Model ID (@cf/...)
+          </label>
+          <input
+            type="text"
+            id="custom-model-input"
+            placeholder="@cf/deepseek-ai/deepseek-math-7b-instruct"
+            class="w-full text-xs font-mono rounded border border-slate-300 px-3 py-2 bg-slate-50 focus:border-indigo-500 focus:bg-white focus:outline-none"
+          />
+          <span class="text-[10px] text-slate-400 mt-1 block">
+            Enter any valid Cloudflare Workers AI model identifier from the Cloudflare Docs.
+          </span>
+        </div>
+
+        <div>
+          <div class="flex items-center justify-between mb-1">
+            <label class="text-xs font-bold text-slate-700 uppercase tracking-wider">
+              System Instructions (Optional)
+            </label>
+            <div class="flex items-center gap-1.5">
+              <button
+                type="button"
+                id="btn-preset-coder"
+                class="text-[10px] text-indigo-600 hover:text-indigo-800 underline font-semibold"
+              >
+                Coder
+              </button>
+              <span class="text-slate-300">|</span>
+              <button
+                type="button"
+                id="btn-preset-schema"
+                class="text-[10px] text-indigo-600 hover:text-indigo-800 underline font-semibold"
+              >
+                Insert D1 Schema
+              </button>
+            </div>
+          </div>
+          <textarea
+            id="system-prompt"
+            rows="3"
+            placeholder="You are an expert full-stack TypeScript, Astro, and Cloudflare Workers engineer..."
+            class="w-full text-xs rounded border border-slate-300 p-2.5 bg-slate-50 focus:border-indigo-500 focus:bg-white focus:outline-none transition resize-y font-mono"
+          ></textarea>
+        </div>
+
+        <div>
+          <label class="block text-xs font-bold text-slate-700 uppercase tracking-wider mb-1">
+            Prompt / Task / Code
+          </label>
+          <textarea
+            id="user-prompt"
+            rows="7"
+            placeholder="E.g.: Write an optimized SQL query for Cloudflare D1 to fetch all active exams grouped by state with last_date in the next 15 days..."
+            class="w-full text-xs rounded border border-slate-300 p-2.5 bg-slate-50 focus:border-indigo-500 focus:bg-white focus:outline-none transition resize-y font-mono"
+          ></textarea>
+        </div>
+
+        <div class="grid grid-cols-2 gap-3 pt-1 border-t border-slate-100">
+          <div>
+            <label class="block text-[11px] font-semibold text-slate-600 mb-1">
+              Temperature: <span id="temp-val" class="font-mono text-indigo-600">0.7</span>
+            </label>
+            <input
+              type="range"
+              id="temp-slider"
+              min="0"
+              max="1.5"
+              step="0.1"
+              value="0.7"
+              class="w-full h-1.5 bg-slate-200 rounded-lg appearance-none cursor-pointer"
+            />
+          </div>
+          <div>
+            <label class="block text-[11px] font-semibold text-slate-600 mb-1">
+              Max Tokens: <span id="tokens-val" class="font-mono text-indigo-600">2048</span>
+            </label>
+            <input
+              type="range"
+              id="tokens-slider"
+              min="256"
+              max="4096"
+              step="128"
+              value="2048"
+              class="w-full h-1.5 bg-slate-200 rounded-lg appearance-none cursor-pointer"
+            />
+          </div>
+        </div>
+
+        <button
+          type="button"
+          id="btn-run"
+          class="w-full rounded bg-indigo-600 py-2.5 px-4 text-xs font-bold text-white shadow-sm hover:bg-indigo-700 transition flex items-center justify-center gap-2 cursor-pointer"
+        >
+          <svg id="run-spinner" class="hidden animate-spin h-4 w-4 text-white" fill="none" viewBox="0 0 24 24">
+            <circle class="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" stroke-width="4"></circle>
+            <path class="opacity-75" fill="currentColor" d="M4 12a8 8 0 018-8v8H4z"></path>
+          </svg>
+          <span id="run-text">Run Model / Auto-Route ⚡</span>
+        </button>
+      </div>
+
+      <!-- Quick Tips Card -->
+      <div class="bg-indigo-50/50 border border-indigo-100 rounded-md p-3.5 text-xs text-indigo-950 space-y-1.5">
+        <p class="font-bold flex items-center gap-1.5 text-indigo-900">
+          <span>💡 Cursor-Style Auto Routing</span>
+        </p>
+        <p class="text-[11px] text-indigo-800 leading-relaxed">
+          When <strong>Auto</strong> is selected, the engine inspects your prompt for coding keywords, mathematical reasoning, agent workflows, or chat queries, and transparently routes to <strong>Qwen 2.5 Coder</strong>, <strong>DeepSeek R1</strong>, <strong>GLM-5.3-Flash</strong>, or <strong>Llama 3.3/3.1</strong>.
+        </p>
+      </div>
+    </div>
+
+    <!-- Right Response Output Panel -->
+    <div class="lg:col-span-7 flex flex-col">
+      <div class="bg-white border border-slate-200 rounded-md shadow-sm flex-1 flex flex-col min-h-[520px]">
+        <!-- Output Header -->
+        <div class="px-4 py-3 border-b border-slate-200 flex flex-wrap items-center justify-between gap-2 bg-slate-50/80">
+          <div class="flex items-center gap-2">
+            <span class="text-xs font-bold text-slate-700 uppercase tracking-wider">Output Console</span>
+            <span id="badge-model" class="hidden rounded bg-emerald-100 text-emerald-800 text-[10px] font-mono font-bold px-2 py-0.5"></span>
+            <span id="badge-latency" class="hidden rounded bg-slate-100 text-slate-600 text-[10px] font-mono px-1.5 py-0.5"></span>
+          </div>
+          <div class="flex items-center gap-2">
+            <button
+              type="button"
+              id="btn-copy"
+              class="hidden text-xs text-slate-600 hover:text-slate-900 font-semibold px-2 py-1 rounded border border-slate-200 bg-white hover:bg-slate-50 shadow-xs"
+            >
+              📋 Copy Output
+            </button>
+            <button
+              type="button"
+              id="btn-clear"
+              class="text-xs text-slate-400 hover:text-slate-600 font-semibold"
+            >
+              Clear
+            </button>
+          </div>
+        </div>
+
+        <!-- Auto-routing Explanation Banner -->
+        <div id="routing-banner" class="hidden px-4 py-2 bg-amber-50/80 border-b border-amber-200 text-xs text-amber-900 flex items-center gap-2">
+          <span class="font-bold">⚡ Routed:</span>
+          <span id="routing-reason" class="text-[11px] font-mono"></span>
+        </div>
+
+        <!-- Output Content Area -->
+        <div class="p-4 flex-1 overflow-auto bg-[#0d1117] text-[#e6edf3] font-mono text-xs leading-relaxed rounded-b-md">
+          <pre id="output-text" class="whitespace-pre-wrap select-text font-mono text-[12px]">Ready. Choose a model or leave as Auto (Cursor Style) and click "Run Model / Auto-Route".</pre>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <script define:vars={{ CLOUDFLARE_FREE_MODELS }}>
+    const modelSelector = document.getElementById('model-selector');
+    const customContainer = document.getElementById('custom-model-container');
+    const customInput = document.getElementById('custom-model-input');
+    const modelDesc = document.getElementById('model-desc');
+    const systemPrompt = document.getElementById('system-prompt');
+    const userPrompt = document.getElementById('user-prompt');
+    const tempSlider = document.getElementById('temp-slider');
+    const tempVal = document.getElementById('temp-val');
+    const tokensSlider = document.getElementById('tokens-slider');
+    const tokensVal = document.getElementById('tokens-val');
+    const btnRun = document.getElementById('btn-run');
+    const runSpinner = document.getElementById('run-spinner');
+    const runText = document.getElementById('run-text');
+    const outputText = document.getElementById('output-text');
+    const badgeModel = document.getElementById('badge-model');
+    const badgeLatency = document.getElementById('badge-latency');
+    const btnCopy = document.getElementById('btn-copy');
+    const btnClear = document.getElementById('btn-clear');
+    const routingBanner = document.getElementById('routing-banner');
+    const routingReason = document.getElementById('routing-reason');
+
+    const btnPresetCoder = document.getElementById('btn-preset-coder');
+    const btnPresetSchema = document.getElementById('btn-preset-schema');
+
+    // Model description mapping
+    const descMap = {};
+    CLOUDFLARE_FREE_MODELS.forEach((m) => {
+      descMap[m.id] = m.description;
+    });
+
+    modelSelector.addEventListener('change', () => {
+      const val = modelSelector.value;
+      if (val === 'custom') {
+        customContainer.classList.remove('hidden');
+        modelDesc.textContent = 'Enter any valid Cloudflare Workers AI model identifier.';
+      } else {
+        customContainer.classList.add('hidden');
+        modelDesc.textContent = descMap[val] || '';
+      }
+    });
+
+    tempSlider.addEventListener('input', () => {
+      tempVal.textContent = tempSlider.value;
+    });
+
+    tokensSlider.addEventListener('input', () => {
+      tokensVal.textContent = tokensSlider.value;
+    });
+
+    btnPresetCoder.addEventListener('click', () => {
+      systemPrompt.value = 'You are an elite software architect and senior full-stack engineer. You write concise, modern, production-grade TypeScript, Astro, and Tailwind CSS code with zero unnecessary boilerplate.';
+    });
+
+    btnPresetSchema.addEventListener('click', () => {
+      systemPrompt.value = 'ExamStatus D1 Database Schema Context:\n' +
+        '- posts(id INTEGER PRIMARY KEY, title TEXT, slug TEXT UNIQUE, excerpt TEXT, content TEXT, category TEXT, type TEXT, status TEXT, level TEXT, states TEXT, source_url TEXT, application_start_date TEXT, application_end_date TEXT, exam_date TEXT, admit_card_date TEXT, result_date TEXT, fee_general REAL, fee_reserved REAL, age_min INTEGER, age_max INTEGER, total_vacancies INTEGER, published_at TEXT, created_by TEXT)\n' +
+        '- ai_drafts(id INTEGER PRIMARY KEY, raw_source_url TEXT, extracted_json TEXT, status TEXT, created_at TEXT)\n' +
+        '- source_crawl_log(id INTEGER PRIMARY KEY, source_url TEXT UNIQUE, status TEXT, last_fetched_at TEXT, items_found INTEGER)';
+    });
+
+    btnClear.addEventListener('click', () => {
+      outputText.textContent = 'Ready. Select a model or enter your prompt.';
+      badgeModel.classList.add('hidden');
+      badgeLatency.classList.add('hidden');
+      btnCopy.classList.add('hidden');
+      routingBanner.classList.add('hidden');
+    });
+
+    btnCopy.addEventListener('click', async () => {
+      const text = outputText.textContent;
+      try {
+        await navigator.clipboard.writeText(text);
+        btnCopy.textContent = '✓ Copied!';
+        setTimeout(() => {
+          btnCopy.textContent = '📋 Copy Output';
+        }, 2000);
+      } catch (e) {
+        alert('Failed to copy to clipboard');
+      }
+    });
+
+    btnRun.addEventListener('click', async () => {
+      let model = modelSelector.value;
+      if (model === 'custom') {
+        model = customInput.value.trim();
+        if (!model) {
+          alert('Please enter a custom Cloudflare Model ID (e.g. @cf/meta/llama-3.1-8b-instruct).');
+          return;
+        }
+      }
+
+      const prompt = userPrompt.value.trim();
+      if (!prompt) {
+        alert('Please enter a prompt or task instruction.');
+        return;
+      }
+
+      // UI state: loading
+      btnRun.disabled = true;
+      runSpinner.classList.remove('hidden');
+      runText.textContent = 'Running Cloudflare AI...';
+      outputText.textContent = 'Connecting to Cloudflare Workers AI free cluster...\nProcessing prompt...';
+      routingBanner.classList.add('hidden');
+      badgeModel.classList.add('hidden');
+      badgeLatency.classList.add('hidden');
+      btnCopy.classList.add('hidden');
+
+      try {
+        const res = await fetch('/api/admin/ai-studio.json', {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify({
+            model,
+            prompt,
+            system: systemPrompt.value.trim(),
+            temperature: parseFloat(tempSlider.value),
+            max_tokens: parseInt(tokensSlider.value, 10)
+          })
+        });
+
+        const data = await res.json();
+        if (!res.ok || !data.success) {
+          outputText.textContent = 'Error: ' + (data.error || 'Failed to get response from AI');
+          if (data.modelUsed) {
+            badgeModel.textContent = data.modelUsed;
+            badgeModel.classList.remove('hidden');
+          }
+          return;
+        }
+
+        outputText.textContent = data.result || '(No content generated)';
+        badgeModel.textContent = data.modelUsed;
+        badgeModel.classList.remove('hidden');
+        badgeLatency.textContent = data.latencyMs ? `${data.latencyMs}ms` : '';
+        badgeLatency.classList.remove('hidden');
+        btnCopy.classList.remove('hidden');
+
+        if (data.reason) {
+          routingReason.textContent = data.reason;
+          routingBanner.classList.remove('hidden');
+        }
+      } catch (err) {
+        outputText.textContent = 'Network or execution error: ' + (err.message || String(err));
+      } finally {
+        btnRun.disabled = false;
+        runSpinner.classList.add('hidden');
+        runText.textContent = 'Run Model / Auto-Route ⚡';
+      }
+    });
+  </script>
+</AdminLayout>

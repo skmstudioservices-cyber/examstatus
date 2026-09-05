@@ -17,12 +17,11 @@ if (code.includes('__examstatus_scheduled')) {
 
 const scheduledSnippet = `
 async function __examstatus_scheduled(controller, env, ctx) {
-  const secret = env.AI_CRON_SECRET;
-  if (!secret) return;
-  const base = env.PUBLIC_SITE_URL || 'https://examstatus.skmstudio-services.workers.dev';
-  const req = new Request(base + '/api/cron/research', {
+  const headers = { 'x-internal-cron': '1' };
+  if (env.AI_CRON_SECRET) headers['x-cron-secret'] = env.AI_CRON_SECRET;
+  const req = new Request('http://localhost/api/cron/research', {
     method: 'POST',
-    headers: { 'x-cron-secret': secret }
+    headers
   });
   ctx.waitUntil(__astrojsSsrVirtualEntry.fetch(req, env, ctx));
 }

@@ -1,0 +1,1038 @@
+[
+  {
+    "slug": "ssc-chsl-2026",
+    "title": "SSC CHSL 10+2 Online Application Form 2026 (3712 Posts)",
+    "category": "latest-jobs",
+    "jobCategories": ["Central Govt"],
+    "qualifications": ["12th Pass"],
+    "organization": "Staff Selection Commission (SSC)",
+    "postName": "Lower Division Clerk (LDC), JSA, Data Entry Operator (DEO)",
+    "totalVacancies": 3712,
+    "startDate": "2026-08-10",
+    "closingDate": "2026-09-20",
+    "examDate": "November 2026",
+    "admitCardDate": "October 2026",
+    "resultDate": "December 2026",
+    "fees": [
+      { "category": "General / OBC / EWS", "amount": "Rs. 100/-" },
+      { "category": "SC / ST / PwBD / Female", "amount": "Rs. 0/- (Exempted)" }
+    ],
+    "minAge": "18 Years",
+    "maxAge": "27 Years",
+    "level": "national",
+    "states": [],
+    "eligibility": [
+      { "postName": "LDC / JSA", "totalPosts": "3200", "qualification": "12th Standard Passed from a Recognized Board with Typing Speed" },
+      { "postName": "DEO (Data Entry Operator)", "totalPosts": "512", "qualification": "12th Standard Pass in Science with Mathematics" }
+    ],
+    "officialUrl": "https://ssc.gov.in",
+    "applyOnlineUrl": "https://ssc.gov.in",
+    "notificationPdfUrl": "https://ssc.gov.in"
+  },
+  {
+    "slug": "ssc-mts-havaldar-2026",
+    "title": "SSC MTS & Havaldar CBIC / CBN Recruitment 2026 (9583 Posts)",
+    "category": "latest-jobs",
+    "jobCategories": ["Central Govt"],
+    "qualifications": ["10th Pass"],
+    "organization": "Staff Selection Commission (SSC)",
+    "postName": "Multi-Tasking Non-Technical Staff & Havaldar",
+    "totalVacancies": 9583,
+    "startDate": "2026-07-25",
+    "closingDate": "2026-09-12",
+    "examDate": "October-November 2026",
+    "admitCardDate": "October 2026",
+    "resultDate": "January 2027",
+    "fees": [
+      { "category": "General / OBC / EWS", "amount": "Rs. 100/-" },
+      { "category": "SC / ST / Female / ESM", "amount": "Rs. 0/-" }
+    ],
+    "minAge": "18 Years",
+    "maxAge": "27 Years",
+    "level": "national",
+    "states": [],
+    "eligibility": [
+      { "postName": "Multi-Tasking Staff (MTS)", "totalPosts": "6144", "qualification": "Class 10 High School Exam Passed from Recognized Board" },
+      { "postName": "Havaldar in CBIC & CBN", "totalPosts": "3439", "qualification": "Class 10 Matriculation with Walking 1600m in 15 Min, Height 157.5cm" }
+    ],
+    "officialUrl": "https://ssc.gov.in",
+    "applyOnlineUrl": "https://ssc.gov.in",
+    "notificationPdfUrl": "https://ssc.gov.in"
+  },
+  {
+    "slug": "ssc-cpo-si-2026",
+    "title": "SSC CPO SI in Delhi Police & Central Armed Police Forces 2026 (4187 Posts)",
+    "category": "latest-jobs",
+    "jobCategories": ["Police", "Central Govt"],
+    "qualifications": ["Graduate"],
+    "organization": "Staff Selection Commission (SSC)",
+    "postName": "Sub-Inspector in Delhi Police & CAPFs (CRPF, BSF, ITBP, CISF, SSB)",
+    "totalVacancies": 4187,
+    "startDate": "2026-08-05",
+    "closingDate": "2026-09-15",
+    "examDate": "December 2026",
+    "admitCardDate": "November 2026",
+    "resultDate": "February 2027",
+    "fees": [
+      { "category": "General / OBC / EWS", "amount": "Rs. 100/-" },
+      { "category": "SC / ST / Women / ESM", "amount": "Rs. 0/-" }
+    ],
+    "minAge": "20 Years",
+    "maxAge": "25 Years",
+    "level": "national",
+    "states": [],
+    "eligibility": [
+      { "postName": "Sub-Inspector in Delhi Police (Male)", "totalPosts": "125", "qualification": "Bachelor Degree in Any Stream with Valid Driving License for LMV" },
+      { "postName": "Sub-Inspector in CAPFs", "totalPosts": "4062", "qualification": "Bachelor Degree in Any Discipline from Recognized University" }
+    ],
+    "officialUrl": "https://ssc.gov.in",
+    "applyOnlineUrl": "https://ssc.gov.in",
+    "notificationPdfUrl": "https://ssc.gov.in"
+  },
+  {
+    "slug": "ssc-stenographer-cd-2026",
+    "title": "SSC Stenographer Grade C & D Examination 2026 (2006 Posts)",
+    "category": "latest-jobs",
+    "jobCategories": ["Central Govt"],
+    "qualifications": ["12th Pass"],
+    "organization": "Staff Selection Commission (SSC)",
+    "postName": "Stenographer Grade C & Stenographer Grade D",
+    "totalVacancies": 2006,
+    "startDate": "2026-08-15",
+    "closingDate": "2026-09-25",
+    "examDate": "December 2026",
+    "admitCardDate": "November 2026",
+    "resultDate": "March 2027",
+    "fees": [
+      { "category": "General / OBC / EWS", "amount": "Rs. 100/-" },
+      { "category": "SC / ST / PwD / Female", "amount": "Rs. 0/-" }
+    ],
+    "minAge": "18 Years",
+    "maxAge": "30 Years",
+    "level": "national",
+    "states": [],
+    "eligibility": [
+      { "postName": "Stenographer Grade C", "totalPosts": "200", "qualification": "10+2 Intermediate with Steno Transcription: English 40 Min, Hindi 55 Min" },
+      { "postName": "Stenographer Grade D", "totalPosts": "1806", "qualification": "10+2 Intermediate with Steno Transcription: English 50 Min, Hindi 65 Min" }
+    ],
+    "officialUrl": "https://ssc.gov.in",
+    "applyOnlineUrl": "https://ssc.gov.in",
+    "notificationPdfUrl": "https://ssc.gov.in"
+  },
+  {
+    "slug": "ssc-junior-engineer-je-2026",
+    "title": "SSC Junior Engineer JE (Civil, Electrical, Mechanical) 2026 (1765 Posts)",
+    "category": "latest-jobs",
+    "jobCategories": ["Engineering", "Central Govt"],
+    "qualifications": ["Diploma", "B.Tech"],
+    "organization": "Staff Selection Commission (SSC)",
+    "postName": "Junior Engineer (Civil, Mechanical, Electrical) in CPWD, BRO, CWC, MES",
+    "totalVacancies": 1765,
+    "startDate": "2026-08-01",
+    "closingDate": "2026-09-10",
+    "examDate": "November 2026",
+    "admitCardDate": "October 2026",
+    "resultDate": "January 2027",
+    "fees": [
+      { "category": "General / OBC / EWS", "amount": "Rs. 100/-" },
+      { "category": "SC / ST / PwBD / Women", "amount": "Rs. 0/-" }
+    ],
+    "minAge": "18 Years",
+    "maxAge": "30 Years",
+    "level": "national",
+    "states": [],
+    "eligibility": [
+      { "postName": "JE Civil", "totalPosts": "1050", "qualification": "Degree or 3-Year Diploma in Civil Engineering with 2 Yrs Experience in relevant field" },
+      { "postName": "JE Electrical / Mechanical", "totalPosts": "715", "qualification": "Degree or 3-Year Diploma in Electrical/Mechanical Engineering with 2 Yrs Experience" }
+    ],
+    "officialUrl": "https://ssc.gov.in",
+    "applyOnlineUrl": "https://ssc.gov.in",
+    "notificationPdfUrl": "https://ssc.gov.in"
+  },
+  {
+    "slug": "ssc-selection-post-phase-13-2026",
+    "title": "SSC Selection Post Phase-XIII Recruitment 2026 (2049 Posts)",
+    "category": "latest-jobs",
+    "jobCategories": ["Central Govt"],
+    "qualifications": ["10th Pass", "12th Pass", "Graduate"],
+    "organization": "Staff Selection Commission (SSC)",
+    "postName": "Matriculation, Intermediate & Graduate Level Various Selection Posts",
+    "totalVacancies": 2049,
+    "startDate": "2026-08-20",
+    "closingDate": "2026-09-28",
+    "examDate": "December 2026",
+    "admitCardDate": "November 2026",
+    "resultDate": "February 2027",
+    "fees": [
+      { "category": "General / OBC / EWS", "amount": "Rs. 100/-" },
+      { "category": "SC / ST / Female", "amount": "Rs. 0/-" }
+    ],
+    "minAge": "18 Years",
+    "maxAge": "30 Years",
+    "level": "national",
+    "states": [],
+    "eligibility": [
+      { "postName": "Matric Level Posts", "totalPosts": "512", "qualification": "Class 10 High School Exam Passed from Recognized Board" },
+      { "postName": "Intermediate Level Posts", "totalPosts": "714", "qualification": "10+2 Intermediate Exam Passed in relevant stream" },
+      { "postName": "Graduate Level Posts", "totalPosts": "823", "qualification": "Bachelor Degree in Any Stream from Recognized University" }
+    ],
+    "officialUrl": "https://ssc.gov.in",
+    "applyOnlineUrl": "https://ssc.gov.in",
+    "notificationPdfUrl": "https://ssc.gov.in"
+  },
+  {
+    "slug": "ssc-jht-translator-2026",
+    "title": "SSC Junior Hindi Translator JHT Examination 2026 (312 Posts)",
+    "category": "latest-jobs",
+    "jobCategories": ["Central Govt"],
+    "qualifications": ["Post Graduate"],
+    "organization": "Staff Selection Commission (SSC)",
+    "postName": "Junior Hindi Translator (JHT), Junior Translation Officer (JTO), Senior Translator",
+    "totalVacancies": 312,
+    "startDate": "2026-08-22",
+    "closingDate": "2026-09-25",
+    "examDate": "November 2026",
+    "admitCardDate": "November 2026",
+    "resultDate": "January 2027",
+    "fees": [
+      { "category": "General / OBC / EWS", "amount": "Rs. 100/-" },
+      { "category": "SC / ST / Women / ESM", "amount": "Rs. 0/-" }
+    ],
+    "minAge": "18 Years",
+    "maxAge": "30 Years",
+    "level": "national",
+    "states": [],
+    "eligibility": [
+      { "postName": "Junior Translation Officer (JTO)", "totalPosts": "312", "qualification": "Master Degree in Hindi with English as a compulsory subject OR Master Degree in English with Hindi" }
+    ],
+    "officialUrl": "https://ssc.gov.in",
+    "applyOnlineUrl": "https://ssc.gov.in",
+    "notificationPdfUrl": "https://ssc.gov.in"
+  },
+  {
+    "slug": "upsc-cds-ii-2026",
+    "title": "UPSC Combined Defence Services CDS (II) 2026 Online Form (459 Posts)",
+    "category": "latest-jobs",
+    "jobCategories": ["Defense", "Civil Services"],
+    "qualifications": ["Graduate", "B.Tech"],
+    "organization": "Union Public Service Commission (UPSC)",
+    "postName": "Indian Military Academy (IMA), Naval Academy (INA), Air Force Academy (AFA), OTA",
+    "totalVacancies": 459,
+    "startDate": "2026-08-15",
+    "closingDate": "2026-09-18",
+    "examDate": "November 2026",
+    "admitCardDate": "October 2026",
+    "resultDate": "January 2027",
+    "fees": [
+      { "category": "General / OBC Male", "amount": "Rs. 200/-" },
+      { "category": "SC / ST / Female", "amount": "Rs. 0/- (Exempted)" }
+    ],
+    "minAge": "19 Years",
+    "maxAge": "25 Years",
+    "level": "national",
+    "states": [],
+    "eligibility": [
+      { "postName": "IMA & Officers Training Academy (OTA)", "totalPosts": "375", "qualification": "Graduation Degree in Any Stream from Recognized University" },
+      { "postName": "Air Force Academy (AFA)", "totalPosts": "32", "qualification": "Degree in Engineering OR Bachelor Degree with Physics & Math in 10+2" },
+      { "postName": "Indian Naval Academy (INA)", "totalPosts": "52", "qualification": "Degree in Engineering from Recognized University/Institution" }
+    ],
+    "officialUrl": "https://upsc.gov.in",
+    "applyOnlineUrl": "https://upsconline.nic.in",
+    "notificationPdfUrl": "https://upsc.gov.in"
+  },
+  {
+    "slug": "upsc-capf-ac-2026",
+    "title": "UPSC Central Armed Police Forces CAPF (AC) Recruitment 2026 (506 Posts)",
+    "category": "latest-jobs",
+    "jobCategories": ["Defense", "Police"],
+    "qualifications": ["Graduate"],
+    "organization": "Union Public Service Commission (UPSC)",
+    "postName": "Assistant Commandants (AC) in BSF, CRPF, CISF, ITBP, SSB",
+    "totalVacancies": 506,
+    "startDate": "2026-08-10",
+    "closingDate": "2026-09-14",
+    "examDate": "December 2026",
+    "admitCardDate": "November 2026",
+    "resultDate": "March 2027",
+    "fees": [
+      { "category": "General / OBC Male", "amount": "Rs. 200/-" },
+      { "category": "SC / ST / Female", "amount": "Rs. 0/-" }
+    ],
+    "minAge": "20 Years",
+    "maxAge": "25 Years",
+    "level": "national",
+    "states": [],
+    "eligibility": [
+      { "postName": "Assistant Commandant (AC)", "totalPosts": "506", "qualification": "Bachelor Degree in Any Stream from a Recognized University with Physical Efficiency Test Standards" }
+    ],
+    "officialUrl": "https://upsc.gov.in",
+    "applyOnlineUrl": "https://upsconline.nic.in",
+    "notificationPdfUrl": "https://upsc.gov.in"
+  },
+  {
+    "slug": "upsc-engineering-services-ese-2026",
+    "title": "UPSC Engineering Services ESE / IES Examination 2026 (232 Posts)",
+    "category": "latest-jobs",
+    "jobCategories": ["Engineering", "Civil Services"],
+    "qualifications": ["B.Tech"],
+    "organization": "Union Public Service Commission (UPSC)",
+    "postName": "Civil, Mechanical, Electrical, Electronics & Telecom Engineering Services",
+    "totalVacancies": 232,
+    "startDate": "2026-08-25",
+    "closingDate": "2026-09-30",
+    "examDate": "February 2027",
+    "admitCardDate": "January 2027",
+    "resultDate": "May 2027",
+    "fees": [
+      { "category": "General / OBC Male", "amount": "Rs. 200/-" },
+      { "category": "SC / ST / PwD / Female", "amount": "Rs. 0/-" }
+    ],
+    "minAge": "21 Years",
+    "maxAge": "30 Years",
+    "level": "national",
+    "states": [],
+    "eligibility": [
+      { "postName": "Assistant Executive Engineer / IES", "totalPosts": "232", "qualification": "Degree in Engineering (Civil/Mechanical/Electrical/Electronics & Telecommunication) from recognized institution" }
+    ],
+    "officialUrl": "https://upsc.gov.in",
+    "applyOnlineUrl": "https://upsconline.nic.in",
+    "notificationPdfUrl": "https://upsc.gov.in"
+  },
+  {
+    "slug": "upsc-cms-2026",
+    "title": "UPSC Combined Medical Services CMS Examination 2026 (827 Posts)",
+    "category": "latest-jobs",
+    "jobCategories": ["Medical", "Central Govt"],
+    "qualifications": ["MBBS / Nursing"],
+    "organization": "Union Public Service Commission (UPSC)",
+    "postName": "Medical Officer Grade in Central Health Service, ADMO in Railways, GDMO in NDMC",
+    "totalVacancies": 827,
+    "startDate": "2026-08-01",
+    "closingDate": "2026-09-05",
+    "examDate": "October 2026",
+    "admitCardDate": "September 2026",
+    "resultDate": "December 2026",
+    "fees": [
+      { "category": "General / OBC Male", "amount": "Rs. 200/-" },
+      { "category": "SC / ST / PwD / Female", "amount": "Rs. 0/-" }
+    ],
+    "minAge": "21 Years",
+    "maxAge": "32 Years",
+    "level": "national",
+    "states": [],
+    "eligibility": [
+      { "postName": "Medical Officer Cadre", "totalPosts": "827", "qualification": "Passed or Appearing in Final MBBS Examination of recognized Medical College" }
+    ],
+    "officialUrl": "https://upsc.gov.in",
+    "applyOnlineUrl": "https://upsconline.nic.in",
+    "notificationPdfUrl": "https://upsc.gov.in"
+  },
+  {
+    "slug": "upsc-epfo-eo-ao-apfc-2026",
+    "title": "UPSC EPFO Enforcement Officer & APFC Recruitment 2026 (577 Posts)",
+    "category": "latest-jobs",
+    "jobCategories": ["Civil Services", "Central Govt"],
+    "qualifications": ["Graduate"],
+    "organization": "Union Public Service Commission (UPSC)",
+    "postName": "Enforcement Officer (EO) / Accounts Officer (AO) & Assistant Public Provident Commissioner (APFC)",
+    "totalVacancies": 577,
+    "startDate": "2026-08-20",
+    "closingDate": "2026-09-26",
+    "examDate": "December 2026",
+    "admitCardDate": "November 2026",
+    "resultDate": "March 2027",
+    "fees": [
+      { "category": "General / OBC / EWS", "amount": "Rs. 25/-" },
+      { "category": "SC / ST / PwD / Female", "amount": "Rs. 0/-" }
+    ],
+    "minAge": "21 Years",
+    "maxAge": "35 Years for APFC, 30 Years for EO",
+    "level": "national",
+    "states": [],
+    "eligibility": [
+      { "postName": "Enforcement Officer / Accounts Officer", "totalPosts": "418", "qualification": "Bachelor Degree in Any Stream from Recognized University" },
+      { "postName": "Assistant Provident Fund Commissioner", "totalPosts": "159", "qualification": "Bachelor Degree in Any Subject, Desirable Diploma in Company Law/Labour Law/CA" }
+    ],
+    "officialUrl": "https://upsc.gov.in",
+    "applyOnlineUrl": "https://upsconline.nic.in",
+    "notificationPdfUrl": "https://upsc.gov.in"
+  },
+  {
+    "slug": "rrb-alp-2026",
+    "title": "Railway RRB Assistant Loco Pilot (ALP) 2026 Online Form (18799 Posts)",
+    "category": "latest-jobs",
+    "jobCategories": ["Railway"],
+    "qualifications": ["10th Pass", "ITI", "Diploma", "B.Tech"],
+    "organization": "Railway Recruitment Board (RRB)",
+    "postName": "Assistant Loco Pilot (ALP)",
+    "totalVacancies": 18799,
+    "startDate": "2026-08-01",
+    "closingDate": "2026-09-15",
+    "examDate": "November 2026",
+    "admitCardDate": "November 2026",
+    "resultDate": "February 2027",
+    "fees": [
+      { "category": "General / OBC", "amount": "Rs. 500/- (Rs. 400 refunded after CBT-1)" },
+      { "category": "SC / ST / Female / ESM", "amount": "Rs. 250/- (Fully refunded after CBT-1)" }
+    ],
+    "minAge": "18 Years",
+    "maxAge": "30 Years",
+    "level": "national",
+    "states": [],
+    "eligibility": [
+      { "postName": "Assistant Loco Pilot", "totalPosts": "18799", "qualification": "Class 10 Matric with ITI / NCVT certificate OR 3 Years Diploma in Mechanical/Electrical/Electronics/Automobile Engineering" }
+    ],
+    "officialUrl": "https://indianrailways.gov.in",
+    "applyOnlineUrl": "https://rrbcdg.gov.in",
+    "notificationPdfUrl": "https://indianrailways.gov.in"
+  },
+  {
+    "slug": "rrb-technician-2026",
+    "title": "Railway RRB Technician Grade I & III Recruitment 2026 (14298 Posts)",
+    "category": "latest-jobs",
+    "jobCategories": ["Railway"],
+    "qualifications": ["10th Pass", "12th Pass", "ITI", "Diploma"],
+    "organization": "Railway Recruitment Board (RRB)",
+    "postName": "Technician Grade I Signal & Technician Grade III",
+    "totalVacancies": 14298,
+    "startDate": "2026-08-05",
+    "closingDate": "2026-09-20",
+    "examDate": "December 2026",
+    "admitCardDate": "December 2026",
+    "resultDate": "March 2027",
+    "fees": [
+      { "category": "General / OBC", "amount": "Rs. 500/-" },
+      { "category": "SC / ST / Female", "amount": "Rs. 250/-" }
+    ],
+    "minAge": "18 Years",
+    "maxAge": "33 Years",
+    "level": "national",
+    "states": [],
+    "eligibility": [
+      { "postName": "Technician Gr I Signal", "totalPosts": "1092", "qualification": "Bachelor Degree in Science (Physics/Electronics/CS/IT) OR 3 Yrs Diploma in Engineering" },
+      { "postName": "Technician Gr III (Various Trades)", "totalPosts": "13206", "qualification": "Matriculation with ITI in relevant trade OR 10+2 with Physics and Maths" }
+    ],
+    "officialUrl": "https://indianrailways.gov.in",
+    "applyOnlineUrl": "https://rrbcdg.gov.in",
+    "notificationPdfUrl": "https://indianrailways.gov.in"
+  },
+  {
+    "slug": "rrb-junior-engineer-je-2026",
+    "title": "Railway RRB Junior Engineer JE (Civil, Electrical, Mechanical, IT) 2026 (7951 Posts)",
+    "category": "latest-jobs",
+    "jobCategories": ["Railway", "Engineering"],
+    "qualifications": ["Diploma", "B.Tech"],
+    "organization": "Railway Recruitment Board (RRB)",
+    "postName": "Junior Engineer (JE), Depot Material Superintendent (DMS), Chemical & Metallurgical Assistant (CMA)",
+    "totalVacancies": 7951,
+    "startDate": "2026-08-15",
+    "closingDate": "2026-09-24",
+    "examDate": "December 2026",
+    "admitCardDate": "November 2026",
+    "resultDate": "March 2027",
+    "fees": [
+      { "category": "General / OBC", "amount": "Rs. 500/- (Rs. 400 refundable after CBT-1)" },
+      { "category": "SC / ST / Female / PwD", "amount": "Rs. 250/- (Fully refundable after CBT-1)" }
+    ],
+    "minAge": "18 Years",
+    "maxAge": "36 Years",
+    "level": "national",
+    "states": [],
+    "eligibility": [
+      { "postName": "Junior Engineer (Various Departments)", "totalPosts": "7951", "qualification": "3 Years Diploma in Civil/Mechanical/Electrical/Electronics Engineering OR B.Tech/BE in relevant discipline" }
+    ],
+    "officialUrl": "https://indianrailways.gov.in",
+    "applyOnlineUrl": "https://rrbcdg.gov.in",
+    "notificationPdfUrl": "https://indianrailways.gov.in"
+  },
+  {
+    "slug": "rrb-group-d-level-1-2026",
+    "title": "Railway RRC Group D (Level-1) Recruitment 2026 (103769 Posts)",
+    "category": "latest-jobs",
+    "jobCategories": ["Railway"],
+    "qualifications": ["10th Pass", "ITI"],
+    "organization": "Railway Recruitment Cell (RRC / RRB)",
+    "postName": "Track Maintainer Grade IV, Pointsman, Assistant Pointsman, Helper in Electrical/Mechanical/S&T",
+    "totalVacancies": 103769,
+    "startDate": "2026-08-28",
+    "closingDate": "2026-10-05",
+    "examDate": "January 2027",
+    "admitCardDate": "December 2026",
+    "resultDate": "April 2027",
+    "fees": [
+      { "category": "General / OBC", "amount": "Rs. 500/-" },
+      { "category": "SC / ST / Female / ESM", "amount": "Rs. 250/-" }
+    ],
+    "minAge": "18 Years",
+    "maxAge": "33 Years",
+    "level": "national",
+    "states": [],
+    "eligibility": [
+      { "postName": "Track Maintainer & Helpers", "totalPosts": "103769", "qualification": "10th Pass from NCVT/SCVT recognized institution OR National Apprenticeship Certificate (NAC) granted by NCVT" }
+    ],
+    "officialUrl": "https://indianrailways.gov.in",
+    "applyOnlineUrl": "https://rrbcdg.gov.in",
+    "notificationPdfUrl": "https://indianrailways.gov.in"
+  },
+  {
+    "slug": "rrb-rpf-si-2026",
+    "title": "Railway RPF Sub-Inspector (SI) Recruitment 2026 for 452 Posts",
+    "category": "latest-jobs",
+    "jobCategories": ["Railway", "Police"],
+    "qualifications": ["Graduate"],
+    "organization": "Railway Recruitment Board (RRB) & Railway Protection Force",
+    "postName": "Sub-Inspector (Executive) in RPF / RPSF",
+    "totalVacancies": 452,
+    "startDate": "2026-08-10",
+    "closingDate": "2026-09-15",
+    "examDate": "November 2026",
+    "admitCardDate": "November 2026",
+    "resultDate": "January 2027",
+    "fees": [
+      { "category": "General / OBC", "amount": "Rs. 500/-" },
+      { "category": "SC / ST / Female", "amount": "Rs. 250/-" }
+    ],
+    "minAge": "20 Years",
+    "maxAge": "28 Years",
+    "level": "national",
+    "states": [],
+    "eligibility": [
+      { "postName": "Sub-Inspector (Executive)", "totalPosts": "452", "qualification": "Graduation from a Recognized University in Any Discipline with Physical Standards" }
+    ],
+    "officialUrl": "https://indianrailways.gov.in",
+    "applyOnlineUrl": "https://rrbcdg.gov.in",
+    "notificationPdfUrl": "https://indianrailways.gov.in"
+  },
+  {
+    "slug": "rrb-rpf-constable-2026",
+    "title": "Railway RPF Constable Recruitment 2026 for 4208 Posts",
+    "category": "latest-jobs",
+    "jobCategories": ["Railway", "Police"],
+    "qualifications": ["10th Pass"],
+    "organization": "Railway Recruitment Board (RRB) & Railway Protection Force",
+    "postName": "Constable (Executive) in RPF / RPSF",
+    "totalVacancies": 4208,
+    "startDate": "2026-08-10",
+    "closingDate": "2026-09-15",
+    "examDate": "November 2026",
+    "admitCardDate": "November 2026",
+    "resultDate": "January 2027",
+    "fees": [
+      { "category": "General / OBC", "amount": "Rs. 500/-" },
+      { "category": "SC / ST / Female / ESM", "amount": "Rs. 250/-" }
+    ],
+    "minAge": "18 Years",
+    "maxAge": "28 Years",
+    "level": "national",
+    "states": [],
+    "eligibility": [
+      { "postName": "Constable (Executive)", "totalPosts": "4208", "qualification": "10th Pass (Matriculation) from a Recognized Board with Physical Efficiency Standards" }
+    ],
+    "officialUrl": "https://indianrailways.gov.in",
+    "applyOnlineUrl": "https://rrbcdg.gov.in",
+    "notificationPdfUrl": "https://indianrailways.gov.in"
+  },
+  {
+    "slug": "rrb-paramedical-2026",
+    "title": "Railway RRB Paramedical Staff Recruitment 2026 (1376 Posts)",
+    "category": "latest-jobs",
+    "jobCategories": ["Railway", "Medical"],
+    "qualifications": ["Diploma", "MBBS / Nursing"],
+    "organization": "Railway Recruitment Board (RRB)",
+    "postName": "Staff Nurse, Pharmacist, Lab Technician, Health & Malaria Inspector",
+    "totalVacancies": 1376,
+    "startDate": "2026-08-17",
+    "closingDate": "2026-09-22",
+    "examDate": "December 2026",
+    "admitCardDate": "November 2026",
+    "resultDate": "March 2027",
+    "fees": [
+      { "category": "General / OBC", "amount": "Rs. 500/-" },
+      { "category": "SC / ST / Female", "amount": "Rs. 250/-" }
+    ],
+    "minAge": "20 Years",
+    "maxAge": "40 Years",
+    "level": "national",
+    "states": [],
+    "eligibility": [
+      { "postName": "Nursing Superintendent", "totalPosts": "713", "qualification": "B.Sc Nursing OR General Nursing & Midwifery (GNM) with registration in Nursing Council" },
+      { "postName": "Pharmacist Entry Grade", "totalPosts": "246", "qualification": "10+2 Science with 2-Year Diploma in Pharmacy (D.Pharm) and registered pharmacist" }
+    ],
+    "officialUrl": "https://indianrailways.gov.in",
+    "applyOnlineUrl": "https://rrbcdg.gov.in",
+    "notificationPdfUrl": "https://indianrailways.gov.in"
+  },
+  {
+    "slug": "rrc-wr-apprentice-2026",
+    "title": "RRC Western Railway Trade Apprentice Recruitment 2026 (5059 Posts)",
+    "category": "latest-jobs",
+    "jobCategories": ["Railway"],
+    "qualifications": ["10th Pass", "ITI"],
+    "organization": "Railway Recruitment Cell Western Railway (RRC WR)",
+    "postName": "Fitter, Welder, Electrician, Carpenter, Mechanic Diesel, Painter",
+    "totalVacancies": 5059,
+    "startDate": "2026-08-15",
+    "closingDate": "2026-09-25",
+    "examDate": "Merit Based Selection",
+    "admitCardDate": "October 2026",
+    "resultDate": "November 2026",
+    "fees": [
+      { "category": "General / OBC / EWS", "amount": "Rs. 100/-" },
+      { "category": "SC / ST / PwD / Women", "amount": "Rs. 0/-" }
+    ],
+    "minAge": "15 Years",
+    "maxAge": "24 Years",
+    "level": "national",
+    "states": [],
+    "eligibility": [
+      { "postName": "Trade Apprentice", "totalPosts": "5059", "qualification": "Class 10 Matriculation with 50% marks and ITI Certificate in relevant trade from NCVT/SCVT" }
+    ],
+    "officialUrl": "https://rrc-wr.com",
+    "applyOnlineUrl": "https://rrc-wr.com",
+    "notificationPdfUrl": "https://rrc-wr.com"
+  },
+  {
+    "slug": "sbi-clerk-2026",
+    "title": "SBI Clerk (Junior Associate) Recruitment 2026 Apply Online (8283 Posts)",
+    "category": "latest-jobs",
+    "jobCategories": ["Banking"],
+    "qualifications": ["Graduate"],
+    "organization": "State Bank of India (SBI)",
+    "postName": "Junior Associates (Customer Support & Sales)",
+    "totalVacancies": 8283,
+    "startDate": "2026-08-18",
+    "closingDate": "2026-09-22",
+    "examDate": "November 2026",
+    "admitCardDate": "October 2026",
+    "resultDate": "January 2027",
+    "fees": [
+      { "category": "General / OBC / EWS", "amount": "Rs. 750/-" },
+      { "category": "SC / ST / PwBD", "amount": "Rs. 0/- (Nil)" }
+    ],
+    "minAge": "20 Years",
+    "maxAge": "28 Years",
+    "level": "national",
+    "states": [],
+    "eligibility": [
+      { "postName": "Junior Associate", "totalPosts": "8283", "qualification": "Graduation in any discipline from a recognized University or equivalent qualification" }
+    ],
+    "officialUrl": "https://sbi.co.in",
+    "applyOnlineUrl": "https://sbi.co.in/careers",
+    "notificationPdfUrl": "https://sbi.co.in"
+  },
+  {
+    "slug": "sbi-po-2026",
+    "title": "SBI PO Recruitment 2026 Apply Online for 2000 Probationary Officer Vacancies",
+    "category": "latest-jobs",
+    "jobCategories": ["Banking"],
+    "qualifications": ["Graduate"],
+    "organization": "State Bank of India (SBI)",
+    "postName": "Probationary Officer (PO) in SBI Branches Across India",
+    "totalVacancies": 2000,
+    "startDate": "2026-08-25",
+    "closingDate": "2026-09-28",
+    "examDate": "November 2026 (Prelims)",
+    "admitCardDate": "October 2026",
+    "resultDate": "December 2026",
+    "fees": [
+      { "category": "General / EWS / OBC", "amount": "Rs. 750/-" },
+      { "category": "SC / ST / PwBD", "amount": "Rs. 0/- (Nil)" }
+    ],
+    "minAge": "21 Years",
+    "maxAge": "30 Years",
+    "level": "national",
+    "states": [],
+    "eligibility": [
+      { "postName": "Probationary Officer", "totalPosts": "2000", "qualification": "Graduation in any discipline from a recognized University or equivalent qualification" }
+    ],
+    "officialUrl": "https://sbi.co.in",
+    "applyOnlineUrl": "https://sbi.co.in/careers",
+    "notificationPdfUrl": "https://sbi.co.in"
+  },
+  {
+    "slug": "sbi-so-specialist-officer-2026",
+    "title": "SBI Specialist Cadre Officer (SCO) Recruitment 2026 (1511 Posts)",
+    "category": "latest-jobs",
+    "jobCategories": ["Banking", "Engineering"],
+    "qualifications": ["B.Tech", "Graduate", "Post Graduate"],
+    "organization": "State Bank of India (SBI)",
+    "postName": "Assistant Manager, Deputy Manager, VP (IT & Analytics, Risk, Audit)",
+    "totalVacancies": 1511,
+    "startDate": "2026-08-20",
+    "closingDate": "2026-09-25",
+    "examDate": "Interview / Shortlisting",
+    "admitCardDate": "October 2026",
+    "resultDate": "November 2026",
+    "fees": [
+      { "category": "General / OBC / EWS", "amount": "Rs. 750/-" },
+      { "category": "SC / ST / PwD", "amount": "Rs. 0/-" }
+    ],
+    "minAge": "23 Years",
+    "maxAge": "38 Years",
+    "level": "national",
+    "states": [],
+    "eligibility": [
+      { "postName": "Specialist Officer (IT/Tech)", "totalPosts": "1511", "qualification": "B.Tech/BE in CS/IT/ECE OR MCA with minimum 2 Years Post-Qualification Experience" }
+    ],
+    "officialUrl": "https://sbi.co.in",
+    "applyOnlineUrl": "https://sbi.co.in/careers",
+    "notificationPdfUrl": "https://sbi.co.in"
+  },
+  {
+    "slug": "ibps-clerk-cwe-2026",
+    "title": "IBPS Clerk 14th Recruitment 2026 for 6128 Vacancies",
+    "category": "latest-jobs",
+    "jobCategories": ["Banking"],
+    "qualifications": ["Graduate"],
+    "organization": "Institute of Banking Personnel Selection (IBPS)",
+    "postName": "Clerk (CRP CSA XIV)",
+    "totalVacancies": 6128,
+    "startDate": "2026-08-01",
+    "closingDate": "2026-09-10",
+    "examDate": "October 2026",
+    "admitCardDate": "September 2026",
+    "resultDate": "December 2026",
+    "fees": [
+      { "category": "General / OBC / EWS", "amount": "Rs. 850/-" },
+      { "category": "SC / ST / PwD", "amount": "Rs. 175/-" }
+    ],
+    "minAge": "20 Years",
+    "maxAge": "28 Years",
+    "level": "national",
+    "states": [],
+    "eligibility": [
+      { "postName": "Clerk", "totalPosts": "6128", "qualification": "Bachelor Degree in any discipline and Operating/Working knowledge in computer systems" }
+    ],
+    "officialUrl": "https://ibps.in",
+    "applyOnlineUrl": "https://ibps.in",
+    "notificationPdfUrl": "https://ibps.in"
+  },
+  {
+    "slug": "ibps-so-specialist-officer-2026",
+    "title": "IBPS SO Specialist Officer (CRP SPL XIV) Recruitment 2026 (1402 Posts)",
+    "category": "latest-jobs",
+    "jobCategories": ["Banking", "Engineering"],
+    "qualifications": ["Graduate", "B.Tech", "Post Graduate"],
+    "organization": "Institute of Banking Personnel Selection (IBPS)",
+    "postName": "IT Officer (Scale I), Agricultural Field Officer (AFO), Rajbhasha Adhikari, Law Officer, HR/Personnel, Marketing Officer",
+    "totalVacancies": 1402,
+    "startDate": "2026-08-01",
+    "closingDate": "2026-09-08",
+    "examDate": "November 2026",
+    "admitCardDate": "October 2026",
+    "resultDate": "January 2027",
+    "fees": [
+      { "category": "General / OBC / EWS", "amount": "Rs. 850/-" },
+      { "category": "SC / ST / PwD", "amount": "Rs. 175/-" }
+    ],
+    "minAge": "20 Years",
+    "maxAge": "30 Years",
+    "level": "national",
+    "states": [],
+    "eligibility": [
+      { "postName": "IT Officer Scale I", "totalPosts": "320", "qualification": "4-Year Engineering Degree in CS/IT/Electronics OR Master Degree in CS/IT/MCA" },
+      { "postName": "Agricultural Field Officer (AFO)", "totalPosts": "840", "qualification": "4-Year Degree in Agriculture/Horticulture/Dairy/Animal Husbandry" },
+      { "postName": "Law Officer Scale I", "totalPosts": "125", "qualification": "Bachelor Degree in Law (LLB) and enrolled as an advocate with Bar Council" }
+    ],
+    "officialUrl": "https://ibps.in",
+    "applyOnlineUrl": "https://ibps.in",
+    "notificationPdfUrl": "https://ibps.in"
+  },
+  {
+    "slug": "ibps-rrb-po-clerk-2026",
+    "title": "IBPS RRB XIII Gramin Bank PO & Clerk Recruitment 2026 (10313 Posts)",
+    "category": "latest-jobs",
+    "jobCategories": ["Banking"],
+    "qualifications": ["Graduate"],
+    "organization": "Institute of Banking Personnel Selection (IBPS)",
+    "postName": "Office Assistant (Multipurpose) & Officer Scale I, II, III in Regional Rural Banks",
+    "totalVacancies": 10313,
+    "startDate": "2026-08-08",
+    "closingDate": "2026-09-12",
+    "examDate": "October 2026",
+    "admitCardDate": "September 2026",
+    "resultDate": "December 2026",
+    "fees": [
+      { "category": "General / OBC / EWS", "amount": "Rs. 850/-" },
+      { "category": "SC / ST / PwBD", "amount": "Rs. 175/-" }
+    ],
+    "minAge": "18 Years",
+    "maxAge": "30 Years (Scale I), 28 Years (Clerk)",
+    "level": "national",
+    "states": [],
+    "eligibility": [
+      { "postName": "Office Assistant (Clerk)", "totalPosts": "5800", "qualification": "Bachelor Degree in any discipline and proficiency in local regional language" },
+      { "postName": "Officer Scale I (Assistant Manager)", "totalPosts": "3500", "qualification": "Bachelor Degree in any discipline with preference to Agriculture/Horticulture/IT" },
+      { "postName": "Officer Scale II & III", "totalPosts": "1013", "qualification": "Bachelor Degree with minimum 50% marks and 2-5 Years relevant banking experience" }
+    ],
+    "officialUrl": "https://ibps.in",
+    "applyOnlineUrl": "https://ibps.in",
+    "notificationPdfUrl": "https://ibps.in"
+  },
+  {
+    "slug": "rbi-grade-b-officer-2026",
+    "title": "Reserve Bank of India RBI Grade B Officer Recruitment 2026 (94 Posts)",
+    "category": "latest-jobs",
+    "jobCategories": ["Banking", "Central Govt"],
+    "qualifications": ["Graduate", "Post Graduate"],
+    "organization": "Reserve Bank of India (RBI)",
+    "postName": "Officers in Grade B (General), DEPR, DSIM",
+    "totalVacancies": 94,
+    "startDate": "2026-08-14",
+    "closingDate": "2026-09-18",
+    "examDate": "October 2026",
+    "admitCardDate": "October 2026",
+    "resultDate": "December 2026",
+    "fees": [
+      { "category": "General / OBC / EWS", "amount": "Rs. 850/-" },
+      { "category": "SC / ST / PwBD", "amount": "Rs. 100/-" }
+    ],
+    "minAge": "21 Years",
+    "maxAge": "30 Years",
+    "level": "national",
+    "states": [],
+    "eligibility": [
+      { "postName": "Officers in Grade B (General)", "totalPosts": "66", "qualification": "Graduation with minimum 60% marks (50% for SC/ST/PwBD) or Post Graduation with 55% marks" },
+      { "postName": "DEPR / DSIM", "totalPosts": "28", "qualification": "Master Degree in Economics/Econometrics OR Master Degree in Statistics/Mathematical Economics" }
+    ],
+    "officialUrl": "https://rbi.org.in",
+    "applyOnlineUrl": "https://ibpsonline.ibps.in",
+    "notificationPdfUrl": "https://rbi.org.in"
+  },
+  {
+    "slug": "rbi-assistant-2026",
+    "title": "RBI Assistant Recruitment 2026 Online Form for 450 Vacancies",
+    "category": "latest-jobs",
+    "jobCategories": ["Banking"],
+    "qualifications": ["Graduate"],
+    "organization": "Reserve Bank of India (RBI)",
+    "postName": "Assistant in Various Regional Offices of RBI",
+    "totalVacancies": 450,
+    "startDate": "2026-08-22",
+    "closingDate": "2026-09-25",
+    "examDate": "November 2026",
+    "admitCardDate": "October 2026",
+    "resultDate": "January 2027",
+    "fees": [
+      { "category": "General / OBC / EWS", "amount": "Rs. 450/-" },
+      { "category": "SC / ST / PwBD", "amount": "Rs. 50/-" }
+    ],
+    "minAge": "20 Years",
+    "maxAge": "28 Years",
+    "level": "national",
+    "states": [],
+    "eligibility": [
+      { "postName": "Assistant", "totalPosts": "450", "qualification": "Bachelor Degree in any discipline with a minimum of 50% marks and word processing on PC" }
+    ],
+    "officialUrl": "https://rbi.org.in",
+    "applyOnlineUrl": "https://ibpsonline.ibps.in",
+    "notificationPdfUrl": "https://rbi.org.in"
+  },
+  {
+    "slug": "nabard-grade-a-2026",
+    "title": "NABARD Grade A Assistant Manager Recruitment 2026 (102 Posts)",
+    "category": "latest-jobs",
+    "jobCategories": ["Banking", "Central Govt"],
+    "qualifications": ["Graduate", "Post Graduate"],
+    "organization": "National Bank for Agriculture and Rural Development (NABARD)",
+    "postName": "Assistant Manager in Rural Development Banking Service (RDBS)",
+    "totalVacancies": 102,
+    "startDate": "2026-08-01",
+    "closingDate": "2026-09-02",
+    "examDate": "October 2026",
+    "admitCardDate": "September 2026",
+    "resultDate": "November 2026",
+    "fees": [
+      { "category": "General / OBC / EWS", "amount": "Rs. 800/-" },
+      { "category": "SC / ST / PWBD", "amount": "Rs. 150/-" }
+    ],
+    "minAge": "21 Years",
+    "maxAge": "30 Years",
+    "level": "national",
+    "states": [],
+    "eligibility": [
+      { "postName": "Assistant Manager (General/Specialist)", "totalPosts": "102", "qualification": "Bachelor Degree in any subject with 60% marks (55% for SC/ST) OR Post Graduate with 55% marks" }
+    ],
+    "officialUrl": "https://nabard.org",
+    "applyOnlineUrl": "https://nabard.org/careers",
+    "notificationPdfUrl": "https://nabard.org"
+  },
+  {
+    "slug": "lic-aao-recruitment-2026",
+    "title": "LIC AAO Assistant Administrative Officer Recruitment 2026 (300 Posts)",
+    "category": "latest-jobs",
+    "jobCategories": ["Banking", "Central Govt"],
+    "qualifications": ["Graduate"],
+    "organization": "Life Insurance Corporation of India (LIC)",
+    "postName": "Assistant Administrative Officer (Generalist)",
+    "totalVacancies": 300,
+    "startDate": "2026-08-25",
+    "closingDate": "2026-09-28",
+    "examDate": "November 2026",
+    "admitCardDate": "October 2026",
+    "resultDate": "December 2026",
+    "fees": [
+      { "category": "General / OBC / EWS", "amount": "Rs. 700/-" },
+      { "category": "SC / ST / PwD", "amount": "Rs. 85/-" }
+    ],
+    "minAge": "21 Years",
+    "maxAge": "30 Years",
+    "level": "national",
+    "states": [],
+    "eligibility": [
+      { "postName": "AAO (Generalist)", "totalPosts": "300", "qualification": "Bachelor Degree in any discipline from a recognized Indian University/Institution" }
+    ],
+    "officialUrl": "https://licindia.in",
+    "applyOnlineUrl": "https://licindia.in/bottom-links/careers",
+    "notificationPdfUrl": "https://licindia.in"
+  },
+  {
+    "slug": "lic-assistant-2026",
+    "title": "LIC Assistant Recruitment 2026 Apply Online for 6000 Clerical Vacancies",
+    "category": "latest-jobs",
+    "jobCategories": ["Banking"],
+    "qualifications": ["Graduate"],
+    "organization": "Life Insurance Corporation of India (LIC)",
+    "postName": "Assistant (Clerk) in LIC Divisional Offices Across India",
+    "totalVacancies": 6000,
+    "startDate": "2026-08-28",
+    "closingDate": "2026-10-02",
+    "examDate": "December 2026",
+    "admitCardDate": "November 2026",
+    "resultDate": "February 2027",
+    "fees": [
+      { "category": "General / OBC", "amount": "Rs. 510/-" },
+      { "category": "SC / ST / PwBD", "amount": "Rs. 85/-" }
+    ],
+    "minAge": "21 Years",
+    "maxAge": "30 Years",
+    "level": "national",
+    "states": [],
+    "eligibility": [
+      { "postName": "Assistant", "totalPosts": "6000", "qualification": "Bachelor Degree in any discipline from a recognized University or equivalent" }
+    ],
+    "officialUrl": "https://licindia.in",
+    "applyOnlineUrl": "https://licindia.in/careers",
+    "notificationPdfUrl": "https://licindia.in"
+  },
+  {
+    "slug": "niacl-ao-administrative-officer-2026",
+    "title": "NIACL AO Administrative Officer Scale-I Recruitment 2026 (170 Posts)",
+    "category": "latest-jobs",
+    "jobCategories": ["Banking", "Central Govt"],
+    "qualifications": ["Graduate", "Post Graduate"],
+    "organization": "New India Assurance Company Limited (NIACL)",
+    "postName": "Administrative Officer (Generalists & Specialists)",
+    "totalVacancies": 170,
+    "startDate": "2026-08-12",
+    "closingDate": "2026-09-10",
+    "examDate": "October 2026",
+    "admitCardDate": "September 2026",
+    "resultDate": "November 2026",
+    "fees": [
+      { "category": "General / OBC / EWS", "amount": "Rs. 850/-" },
+      { "category": "SC / ST / PwD", "amount": "Rs. 100/-" }
+    ],
+    "minAge": "21 Years",
+    "maxAge": "30 Years",
+    "level": "national",
+    "states": [],
+    "eligibility": [
+      { "postName": "AO Generalist", "totalPosts": "120", "qualification": "Graduate / Post Graduate in any discipline with minimum 60% marks (55% for SC/ST/PwD)" },
+      { "postName": "AO Specialist (Risk/Legal/Accounts)", "totalPosts": "50", "qualification": "Degree in Law / CA / Engineering / Actuarial Science" }
+    ],
+    "officialUrl": "https://newindia.co.in",
+    "applyOnlineUrl": "https://newindia.co.in/recruitment",
+    "notificationPdfUrl": "https://newindia.co.in"
+  },
+  {
+    "slug": "sebi-grade-a-assistant-manager-2026",
+    "title": "SEBI Grade A Assistant Manager Recruitment 2026 (97 Posts)",
+    "category": "latest-jobs",
+    "jobCategories": ["Banking", "Central Govt"],
+    "qualifications": ["B.Tech", "Graduate", "Post Graduate"],
+    "organization": "Securities and Exchange Board of India (SEBI)",
+    "postName": "Assistant Manager (General, Legal, Information Technology, Engineering, Research)",
+    "totalVacancies": 97,
+    "startDate": "2026-08-01",
+    "closingDate": "2026-09-05",
+    "examDate": "October 2026",
+    "admitCardDate": "September 2026",
+    "resultDate": "November 2026",
+    "fees": [
+      { "category": "General / OBC / EWS", "amount": "Rs. 1000/-" },
+      { "category": "SC / ST / PwBD", "amount": "Rs. 100/-" }
+    ],
+    "minAge": "21 Years",
+    "maxAge": "30 Years",
+    "level": "national",
+    "states": [],
+    "eligibility": [
+      { "postName": "Assistant Manager (General)", "totalPosts": "62", "qualification": "Master Degree in any discipline OR Bachelor Degree in Law OR Engineering Degree" },
+      { "postName": "Assistant Manager (IT)", "totalPosts": "24", "qualification": "Engineering Degree in CS/IT/ECE OR MCA with relevant specialization" }
+    ],
+    "officialUrl": "https://sebi.gov.in",
+    "applyOnlineUrl": "https://sebi.gov.in/sebiweb/other/career.jsp",
+    "notificationPdfUrl": "https://sebi.gov.in"
+  },
+  {
+    "slug": "indian-navy-agniveer-ssr-mr-2026",
+    "title": "Indian Navy Agniveer SSR & MR Intake 02/2026 Online Form (3000 Posts)",
+    "category": "latest-jobs",
+    "jobCategories": ["Defense"],
+    "qualifications": ["10th Pass", "12th Pass"],
+    "organization": "Indian Navy",
+    "postName": "Agniveer Senior Secondary Recruit (SSR) & Matric Recruit (MR)",
+    "totalVacancies": 3000,
+    "startDate": "2026-08-14",
+    "closingDate": "2026-09-18",
+    "examDate": "October 2026",
+    "admitCardDate": "October 2026",
+    "resultDate": "December 2026",
+    "fees": [
+      { "category": "All Candidates", "amount": "Rs. 550/-" }
+    ],
+    "minAge": "17.5 Years",
+    "maxAge": "21 Years",
+    "level": "national",
+    "states": [],
+    "eligibility": [
+      { "postName": "Agniveer SSR", "totalPosts": "2600", "qualification": "10+2 Examination with Maths & Physics and at least one of Chemistry/Biology/Computer Science" },
+      { "postName": "Agniveer MR (Chef/Steward/Hygiene)", "totalPosts": "400", "qualification": "Matriculation Examination from Board of School Education recognized by Ministry of Education" }
+    ],
+    "officialUrl": "https://joinindiannavy.gov.in",
+    "applyOnlineUrl": "https://joinindiannavy.gov.in",
+    "notificationPdfUrl": "https://joinindiannavy.gov.in"
+  },
+  {
+    "slug": "afcat-02-2026",
+    "title": "Indian Air Force AFCAT 02/2026 Entry for Flying & Ground Duty (317 Posts)",
+    "category": "latest-jobs",
+    "jobCategories": ["Defense"],
+    "qualifications": ["Graduate", "B.Tech"],
+    "organization": "Indian Air Force (IAF)",
+    "postName": "Flying Branch, Ground Duty (Technical) & Ground Duty (Non-Technical)",
+    "totalVacancies": 317,
+    "startDate": "2026-08-01",
+    "closingDate": "2026-09-02",
+    "examDate": "November 2026",
+    "admitCardDate": "October 2026",
+    "resultDate": "January 2027",
+    "fees": [
+      { "category": "All Candidates", "amount": "Rs. 550/-" },
+      { "category": "NCC Special Entry", "amount": "Rs. 0/-" }
+    ],
+    "minAge": "20 Years",
+    "maxAge": "24 Years (Flying), 26 Years (Ground Duty)",
+    "level": "national",
+    "states": [],
+    "eligibility": [
+      { "postName": "Flying Branch", "totalPosts": "38", "qualification": "Graduation with minimum 60% marks and 50% in Maths & Physics at 10+2 level OR BE/B.Tech degree" },
+      { "postName": "Ground Duty Technical", "totalPosts": "165", "qualification": "4-Year Engineering Degree with 60% marks in Mechanical / Electronics / Allied" },
+      { "postName": "Ground Duty Non-Technical (Admin/Logistics)", "totalPosts": "114", "qualification": "Graduate Degree in Any Discipline with minimum 60% marks" }
+    ],
+    "officialUrl": "https://afcat.cdac.in",
+    "applyOnlineUrl": "https://afcat.cdac.in",
+    "notificationPdfUrl": "https://afcat.cdac.in"
+  }
+]

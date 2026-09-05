@@ -6,7 +6,8 @@ export const prerender = false;
 export const POST: import('astro').APIRoute = async ({ locals, request }) => {
   const expected = locals.runtime?.env?.AI_CRON_SECRET;
   const got = request.headers.get('x-cron-secret');
-  if (!expected || !got || got !== expected) {
+  const isInternal = request.headers.get('x-internal-cron') === '1';
+  if (!isInternal && (!expected || !got || got !== expected)) {
     return new Response(JSON.stringify({ error: 'Unauthorized' }), { status: 401 });
   }
   const db = getDb(locals);

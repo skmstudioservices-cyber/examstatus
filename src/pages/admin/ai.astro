@@ -16,33 +16,87 @@ if (!user || !canManageAi(user.role)) return Astro.redirect('/admin');
 const theme = await getThemeSettings(db);
 const crawlState = await getResearchCrawlState(db);
 const { results: drafts } = await db.prepare(`SELECT * FROM ai_drafts ORDER BY created_at DESC LIMIT 50`).all();
+const { results: recentCrawls } = await db.prepare(`SELECT * FROM source_crawl_log ORDER BY last_fetched_at DESC LIMIT 6`).all().catch(() => ({ results: [] }));
 ---
 
-<AdminLayout user={user} title="AI Inbox" breadcrumbs={[{ label: 'AI Inbox' }]}>
+<AdminLayout user={user} title="AI Inbox & Automation" breadcrumbs={[{ label: 'AI & Automation' }]}>
   <div class="flex flex-wrap items-center justify-between gap-3 mb-5">
     <div>
-      <h1 class="text-xl font-bold text-[#1d2327]">AI Inbox</h1>
-      <p class="text-xs text-slate-500 mt-0.5">Mode: <strong class="text-slate-700">{theme.aiMode}</strong> · Model: <code class="font-mono text-xs">llama-3.1-8b-instruct-fast</code></p>
+      <h1 class="text-xl font-bold text-[#1d2327]">AI & Automated Workflow</h1>
+      <p class="text-xs text-slate-500 mt-0.5">
+        Cloudflare Scheduled Worker: <span class="rounded bg-emerald-100 text-emerald-800 px-2 py-0.5 font-mono text-[11px] font-bold">Active (0 * * * *)</span>
+        · Model: <code class="font-mono text-xs">@cf/meta/llama-3.1-8b-instruct-fast</code>
+      </p>
     </div>
-    <div class="flex flex-wrap gap-2">
-      <button id="run-research" type="button" class="rounded bg-[#2271b1] text-white font-semibold text-xs px-3 py-1.5 hover:bg-[#135e96] transition shadow-sm">
-        Run discovery (respect schedule)
-      </button>
-      <button id="force-research" type="button" class="rounded border border-[#2271b1] bg-white text-[#2271b1] font-semibold text-xs px-3 py-1.5 hover:bg-slate-50 transition shadow-sm">
-        Force run now
+    <div class="flex flex-wrap items-center gap-2">
+      <div class="inline-flex rounded border border-slate-300 bg-white p-0.5 shadow-sm text-xs font-semibold">
+        <button
+          type="button"
+          id="toggle-mode-auto"
+          class={`rounded px-3 py-1 transition ${theme.aiMode === 'auto' ? 'bg-[#2271b1] text-white' : 'text-slate-700 hover:bg-slate-100'}`}
+        >
+          ⚡ Auto-Publish
+        </button>
+        <button
+          type="button"
+          id="toggle-mode-approve"
+          class={`rounded px-3 py-1 transition ${theme.aiMode === 'approve' ? 'bg-[#2271b1] text-white' : 'text-slate-700 hover:bg-slate-100'}`}
+        >
+          🛡️ Require Review
+        </button>
+      </div>
+      <button id="force-research" type="button" class="rounded bg-[#2271b1] text-white font-semibold text-xs px-3 py-1.5 hover:bg-[#135e96] transition shadow-sm">
+        Run Workflow Now ⚡
       </button>
     </div>
   </div>
 
-  <div class="rounded border border-[#c3c4c7] bg-white p-4 mb-5 text-xs space-y-1.5 shadow-sm">
-    <h2 class="text-xs font-bold uppercase tracking-wider text-slate-700 mb-2">Crawl Engine Status</h2>
+  <div class={`rounded border p-4 mb-5 text-xs shadow-sm ${theme.aiMode === 'auto' ? 'border-emerald-200 bg-emerald-50/50 text-emerald-900' : 'border-amber-200 bg-amber-50/50 text-amber-900'}`}>
+    <div class="flex items-center gap-2 font-bold mb-1">
+      {theme.aiMode === 'auto' ? (
+        <span>✓ Auto-Publish Active</span>
+      ) : (
+        <span>🛡️ Review Gate Active</span>
+      )}
+    </div>
+    <p class="text-[11px] leading-relaxed">
+      {theme.aiMode === 'auto'
+        ? 'Incoming official notices that pass quality checks (≥40 chars summary, ≥3 FAQs, ≥3 how-to steps, allowlisted official portal) are published live automatically with the exact timestamp. Existing exams with updated dates (admit cards, results, exam dates) are updated automatically.'
+        : 'All discovered official notices are placed into this inbox as pending drafts. An editor must click "Approve → Publish" before they go live on the public site.'}
+    </p>
+  </div>
+
+  <div class="rounded border border-[#c3c4c7] bg-white p-4 mb-5 text-xs space-y-3 shadow-sm">
+    <div class="flex items-center justify-between border-b border-slate-100 pb-2">
+      <h2 class="text-xs font-bold uppercase tracking-wider text-slate-700">Cloudflare Scheduled Engine Status</h2>
+      <span class="text-[11px] text-slate-500 font-mono">Trigger: Every Hour (0 * * * *)</span>
+    </div>
     <div class="grid grid-cols-1 sm:grid-cols-3 gap-3 text-slate-600">
       <div><strong>Last run:</strong> {crawlState.lastRunAt || 'Never'}</div>
-      <div><strong>Next run:</strong> {crawlState.nextRunAt || 'Next cron tick'}</div>
-      <div><strong>Last stats:</strong> {crawlState.lastStats || '—'}</div>
+      <div><strong>Next scheduled run:</strong> {crawlState.nextRunAt || 'Next cron tick'}</div>
+      <div><strong>Last crawl stats:</strong> {crawlState.lastStats || '—'}</div>
     </div>
-    <p class="text-[11px] text-slate-500 pt-1 border-t border-slate-100">Cron checks hourly; actual discovery runs every 3–9 hours (random gate).</p>
+    <p class="text-[11px] text-slate-500 pt-1 border-t border-slate-100">
+      The scheduled worker runs on Cloudflare edge, crawls official portals (SSC, UPSC, RRB, IBPS, NTA, NCS), extracts exam updates via Cloudflare Workers AI, and syncs directly into Cloudflare D1.
+    </p>
   </div>
+
+  {recentCrawls && recentCrawls.length > 0 && (
+    <div class="rounded border border-[#c3c4c7] bg-white p-4 mb-5 text-xs shadow-sm">
+      <h2 class="text-xs font-bold uppercase tracking-wider text-slate-700 mb-2">Recent Crawl & Verification Activity</h2>
+      <ul class="divide-y divide-slate-100">
+        {recentCrawls.map((c: any) => (
+          <li class="py-1.5 flex items-center justify-between gap-2 text-[11px]">
+            <span class="font-mono text-slate-600 truncate max-w-[600px]">{c.url}</span>
+            <div class="flex items-center gap-2">
+              <span class="rounded px-2 py-0.5 font-bold uppercase text-[10px] bg-slate-100 text-slate-700">{c.outcome}</span>
+              <span class="text-slate-400">{c.last_fetched_at?.slice(0, 16).replace('T', ' ')}</span>
+            </div>
+          </li>
+        ))}
+      </ul>
+    </div>
+  )}
 
   <form id="manual-url" class="rounded border border-[#c3c4c7] bg-white p-4 mb-5 flex flex-wrap items-center gap-2 shadow-sm">
     <input name="url" required placeholder="Paste official notice URL: https://ssc.gov.in/..." class="flex-1 min-w-[240px] rounded border border-slate-300 px-3 py-1.5 text-xs focus:border-[#2271b1] focus:outline-none" />
@@ -87,7 +141,18 @@ const { results: drafts } = await db.prepare(`SELECT * FROM ai_drafts ORDER BY c
       msg.textContent = res.ok ? JSON.stringify(data) : (data.error || 'Failed');
       if (res.ok) location.reload();
     }
-    document.getElementById('run-research')?.addEventListener('click', () => runDiscovery(false));
+    async function setMode(mode) {
+      msg.textContent = 'Updating mode...';
+      const res = await fetch('/api/admin/research.json', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ action: 'set-mode', mode })
+      });
+      if (res.ok) location.reload();
+      else msg.textContent = 'Failed to update mode';
+    }
+    document.getElementById('toggle-mode-auto')?.addEventListener('click', () => setMode('auto'));
+    document.getElementById('toggle-mode-approve')?.addEventListener('click', () => setMode('approve'));
     document.getElementById('force-research')?.addEventListener('click', () => runDiscovery(true));
     document.getElementById('manual-url')?.addEventListener('submit', async (e) => {
       e.preventDefault();

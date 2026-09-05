@@ -1,0 +1,892 @@
+[
+  {
+    "slug": "upsc-civil-services-final-result-2026",
+    "title": "UPSC Civil Services (IAS / IFS / IPS) Final Result & Merit List 2026",
+    "category": "results",
+    "jobCategories": ["Civil Services", "Central Govt"],
+    "qualifications": ["Graduate"],
+    "organization": "Union Public Service Commission (UPSC)",
+    "postName": "Civil Services Examination 2026 Final Recommendation List",
+    "totalVacancies": 1205,
+    "startDate": "2026-02-01",
+    "closingDate": "2026-02-25",
+    "examDate": "Prelims May, Mains Sept, Interview Feb",
+    "admitCardDate": "Released",
+    "resultDate": "Declared (Download PDF Active)",
+    "fees": [
+      { "category": "General / OBC", "amount": "Rs. 100/-" },
+      { "category": "SC / ST / Female", "amount": "Rs. 0/-" }
+    ],
+    "minAge": "21 Years",
+    "maxAge": "32 Years",
+    "level": "national",
+    "states": [],
+    "eligibility": [
+      { "postName": "IAS / IPS / IFS / Central Services", "totalPosts": "1016 Recommended", "qualification": "Bachelor Degree from Recognized University" }
+    ],
+    "officialUrl": "https://upsc.gov.in",
+    "applyOnlineUrl": "https://upsc.gov.in",
+    "notificationPdfUrl": "https://upsc.gov.in"
+  },
+  {
+    "slug": "ssc-cgl-final-result-2026",
+    "title": "SSC CGL 2026 Final Result with Rank & Department Allotment",
+    "category": "results",
+    "jobCategories": ["Central Govt"],
+    "qualifications": ["Graduate"],
+    "organization": "Staff Selection Commission (SSC)",
+    "postName": "Combined Graduate Level Examination 2026 Final Selection",
+    "totalVacancies": 14582,
+    "startDate": "2026-08-20",
+    "closingDate": "2026-09-25",
+    "examDate": "Tier-1 Sept, Tier-2 Dec",
+    "admitCardDate": "August 2026",
+    "resultDate": "Declared (Check Merit List)",
+    "fees": [
+      { "category": "General / OBC", "amount": "Rs. 100/-" },
+      { "category": "SC / ST / Female", "amount": "Rs. 0/-" }
+    ],
+    "minAge": "18 Years",
+    "maxAge": "32 Years",
+    "level": "national",
+    "states": [],
+    "eligibility": [
+      { "postName": "Inspector, ASO, Auditor, Accountant", "totalPosts": "14582", "qualification": "Graduation Degree in Any Discipline from Recognized University" }
+    ],
+    "officialUrl": "https://ssc.gov.in",
+    "applyOnlineUrl": "https://ssc.gov.in",
+    "notificationPdfUrl": "https://ssc.gov.in"
+  },
+  {
+    "slug": "ssc-chsl-tier-1-result-2026",
+    "title": "SSC CHSL 10+2 Tier-1 Result & Category-Wise Cutoff Marks 2026",
+    "category": "results",
+    "jobCategories": ["Central Govt"],
+    "qualifications": ["12th Pass"],
+    "organization": "Staff Selection Commission (SSC)",
+    "postName": "Lower Division Clerk (LDC) / Junior Secretariat Assistant (JSA)",
+    "totalVacancies": 3712,
+    "startDate": "2026-08-10",
+    "closingDate": "2026-09-20",
+    "examDate": "November 2026",
+    "admitCardDate": "October 2026",
+    "resultDate": "Declared (Available Now)",
+    "fees": [
+      { "category": "General / OBC", "amount": "Rs. 100/-" },
+      { "category": "SC / ST / Female", "amount": "Rs. 0/-" }
+    ],
+    "minAge": "18 Years",
+    "maxAge": "27 Years",
+    "level": "national",
+    "states": [],
+    "eligibility": [
+      { "postName": "LDC / DEO", "totalPosts": "3712", "qualification": "12th Standard Passed from Recognized Board" }
+    ],
+    "officialUrl": "https://ssc.gov.in",
+    "applyOnlineUrl": "https://ssc.gov.in",
+    "notificationPdfUrl": "https://ssc.gov.in"
+  },
+  {
+    "slug": "ssc-mts-final-result-2026",
+    "title": "SSC MTS & Havaldar 2026 Final Result with State-wise Cutoff",
+    "category": "results",
+    "jobCategories": ["Central Govt"],
+    "qualifications": ["10th Pass"],
+    "organization": "Staff Selection Commission (SSC)",
+    "postName": "Multi-Tasking Staff & Havaldar in CBIC/CBN",
+    "totalVacancies": 9583,
+    "startDate": "2026-07-25",
+    "closingDate": "2026-09-12",
+    "examDate": "October-November 2026",
+    "admitCardDate": "October 2026",
+    "resultDate": "Declared (Download Selection List)",
+    "fees": [
+      { "category": "General / OBC", "amount": "Rs. 100/-" },
+      { "category": "SC / ST", "amount": "Rs. 0/-" }
+    ],
+    "minAge": "18 Years",
+    "maxAge": "27 Years",
+    "level": "national",
+    "states": [],
+    "eligibility": [
+      { "postName": "MTS & Havaldar", "totalPosts": "9583", "qualification": "Passed 10th High School Examination from Recognized Board" }
+    ],
+    "officialUrl": "https://ssc.gov.in",
+    "applyOnlineUrl": "https://ssc.gov.in",
+    "notificationPdfUrl": "https://ssc.gov.in"
+  },
+  {
+    "slug": "ssc-cpo-si-final-result-2026",
+    "title": "SSC CPO Sub Inspector 2026 Final Result & Department Allocation",
+    "category": "results",
+    "jobCategories": ["Police", "Central Govt"],
+    "qualifications": ["Graduate"],
+    "organization": "Staff Selection Commission (SSC)",
+    "postName": "Sub-Inspector in Delhi Police & CAPFs Final Selection",
+    "totalVacancies": 4187,
+    "startDate": "2026-08-05",
+    "closingDate": "2026-09-15",
+    "examDate": "CBT October, PET Dec",
+    "admitCardDate": "October 2026",
+    "resultDate": "Declared (List of Selected Candidates)",
+    "fees": [
+      { "category": "General / OBC", "amount": "Rs. 100/-" },
+      { "category": "SC / ST", "amount": "Rs. 0/-" }
+    ],
+    "minAge": "20 Years",
+    "maxAge": "25 Years",
+    "level": "national",
+    "states": [],
+    "eligibility": [
+      { "postName": "Sub-Inspector", "totalPosts": "4187", "qualification": "Bachelor Degree in Any Stream from Recognized University" }
+    ],
+    "officialUrl": "https://ssc.gov.in",
+    "applyOnlineUrl": "https://ssc.gov.in",
+    "notificationPdfUrl": "https://ssc.gov.in"
+  },
+  {
+    "slug": "rrb-alp-cbt-1-result-2026",
+    "title": "Railway RRB ALP CBT-1 Result 2026 & Scorecard with Cutoff Marks",
+    "category": "results",
+    "jobCategories": ["Railway"],
+    "qualifications": ["10th Pass", "ITI", "Diploma"],
+    "organization": "Railway Recruitment Board (RRB)",
+    "postName": "Assistant Loco Pilot (ALP) First Stage CBT Result",
+    "totalVacancies": 18799,
+    "startDate": "2026-08-01",
+    "closingDate": "2026-09-15",
+    "examDate": "November 2026",
+    "admitCardDate": "November 2026",
+    "resultDate": "Declared (Region-wise PDF)",
+    "fees": [
+      { "category": "General / OBC", "amount": "Rs. 500/-" },
+      { "category": "SC / ST / Female", "amount": "Rs. 250/-" }
+    ],
+    "minAge": "18 Years",
+    "maxAge": "30 Years",
+    "level": "national",
+    "states": [],
+    "eligibility": [
+      { "postName": "Assistant Loco Pilot", "totalPosts": "18799", "qualification": "10th with ITI / Diploma in Engineering" }
+    ],
+    "officialUrl": "https://indianrailways.gov.in",
+    "applyOnlineUrl": "https://rrbcdg.gov.in",
+    "notificationPdfUrl": "https://indianrailways.gov.in"
+  },
+  {
+    "slug": "rrb-technician-grade-1-3-result-2026",
+    "title": "Railway RRB Technician Grade I & III Result 2026 (Shortlisted for DV)",
+    "category": "results",
+    "jobCategories": ["Railway"],
+    "qualifications": ["10th Pass", "ITI", "12th Pass"],
+    "organization": "Railway Recruitment Board (RRB)",
+    "postName": "Technician Grade I Signal & Technician Grade III",
+    "totalVacancies": 14298,
+    "startDate": "2026-08-05",
+    "closingDate": "2026-09-20",
+    "examDate": "December 2026",
+    "admitCardDate": "December 2026",
+    "resultDate": "Declared (Check Scorecard Online)",
+    "fees": [
+      { "category": "General / OBC", "amount": "Rs. 500/-" },
+      { "category": "SC / ST / Female", "amount": "Rs. 250/-" }
+    ],
+    "minAge": "18 Years",
+    "maxAge": "33 Years",
+    "level": "national",
+    "states": [],
+    "eligibility": [
+      { "postName": "Technician", "totalPosts": "14298", "qualification": "10th with ITI in relevant trade OR 10+2 with PCM" }
+    ],
+    "officialUrl": "https://indianrailways.gov.in",
+    "applyOnlineUrl": "https://rrbcdg.gov.in",
+    "notificationPdfUrl": "https://indianrailways.gov.in"
+  },
+  {
+    "slug": "sbi-clerk-mains-final-result-2026",
+    "title": "SBI Clerk Mains Final Result 2026 (Junior Associate Selection List)",
+    "category": "results",
+    "jobCategories": ["Banking"],
+    "qualifications": ["Graduate"],
+    "organization": "State Bank of India (SBI)",
+    "postName": "Junior Associate Final Selection & Waiting List",
+    "totalVacancies": 8283,
+    "startDate": "2026-08-18",
+    "closingDate": "2026-09-22",
+    "examDate": "October 2026",
+    "admitCardDate": "October 2026",
+    "resultDate": "Declared (Roll Numbers Available)",
+    "fees": [
+      { "category": "General / OBC", "amount": "Rs. 750/-" },
+      { "category": "SC / ST", "amount": "Rs. 0/-" }
+    ],
+    "minAge": "20 Years",
+    "maxAge": "28 Years",
+    "level": "national",
+    "states": [],
+    "eligibility": [
+      { "postName": "Junior Associate", "totalPosts": "8283", "qualification": "Bachelor Degree from Recognized University" }
+    ],
+    "officialUrl": "https://sbi.co.in",
+    "applyOnlineUrl": "https://sbi.co.in/careers",
+    "notificationPdfUrl": "https://sbi.co.in"
+  },
+  {
+    "slug": "sbi-po-final-result-2026",
+    "title": "SBI PO 2026 Final Result with Category-Wise Cutoff Marks & Scorecard",
+    "category": "results",
+    "jobCategories": ["Banking"],
+    "qualifications": ["Graduate"],
+    "organization": "State Bank of India (SBI)",
+    "postName": "Probationary Officer (PO) Final Selection List",
+    "totalVacancies": 2000,
+    "startDate": "2026-08-25",
+    "closingDate": "2026-09-28",
+    "examDate": "Nov Prelims, Jan Mains, March Interview",
+    "admitCardDate": "October 2026",
+    "resultDate": "Declared (Check Marks)",
+    "fees": [
+      { "category": "General / OBC / EWS", "amount": "Rs. 750/-" },
+      { "category": "SC / ST / PwD", "amount": "Rs. 0/-" }
+    ],
+    "minAge": "21 Years",
+    "maxAge": "30 Years",
+    "level": "national",
+    "states": [],
+    "eligibility": [
+      { "postName": "Probationary Officer", "totalPosts": "2000", "qualification": "Graduation in Any Discipline from Recognized University" }
+    ],
+    "officialUrl": "https://sbi.co.in",
+    "applyOnlineUrl": "https://sbi.co.in/careers",
+    "notificationPdfUrl": "https://sbi.co.in"
+  },
+  {
+    "slug": "ibps-clerk-mains-final-result-2026",
+    "title": "IBPS Clerk 14th Mains Final Allotment Result 2026 (State-wise Bank Allotment)",
+    "category": "results",
+    "jobCategories": ["Banking"],
+    "qualifications": ["Graduate"],
+    "organization": "Institute of Banking Personnel Selection (IBPS)",
+    "postName": "Clerk (CRP CSA XIV) Combined Result & Allotment",
+    "totalVacancies": 6128,
+    "startDate": "2026-08-01",
+    "closingDate": "2026-09-10",
+    "examDate": "October 2026",
+    "admitCardDate": "September 2026",
+    "resultDate": "Declared (Login with Reg No)",
+    "fees": [
+      { "category": "General / OBC", "amount": "Rs. 850/-" },
+      { "category": "SC / ST", "amount": "Rs. 175/-" }
+    ],
+    "minAge": "20 Years",
+    "maxAge": "28 Years",
+    "level": "national",
+    "states": [],
+    "eligibility": [
+      { "postName": "Clerk", "totalPosts": "6128", "qualification": "Bachelor Degree from Recognized University" }
+    ],
+    "officialUrl": "https://ibps.in",
+    "applyOnlineUrl": "https://ibps.in",
+    "notificationPdfUrl": "https://ibps.in"
+  },
+  {
+    "slug": "ibps-po-mains-result-2026",
+    "title": "IBPS PO / MT 14th Mains Result 2026 (Shortlisted for Interview)",
+    "category": "results",
+    "jobCategories": ["Banking"],
+    "qualifications": ["Graduate"],
+    "organization": "Institute of Banking Personnel Selection (IBPS)",
+    "postName": "Probationary Officer (CRP PO/MT XIV) Mains Exam",
+    "totalVacancies": 4500,
+    "startDate": "2026-08-20",
+    "closingDate": "2026-09-10",
+    "examDate": "30 November 2026",
+    "admitCardDate": "November 2026",
+    "resultDate": "Declared (Check Status)",
+    "fees": [
+      { "category": "General / OBC", "amount": "Rs. 850/-" },
+      { "category": "SC / ST", "amount": "Rs. 175/-" }
+    ],
+    "minAge": "20 Years",
+    "maxAge": "30 Years",
+    "level": "national",
+    "states": [],
+    "eligibility": [
+      { "postName": "Probationary Officer", "totalPosts": "4500", "qualification": "Graduation in Any Stream" }
+    ],
+    "officialUrl": "https://ibps.in",
+    "applyOnlineUrl": "https://ibps.in",
+    "notificationPdfUrl": "https://ibps.in"
+  },
+  {
+    "slug": "up-police-constable-written-result-2026",
+    "title": "UP Police Constable Written Exam Result 2026 & Category Cutoff Marks",
+    "category": "results",
+    "jobCategories": ["Police", "State Govt"],
+    "qualifications": ["12th Pass"],
+    "organization": "Uttar Pradesh Police Recruitment & Promotion Board (UPPRPB)",
+    "postName": "Constable Civil Police & PAC Written Examination",
+    "totalVacancies": 60244,
+    "startDate": "2026-08-15",
+    "closingDate": "2026-09-30",
+    "examDate": "23-31 August 2026",
+    "admitCardDate": "August 2026",
+    "resultDate": "Declared (Shortlisted for DV / PST)",
+    "fees": [
+      { "category": "All Candidates", "amount": "Rs. 400/-" }
+    ],
+    "minAge": "18 Years",
+    "maxAge": "25 Years",
+    "level": "state",
+    "states": ["uttar-pradesh"],
+    "eligibility": [
+      { "postName": "Constable", "totalPosts": "60244", "qualification": "10+2 Intermediate Passed from Recognized Board" }
+    ],
+    "officialUrl": "https://uppbpb.gov.in",
+    "applyOnlineUrl": "https://uppbpb.gov.in",
+    "notificationPdfUrl": "https://uppbpb.gov.in"
+  },
+  {
+    "slug": "uppsc-pcs-prelims-result-2026",
+    "title": "UPPSC Combined State Upper Subordinate (PCS) Prelims Result 2026",
+    "category": "results",
+    "jobCategories": ["Civil Services", "State Govt"],
+    "qualifications": ["Graduate"],
+    "organization": "Uttar Pradesh Public Service Commission (UPPSC)",
+    "postName": "Provincial Civil Services (PCS) Preliminary Examination",
+    "totalVacancies": 350,
+    "startDate": "2026-08-10",
+    "closingDate": "2026-09-15",
+    "examDate": "27 October 2026",
+    "admitCardDate": "October 2026",
+    "resultDate": "Declared (Roll Number List PDF)",
+    "fees": [
+      { "category": "General / OBC", "amount": "Rs. 125/-" },
+      { "category": "SC / ST", "amount": "Rs. 65/-" }
+    ],
+    "minAge": "21 Years",
+    "maxAge": "40 Years",
+    "level": "state",
+    "states": ["uttar-pradesh"],
+    "eligibility": [
+      { "postName": "PCS Cadre", "totalPosts": "350", "qualification": "Graduation Degree in Any Stream from Recognized University" }
+    ],
+    "officialUrl": "https://uppsc.up.nic.in",
+    "applyOnlineUrl": "https://uppsc.up.nic.in",
+    "notificationPdfUrl": "https://uppsc.up.nic.in"
+  },
+  {
+    "slug": "bpsc-school-teacher-tre-3-result-2026",
+    "title": "BPSC Bihar School Teacher TRE 3.0 Result & District Allotment List 2026",
+    "category": "results",
+    "jobCategories": ["Teaching", "State Govt"],
+    "qualifications": ["Graduate", "B.Ed / D.El.Ed"],
+    "organization": "Bihar Public Service Commission (BPSC)",
+    "postName": "School Teacher (Class 1-5, 6-8, 9-10, 11-12) TRE 3.0",
+    "totalVacancies": 87774,
+    "startDate": "2026-02-10",
+    "closingDate": "2026-02-26",
+    "examDate": "19th to 22nd July 2026",
+    "admitCardDate": "July 2026",
+    "resultDate": "Declared (Subject-wise District Allotment)",
+    "fees": [
+      { "category": "General / OBC", "amount": "Rs. 750/-" },
+      { "category": "SC / ST / Female", "amount": "Rs. 200/-" }
+    ],
+    "minAge": "18 Years / 21 Years",
+    "maxAge": "37 Years",
+    "level": "state",
+    "states": ["bihar"],
+    "eligibility": [
+      { "postName": "School Teacher", "totalPosts": "87774", "qualification": "D.El.Ed / B.Ed with CTET / STET qualification" }
+    ],
+    "officialUrl": "https://bpsc.bih.nic.in",
+    "applyOnlineUrl": "https://bpsc.bih.nic.in",
+    "notificationPdfUrl": "https://bpsc.bih.nic.in"
+  },
+  {
+    "slug": "bihar-police-daroga-si-final-result-2026",
+    "title": "BPSSC Bihar Police SI Daroga Final Result & Merit List 2026 (1275 Posts)",
+    "category": "results",
+    "jobCategories": ["Police", "State Govt"],
+    "qualifications": ["Graduate"],
+    "organization": "Bihar Police Sub-ordinate Services Commission (BPSSC)",
+    "postName": "Police Sub Inspector (Daroga) Advt 02/2023",
+    "totalVacancies": 1275,
+    "startDate": "2026-08-14",
+    "closingDate": "2026-09-20",
+    "examDate": "Pre, Mains & Physical Conducted",
+    "admitCardDate": "Released",
+    "resultDate": "Declared (Download Merit List PDF)",
+    "fees": [
+      { "category": "General / EBC", "amount": "Rs. 700/-" },
+      { "category": "SC / ST", "amount": "Rs. 400/-" }
+    ],
+    "minAge": "20 Years",
+    "maxAge": "37 Years",
+    "level": "state",
+    "states": ["bihar"],
+    "eligibility": [
+      { "postName": "Sub Inspector", "totalPosts": "1275", "qualification": "Graduation from Recognized University" }
+    ],
+    "officialUrl": "https://bpssc.bih.nic.in",
+    "applyOnlineUrl": "https://bpssc.bih.nic.in",
+    "notificationPdfUrl": "https://bpssc.bih.nic.in"
+  },
+  {
+    "slug": "rpsc-ras-pre-result-2026",
+    "title": "RPSC RAS Pre Exam Result 2026 & Category-wise Cutoff Marks",
+    "category": "results",
+    "jobCategories": ["Civil Services", "State Govt"],
+    "qualifications": ["Graduate"],
+    "organization": "Rajasthan Public Service Commission (RPSC)",
+    "postName": "Rajasthan Administrative Service & Subordinate Services Combined Pre Exam",
+    "totalVacancies": 733,
+    "startDate": "2026-08-20",
+    "closingDate": "2026-09-28",
+    "examDate": "December 2026",
+    "admitCardDate": "December 2026",
+    "resultDate": "Declared (Check Roll Numbers)",
+    "fees": [
+      { "category": "General", "amount": "Rs. 600/-" },
+      { "category": "Reserved Categories", "amount": "Rs. 400/-" }
+    ],
+    "minAge": "21 Years",
+    "maxAge": "40 Years",
+    "level": "state",
+    "states": ["rajasthan"],
+    "eligibility": [
+      { "postName": "RAS / RTS", "totalPosts": "733", "qualification": "Graduation in Any Stream" }
+    ],
+    "officialUrl": "https://rpsc.rajasthan.gov.in",
+    "applyOnlineUrl": "https://rpsc.rajasthan.gov.in",
+    "notificationPdfUrl": "https://rpsc.rajasthan.gov.in"
+  },
+  {
+    "slug": "mp-police-constable-final-result-2026",
+    "title": "MP Police Constable 7411 Post Final Result 2026 with District Allotment",
+    "category": "results",
+    "jobCategories": ["Police", "State Govt"],
+    "qualifications": ["10th Pass"],
+    "organization": "Madhya Pradesh Employees Selection Board (MPESB)",
+    "postName": "Constable (General Duty & Radio Operator)",
+    "totalVacancies": 7411,
+    "startDate": "2026-08-16",
+    "closingDate": "2026-09-22",
+    "examDate": "Written & Physical Complete",
+    "admitCardDate": "Released",
+    "resultDate": "Declared (Check Scorecard)",
+    "fees": [
+      { "category": "General", "amount": "Rs. 500/-" },
+      { "category": "SC / ST / OBC", "amount": "Rs. 250/-" }
+    ],
+    "minAge": "18 Years",
+    "maxAge": "36 Years",
+    "level": "state",
+    "states": ["madhya-pradesh"],
+    "eligibility": [
+      { "postName": "Constable GD", "totalPosts": "7411", "qualification": "10th Class Passed from Recognized Board" }
+    ],
+    "officialUrl": "https://esb.mp.gov.in",
+    "applyOnlineUrl": "https://esb.mp.gov.in",
+    "notificationPdfUrl": "https://esb.mp.gov.in"
+  },
+  {
+    "slug": "ctet-dec-result-2026",
+    "title": "CTET December 2026 Result & Marks Statement (Download Digilocker Certificate)",
+    "category": "results",
+    "jobCategories": ["Teaching", "Central Govt"],
+    "qualifications": ["Graduate", "B.Ed / D.El.Ed"],
+    "organization": "Central Board of Secondary Education (CBSE)",
+    "postName": "Central Teacher Eligibility Test (CTET) Dec 2026 Scorecard",
+    "totalVacancies": 0,
+    "startDate": "2026-08-20",
+    "closingDate": "2026-09-25",
+    "examDate": "14 December 2026",
+    "admitCardDate": "December 2026",
+    "resultDate": "Declared (Check Score)",
+    "fees": [
+      { "category": "General Both", "amount": "Rs. 1200/-" },
+      { "category": "SC / ST Both", "amount": "Rs. 600/-" }
+    ],
+    "minAge": "18 Years",
+    "maxAge": "No Limit",
+    "level": "national",
+    "states": [],
+    "eligibility": [
+      { "postName": "CTET Qualification", "totalPosts": "National Certificate", "qualification": "D.El.Ed / B.Ed with 60% (55% for reserved) qualifying marks" }
+    ],
+    "officialUrl": "https://ctet.nic.in",
+    "applyOnlineUrl": "https://ctet.nic.in",
+    "notificationPdfUrl": "https://ctet.nic.in"
+  },
+  {
+    "slug": "nta-ugc-net-scorecard-result-2026",
+    "title": "NTA UGC NET June / Dec 2026 Result, Scorecard & E-Certificate Download",
+    "category": "results",
+    "jobCategories": ["Teaching", "Central Govt"],
+    "qualifications": ["Post Graduate"],
+    "organization": "National Testing Agency (NTA)",
+    "postName": "UGC-NET JRF & Assistant Professor Subject-wise Result",
+    "totalVacancies": 0,
+    "startDate": "2026-08-28",
+    "closingDate": "2026-09-30",
+    "examDate": "21 August - 04 September 2026",
+    "admitCardDate": "August 2026",
+    "resultDate": "Declared (Download Scorecard)",
+    "fees": [
+      { "category": "General", "amount": "Rs. 1150/-" },
+      { "category": "OBC-NCL", "amount": "Rs. 600/-" }
+    ],
+    "minAge": "No Limit for Assistant Professor",
+    "maxAge": "30 Years for JRF",
+    "level": "national",
+    "states": [],
+    "eligibility": [
+      { "postName": "JRF & Assistant Professor", "totalPosts": "National Certification", "qualification": "Master Degree with 55% marks (50% for SC/ST/OBC)" }
+    ],
+    "officialUrl": "https://ugcnet.nta.ac.in",
+    "applyOnlineUrl": "https://ugcnet.nta.ac.in",
+    "notificationPdfUrl": "https://ugcnet.nta.ac.in"
+  },
+  {
+    "slug": "aiims-norcet-07-result-2026",
+    "title": "AIIMS NORCET 07 Stage-1 Preliminary Result 2026 (Qualified for Stage 2)",
+    "category": "results",
+    "jobCategories": ["Medical", "Central Govt"],
+    "qualifications": ["MBBS / Nursing"],
+    "organization": "All India Institute of Medical Sciences (AIIMS New Delhi)",
+    "postName": "Nursing Officer Common Eligibility Test Preliminary Result",
+    "totalVacancies": 3055,
+    "startDate": "2026-08-01",
+    "closingDate": "2026-09-02",
+    "examDate": "15 September 2026",
+    "admitCardDate": "September 2026",
+    "resultDate": "Declared (Check Merit List)",
+    "fees": [
+      { "category": "General / OBC", "amount": "Rs. 3000/-" },
+      { "category": "SC / ST", "amount": "Rs. 2400/-" }
+    ],
+    "minAge": "18 Years",
+    "maxAge": "30 Years",
+    "level": "national",
+    "states": [],
+    "eligibility": [
+      { "postName": "Nursing Officer", "totalPosts": "3055", "qualification": "B.Sc Nursing / GNM with hospital experience" }
+    ],
+    "officialUrl": "https://aiimsexams.ac.in",
+    "applyOnlineUrl": "https://norcet7.aiimsexams.ac.in",
+    "notificationPdfUrl": "https://aiimsexams.ac.in"
+  },
+  {
+    "slug": "gate-result-rank-card-2026",
+    "title": "GATE 2026 Result & Official Scorecard with All India Rank (AIR)",
+    "category": "results",
+    "jobCategories": ["Engineering"],
+    "qualifications": ["B.Tech", "Graduate"],
+    "organization": "Indian Institute of Technology (IIT)",
+    "postName": "Graduate Aptitude Test in Engineering Result 2026",
+    "totalVacancies": 0,
+    "startDate": "2026-08-22",
+    "closingDate": "2026-09-26",
+    "examDate": "February 2027",
+    "admitCardDate": "January 2027",
+    "resultDate": "Declared (Download Scorecard Active)",
+    "fees": [
+      { "category": "General", "amount": "Rs. 1800/-" },
+      { "category": "SC / ST / Female", "amount": "Rs. 900/-" }
+    ],
+    "minAge": "No Limit",
+    "maxAge": "No Limit",
+    "level": "national",
+    "states": [],
+    "eligibility": [
+      { "postName": "GATE Qualified", "totalPosts": "National Scorecard", "qualification": "Engineering / Technology / Science degree" }
+    ],
+    "officialUrl": "https://gate.iitk.ac.in",
+    "applyOnlineUrl": "https://gate.iitk.ac.in",
+    "notificationPdfUrl": "https://gate.iitk.ac.in"
+  },
+  {
+    "slug": "isro-scientist-sc-result-2026",
+    "title": "ISRO Scientist / Engineer 'SC' Written Test Result & Interview List 2026",
+    "category": "results",
+    "jobCategories": ["Engineering", "Central Govt"],
+    "qualifications": ["B.Tech"],
+    "organization": "Indian Space Research Organisation (ISRO)",
+    "postName": "Scientist/Engineer 'SC' Civil, Electrical, Mech, ECE, CS",
+    "totalVacancies": 303,
+    "startDate": "2026-08-20",
+    "closingDate": "2026-09-25",
+    "examDate": "November 2026",
+    "admitCardDate": "October 2026",
+    "resultDate": "Declared (Check Roll Numbers)",
+    "fees": [
+      { "category": "General / OBC", "amount": "Rs. 250/-" },
+      { "category": "SC / ST", "amount": "Rs. 0/-" }
+    ],
+    "minAge": "18 Years",
+    "maxAge": "28 Years",
+    "level": "national",
+    "states": [],
+    "eligibility": [
+      { "postName": "Scientist/Engineer", "totalPosts": "303", "qualification": "First Class BE/B.Tech with minimum 65% marks" }
+    ],
+    "officialUrl": "https://isro.gov.in",
+    "applyOnlineUrl": "https://isro.gov.in/Careers.html",
+    "notificationPdfUrl": "https://isro.gov.in"
+  },
+  {
+    "slug": "drdo-ceptam-11-result-2026",
+    "title": "DRDO CEPTAM 11 Tier-I Result & Tier-II Skill Test Call Letter 2026",
+    "category": "results",
+    "jobCategories": ["Engineering", "Central Govt"],
+    "qualifications": ["10th Pass", "ITI", "Diploma"],
+    "organization": "Defence Research and Development Organisation (DRDO)",
+    "postName": "Senior Technical Assistant (STA-B) & Technician (Tech-A)",
+    "totalVacancies": 1901,
+    "startDate": "2026-08-12",
+    "closingDate": "2026-09-18",
+    "examDate": "December 2026",
+    "admitCardDate": "November 2026",
+    "resultDate": "Declared (Check Scorecard)",
+    "fees": [
+      { "category": "General / OBC", "amount": "Rs. 100/-" },
+      { "category": "SC / ST / PwD", "amount": "Rs. 0/-" }
+    ],
+    "minAge": "18 Years",
+    "maxAge": "28 Years",
+    "level": "national",
+    "states": [],
+    "eligibility": [
+      { "postName": "STA-B & Tech-A", "totalPosts": "1901", "qualification": "B.Sc / Diploma / ITI in relevant engineering trade" }
+    ],
+    "officialUrl": "https://drdo.gov.in",
+    "applyOnlineUrl": "https://drdo.gov.in/ceptam-notice-board",
+    "notificationPdfUrl": "https://drdo.gov.in"
+  },
+  {
+    "slug": "ssc-cgl-tier-1-answer-key-2026",
+    "title": "SSC CGL 2026 Tier-I Official Answer Key & Response Sheet with Objection Link",
+    "category": "answer-keys",
+    "jobCategories": ["Central Govt", "Civil Services"],
+    "qualifications": ["Graduate"],
+    "organization": "Staff Selection Commission (SSC)",
+    "postName": "Combined Graduate Level (CGL) Tier-I Answer Key",
+    "totalVacancies": 14582,
+    "startDate": "2026-08-20",
+    "closingDate": "2026-09-25",
+    "examDate": "09-26 September 2026",
+    "admitCardDate": "September 2026",
+    "resultDate": "Answer Key Released (Challenge window active)",
+    "fees": [
+      { "category": "Objection Fee", "amount": "Rs. 100/- Per Question" }
+    ],
+    "minAge": "18 Years",
+    "maxAge": "32 Years",
+    "level": "national",
+    "states": [],
+    "eligibility": [
+      { "postName": "CGL Tier 1", "totalPosts": "14582", "qualification": "Appeared in CGL 2026 Tier 1 Computer Based Exam" }
+    ],
+    "officialUrl": "https://ssc.gov.in",
+    "applyOnlineUrl": "https://ssc.gov.in",
+    "notificationPdfUrl": "https://ssc.gov.in"
+  },
+  {
+    "slug": "ssc-gd-constable-answer-key-2026",
+    "title": "SSC GD Constable 2026 Official Answer Key & Candidate Response Sheet",
+    "category": "answer-keys",
+    "jobCategories": ["Police", "Defense"],
+    "qualifications": ["10th Pass"],
+    "organization": "Staff Selection Commission (SSC)",
+    "postName": "Constable GD in CAPFs, SSF, Rifleman (GD) in Assam Rifles",
+    "totalVacancies": 26146,
+    "startDate": "2026-08-24",
+    "closingDate": "2026-09-28",
+    "examDate": "February-March 2026",
+    "admitCardDate": "February 2026",
+    "resultDate": "Answer Key Available (Download Response Sheet)",
+    "fees": [
+      { "category": "Per Question Challenge", "amount": "Rs. 100/-" }
+    ],
+    "minAge": "18 Years",
+    "maxAge": "23 Years",
+    "level": "national",
+    "states": [],
+    "eligibility": [
+      { "postName": "Constable GD", "totalPosts": "26146", "qualification": "Appeared in GD Constable Computer Based Test" }
+    ],
+    "officialUrl": "https://ssc.gov.in",
+    "applyOnlineUrl": "https://ssc.gov.in",
+    "notificationPdfUrl": "https://ssc.gov.in"
+  },
+  {
+    "slug": "up-police-constable-answer-key-2026",
+    "title": "UP Police Constable Re-Exam 2026 Shift-wise Official Answer Key & Objection",
+    "category": "answer-keys",
+    "jobCategories": ["Police", "State Govt"],
+    "qualifications": ["12th Pass"],
+    "organization": "Uttar Pradesh Police Recruitment & Promotion Board (UPPRPB)",
+    "postName": "Constable Civil Police & PAC Master Question Paper & Key",
+    "totalVacancies": 60244,
+    "startDate": "2026-08-15",
+    "closingDate": "2026-09-30",
+    "examDate": "23-31 August 2026",
+    "admitCardDate": "August 2026",
+    "resultDate": "Released (Shift 1 & Shift 2)",
+    "fees": [
+      { "category": "Objection Filing", "amount": "Rs. 50/- Per Question" }
+    ],
+    "minAge": "18 Years",
+    "maxAge": "25 Years",
+    "level": "state",
+    "states": ["uttar-pradesh"],
+    "eligibility": [
+      { "postName": "Constable", "totalPosts": "60244", "qualification": "Appeared in UP Police Constable Exam 2026" }
+    ],
+    "officialUrl": "https://uppbpb.gov.in",
+    "applyOnlineUrl": "https://uppbpb.gov.in",
+    "notificationPdfUrl": "https://uppbpb.gov.in"
+  },
+  {
+    "slug": "bpsc-70th-cce-prelims-answer-key-2026",
+    "title": "BPSC 70th CCE Prelims Official Provisional Answer Key (Series A, B, C, D)",
+    "category": "answer-keys",
+    "jobCategories": ["Civil Services", "State Govt"],
+    "qualifications": ["Graduate"],
+    "organization": "Bihar Public Service Commission (BPSC)",
+    "postName": "70th Integrated Combined Competitive Examination",
+    "totalVacancies": 1957,
+    "startDate": "2026-08-25",
+    "closingDate": "2026-09-30",
+    "examDate": "17 November 2026",
+    "admitCardDate": "November 2026",
+    "resultDate": "Provisional Key Active",
+    "fees": [
+      { "category": "No Fee for Objection", "amount": "Free (Through Dashboard)" }
+    ],
+    "minAge": "20 Years",
+    "maxAge": "37 Years",
+    "level": "state",
+    "states": ["bihar"],
+    "eligibility": [
+      { "postName": "State Civil Services", "totalPosts": "1957", "qualification": "Appeared in BPSC 70th CCE Prelims Exam" }
+    ],
+    "officialUrl": "https://bpsc.bih.nic.in",
+    "applyOnlineUrl": "https://onlinebpsc.bihar.gov.in",
+    "notificationPdfUrl": "https://bpsc.bih.nic.in"
+  },
+  {
+    "slug": "csbc-bihar-police-answer-key-2026",
+    "title": "CSBC Bihar Police Constable 2026 Question Paper & Official Answer Key",
+    "category": "answer-keys",
+    "jobCategories": ["Police", "State Govt"],
+    "qualifications": ["12th Pass"],
+    "organization": "Central Selection Board of Constable (CSBC Bihar)",
+    "postName": "Constable in Bihar Police Written Exam Solution",
+    "totalVacancies": 21391,
+    "startDate": "2026-08-10",
+    "closingDate": "2026-09-15",
+    "examDate": "August 2026",
+    "admitCardDate": "August 2026",
+    "resultDate": "Official Key Available",
+    "fees": [
+      { "category": "Representation Fee", "amount": "Rs. 0/-" }
+    ],
+    "minAge": "18 Years",
+    "maxAge": "25 Years",
+    "level": "state",
+    "states": ["bihar"],
+    "eligibility": [
+      { "postName": "Constable", "totalPosts": "21391", "qualification": "Appeared in CSBC Written Examination" }
+    ],
+    "officialUrl": "https://csbc.bih.nic.in",
+    "applyOnlineUrl": "https://csbc.bih.nic.in",
+    "notificationPdfUrl": "https://csbc.bih.nic.in"
+  },
+  {
+    "slug": "ctet-dec-official-answer-key-2026",
+    "title": "CTET December 2026 Official Answer Key Paper 1 & 2 with Scanned OMR Sheet",
+    "category": "answer-keys",
+    "jobCategories": ["Teaching", "Central Govt"],
+    "qualifications": ["Graduate", "B.Ed / D.El.Ed"],
+    "organization": "Central Board of Secondary Education (CBSE)",
+    "postName": "Central Teacher Eligibility Test (CTET) Dec 2026",
+    "totalVacancies": 0,
+    "startDate": "2026-08-20",
+    "closingDate": "2026-09-25",
+    "examDate": "14 December 2026",
+    "admitCardDate": "December 2026",
+    "resultDate": "Key Released (OMR Sheet Download Active)",
+    "fees": [
+      { "category": "Per Question Challenge Fee", "amount": "Rs. 1000/- (Refundable if valid)" }
+    ],
+    "minAge": "18 Years",
+    "maxAge": "No Limit",
+    "level": "national",
+    "states": [],
+    "eligibility": [
+      { "postName": "CTET Candidates", "totalPosts": "National Key", "qualification": "Appeared in CTET Dec 2026 Paper 1 or Paper 2" }
+    ],
+    "officialUrl": "https://ctet.nic.in",
+    "applyOnlineUrl": "https://ctet.nic.in",
+    "notificationPdfUrl": "https://ctet.nic.in"
+  },
+  {
+    "slug": "nta-ugc-net-provisional-answer-key-2026",
+    "title": "NTA UGC NET June / Dec 2026 Provisional Answer Key & Question Paper Download",
+    "category": "answer-keys",
+    "jobCategories": ["Teaching", "Central Govt"],
+    "qualifications": ["Post Graduate"],
+    "organization": "National Testing Agency (NTA)",
+    "postName": "UGC-NET Answer Key with Recorded Responses",
+    "totalVacancies": 0,
+    "startDate": "2026-08-28",
+    "closingDate": "2026-09-30",
+    "examDate": "21 August - 04 September 2026",
+    "admitCardDate": "August 2026",
+    "resultDate": "Answer Key Active",
+    "fees": [
+      { "category": "Challenge Fee", "amount": "Rs. 200/- Per Question (Non-refundable)" }
+    ],
+    "minAge": "No Limit for Assistant Professor",
+    "maxAge": "30 Years for JRF",
+    "level": "national",
+    "states": [],
+    "eligibility": [
+      { "postName": "UGC NET Examinees", "totalPosts": "National Key", "qualification": "Appeared in UGC NET Computer Based Exam" }
+    ],
+    "officialUrl": "https://ugcnet.nta.ac.in",
+    "applyOnlineUrl": "https://ugcnet.nta.ac.in",
+    "notificationPdfUrl": "https://ugcnet.nta.ac.in"
+  },
+  {
+    "slug": "gate-official-answer-key-2026",
+    "title": "GATE 2026 Master Question Papers & Final Answer Keys Download PDF",
+    "category": "answer-keys",
+    "jobCategories": ["Engineering"],
+    "qualifications": ["B.Tech", "Graduate"],
+    "organization": "Indian Institute of Technology (IIT)",
+    "postName": "Graduate Aptitude Test in Engineering All 30 Papers Answer Keys",
+    "totalVacancies": 0,
+    "startDate": "2026-08-22",
+    "closingDate": "2026-09-26",
+    "examDate": "February 2027",
+    "admitCardDate": "January 2027",
+    "resultDate": "Master Key Available",
+    "fees": [
+      { "category": "Contest Fee", "amount": "Rs. 500/- Per Question" }
+    ],
+    "minAge": "No Limit",
+    "maxAge": "No Limit",
+    "level": "national",
+    "states": [],
+    "eligibility": [
+      { "postName": "GATE Candidates", "totalPosts": "30 Engineering Streams", "qualification": "Appeared in GATE 2026 Exam" }
+    ],
+    "officialUrl": "https://gate.iitk.ac.in",
+    "applyOnlineUrl": "https://gate.iitk.ac.in",
+    "notificationPdfUrl": "https://gate.iitk.ac.in"
+  }
+]

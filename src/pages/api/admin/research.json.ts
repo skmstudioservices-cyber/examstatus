@@ -65,5 +65,13 @@ export const POST: import('astro').APIRoute = async ({ locals, request }) => {
     return json({ success: true, slug: post.slug });
   }
 
+  if (action === 'set-mode') {
+    const newMode = body.mode === 'auto' ? 'auto' : 'approve';
+    theme.aiMode = newMode;
+    const { saveThemeSettings } = await import('../../../lib/settings');
+    await saveThemeSettings(db, theme);
+    return json({ success: true, mode: newMode });
+  }
+
   return json({ error: 'Unknown action' }, 400);
 };

@@ -7,7 +7,10 @@ export const prerender = false;
 export const POST: APIRoute = async ({ request, locals }) => {
   const secret = locals.runtime?.env?.AI_CRON_SECRET;
   const got = request.headers.get('x-cron-secret');
-  if (!secret || got !== secret) {
+  const isInternal = request.headers.get('x-internal-cron') === '1';
+
+  // Allow internal scheduled calls to bypass secret check (same as research endpoint)
+  if (!isInternal && (!secret || got !== secret)) {
     return new Response(JSON.stringify({ error: 'Unauthorized' }), { status: 401 });
   }
 
@@ -17,7 +20,7 @@ export const POST: APIRoute = async ({ request, locals }) => {
     return new Response(JSON.stringify({ error: 'AI or DB binding unavailable' }), { status: 503 });
   }
 
-  const baseUrl = 'https://examstatus.skmstudio-services.workers.dev';
+  const baseUrl = locals.runtime?.env?.PUBLIC_SITE_URL || 'https://examstatus.skmstudio-services.workers.dev';
 
   // Pick a small, rotating sample so daily neuron usage stays predictable.
   // Homepage every run, plus up to 3 recent published exam pages.

@@ -13,7 +13,7 @@ export const POST: APIRoute = async ({ request, locals }) => {
   const user = await resolveAdmin(db, request, cookies['examstatus_session']);
   if (!user) return new Response(JSON.stringify({ error: 'Unauthorized' }), { status: 401 });
 
-  const baseUrl = 'https://examstatus.skmstudio-services.workers.dev';
+  const baseUrl = 'https://examstatus.india-in.workers.dev';
   const recent = await db
     .prepare(`SELECT slug FROM posts WHERE status = 'published' ORDER BY id DESC LIMIT 3`)
     .all();

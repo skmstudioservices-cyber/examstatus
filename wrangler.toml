@@ -24,7 +24,7 @@ invocation_logs = true
 head_sampling_rate = 1
 
 [triggers]
-crons = ["0 * * * *"]
+crons = ["0 */3 * * *"]
 
 # Secrets (set via dashboard or `wrangler secret put`):
 #   ADMIN_SESSION_SECRET — admin session signing

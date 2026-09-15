@@ -18,6 +18,11 @@ binding = "AI"
 [observability]
 enabled = true
 
+[observability.logs]
+enabled = true
+invocation_logs = true
+head_sampling_rate = 1
+
 [triggers]
 crons = ["0 * * * *"]
 
@@ -25,4 +30,4 @@ crons = ["0 * * * *"]
 #   ADMIN_SESSION_SECRET — admin session signing
 #   AI_CRON_SECRET — authorizes /api/cron/research and /api/cron/audit
 # Optional var:
-#   PUBLIC_SITE_URL — base URL for scheduled self-fetch (default workers.dev)
+#   PUBLIC_SITE_URL — base URL for scheduled self-fetch (default: https://examstatus.india-in.workers.dev)

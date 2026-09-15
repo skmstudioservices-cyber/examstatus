@@ -1,0 +1,19 @@
+name: Site Health Check
+
+on:
+  schedule:
+    - cron: "*/30 * * * *"
+  workflow_dispatch:
+
+jobs:
+  check:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Check examstatus homepage
+        run: |
+          code=$(curl -s -o /dev/null -w "%{http_code}" --max-time 30 "https://examstatus.india-in.workers.dev/")
+          echo "examstatus homepage: HTTP $code"
+          if [ "$code" != "200" ]; then
+            echo "::error::examstatus.india-in.workers.dev returned HTTP $code"
+            exit 1
+          fi

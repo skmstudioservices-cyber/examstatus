@@ -1,7 +1,7 @@
 name = "examstatus"
 compatibility_date = "2024-04-01"
 compatibility_flags = ["nodejs_compat"]
-main = "./dist/_worker.js/index.js"
+main = "./dist_worker.js/index.js"
 
 [assets]
 directory = "./dist"
@@ -23,11 +23,15 @@ enabled = true
 invocation_logs = true
 head_sampling_rate = 1
 
+[observability.traces]
+enabled = true
+head_sampling_rate = 0.05
+
 [triggers]
 crons = ["0 */3 * * *"]
 
 # Secrets (set via dashboard or `wrangler secret put`):
-#   ADMIN_SESSION_SECRET — admin session signing
+#   ADMIN_SESSION_SECRET — admin session signin
 #   AI_CRON_SECRET — authorizes /api/cron/research and /api/cron/audit
 # Optional var:
 #   PUBLIC_SITE_URL — base URL for scheduled self-fetch (default: https://examstatus.india-in.workers.dev)

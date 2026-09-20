@@ -38,7 +38,6 @@ const schemas = Array.isArray(schemaData) ? schemaData : schemaData ? [schemaDat
   <link rel="canonical" href={canonicalURL.split('?')[0]} />
   <meta name="robots" content="index, follow, max-image-preview:large, max-snippet:-1, max-video-preview:-1" />
   <meta name="google-site-verification" content="Y_eKs_NNxezM-xRutg7oqy5Ga7qwl1W_ZbIPLGmn3pI" />
-  <meta name="google-site-verification" content="GlkDu5ZL-CyyKjwPSj9d9X3Y2qsHUj_qAwRwxiLr7nI" />
   <script is:inline src="https://analytics.ahrefs.com/analytics.js" data-key="gOliiXpzU4P4bK1z+5QfgA" async></script>
   <meta property="og:type" content="website" />
   <meta property="og:title" content={title} />
@@ -77,9 +76,7 @@ const schemas = Array.isArray(schemaData) ? schemaData : schemaData ? [schemaDat
       </a>
       <nav class="hidden lg:flex flex-wrap gap-4 text-xs font-bold uppercase tracking-wider">
         {nav.map((item) => (
-          <a href={`${item.href}${item.href.includes('?') ? '&' : '?'}lang=${lang}`} class="hover:opacity-80 transition-colors">
-            {item.label}
-          </a>
+          <a href={`${item.href}${item.href.includes('?') ? '&' : '?'}lang=${lang}`} class="hover:opacity-80 transition-colors">{item.label}</a>
         ))}
       </nav>
       <div class="flex items-center gap-2">
@@ -96,9 +93,7 @@ const schemas = Array.isArray(schemaData) ? schemaData : schemaData ? [schemaDat
     </div>
     <nav class="lg:hidden flex gap-3 overflow-x-auto px-3 pb-3 text-[11px] font-bold uppercase tracking-wider">
       {nav.map((item) => (
-        <a href={`${item.href}${item.href.includes('?') ? '&' : '?'}lang=${lang}`} class="whitespace-nowrap opacity-90">
-          {item.label}
-        </a>
+        <a href={`${item.href}${item.href.includes('?') ? '&' : '?'}lang=${lang}`} class="whitespace-nowrap opacity-90">{item.label}</a>
       ))}
     </nav>
   </header>

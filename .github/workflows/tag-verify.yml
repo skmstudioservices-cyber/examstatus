@@ -1,6 +1,6 @@
 name: Tag Verify
 
-# Live HTML se GSC/analytics tags ka content-level verify.
+# Live HTML se tags ka content-level verify.
 # (200 OK is NOT verification — grep the actual tags.)
 
 on:
@@ -14,12 +14,10 @@ jobs:
         run: |
           set -e
           H=$(curl -sL --max-time 30 "https://examstatus.india-in.workers.dev/?cb=$(date +%s)")
-          echo "Y_eKs (apna tag):   $(echo "$H" | grep -c 'Y_eKs_NNxez' || true)"
-          echo "GlkDu5ZL (duplicate): $(echo "$H" | grep -c 'GlkDu5ZL' || true)"
-          echo "Ahrefs analytics:  $(echo "$H" | grep -c 'analytics.ahrefs.com' || true)"
-          N=$(echo "$H" | grep -c 'Y_eKs_NNxez' || true)
-          D=$(echo "$H" | grep -c 'GlkDu5ZL' || true)
-          if [ "$N" -ne 1 ] || [ "$D" -ne 0 ]; then
-            echo "::error::Tag check failed — expected Y_eKs=1, GlkDu5ZL=0"
+          echo "google tags:      $(echo "$H" | grep -c 'google-site-verification' || true)"
+          echo "Ahrefs analytics: $(echo "$H" | grep -c 'analytics.ahrefs.com' || true)"
+          G=$(echo "$H" | grep -c 'google-site-verification' || true)
+          if [ "$G" -ne 0 ]; then
+            echo "::error::GSC tag still present — expected 0"
             exit 1
           fi

@@ -14,11 +14,11 @@ jobs:
         run: |
           set -e
           H=$(curl -sL --max-time 30 "https://examstatus.india-in.workers.dev/?cb=$(date +%s)")
-          echo "Y_eKs (apna tag):   $(echo "$H" | grep -c 'Y_eKs_NNxez')"
-          echo "GlkDu5ZL (duplicate): $(echo "$H" | grep -c 'GlkDu5ZL')"
-          echo "Ahrefs analytics:  $(echo "$H" | grep -c 'analytics.ahrefs.com')"
-          N=$(echo "$H" | grep -c 'Y_eKs_NNxez')
-          D=$(echo "$H" | grep -c 'GlkDu5ZL')
+          echo "Y_eKs (apna tag):   $(echo "$H" | grep -c 'Y_eKs_NNxez' || true)"
+          echo "GlkDu5ZL (duplicate): $(echo "$H" | grep -c 'GlkDu5ZL' || true)"
+          echo "Ahrefs analytics:  $(echo "$H" | grep -c 'analytics.ahrefs.com' || true)"
+          N=$(echo "$H" | grep -c 'Y_eKs_NNxez' || true)
+          D=$(echo "$H" | grep -c 'GlkDu5ZL' || true)
           if [ "$N" -ne 1 ] || [ "$D" -ne 0 ]; then
             echo "::error::Tag check failed — expected Y_eKs=1, GlkDu5ZL=0"
             exit 1

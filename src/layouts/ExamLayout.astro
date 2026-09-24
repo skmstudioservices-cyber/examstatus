@@ -44,6 +44,13 @@ const schemas = Array.isArray(schemaData) ? schemaData : schemaData ? [schemaDat
   <meta name="twitter:card" content="summary_large_image" />
   <meta name="twitter:title" content={title} />
   <meta name="twitter:description" content={description} />
+  <meta property="og:site_name" content="ExamStatus Portal" />
+  <meta property="og:image" content="https://examstatus.india-in.workers.dev/og-image.png" />
+  <meta name="theme-color" content="#4338ca" />
+  <link rel="icon" href="/favicon.svg" type="image/svg+xml" />
+  <link rel="icon" href="/favicon.ico" sizes="48x48" />
+  <link rel="apple-touch-icon" href="/apple-touch-icon.png" />
+  <script type="application/ld+json" set:html={JSON.stringify({ "@context": "https://schema.org", "@type": "WebSite", "name": "ExamStatus Portal", "url": "https://examstatus.india-in.workers.dev/" })} />
   {schemas.map((s) => (
     <script type="application/ld+json" set:html={JSON.stringify(s)} />
   ))}

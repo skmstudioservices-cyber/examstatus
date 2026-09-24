@@ -1,0 +1,63 @@
+name: Branding Icons
+
+on:
+  workflow_dispatch:
+
+permissions:
+  contents: write
+
+jobs:
+  icons:
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+      - name: Generate branding icons
+        run: |
+          python3 -m pip install --quiet pillow
+          python3 << 'PY'
+from PIL import Image, ImageDraw, ImageFont
+import os
+BG = "#4338ca"; FG = "#ffffff"; LETTER = "E"; NAME = "ExamStatus Portal"; TAG = "Sarkari Exam Results & Job Status"; URL = "examstatus.india-in.workers.dev"
+OUT = "public"
+FONT = "/usr/share/fonts/truetype/dejavu/DejaVuSans-Bold.ttf"
+f = lambda s: ImageFont.truetype(FONT, s)
+S = 256; r = 52
+img = Image.new("RGBA", (S, S), (0,0,0,0))
+d = ImageDraw.Draw(img)
+d.rounded_rectangle([0,0,S,S], radius=r, fill=BG)
+ff = f(150)
+bb = d.textbbox((0,0), LETTER, font=ff)
+d.text(((S-(bb[2]-bb[0]))/2 - bb[0], (S-(bb[3]-bb[1]))/2 - bb[1]), LETTER, font=ff, fill=FG)
+os.makedirs(OUT, exist_ok=True)
+img.resize((96,96), Image.LANCZOS).save(OUT + "/favicon-96.png")
+img.resize((180,180), Image.LANCZOS).save(OUT + "/apple-touch-icon.png")
+img.resize((48,48), Image.LANCZOS).save(OUT + "/favicon.ico", format="ICO", sizes=[(16,16),(32,32),(48,48)])
+svg = '<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100"><rect width="100" height="100" rx="20" fill="' + BG + '"/><text x="50" y="72" font-family="Arial,Helvetica,sans-serif" font-size="58" font-weight="bold" text-anchor="middle" fill="' + FG + '">' + LETTER + '</text></svg>'
+open(OUT + "/favicon.svg","w").write(svg)
+if NAME:
+    og = Image.new("RGB", (1200, 630), BG)
+    dog = ImageDraw.Draw(og)
+    fn = f(120 if len(NAME)<16 else 96)
+    bb = dog.textbbox((0,0), NAME, font=fn)
+    dog.text(((1200-(bb[2]-bb[0]))/2, 200-(bb[3]-bb[1])/2), NAME, font=fn, fill="#ffffff")
+    ft = f(46)
+    bb = dog.textbbox((0,0), TAG, font=ft)
+    dog.text(((1200-(bb[2]-bb[0]))/2, 390), TAG, font=ft, fill="#e5e7eb")
+    fu = f(34)
+    bb = dog.textbbox((0,0), URL, font=fu)
+    dog.text(((1200-(bb[2]-bb[0]))/2, 520), URL, font=fu, fill=FG)
+    og.save(OUT + "/og-image.png")
+print("icons written to", OUT, os.listdir(OUT))
+
+          PY
+      - name: Commit icons
+        run: |
+          git config user.name "skm-ops-bot"
+          git config user.email "skmstudio.services@gmail.com"
+          git add public
+          git commit -m "branding: favicon + apple-touch-icon + og-image assets" || echo "nothing to commit"
+          git push

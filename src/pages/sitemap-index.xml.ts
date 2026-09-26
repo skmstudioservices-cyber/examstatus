@@ -19,7 +19,8 @@ export async function GET({ url, locals }: { url: URL; locals: App.Locals }) {
     '/category/admit-cards',
     '/category/results',
     '/category/answer-keys',
-    '/category/syllabus'
+    '/category/syllabus',
+    '/ugc-net-june-2026-result'
   ];
 
   const examUrls = posts

@@ -38,6 +38,13 @@ const schemas = Array.isArray(schemaData) ? schemaData : schemaData ? [schemaDat
   <link rel="canonical" href={canonicalURL.split('?')[0]} />
   <meta name="robots" content="index, follow, max-image-preview:large, max-snippet:-1, max-video-preview:-1" />
   <script is:inline src="https://analytics.ahrefs.com/analytics.js" data-key="gOliiXpzU4P4bK1z+5QfgA" async></script>
+  <script async src="https://www.googletagmanager.com/gtag/js?id=G-S4Q4JRTE2Y"></script>
+  <script is:inline>
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){dataLayer.push(arguments);}
+    gtag('js', new Date());
+    gtag('config', 'G-S4Q4JRTE2Y');
+  </script>
   <meta property="og:type" content="website" />
   <meta property="og:title" content={title} />
   <meta property="og:description" content={description} />

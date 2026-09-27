@@ -57,66 +57,66 @@ Astro.response.headers.set('Cache-Control', cacheHeaders(theme.cacheTtlSeconds)[
 
   <div class="grid grid-cols-1 md:grid-cols-3 gap-5" id="dashboard-grid">
     <section class="bg-white border-2 border-red-600 rounded-lg shadow-md overflow-hidden flex flex-col result-col" id="results">
-      <div class="bg-red-700 text-white font-black text-center py-3 px-3 uppercase text-sm flex justify-between items-center">
-        <span>{theme.columnResults}</span>
-        <span class="text-xs bg-red-950 px-2.5 py-1 rounded-full count-badge">{results.length}</span>
+      <div class="bg-red-700 text-white font-black text-center py-2.5 px-3 uppercase text-sm flex justify-between items-center shadow-sm">
+        <span class="tracking-wide">{theme.columnResults}</span>
+        <span class="text-xs bg-red-950 px-2.5 py-0.5 rounded-full count-badge font-bold">{results.length}</span>
       </div>
-      <div class="p-3 flex-grow space-y-2" id="results-list">
+      <div class="p-2 sm:p-3 flex-grow space-y-1.5 max-h-[560px] md:max-h-[600px] overflow-y-auto scroll-smooth custom-scrollbar" id="results-list">
         {results.map((item) => (
-          <a href={`/exam/${item.slug}?lang=${lang}`} class="exam-card block hover:bg-red-50 p-2 rounded transition" data-quals={JSON.stringify(item.qualifications || [])}>
+          <a href={`/exam/${item.slug}?lang=${lang}`} class="exam-card block hover:bg-red-50 p-2 rounded border border-transparent hover:border-red-200 transition" data-quals={JSON.stringify(item.qualifications || [])}>
             <div class="text-xs font-bold text-red-900 leading-snug">• {lang === 'hi' && item.title_hi ? item.title_hi : item.title}</div>
-            <div class="text-[10px] text-gray-500 mt-1.5 flex justify-between gap-2">
+            <div class="text-[10px] text-gray-500 mt-1 flex justify-between items-center gap-2">
               <span class="font-semibold truncate">{item.organization}</span>
-              <span class="text-red-600 font-bold bg-red-100 px-1.5 rounded shrink-0">{item.result_date}</span>
+              <span class="text-red-600 font-bold bg-red-100 px-1.5 py-0.5 rounded shrink-0">{item.result_date}</span>
             </div>
           </a>
         ))}
-        <div class="empty-state hidden text-center text-xs text-gray-400 py-6 font-semibold">No results match this qualification.</div>
+        <div class="empty-state hidden text-center text-xs text-gray-400 py-8 font-semibold">No results match this qualification.</div>
       </div>
-      <a href={`/category/results?lang=${lang}`} class="bg-gray-100 hover:bg-gray-200 text-center py-2.5 text-xs font-bold text-red-800 border-t min-h-[44px] flex items-center justify-center">View all</a>
+      <a href={`/category/results?lang=${lang}`} class="bg-gray-100 hover:bg-gray-200 text-center py-2 text-xs font-bold text-red-800 border-t min-h-[40px] flex items-center justify-center">View all results →</a>
     </section>
 
     <section class="bg-white border-2 border-blue-600 rounded-lg shadow-md overflow-hidden flex flex-col admit-col" id="admit-cards">
-      <div class="bg-blue-800 text-white font-black text-center py-3 px-3 uppercase text-sm flex justify-between items-center">
-        <span>{theme.columnAdmitCards}</span>
-        <span class="text-xs bg-blue-950 px-2.5 py-1 rounded-full count-badge">{admitCards.length}</span>
+      <div class="bg-blue-800 text-white font-black text-center py-2.5 px-3 uppercase text-sm flex justify-between items-center shadow-sm">
+        <span class="tracking-wide">{theme.columnAdmitCards}</span>
+        <span class="text-xs bg-blue-950 px-2.5 py-0.5 rounded-full count-badge font-bold">{admitCards.length}</span>
       </div>
-      <div class="p-3 flex-grow space-y-2" id="admit-list">
+      <div class="p-2 sm:p-3 flex-grow space-y-1.5 max-h-[560px] md:max-h-[600px] overflow-y-auto scroll-smooth custom-scrollbar" id="admit-list">
         {admitCards.map((item) => (
-          <a href={`/exam/${item.slug}?lang=${lang}`} class="exam-card block hover:bg-blue-50 p-2 rounded transition" data-quals={JSON.stringify(item.qualifications || [])}>
+          <a href={`/exam/${item.slug}?lang=${lang}`} class="exam-card block hover:bg-blue-50 p-2 rounded border border-transparent hover:border-blue-200 transition" data-quals={JSON.stringify(item.qualifications || [])}>
             <div class="text-xs font-bold text-blue-900 leading-snug">• {lang === 'hi' && item.title_hi ? item.title_hi : item.title}</div>
-            <div class="text-[10px] text-gray-500 mt-1.5 flex justify-between gap-2">
+            <div class="text-[10px] text-gray-500 mt-1 flex justify-between items-center gap-2">
               <span class="font-semibold truncate">{item.organization}</span>
-              <span class="text-blue-600 font-bold bg-blue-100 px-1.5 rounded shrink-0">{item.admit_card_date}</span>
+              <span class="text-blue-600 font-bold bg-blue-100 px-1.5 py-0.5 rounded shrink-0">{item.admit_card_date}</span>
             </div>
           </a>
         ))}
-        <div class="empty-state hidden text-center text-xs text-gray-400 py-6 font-semibold">No admit cards match.</div>
+        <div class="empty-state hidden text-center text-xs text-gray-400 py-8 font-semibold">No admit cards match.</div>
       </div>
-      <a href={`/category/admit-cards?lang=${lang}`} class="bg-gray-100 hover:bg-gray-200 text-center py-2.5 text-xs font-bold text-blue-900 border-t min-h-[44px] flex items-center justify-center">View all</a>
+      <a href={`/category/admit-cards?lang=${lang}`} class="bg-gray-100 hover:bg-gray-200 text-center py-2 text-xs font-bold text-blue-900 border-t min-h-[40px] flex items-center justify-center">View all admit cards →</a>
     </section>
 
     <section class="bg-white border-2 border-green-700 rounded-lg shadow-md overflow-hidden flex flex-col jobs-col" id="latest-jobs">
-      <div class="bg-green-800 text-white font-black text-center py-3 px-3 uppercase text-sm flex justify-between items-center">
-        <span>{theme.columnLatestJobs}</span>
-        <span class="text-xs bg-green-950 px-2.5 py-1 rounded-full count-badge">{latestJobs.length}</span>
+      <div class="bg-green-800 text-white font-black text-center py-2.5 px-3 uppercase text-sm flex justify-between items-center shadow-sm">
+        <span class="tracking-wide">{theme.columnLatestJobs}</span>
+        <span class="text-xs bg-green-950 px-2.5 py-0.5 rounded-full count-badge font-bold">{latestJobs.length}</span>
       </div>
-      <div class="p-3 flex-grow space-y-2" id="jobs-list">
+      <div class="p-2 sm:p-3 flex-grow space-y-1.5 max-h-[560px] md:max-h-[600px] overflow-y-auto scroll-smooth custom-scrollbar" id="jobs-list">
         {latestJobs.map((item) => (
-          <a href={`/exam/${item.slug}?lang=${lang}`} class="exam-card block hover:bg-green-50 p-2 rounded transition" data-quals={JSON.stringify(item.qualifications || [])}>
+          <a href={`/exam/${item.slug}?lang=${lang}`} class="exam-card block hover:bg-green-50 p-2 rounded border border-transparent hover:border-green-200 transition" data-quals={JSON.stringify(item.qualifications || [])}>
             <div class="text-xs font-bold text-gray-900 leading-snug">
               • {lang === 'hi' && item.title_hi ? item.title_hi : item.title}
-              {item.total_vacancies > 0 && <span class="text-green-700"> ({item.total_vacancies})</span>}
+              {item.total_vacancies > 0 && <span class="text-green-700 font-semibold"> ({item.total_vacancies})</span>}
             </div>
-            <div class="text-[10px] text-gray-500 mt-1.5 flex justify-between gap-2">
-              <span>Last: <strong class="text-red-600">{item.closing_date}</strong></span>
+            <div class="text-[10px] text-gray-500 mt-1 flex justify-between items-center gap-2">
+              <span>Last: <strong class="text-red-600 font-semibold">{item.closing_date}</strong></span>
               <span class="bg-green-600 text-white font-bold px-2 py-0.5 rounded shrink-0">Apply</span>
             </div>
           </a>
         ))}
-        <div class="empty-state hidden text-center text-xs text-gray-400 py-6 font-semibold">No jobs match.</div>
+        <div class="empty-state hidden text-center text-xs text-gray-400 py-8 font-semibold">No jobs match.</div>
       </div>
-      <a href={`/category/latest-jobs?lang=${lang}`} class="bg-gray-100 hover:bg-gray-200 text-center py-2.5 text-xs font-bold text-green-900 border-t min-h-[44px] flex items-center justify-center">View all</a>
+      <a href={`/category/latest-jobs?lang=${lang}`} class="bg-gray-100 hover:bg-gray-200 text-center py-2 text-xs font-bold text-green-900 border-t min-h-[40px] flex items-center justify-center">View all jobs →</a>
     </section>
   </div>
 

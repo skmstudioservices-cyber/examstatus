@@ -1,5 +1,6 @@
 ---
 import FeedbackWidget from '../components/FeedbackWidget.astro';
+import FastAlertsModal from '../components/FastAlertsModal.astro';
 import { DEFAULT_THEME, type ThemeSettings } from '../lib/types';
 import { langLink } from '../lib/i18n';
 
@@ -149,11 +150,9 @@ const schemas = Array.isArray(schemaData) ? schemaData : schemaData ? [schemaDat
   </footer>
 
   <FeedbackWidget />
+  <FastAlertsModal telegramUrl={theme.telegramUrl} whatsappUrl={theme.whatsappUrl} />
 
   <script is:inline>
-    document.getElementById('fast-alerts-btn')?.addEventListener('click', () => {
-      alert('Enable browser notifications on supported devices. Category/state push topics coming soon.');
-    });
     window.addEventListener('load', () => {
       try {
         const payload = JSON.stringify({ pathname: window.location.pathname, referrer: document.referrer || 'Direct' });

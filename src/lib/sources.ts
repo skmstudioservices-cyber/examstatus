@@ -64,8 +64,14 @@ export const OFFICIAL_SOURCES: OfficialSource[] = [
     id: 'nta',
     name: 'National Testing Agency (NTA)',
     domain: 'nta.ac.in',
-    listingUrls: ['https://nta.ac.in/', 'https://nta.ac.in/Examination'],
-    organizationKeywords: ['nta', 'national testing agency']
+    listingUrls: [
+      'https://nta.ac.in/',
+      'https://nta.ac.in/NoticeArchive',
+      'https://nta.ac.in/Examination',
+      'https://examinationservices.nic.in/',
+      'https://ugcnet.nta.ac.in/'
+    ],
+    organizationKeywords: ['nta', 'national testing agency', 'ugc net', 'csir net', 'neet', 'cuet']
   },
   {
     id: 'rrb',

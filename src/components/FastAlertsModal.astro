@@ -1,0 +1,103 @@
+---
+interface Props {
+  telegramUrl?: string;
+  whatsappUrl?: string;
+}
+const { telegramUrl = '', whatsappUrl = '' } = Astro.props;
+---
+
+<div
+  id="fast-alerts-modal"
+  class="fixed inset-0 z-50 hidden items-center justify-center bg-black/50 px-4"
+  role="dialog"
+  aria-modal="true"
+  aria-labelledby="fast-alerts-title"
+>
+  <div class="bg-white rounded-lg shadow-xl w-full max-w-sm p-5">
+    <div class="flex justify-between items-start mb-3">
+      <div>
+        <h3 id="fast-alerts-title" class="font-black text-slate-900 text-sm">⚡ Fast Alerts — Result First</h3>
+        <p class="text-[11px] text-gray-500">Get results & answer keys on your phone the moment they drop</p>
+      </div>
+      <button
+        id="fast-alerts-close-btn"
+        aria-label="Close"
+        class="text-gray-400 hover:text-gray-700 text-xl font-bold leading-none"
+      >
+        &times;
+      </button>
+    </div>
+
+    <div class="space-y-2.5">
+      {
+        telegramUrl ? (
+          <a
+            href={telegramUrl}
+            target="_blank"
+            rel="noopener noreferrer"
+            class="flex items-center gap-3 border-2 border-sky-500 rounded-lg p-3 hover:bg-sky-50 transition-colors"
+          >
+            <span class="text-2xl" aria-hidden="true">✈️</span>
+            <span>
+              <span class="block text-xs font-black text-slate-900">Telegram — instant</span>
+              <span class="block text-[11px] text-gray-500">Fastest channel. One tap to join.</span>
+            </span>
+          </a>
+        ) : (
+          <div class="flex items-center gap-3 border-2 border-gray-200 rounded-lg p-3 opacity-60">
+            <span class="text-2xl" aria-hidden="true">✈️</span>
+            <span>
+              <span class="block text-xs font-black text-slate-900">Telegram — coming soon</span>
+            </span>
+          </div>
+        )
+      }
+
+      {
+        whatsappUrl ? (
+          <a
+            href={whatsappUrl}
+            target="_blank"
+            rel="noopener noreferrer"
+            class="flex items-center gap-3 border-2 border-green-600 rounded-lg p-3 hover:bg-green-50 transition-colors"
+          >
+            <span class="text-2xl" aria-hidden="true">💬</span>
+            <span>
+              <span class="block text-xs font-black text-slate-900">WhatsApp channel</span>
+              <span class="block text-[11px] text-gray-500">Follow without sharing your number.</span>
+            </span>
+          </a>
+        ) : null
+      }
+    </div>
+
+    <p class="text-[10px] text-gray-400 mt-3 text-center">No spam. Only result alerts. Leave anytime.</p>
+  </div>
+</div>
+
+<script is:inline>
+  (function () {
+    var modal = document.getElementById('fast-alerts-modal');
+    var btn = document.getElementById('fast-alerts-btn');
+    var closeBtn = document.getElementById('fast-alerts-close-btn');
+    if (!modal || !btn) return;
+
+    function open() {
+      modal.classList.remove('hidden');
+      modal.classList.add('flex');
+    }
+    function close() {
+      modal.classList.add('hidden');
+      modal.classList.remove('flex');
+    }
+
+    btn.addEventListener('click', open);
+    if (closeBtn) closeBtn.addEventListener('click', close);
+    modal.addEventListener('click', function (e) {
+      if (e.target === modal) close();
+    });
+    document.addEventListener('keydown', function (e) {
+      if (e.key === 'Escape') close();
+    });
+  })();
+</script>

@@ -1,0 +1,23 @@
+name: Tag Verify
+
+# Live HTML se tags ka content-level verify.
+# (200 OK is NOT verification — grep the actual tags.)
+
+on:
+  workflow_dispatch:
+
+jobs:
+  verify:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Grep live GSC + analytics tags
+        run: |
+          set -e
+          H=$(curl -sL --max-time 30 "https://examstatus.india-in.workers.dev/?cb=$(date +%s)")
+          echo "google tags:      $(echo "$H" | grep -c 'google-site-verification' || true)"
+          echo "Ahrefs analytics: $(echo "$H" | grep -c 'analytics.ahrefs.com' || true)"
+          G=$(echo "$H" | grep -c 'google-site-verification' || true)
+          if [ "$G" -ne 0 ]; then
+            echo "::error::GSC tag still present — expected 0"
+            exit 1
+          fi

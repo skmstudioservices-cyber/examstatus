@@ -1,0 +1,110 @@
+---
+import ExamLayout from '../layouts/ExamLayout.astro';
+
+export const prerender = true;
+
+const faqSchema = {
+  '@context': 'https://schema.org',
+  '@type': 'FAQPage',
+  mainEntity: [
+    {
+      '@type': 'Question',
+      name: 'Is UGC NET June 2026 result declared?',
+      acceptedAnswer: { '@type': 'Answer', text: 'As of 26 September 2026, the NTA has not yet declared the UGC NET June 2026 result. The result is awaited and searches for it are surging. When declared, it will be published on the official website ugcnet.nta.nic.in.' }
+    },
+    {
+      '@type': 'Question',
+      name: 'Where to check UGC NET June 2026 result?',
+      acceptedAnswer: { '@type': 'Answer', text: 'The result is published on the official NTA UGC NET website, ugcnet.nta.nic.in. You need your application number and date of birth to log in and view your scorecard.' }
+    },
+    {
+      '@type': 'Question',
+      name: 'What details are needed to check the UGC NET result?',
+      acceptedAnswer: { '@type': 'Answer', text: 'Your application number and date of birth as filled in the application form. Keep the admit card handy — it contains the application number.' }
+    },
+    {
+      '@type': 'Question',
+      name: 'What after qualifying UGC NET?',
+      acceptedAnswer: { '@type': 'Answer', text: 'Candidates who clear the subject-wise cut-off qualify for Assistant Professor eligibility, and those above the JRF cut-off (and within the age limit) are eligible for the Junior Research Fellowship. Qualified candidates can download their e-certificate from the official UGC NET portal once issued.' }
+    }
+  ]
+};
+
+const updateSchema = {
+  '@context': 'https://schema.org',
+  '@type': 'SpecialAnnouncement',
+  name: 'UGC NET June 2026 Result — status update',
+  datePublished: '2026-09-26',
+  announcementLocation: { '@type': 'Country', name: 'India' },
+  newsUpdatesAndGuidelines: 'UGC NET June 2026 result is awaited as of 26 September 2026. Result will be published on the official website ugcnet.nta.nic.in.'
+};
+---
+
+<ExamLayout
+  title="UGC NET June 2026 Result — Check Date, Link & Steps"
+  description="UGC NET June 2026 result status, direct link guidance, steps to check the scorecard, cut-off and e-certificate information. Updated 26 September 2026."
+  schemaData={[faqSchema, updateSchema]}
+>
+  <div class="bg-white rounded-lg shadow-md p-6 max-w-3xl mx-auto">
+    <div class="border-l-4 border-red-700 bg-red-50 p-4 rounded mb-6">
+      <h1 class="text-xl md:text-2xl font-black text-slate-900 mb-2">UGC NET June 2026 Result — Live Status</h1>
+      <p class="text-sm text-gray-800 leading-relaxed">
+        <strong>Last updated: 26 September 2026.</strong> The UGC NET June 2026 result is
+        <strong>awaited</strong>. The National Testing Agency (NTA) declares UGC NET results on the official website
+        <strong>ugcnet.nta.nic.in</strong>. Search interest is currently very high — this page is updated as soon as there is official confirmation.
+      </p>
+    </div>
+
+    <h2 class="text-lg font-bold text-slate-900 mt-6 mb-2">How to check the result (steps)</h2>
+    <ol class="list-decimal ml-6 text-sm text-gray-700 space-y-2">
+      <li>Open the official website: <strong>ugcnet.nta.nic.in</strong></li>
+      <li>Click the result / scorecard link for <strong>UGC NET June 2026</strong> on the homepage</li>
+      <li>Enter your <strong>application number</strong> (printed on your admit card) and <strong>date of birth</strong></li>
+      <li>Enter the security pin shown on screen and submit</li>
+      <li>Your scorecard displays subject-wise marks, percentage and qualification status — download and print it</li>
+    </ol>
+
+    <div class="bg-amber-50 border border-amber-300 p-4 rounded mt-6">
+      <p class="text-sm text-gray-800">
+        <strong>⚠ Safety note:</strong> only trust results published on <strong>ugcnet.nta.nic.in</strong>.
+        Fake result links circulate on social media every cycle — do not enter your details on any other site claiming to host the UGC NET result.
+      </p>
+    </div>
+
+    <h2 class="text-lg font-bold text-slate-900 mt-6 mb-2">What the scorecard shows</h2>
+    <ul class="list-disc ml-6 text-sm text-gray-700 space-y-2">
+      <li>Marks obtained in each paper and total percentage</li>
+      <li>Subject-wise cut-off for your category</li>
+      <li>Whether you qualified for <strong>Assistant Professor</strong> eligibility</li>
+      <li>Whether you additionally qualified for <strong>JRF</strong> (Junior Research Fellowship), subject to the age limit</li>
+    </ul>
+
+    <h2 class="text-lg font-bold text-slate-900 mt-6 mb-2">After the result</h2>
+    <p class="text-sm text-gray-700 leading-relaxed mb-4">
+      Qualified candidates can download their <strong>e-certificate</strong> from the official UGC NET portal once it is issued,
+      usually a few weeks after the result. If you missed the cut-off marginally, keep an eye on the official announcement of
+      any revised or category-wise adjustments before assuming the final outcome.
+    </p>
+
+    <h2 class="text-lg font-bold text-slate-900 mt-6 mb-2">FAQs</h2>
+    <div class="space-y-4">
+      <details open class="border border-gray-200 rounded p-3">
+        <summary class="font-semibold text-sm text-slate-900">Is the UGC NET June 2026 result declared?</summary>
+        <p class="text-sm text-gray-700 mt-2">Not yet, as of 26 September 2026. It will appear first on ugcnet.nta.nic.in.</p>
+      </details>
+      <details class="border border-gray-200 rounded p-3">
+        <summary class="font-semibold text-sm text-slate-900">What is needed to check the result?</summary>
+        <p class="text-sm text-gray-700 mt-2">Your application number and date of birth. Keep your admit card ready.</p>
+      </details>
+      <details class="border border-gray-200 rounded p-3">
+        <summary class="font-semibold text-sm text-slate-900">Is there a fee to download the result or e-certificate?</summary>
+        <p class="text-sm text-gray-700 mt-2">The result and scorecard download are free. Follow only the official portal for the e-certificate as well.</p>
+      </details>
+    </div>
+
+    <p class="text-xs text-gray-500 mt-8 border-t pt-4">
+      This is an informational page, not the official NTA website. Always confirm on ugcnet.nta.nic.in.
+      Status last checked: 26 September 2026.
+    </p>
+  </div>
+</ExamLayout>

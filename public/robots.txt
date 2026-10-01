@@ -162,5 +162,5 @@ Disallow: /
 
 User-agent: Scrapy
 Disallow: /
-Sitemap: https://examstatus.india-in.workers.dev/sitemap-index.xml
+Sitemap: https://examstatus.india-in.workers.dev/sitemap.xml
 

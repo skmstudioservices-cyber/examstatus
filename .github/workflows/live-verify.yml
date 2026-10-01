@@ -1,0 +1,25 @@
+name: Live verify
+on:
+  workflow_dispatch:
+jobs:
+  verify:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Check live examstatus
+        run: |
+          B="https://examstatus.india-in.workers.dev"
+          CB=$(date +%s)
+          H=$(curl -sL --max-time 30 "$B/?cb=$CB")
+          echo "home_http=$(curl -sL -o /dev/null -w '%{http_code}' --max-time 30 "$B/?cb=$CB")"
+          echo "title=$(echo "$H" | grep -o '<title>[^<]*</title>' | head -1)"
+          echo "monetag_meta=$(echo "$H" | grep -c 'name="monetag"')"
+          echo "monetag_meta_value=$(echo "$H" | grep -o 'name="monetag" content="[^"]*"' | head -1)"
+          echo "tag_script=$(echo "$H" | grep -c 'tag.min.js')"
+          echo "tag_zone=$(echo "$H" | grep -o 'tag.min.js[^>]*' | head -1)"
+          echo "sw_http=$(curl -sL -o /dev/null -w '%{http_code}' --max-time 30 "$B/sw.js?cb=$CB")"
+          echo "sw_body=$(curl -sL --max-time 30 "$B/sw.js?cb=$CB" | head -c 120)"
+          echo "robots_bingbot=$(curl -sL --max-time 30 "$B/robots.txt" | grep -A1 'Bingbot' | tr '\n' ' ')"
+          echo "sitemap_http=$(curl -sL -o /dev/null -w '%{http_code}' --max-time 30 "$B/sitemap-index.xml")"
+          echo "bingsitemap_http=$(curl -sL -o /dev/null -w '%{http_code}' --max-time 30 "$B/sitemap.xml")"
+          echo "--- verdict ---"
+          if [ "$(echo "$H" | grep -c 'name="monetag"')" -ge 1 ] && [ "$(echo "$H" | grep -c 'tag.min.js')" -ge 1 ] && [ "$(curl -sL -o /dev/null -w '%{http_code}' "$B/sw.js")" = "200" ]; then echo "MONETAG LIVE OK"; else echo "MONETAG INCOMPLETE"; fi

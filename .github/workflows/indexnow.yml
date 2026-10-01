@@ -1,0 +1,24 @@
+name: IndexNow ping
+on:
+  push:
+    branches: [main]
+  workflow_dispatch:
+jobs:
+  ping:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Ping IndexNow (Bing / Yandex) for all URLs
+        run: |
+          B="https://examstatus.india-in.workers.dev"
+          KEY="0fdc8e2808c0ddf1713ff9bd0719710a"
+          SM=$(curl -sL --max-time 30 "$B/sitemap-index.xml")
+          URLS=$(echo "$SM" | grep -o '<loc>[^<]*</loc>' | sed 's/<[^>]*>//g' | head -5)
+          ALL=""
+          for s in $URLS; do
+            ALL="$ALL $(curl -sL --max-time 30 "$s" | grep -o '<loc>[^<]*</loc>' | sed 's/<[^>]*>//g')"
+          done
+          ALL=$(echo "$ALL" | tr ' ' '\n' | grep '^https' | sort -u | head -100)
+          echo "urls_to_ping=$(echo "$ALL" | wc -l)"
+          JSON=$(echo "$ALL" | python3 -c "import sys,json;u=[l.strip() for l in sys.stdin if l.strip()];print(json.dumps({'host':'examstatus.india-in.workers.dev','key':'$KEY','keyLocation':'$B/$KEY.txt','urlList':u}))")
+          echo "payload_head=$(echo "$JSON" | head -c 200)"
+          echo "indexnow_http=$(curl -s -o /dev/null -w '%{http_code}' --max-time 30 -X POST https://api.indexnow.org/indexnow -H 'Content-Type: application/json; charset=utf-8' -d "$JSON")"

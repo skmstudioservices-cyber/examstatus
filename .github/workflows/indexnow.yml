@@ -7,18 +7,47 @@ jobs:
   ping:
     runs-on: ubuntu-latest
     steps:
-      - name: Ping IndexNow (Bing / Yandex) for all URLs
+      - name: Ping IndexNow (Bing / Yandex)
         run: |
-          B="https://examstatus.india-in.workers.dev"
-          KEY="0fdc8e2808c0ddf1713ff9bd0719710a"
-          SM=$(curl -sL --max-time 30 "$B/sitemap-index.xml")
-          URLS=$(echo "$SM" | grep -o '<loc>[^<]*</loc>' | sed 's/<[^>]*>//g' | head -5)
-          ALL=""
-          for s in $URLS; do
-            ALL="$ALL $(curl -sL --max-time 30 "$s" | grep -o '<loc>[^<]*</loc>' | sed 's/<[^>]*>//g')"
-          done
-          ALL=$(echo "$ALL" | tr ' ' '\n' | grep '^https' | sort -u | head -100)
-          echo "urls_to_ping=$(echo "$ALL" | wc -l)"
-          JSON=$(echo "$ALL" | python3 -c "import sys,json;u=[l.strip() for l in sys.stdin if l.strip()];print(json.dumps({'host':'examstatus.india-in.workers.dev','key':'$KEY','keyLocation':'$B/$KEY.txt','urlList':u}))")
-          echo "payload_head=$(echo "$JSON" | head -c 200)"
-          echo "indexnow_http=$(curl -s -o /dev/null -w '%{http_code}' --max-time 30 -X POST https://api.indexnow.org/indexnow -H 'Content-Type: application/json; charset=utf-8' -d "$JSON")"
+          cat > ping.py <<'PY'
+          import json, re, urllib.request
+
+          B = "https://examstatus.india-in.workers.dev"
+          KEY = "0fdc8e2808c0ddf1713ff9bd0719710a"
+
+          def get(u):
+              req = urllib.request.Request(u, headers={"User-Agent": "indexnow-ping/1.0"})
+              return urllib.request.urlopen(req, timeout=30).read().decode("utf-8", "ignore")
+
+          def locs(xml):
+              return re.findall(r"<loc>([^<]+)</loc>", xml)
+
+          urls = set()
+          try:
+              idx = get(B + "/sitemap-index.xml")
+              for s in locs(idx)[:20]:
+                  try:
+                      for u in locs(get(s)):
+                          urls.add(u.strip())
+                  except Exception as e:
+                      print("child sitemap fail:", s, e)
+          except Exception as e:
+              print("sitemap-index fail:", e)
+          if not urls:
+              urls = {B + "/"}
+          urls = sorted(urls)[:200]
+          print("urls_found:", len(urls))
+          print("sample:", urls[:3])
+
+          payload = {"host": "examstatus.india-in.workers.dev", "key": KEY,
+                      "keyLocation": B + "/" + KEY + ".txt", "urlList": urls}
+          data = json.dumps(payload).encode()
+          req = urllib.request.Request("https://api.indexnow.org/indexnow", data=data,
+              headers={"Content-Type": "application/json; charset=utf-8"})
+          try:
+              r = urllib.request.urlopen(req, timeout=30)
+              print("indexnow_status:", r.status)
+          except urllib.error.HTTPError as e:
+              print("indexnow_status:", e.code)
+          PY
+          python3 ping.py

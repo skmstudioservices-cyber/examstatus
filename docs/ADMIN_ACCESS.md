@@ -18,7 +18,7 @@ npx wrangler secret put AI_CRON_SECRET
 3. Policy: allow emails of teammates (or an Access group).
 4. Add the same emails under Admin → Team with roles:
    - **owner** — theme, users, AI mode, publish
-   - **editor** — create/edit/publish posts
+   - **editor** — create/edit/publish posts 
    - **researcher** — queue AI drafts; cannot publish (unless you change policy)
 5. First Access user becomes owner automatically if `admin_users` is empty.
 

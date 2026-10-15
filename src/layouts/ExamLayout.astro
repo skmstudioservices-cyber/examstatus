@@ -164,5 +164,6 @@ const schemas = Array.isArray(schemaData) ? schemaData : schemaData ? [schemaDat
       } catch (e) {}
     });
   </script>
+<script>(function(){try{if(!navigator.sendBeacon)return;var E='https://digipincode.india-in.workers.dev/api/collect',t0=Date.now(),ms=0,s=false;window.addEventListener('scroll',function(){try{var h=document.documentElement.scrollHeight-window.innerHeight,p=h>0?Math.round(window.scrollY/h*100):0;if(p>ms)ms=p}catch(e){}},{passive:true});function send(){if(s)return;s=true;try{navigator.sendBeacon(E,JSON.stringify({host:location.hostname,path:location.pathname,ref:document.referrer||'',event:'view',dwell:Math.round((Date.now()-t0)/1000),scroll:ms}))}catch(e){}}window.addEventListener('pagehide',send,{once:true});document.addEventListener('visibilitychange',function(){if(document.visibilityState==='hidden')send()});}catch(e){}})();</script>
 </body>
 </html>

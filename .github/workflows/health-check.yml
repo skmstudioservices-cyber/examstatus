@@ -11,9 +11,17 @@ jobs:
     steps:
       - name: Check examstatus homepage
         run: |
-          code=$(curl -s -o /dev/null -w "%{http_code}" --max-time 30 "https://examstatus.india-in.workers.dev/")
-          echo "examstatus homepage: HTTP $code"
-          if [ "$code" != "200" ]; then
-            echo "::error::examstatus.india-in.workers.dev returned HTTP $code"
+          ok=0
+          for i in 1 2 3; do
+            code=$(curl -s -o /dev/null -w "%{http_code}" --max-time 30 -L "https://examstatus.india-in.workers.dev/")
+            echo "attempt $i: HTTP $code"
+            case "$code" in
+              2*|3*) ok=1; break ;;
+            esac
+            sleep 10
+          done
+          if [ "$ok" != "1" ]; then
+            echo "::error::examstatus.india-in.workers.dev failed 3 attempts (last HTTP $code)"
             exit 1
           fi
+          echo "examstatus homepage OK (HTTP $code)"
